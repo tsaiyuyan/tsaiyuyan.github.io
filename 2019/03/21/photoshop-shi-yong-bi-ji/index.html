@@ -1,0 +1,1109 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Photoshop 使用筆記, c/c++,Internet programmer,php,Javascript,Linux kernel">
+    <meta name="description" content="
+
+Photoshop 有許多指令不用滑鼠點選，透過鍵盤使用快捷鍵，將可省下不少時間。快 捷鍵不必刻意將它背下，只要指令常用，稍去了解一下它的快捷鍵，將可用得得心 應手。
+
+引用自：http://www.iamcooky.com/blog/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Photoshop 使用筆記 | YuYan&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon2.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo2.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">YuYan's blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>Friends</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo2.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">YuYan's blog</div>
+        <div class="logo-desc">
+            
+            記錄一些工作經驗、知識，或轉錄一些好文章，避免日後忘記。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                Friends
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/tsaiyuyan/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/tsaiyuyan/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Photoshop 使用筆記
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">無標籤</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Photoshop/" class="post-category" target="_blank">
+                                Photoshop
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
+                    2019-03-21
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
+                        4.3k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
+                        16 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>閱讀次數:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <!-- 動作:按住space拖曳滑鼠
+效果:可以移動視角
+
+動作:Ctrl + '+' or '-'
+效果:放大檢視 或縮小檢視 -->
+
+<p>Photoshop 有許多指令不用滑鼠點選，透過鍵盤使用快捷鍵，將可省下不少時間。快 捷鍵不必刻意將它背下，只要指令常用，稍去了解一下它的快捷鍵，將可用得得心 應手。</p>
+<hr>
+<p>引用自：<a href="http://www.iamcooky.com/blog/article.asp?id=74" target="_blank" rel="noopener">http://www.iamcooky.com/blog/article.asp?id=74</a></p>
+<p>以下是較常使用的快捷鍵：</p>
+<ul>
+<li>Ctrl+A 全選（All）</li>
+<li>Ctrl+L 色階(Level)</li>
+<li>Ctrl+C 複製（Copy）</li>
+<li>Ctrl+Z 復原</li>
+<li>Ctrl+P 貼上（Paste）</li>
+<li>Ctrl+＋ 放大檢視</li>
+<li>Ctrl+I 負面效果（Invert）</li>
+<li>Ctrl+－ 縮小檢視</li>
+<li>Ctrl+Shift+I 反選（Inverse）</li>
+<li>Ctrl+０ 顯示全頁</li>
+<li>Ctrl+D 取消選取</li>
+<li>Alt+Backspace(或 Delete) 填入前景色</li>
+<li>Ctrl+Backspace(或 Delete) 填入背景色</li>
+<li>Ctrl+H 隱藏(顯示)選取</li>
+<li>Ctrl+‵ 跳回 RGB</li>
+<li>Ctrl+點選圖層 載入選框</li>
+<li>空白鍵 切換手形工具</li>
+</ul>
+<p>★ 快捷鍵大全 ★</p>
+<ul>
+<li>雙擊面板=Open file</li>
+<li>ctrl+雙擊面板=New file</li>
+<li>shift+雙擊面板=Save</li>
+<li>alt+雙擊面板=Open as</li>
+<li>ctrl+shift+=Save as</li>
+<li>ctrl+alt+o=實際圖元顯示</li>
+<li>ctrl+h=隱藏選定區域</li>
+<li>ctrl+d=取消選定區域</li>
+<li>ctrl+w=關閉文件</li>
+<li>ctrl+q=退出 photoshop</li>
+</ul>
+<p>▲ f=標準顯示模式 → 帶功能表的全屏顯示模式 → 全屏顯示模式</p>
+<ul>
+<li>按 Tab 鍵可以顯示或隱藏工具箱和調色板，按“Shift+Tab”鍵可以顯示或隱藏除工具箱外的其他調色板。</li>
+<li>esc=取消操作</li>
+<li>可以通過按鍵盤上的某一字母鍵來快速選擇某一工具，各個工具的字母快捷鍵如下：</li>
+</ul>
+<p>Mar-quee-M, Lasso-l, Airbrush-a, Eraser-E, Rubber Stamp-S, Focus-R, Path-P, Line-N, Paint Bucket-K, Hand-H, Move-V, Magic Wand-W, Paintbrush-B, Pencil-Y, Smudge-U, Toning-O, Type-T, Gradient-G, Eyedropper-I, Zoom-Z, Default Colors-D, Switch Colors-X, Standard Mode-Q, Quick Mask Mode-Q,</p>
+<p>Shift、Ctr、Alt 連鍵：<br>使用其他工具時，按住 Ctrl 鍵可切換到 Move 工具的功能（除了選擇 Hand 工具時）；按住空白鍵可切換到 Hand 工具的功能。</p>
+<p>使用其他工具時，按“Ctrl+空白鍵”可切換到 Zoom In 工具放大圖像顯示比例：按“Alt+Ctrl+空白鍵”可切換到 Zoom Out 工具縮小圖像顯示比例。</p>
+<p>按“Ctrl+[+]”鍵可使圖像檔持續放大顯示比例，但視窗不隨之放大；按“Ctrl+[-]”鍵可使圖像檔持續縮小顯示比例，但視窗不隨之縮小。</p>
+<p>按“Ctrl+Alt+[+]”鍵可使圖像檔持續放大顯示比例，且視窗隨之放大；按“Ctrl+Alt+[-]”鍵可使圖像檔持續縮小顯示比例，且視窗隨之縮小。</p>
+<p>在 Hand 工具上雙擊滑鼠可以使圖像匹配視窗的大小顯示。</p>
+<p>按“Ctrl+Alt+[數位鍵 0]”或在 Zoom 工具上雙擊滑鼠可使圖像檔以 1：1 比例顯示。</p>
+<p>按“Shift+Backspace”鍵可直接調用 Fill（填充）對話方塊。</p>
+<p>按“Alt+Backspace(delete)”鍵可將前景色填入選取框，按“Ctrl+Backspace(delete)”鍵可將背景色填入選取框內</p>
+<p>在 Layers、Channels、Paths 調色板上，按 Alt 單擊這些調色板底部的工具圖示時，對於有對話方塊的工具可調出相應的對話方塊來更改設置。</p>
+<p>移動圖層和選取框時，按住 Shift 鍵可做水準、垂直或 45 度角的移動，按鍵盤上的方向鍵可做每次 lpixel 的移動，按住 Shift 鍵再按鍵盤上的方向鍵可做每次 10pixel 的移動。</p>
+<p>在使用選取工具時，按 Shift 鍵拖動滑鼠可以在原選取框外增加選取範圍（開集）；按 Alt 鍵拖動滑鼠可以刪除與原選取框重疊部分的選取範圍；同時按 Shift 與 Alt 鍵拖動滑鼠可以選取與原選取框重疊的範圍（交集）。</p>
+<p>調用 Curves 對話方塊時，按住 Alt 鍵於格線內單擊滑鼠可以增加格線，提高曲線精度。</p>
+<p>更改某一對話方塊的設置後，若要恢復為預設值，只要按住 Alt 鍵，Cancel 鍵會變成 Reset 鍵，在 Reset 鍵上單擊即可。</p>
+<p>若要將某一圖層上的圖像拷貝到尺寸不同的圖像視窗中央位置時，可以在拖動滑鼠的同時按住 Shift 鍵，圖像拖動到目的視窗後會自動居中。</p>
+<p>若要將圖像用於網路傳輸，可將圖像模式設置為 Indexed Color 索引色彩色模式，有檔小、傳輸快的優點，如果再選擇 GIF89a Export(GIF 輸出），可以設置透明的效果，並將檔保存成 GIF 格式。</p>
+<p>在使用自由變形（Layer/Free Transform）功能時，按 Ctrl 鍵並拖動某一控制點可以進行隨意變形的調整；“Shift+Ctrl”鍵並拖動某一控制點可以進行傾斜調整；按 Alt 鍵並拖動某一控制點可以進行對稱調整；按“Shift+Ctrl+Alt”鍵並拖動某一控制點可以進行透視效果的調整。</p>
+<p>在 layers 調色板上，按住 Ctrl 用滑鼠單擊某一圖層時，可載入該層圖像成選取框(Background 層除外，改名後可以）。</p>
+<p>使用路徑(Path)工具時的幾個技巧：使用筆形(Pen)工具製作路徑時按住 Shift 鍵可以強制路徑或方向線成水準、垂直或 45 度角，按住 Ctrl 鍵可暫時切換到路徑選取工具，按住 Alt 鍵將筆形游標在在黑色節點上單擊可以改變方向線的方向，使曲線能夠轉折；按 Alt 鍵用路徑選取(Direct Selection)工具單擊路徑會選取整個路徑；要同時選取多個路徑可以按住 Shift 後逐個單擊；使用路徑選工具時按住“Ctrl+Alt”鍵移近路徑會切換到加節點與減節點筆形工具。</p>
+<p>若要切換路徑(path)是否顯示，可以按住 Shift 鍵後在路徑調色板的路徑欄上單擊滑鼠, 或者在路徑調色版灰色區域單擊即可.</p>
+<p>若要一起執行數個宏(Action),可以先增加一個宏，然後錄製每一個所要執行的宏。</p>
+<p>若要在一個宏(Action)中的某一命令後新增一條命令，可以先選中該命令，然後單擊調色板上的開始錄製(Begin recording)圖示，選擇要增加的命令，再單擊停止錄製(Stop recording)圖示即可。</p>
+<p>在使用 Filter/Render/Clouds 濾鏡時，若要產生更多明顯的支紋圖案，可先按住 Alt 鍵後再執行該命令；若要生成低漫射支彩效果，可先按住 Shift 鍵後再執行命令。</p>
+<p>在使用 Filter/Render/Lighting Effects 濾鏡時，若要在對話方塊內複製光源時，可先按住 Alt 鍵後再拖動光源即可實現複製。</p>
+<p>若要在 Color 調色板上直接切換色彩模式，可先按住 Shift 鍵後，再將游標移到色彩條上單擊即可。</p>
+<hr>
+<ol>
+<li>矩形、橢圓選框工具 【M】</li>
+<li>裁剪工具 【C】</li>
+<li>移動工具 【V】</li>
+<li>套索、多邊形套索、磁性套索 【L】</li>
+<li>魔棒工具 【W】</li>
+<li>噴槍工具 【J】</li>
+<li>畫筆工具 【B】</li>
+<li>像皮圖章、圖案圖章 【S】</li>
+<li>歷史記錄畫筆工具 【Y】</li>
+<li>像皮擦工具 【E】</li>
+<li>鉛筆、直線工具 【N】</li>
+<li>模糊、銳化、塗抹工具 【R】</li>
+<li>減淡、加深、海棉工具 【O】</li>
+<li>鋼筆、自由鋼筆、磁性鋼筆 【P】</li>
+<li>添加錨點工具 【+】</li>
+<li>刪除錨點工具 【-】</li>
+<li>直接選取工具 【A】</li>
+<li>文字、文字蒙板、直排文字、直排文字蒙板 【T】</li>
+<li>度量工具 【U】</li>
+<li>直線漸變、徑向漸變、對稱漸變、角度漸變、菱形漸變 【G】</li>
+<li>油漆桶工具 【K】</li>
+<li>吸管、顏色取樣器 【I】</li>
+<li>抓手工具 【H】</li>
+<li>縮放工具 【Z】</li>
+<li>默認前景色和背景色 【D】</li>
+<li>切換前景色和背景色 【X】</li>
+<li>切換標準模式和快速蒙板模式 【Q】</li>
+<li>標準螢幕模式、帶有功能表欄的全屏模式、全屏模式 【F】</li>
+<li>臨時使用移動工具 【Ctrl】</li>
+<li>臨時使用吸色工具 【Alt】</li>
+<li>臨時使用抓手工具 【空格】</li>
+<li>打開工具選項面板 【Enter】</li>
+<li>快速輸入工具選項(當前工具選項面板中至少有一個可調節數字) 【0】至【9】</li>
+<li>迴圈選擇畫筆 【[】或【]】</li>
+<li>選擇第一個畫筆 【Shift】+【[】</li>
+<li>選擇最後一個畫筆 【Shift】+【]】</li>
+<li>建立新漸變(在”漸變編輯器”中) 【Ctrl】+【N】</li>
+<li>檔操作</li>
+<li>新建圖形檔 【Ctrl】+【N】</li>
+<li>用默認設置創建新檔 【Ctrl】+【Alt】+【N】</li>
+<li>打開已有的圖像 【Ctrl】+【O】</li>
+<li>打開為… 【Ctrl】+【Alt】+【O】</li>
+<li>關閉當前圖像 【Ctrl】+【W】</li>
+<li>保存當前圖像 【Ctrl】+【S】</li>
+<li>另存為… 【Ctrl】+【Shift】+【S】</li>
+<li>存儲副本 【Ctrl】+【Alt】+【S】</li>
+<li>頁面設置 【Ctrl】+【Shift】+【P】</li>
+<li>列印 【Ctrl】+【P】</li>
+<li>打開“預置”對話方塊 【Ctrl】+【K】</li>
+<li>顯示最後一次顯示的“預置”對話方塊 【Alt】+【Ctrl】+【K】</li>
+<li>設置“常規”選項(在預置對話方塊中) 【Ctrl】+【1】</li>
+<li>設置“存儲檔”(在預置對話方塊中) 【Ctrl】+【2】</li>
+<li>設置“顯示和游標”(在預置對話方塊中) 【Ctrl】+【3】</li>
+<li>設置“透明區域與色域”(在預置對話方塊中) 【Ctrl】+【4】</li>
+<li>設置“單位與尺規”(在預置對話方塊中) 【Ctrl】+【5】</li>
+<li>設置“參考線與網格”(在預置對話方塊中) 【Ctrl】+【6】</li>
+<li>設置“增效工具與暫存檔”(在預置對話方塊中) 【Ctrl】+【7】</li>
+<li>設置“記憶體與圖像快取記憶體”(在預置對話方塊中) 【Ctrl】+【8】</li>
+<li>編輯操作</li>
+<li>還原/重做前一步操作 【Ctrl】+【Z】</li>
+<li>還原兩步以上操作 【Ctrl】+【Alt】+【Z】</li>
+<li>重做兩步以上操作 【Ctrl】+【Shift】+【Z】</li>
+<li>剪切選取的圖像或路徑 【Ctrl】+【X】或【F2】</li>
+<li>拷貝選取的圖像或路徑 【Ctrl】+【C】</li>
+<li>合併拷貝 【Ctrl】+【Shift】+【C】</li>
+<li>將剪貼板的內容粘到當前圖形中 【Ctrl】+【V】或【F4】</li>
+<li>將剪貼板的內容粘到選框中 【Ctrl】+【Shift】+【V】</li>
+<li>自由變換 【Ctrl】+【T】</li>
+<li>應用自由變換(在自由變換模式下) 【Enter】</li>
+<li>從中心或對稱點開始變換 (在自由變換模式下) 【Alt】</li>
+<li>限制(在自由變換模式下) 【Shift】</li>
+<li>扭曲(在自由變換模式下) 【Ctrl】</li>
+<li>取消變形(在自由變換模式下) 【Esc】</li>
+<li>自由變換複製的象素資料 【Ctrl】+【Shift】+【T】</li>
+<li>再次變換複製的象素資料並建立一個副本 【Ctrl】+【Shift】+【Alt】+【T】</li>
+<li>刪除選框中的圖案或選取的路徑 【DEL】</li>
+<li>用背景色填充所選區域或整個圖層 【Ctrl】+【BackSpace】或【Ctrl】+【Del】</li>
+<li>用前景色填充所選區域或整個圖層 【Alt】+【BackSpace】或【Alt】+【Del】</li>
+<li>彈出“填充”對話方塊 【Shift】+【BackSpace】</li>
+<li>從歷史記錄中填充 【Alt】+【Ctrl】+【Backspace】</li>
+<li>圖像調整</li>
+<li>調整色階 【Ctrl】+【L】</li>
+<li>自動調整色階 【Ctrl】+【Shift】+【L】</li>
+<li>打開曲線調整對話方塊 【Ctrl】+【M】</li>
+<li>在所選通道的曲線上添加新的點(‘曲線’對話方塊中) 在圖像中【Ctrl】加點按</li>
+<li>在複合曲線以外的所有曲線上添加新的點(‘曲線’對話方塊中) 【Ctrl】+【Shift】</li>
+<li>加點按</li>
+<li>移動所選點(‘曲線’對話方塊中) 【↑】/【↓】/【←】/【→】</li>
+<li>以 10 點為增幅移動所選點以 10 點為增幅(‘曲線’對話方塊中) 【Shift】+【箭頭】</li>
+<li>選擇多個控制點(‘曲線’對話方塊中) 【Shift】加點按</li>
+<li>前移控制點(‘曲線’對話方塊中) 【Ctrl】+【Tab】</li>
+<li>後移控制點(‘曲線’對話方塊中) 【Ctrl】+【Shift】+【Tab】</li>
+<li>添加新的點(‘曲線’對話方塊中) 點按網格</li>
+<li>刪除點(‘曲線’對話方塊中) 【Ctrl】加點按點</li>
+<li>取消選擇所選通道上的所有點(‘曲線’對話方塊中) 【Ctrl】+【D】</li>
+<li>使曲線網格更精細或更粗糙(‘曲線’對話方塊中) 【Alt】加點按網格</li>
+<li>選擇彩色通道(‘曲線’對話方塊中) 【Ctrl】+【~】</li>
+<li>選擇單色通道(‘曲線’對話方塊中) 【Ctrl】+【數位】</li>
+<li>打開“色彩平衡”對話方塊 【Ctrl】+【B】</li>
+<li>打開“色相/飽和度”對話方塊 【Ctrl】+【U】</li>
+<li>全圖調整(在色相/飽和度”對話方塊中) 【Ctrl】+【~】</li>
+<li>只調整紅色(在色相/飽和度”對話方塊中) 【Ctrl】+【1】</li>
+<li>只調整黃色(在色相/飽和度”對話方塊中) 【Ctrl】+【2】</li>
+<li>只調整綠色(在色相/飽和度”對話方塊中) 【Ctrl】+【3】</li>
+<li>只調整青色(在色相/飽和度”對話方塊中) 【Ctrl】+【4】</li>
+<li>只調整藍色(在色相/飽和度”對話方塊中) 【Ctrl】+【5】</li>
+<li>只調整洋紅(在色相/飽和度”對話方塊中) 【Ctrl】+【6】</li>
+<li>去色 【Ctrl】+【Shift】+【U】</li>
+<li>反相 【Ctrl】+【I】</li>
+<li>圖層操作</li>
+<li>從對話方塊新建一個圖層 【Ctrl】+【Shift】+【N】</li>
+<li>以默認選項建立一個新的圖層 【Ctrl】+【Alt】+【Shift】+【N】</li>
+<li>通過拷貝建立一個圖層 【Ctrl】+【J】</li>
+<li>通過剪切建立一個圖層 【Ctrl】+【Shift】+【J】</li>
+<li>與前一圖層編組 【Ctrl】+【G】</li>
+<li>取消編組 【Ctrl】+【Shift】+【G】</li>
+<li>向下合併或合併聯接圖層 【Ctrl】+【E】</li>
+<li>合併可見圖層 【Ctrl】+【Shift】+【E】</li>
+<li>蓋印或蓋印聯接圖層 【Ctrl】+【Alt】+【E】</li>
+<li>蓋印可見圖層 【Ctrl】+【Alt】+【Shift】+【E】</li>
+<li>將當前層下移一層 【Ctrl】+【[】</li>
+<li>將當前層上移一層 【Ctrl】+【]】</li>
+<li>將當前層移到最下麵 【Ctrl】+【Shift】+【[】</li>
+<li>將當前層移到最上面 【Ctrl】+【Shift】+【]】</li>
+<li>啟動下一個圖層 【Alt】+【[】</li>
+<li>啟動上一個圖層 【Alt】+【]】</li>
+<li>啟動底部圖層 【Shift】+【Alt】+【[】</li>
+<li>啟動頂部圖層 【Shift】+【Alt】+【]】</li>
+<li>調整當前圖層的透明度(當前工具為無數字參數的,如移動工具) 【0】至【9】</li>
+<li>保留當前圖層的透明區域(開關) 【/】</li>
+<li>投影效果(在”效果”對話方塊中) 【Ctrl】+【1】</li>
+<li>內陰影效果(在”效果”對話方塊中) 【Ctrl】+【2】</li>
+<li>外發光效果(在”效果”對話方塊中) 【Ctrl】+【3】</li>
+<li>內發光效果(在”效果”對話方塊中) 【Ctrl】+【4】</li>
+<li>斜面和浮雕效果(在”效果”對話方塊中) 【Ctrl】+【5】</li>
+<li>應用當前所選效果並使參數可調(在”效果”對話方塊中) 【A】</li>
+<li>圖層混合模式</li>
+<li>迴圈選擇混合模式 【Alt】+【-】或【+】</li>
+<li>正常 【Ctrl】+【Alt】+【N】</li>
+<li>閾值（點陣圖模式） 【Ctrl】+【Alt】+【L】</li>
+<li>溶解 【Ctrl】+【Alt】+【I】</li>
+<li>背後 【Ctrl】+【Alt】+【Q】</li>
+<li>清除 【Ctrl】+【Alt】+【R】</li>
+<li>正片疊底 【Ctrl】+【Alt】+【M】</li>
+<li>螢幕 【Ctrl】+【Alt】+【S】</li>
+<li>疊加 【Ctrl】+【Alt】+【O】</li>
+<li>柔光 【Ctrl】+【Alt】+【F】</li>
+<li>強光 【Ctrl】+【Alt】+【H】</li>
+<li>顏色減淡 【Ctrl】+【Alt】+【D】</li>
+<li>顏色加深 【Ctrl】+【Alt】+【B】</li>
+<li>變暗 【Ctrl】+【Alt】+【K】</li>
+<li>變亮 【Ctrl】+【Alt】+【G】</li>
+<li>差值 【Ctrl】+【Alt】+【E】</li>
+<li>排除 【Ctrl】+【Alt】+【X】</li>
+<li>色相 【Ctrl】+【Alt】+【U】</li>
+<li>飽和度 【Ctrl】+【Alt】+【T】</li>
+<li>顏色 【Ctrl】+【Alt】+【C】</li>
+<li>光度 【Ctrl】+【Alt】+【Y】</li>
+<li>去色 海棉工具+【Ctrl】+【Alt】+【J】</li>
+<li>加色 海棉工具+【Ctrl】+【Alt】+【A】</li>
+<li>暗調 減淡/加深工具+【Ctrl】+【Alt】+【W】</li>
+<li>中間調 減淡/加深工具+【Ctrl】+【Alt】+【V】</li>
+<li>高光 減淡/加深工具+【Ctrl】+【Alt】+【Z】</li>
+<li>選擇功能</li>
+<li>全部選取 【Ctrl】+【A】</li>
+<li>取消選擇 【Ctrl】+【D】</li>
+<li>重新選擇 【Ctrl】+【Shift】+【D】</li>
+<li>羽化選擇 【Ctrl】+【Alt】+【D】</li>
+<li>反向選擇 【Ctrl】+【Shift】+【I】</li>
+<li>路徑變選區 數位鍵盤的【Enter】</li>
+<li>載入選區 【Ctrl】+點按圖層、路徑、通道面板中的縮約圖</li>
+<li>濾鏡</li>
+<li>按上次的參數再做一次上次的濾鏡 【Ctrl】+【F】</li>
+<li>退去上次所做濾鏡的效果 【Ctrl】+【Shift】+【F】</li>
+<li>重複上次所做的濾鏡(可調參數) 【Ctrl】+【Alt】+【F】</li>
+<li>選擇工具(在“3D 變化”濾鏡中) 【V】</li>
+<li>立方體工具(在“3D 變化”濾鏡中) 【M】</li>
+<li>球體工具(在“3D 變化”濾鏡中) 【N】</li>
+<li>柱體工具(在“3D 變化”濾鏡中) 【C】</li>
+<li>軌跡球(在“3D 變化”濾鏡中) 【R】</li>
+<li>全景相機工具(在“3D 變化”濾鏡中) 【E】</li>
+<li>視圖操作</li>
+<li>顯示彩色通道 【Ctrl】+【~】</li>
+<li>顯示單色通道 【Ctrl】+【數位】</li>
+<li>顯示複合通道 【~】</li>
+<li>以 CMYK 方式預覽(開關) 【Ctrl】+【Y】</li>
+<li>打開/關閉色域警告 【Ctrl】+【Shift】+【Y】</li>
+<li>放大視圖 【Ctrl】+【+】</li>
+<li>縮小視圖 【Ctrl】+【-】</li>
+<li>滿畫布顯示 【Ctrl】+【0】</li>
+<li>實際象素顯示 【Ctrl】+【Alt】+【0】</li>
+<li>向上捲動一屏 【PageUp】</li>
+<li>向下捲動一屏 【PageDown】</li>
+<li>向左捲動一屏 【Ctrl】+【PageUp】</li>
+<li>向右捲動一屏 【Ctrl】+【PageDown】</li>
+<li>向上捲動 10 個單位 【Shift】+【PageUp】</li>
+<li>向下捲動 10 個單位 【Shift】+【PageDown】</li>
+<li>向左捲動 10 個單位 【Shift】+【Ctrl】+【PageUp】</li>
+<li>向右捲動 10 個單位 【Shift】+【Ctrl】+【PageDown】</li>
+<li>將視圖移到左上角 【Home】</li>
+<li>將視圖移到右下角 【End】</li>
+<li>顯示/隱藏選擇區域 【Ctrl】+【H】</li>
+<li>顯示/隱藏路徑 【Ctrl】+【Shift】+【H】</li>
+<li>顯示/隱藏尺規 【Ctrl】+【R】</li>
+<li>顯示/隱藏參考線 【Ctrl】+【;】</li>
+<li>顯示/隱藏網格 【Ctrl】+【”】</li>
+<li>貼緊參考線 【Ctrl】+【Shift】+【;】</li>
+<li>鎖定參考線 【Ctrl】+【Alt】+【;】</li>
+<li>貼緊網格 【Ctrl】+【Shift】+【”】</li>
+<li>顯示/隱藏“畫筆”面板 【F5】</li>
+<li>顯示/隱藏“顏色”面板 【F6】</li>
+<li>顯示/隱藏“圖層”面板 【F7】</li>
+<li>顯示/隱藏“資訊”面板 【F8】</li>
+<li>顯示/隱藏“動作”面板 【F9】</li>
+<li>顯示/隱藏所有命令面板 【TAB】</li>
+<li>顯示或隱藏工具箱以外的所有調板 【Shift】+【TAB】</li>
+<li>文字處理(在”文字工具”對話方塊中)</li>
+<li>左對齊或頂對齊 【Ctrl】+【Shift】+【L】</li>
+<li>中對齊 【Ctrl】+【Shift】+【C】</li>
+<li>右對齊或底對齊 【Ctrl】+【Shift】+【R】</li>
+<li>左／右選擇 1 個字元 【Shift】+【←】/【→】</li>
+<li>下／上選擇 1 行 【Shift】+【↑】/【↓】</li>
+<li>選擇所有字元 【Ctrl】+【A】</li>
+<li>選擇從插入點到滑鼠點按點的字元 【Shift】加點按</li>
+<li>左／右移動 1 個字元 【←】/【→】</li>
+<li>下／上移動 1 行 【↑】/【↓】</li>
+<li>左／右移動 1 個字 【Ctrl】+【←】/【→】</li>
+<li>將所選文本的文字大小減小 2 點象素 【Ctrl】+【Shift】+【&lt;】</li>
+<li>將所選文本的文字大小增大 2 點象素 【Ctrl】+【Shift】+【&gt;】</li>
+<li>將所選文本的文字大小減小 10 點象素 【Ctrl】+【Alt】+【Shift】+【&lt;】</li>
+<li>將所選文本的文字大小增大 10 點象素 【Ctrl】+【Alt】+【Shift】+【&gt;】</li>
+<li>將行距減小 2 點象素 【Alt】+【↓】</li>
+<li>將行距增大 2 點象素 【Alt】+【↑】</li>
+<li>將基線位移減小 2 點象素 【Shift】+【Alt】+【↓】</li>
+<li>將基線位移增加 2 點象素 【Shift】+【Alt】+【↑】</li>
+<li>將字距微調或字距調整減小 20/1000ems 【Alt】+【←】</li>
+<li>將字距微調或字距調整增加 20/1000ems 【Alt】+【→】</li>
+<li>將字距微調或字距調整減小 100/1000ems 【Ctrl】+【Alt】+【←】</li>
+<li>將字距微調或字距調整增加 100/1000ems 【Ctrl】+【Alt】+【→】</li>
+<li>選擇通道中白的圖元（包括半色調）【Ctrl】+【Alt】+【1~9】</li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+            
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;轉載請註明:
+                    </span>
+                    <a href="https://github.com/tsaiyuyan" class="b-link-green">YuYan's blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/03/21/photoshop-shi-yong-bi-ji/" class="b-link-green">Photoshop 使用筆記</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '4b30a1bd0683a64b2698',
+        clientSecret: 'c750a3ecef2bfa64bbef4b51ead66428b1699f1c',
+        repo: 'blog-comments',
+        owner: 'tsaiyuyan',
+        admin: "tsaiyuyan",
+        id: '2019-03-21T11-41-00',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/03/21/709-to-lower-case/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="709. To Lower Case">
+                        
+                        <span class="card-title">709. To Lower Case</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            Link: https://leetcode.com/problems/to-lower-case/
+Implement function 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/LeetCode/" class="post-category" target="_blank">
+                                    LeetCode
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c-c/" target="_blank">
+                        <span class="chip bg-color">c/c++</span>
+                    </a>
+                    
+                    <a href="/tags/Easy/" target="_blank">
+                        <span class="chip bg-color">Easy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/03/21/771-jewels-and-stones/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="771. Jewels and Stones">
+                        
+                        <span class="card-title">771. Jewels and Stones</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            Link: https://leetcode.com/problems/jewels-and-stones/submissions/
+You
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/LeetCode/" class="post-category" target="_blank">
+                                    LeetCode
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c-c/" target="_blank">
+                        <span class="chip bg-color">c/c++</span>
+                    </a>
+                    
+                    <a href="/tags/Easy/" target="_blank">
+                        <span class="chip bg-color">Easy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目錄</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">54.6k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/tsaiyuyan" class="tooltipped" target="_blank" data-tooltip="Visit My GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:st3265987410@gmail.com" class="tooltipped" target="_blank" data-tooltip="Email" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="請輸入搜索的關鍵字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

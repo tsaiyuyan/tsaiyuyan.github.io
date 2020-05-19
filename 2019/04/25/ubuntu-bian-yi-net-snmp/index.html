@@ -1,0 +1,900 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Ubuntu 編譯 net-snmp, c/c++,Internet programmer,php,Javascript,Linux kernel">
+    <meta name="description" content="一、前言目前最有影響的網絡管理協議是 SNMP 和 CMIS/CMIP在「網絡管理站-網管代理」的模型中，如果各個廠商提供的網絡管理站和網管代理之間的通信方式各不相同，將會大大影響網絡管理系統的通用性，影響不同廠商設備間的互連，因此需要制定">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Ubuntu 編譯 net-snmp | YuYan&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon2.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo2.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">YuYan's blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>Friends</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo2.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">YuYan's blog</div>
+        <div class="logo-desc">
+            
+            記錄一些工作經驗、知識，或轉錄一些好文章，避免日後忘記。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                Friends
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/tsaiyuyan/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/tsaiyuyan/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Ubuntu 編譯 net-snmp
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/snmp/" target="_blank">
+                                <span class="chip bg-color">snmp</span>
+                            </a>
+                        
+                            <a href="/tags/ubuntu/" target="_blank">
+                                <span class="chip bg-color">ubuntu</span>
+                            </a>
+                        
+                            <a href="/tags/net-snmp/" target="_blank">
+                                <span class="chip bg-color">net-snmp</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
+                    2019-04-25
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
+                        1.4k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
+                        5 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>閱讀次數:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><h3 id="目前最有影響的網絡管理協議是-SNMP-和-CMIS-CMIP"><a href="#目前最有影響的網絡管理協議是-SNMP-和-CMIS-CMIP" class="headerlink" title="目前最有影響的網絡管理協議是 SNMP 和 CMIS/CMIP"></a>目前最有影響的網絡管理協議是 SNMP 和 CMIS/CMIP</h3><p>在「網絡管理站-網管代理」的模型中，如果各個廠商提供的網絡管理站和網管代理之間的通信方式各不相同，將會大大影響網絡管理系統的通用性，影響不同廠商設備間的互連，因此需要制定一個網絡管理站和網管代理之間通信的標準。</p>
+<p>網絡管理協議就是用於網絡管理站和網管代理之間傳遞信息，並能完成信息交換安全控制的通信規則。</p>
+<p>網絡管理站通過網絡管理協議從網管代理那裡獲取被管設備的管理信息或向網管代理髮送命令；網管代理也可以通過網絡管理協議主動向管理站報告緊急信息。</p>
+<p>目前最有影響的網絡管理協議是<em>SNMP</em>和<em>CMIS/CMIP</em>。它們代表了目前兩大網絡管理解決方案。</p>
+<p>其中 SNMP 流傳最廣，應用最多，獲得的支持也最廣泛，已經成為事實上的工業標準。</p>
+<p>原文網址：<a href="https://kknews.cc/news/zkyaz5a.html" target="_blank" rel="noopener">https://kknews.cc/news/zkyaz5a.html</a></p>
+<hr>
+<h3 id="SNMP-與-CMIP-CMIS-的比較"><a href="#SNMP-與-CMIP-CMIS-的比較" class="headerlink" title="SNMP 與 CMIP/CMIS 的比較"></a>SNMP 與 CMIP/CMIS 的比較</h3><p>SNMP 採用無連接，不保證可靠的 UDP 傳輸服務，而 CMIP 採用 OSI/RM 鐘面向連接可靠的傳輸服務，SNMP 是個簡單、低成本和容易實現的解決方案，他的原則是:對被管理的系統帶來的影響要最小。<br>CMIP 是一個資源耗費多的管理框架，管理功能強，但耗費時間多，相應軟體在管理和被管對象上運行的額外開銷大。</p>
+<p>SNMP 的主要缺點是:</p>
+<ul>
+<li>不能有效地傳送大塊數據</li>
+<li>不能將網路管理的功能分散化</li>
+<li>安全性不夠好(後面衍伸 V2、V3)</li>
+</ul>
+<hr>
+<h3 id="PDU-協議數據單元"><a href="#PDU-協議數據單元" class="headerlink" title="PDU 協議數據單元"></a>PDU 協議數據單元</h3><p>在電信領域，協議數據單元（英語：Protocol Data Unit，縮寫為 PDU）有以下幾層意義：</p>
+<ol>
+<li>網絡的對等實體傳送的信息單元，包括了控制信息，地址信息，或者數據。</li>
+<li>在分層協議系統里，在指定的協議層上傳送的數據單元，包含了該層的協議控制信息和用戶信息。</li>
+</ol>
+<p>在 OSI 模型系統里，PDU 和最底下四層相關。</p>
+<ul>
+<li>物理層（一層）PDU 指數據位（Bit）。</li>
+<li>數據鏈路層（二層）PDU 指數據幀（Frame）。</li>
+<li>網絡層（三層）PDU 指數據包（Datagram）。</li>
+<li>傳輸層（四層）PDU 指數據段（Segment）。</li>
+<li>應用層（五層）PDU 指數據段（Packet）。</li>
+</ul>
+<p>原文網址：<a href="https://zh.wikipedia.org/wiki/协议数据单元" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/协议数据单元</a></p>
+<p>原文網址：<a href="https://en.wikipedia.org/wiki/Protocol_data_unit" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Protocol_data_unit</a></p>
+<hr>
+<h2 id="二、SNMP-介紹"><a href="#二、SNMP-介紹" class="headerlink" title="二、SNMP 介紹"></a>二、SNMP 介紹</h2><h3 id="SNMP-中定義了五種消息類型：Get-Request、Get-Response、Get-Next-Request、Set-Request-和-Trap。"><a href="#SNMP-中定義了五種消息類型：Get-Request、Get-Response、Get-Next-Request、Set-Request-和-Trap。" class="headerlink" title="SNMP 中定義了五種消息類型：Get-Request、Get-Response、Get-Next-Request、Set-Request 和 Trap。"></a>SNMP 中定義了五種消息類型：Get-Request、Get-Response、Get-Next-Request、Set-Request 和 Trap。</h3><p>SNMP 五種消息類型</p>
+<h4 id="1-Get-Request-、Get-Next-Request-與-Get-Response"><a href="#1-Get-Request-、Get-Next-Request-與-Get-Response" class="headerlink" title="(1)Get-Request 、Get-Next-Request 與 Get-Response"></a>(1)Get-Request 、Get-Next-Request 與 Get-Response</h4><p>SNMP 管理站用 Get-Request 消息從擁有 SNMP 代理的網絡設備中檢索信息，而 SNMP 代理則用 Get-Response 消息響應。Get-Next- Request 用於和 Get-Request 組合起來查詢特定的表對象中的列元素。</p>
+<h4 id="2-Set-Request"><a href="#2-Set-Request" class="headerlink" title="(2)Set-Request"></a>(2)Set-Request</h4><p>SNMP 管理站用 Set-Request 可以對網絡設備進行遠程配置（包括設備名、設備屬性、刪除設備或使某一個設備屬性有效/無效等）。</p>
+<h4 id="3-Trap"><a href="#3-Trap" class="headerlink" title="(3)Trap"></a>(3)Trap</h4><p>SNMP 代理使用 Trap 向 SNMP 管理站發送非請求消息，一般用於描述某一事件的發生，如接口 UP/DOWN，IP 位址更改等。</p>
+<p>原文網址：<a href="https://kknews.cc/zh-tw/entertainment/p4vv2mp.html" target="_blank" rel="noopener">https://kknews.cc/zh-tw/entertainment/p4vv2mp.html</a></p>
+<hr>
+<h3 id="Extend-SNMP-–-Run-bash-scripts-via-SNMP"><a href="#Extend-SNMP-–-Run-bash-scripts-via-SNMP" class="headerlink" title="Extend SNMP – Run bash scripts via SNMP"></a>Extend SNMP – Run bash scripts via SNMP</h3><h4 id="1-Edit-snmpd-conf"><a href="#1-Edit-snmpd-conf" class="headerlink" title="1. Edit snmpd.conf"></a>1. Edit snmpd.conf</h4><pre class=" language-bash"><code class="language-bash">$ vim /etc/snmp.conf
+
+<span class="token comment" spellcheck="true"># Extend SNMP</span>
+extend script1 /etc/snmp/scripts/script1.sh
+extend script2 /etc/snmp/scripts/script2.sh
+</code></pre>
+<h4 id="2-Restart-SNMPD-Service"><a href="#2-Restart-SNMPD-Service" class="headerlink" title="2. Restart SNMPD Service"></a>2. Restart SNMPD Service</h4><pre class=" language-sh"><code class="language-sh">$ sudo service snmpd restart
+ Stopping snmpd: [ OK ]
+ Starting snmpd: [ OK ]</code></pre>
+<p>原文網址：<a href="https://geekpeek.net/extend-snmp-run-bash-scripts-via-snmp/" target="_blank" rel="noopener">https://geekpeek.net/extend-snmp-run-bash-scripts-via-snmp/</a></p>
+<hr>
+<h3 id="net-snmp-指令"><a href="#net-snmp-指令" class="headerlink" title="net-snmp 指令"></a>net-snmp 指令</h3><h4 id="1-snmpwalk"><a href="#1-snmpwalk" class="headerlink" title="1.snmpwalk"></a>1.snmpwalk</h4><p>執行一系列 snmpgetnext 指令的集合。</p>
+<pre class=" language-text"><code class="language-text">snmpwalk的用法
+snmpwalk -v 1或2(代表SNMP版本) -c SNMP读密码 IP地址 OID(对象标示符)
+
+(1) -v： 指定snmp的版本, 1或者2；
+(2) -c:    指定连接设备SNMP读密码；
+(3) IP:    指定要walk的设备的IP地址；
+(4) Oid：代表要获取设备的指标oid；
+
+用法举例：
+
+例如获取cisco设备192.168.17.191的接口类型
+Snmpwalk –v 2 –c public 192.168.17.191 1.3.6.1.2.1.2.2.1.3</code></pre>
+<h4 id="2-snmpget"><a href="#2-snmpget" class="headerlink" title="2.snmpget"></a>2.snmpget</h4><p>可從指定的主機擷取 MIB 資訊。</p>
+<h4 id="3-snmpgetnext"><a href="#3-snmpgetnext" class="headerlink" title="3.snmpgetnext"></a>3.snmpgetnext</h4><p>循序存取沒有定義 index 的資訊。</p>
+<h4 id="4-snmpset"><a href="#4-snmpset" class="headerlink" title="4.snmpset"></a>4.snmpset</h4><p>將指定的資訊寫入定義好的 MIB 資料庫中。</p>
+<h4 id="5-snmptrap"><a href="#5-snmptrap" class="headerlink" title="5.snmptrap"></a>5.snmptrap</h4><p>大部分 SNMP 流量都是由網管系統流向網路設備；而 snmptrap 是由網路設備主動發送相關必要資訊給網管系統。</p>
+<h4 id="6-snmptable"><a href="#6-snmptable" class="headerlink" title="6.snmptable"></a>6.snmptable</h4><p>將定義好的 table 格式資料印出在螢幕上。</p>
+<hr>
+<h2 id="三、建置-net-snmp-開發環境"><a href="#三、建置-net-snmp-開發環境" class="headerlink" title="三、建置 net-snmp 開發環境"></a>三、建置 net-snmp 開發環境</h2><h3 id="1-下載-net-snmp-source-code"><a href="#1-下載-net-snmp-source-code" class="headerlink" title="1.下載 net-snmp source code"></a>1.下載 net-snmp source code</h3><p><a href="http://www.net-snmp.org/" target="_blank" rel="noopener">http://www.net-snmp.org/</a></p>
+<h3 id="2-解壓縮"><a href="#2-解壓縮" class="headerlink" title="2.解壓縮"></a>2.解壓縮</h3><pre class=" language-sh"><code class="language-sh">$tar -zxvf net-snmp-5.7.3.tar.gz</code></pre>
+<h3 id="3-建立-Makefile"><a href="#3-建立-Makefile" class="headerlink" title="3.建立 Makefile"></a>3.建立 Makefile</h3><pre class=" language-sh"><code class="language-sh">$./configure --prefix=/usr/local/net-snmp
+//依序填入相關設定
+$sudo make
+$sudo make install
+$cd /usr/local/net-snmp/sbin
+$ ./snmpd -v
+
+NET-SNMP version:  5.7.3
+Web:               http://www.net-snmp.org/
+Email:             net-snmp-coders@lists.sourceforge.net</code></pre>
+<h3 id="4-疑難排解"><a href="#4-疑難排解" class="headerlink" title="4.疑難排解"></a>4.疑難排解</h3><h4 id="1-cannot-find-lperl"><a href="#1-cannot-find-lperl" class="headerlink" title="1. cannot find -lperl"></a>1. cannot find -lperl</h4><p>code:</p>
+<pre class=" language-sh"><code class="language-sh">/usr/bin/ld: cannot find -lperl
+collect2: error: ld returned 1 exit status
+Makefile:976: recipe for target 'libnetsnmpagent.la' failed
+make[1]: *** [libnetsnmpagent.la] Error 1
+make[1]: *** Waiting for unfinished jobs....</code></pre>
+<p>solution:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token variable">$sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> libperl-dev</code></pre>
+<hr>
+<h2 id="四、請閱讀下一章節"><a href="#四、請閱讀下一章節" class="headerlink" title="四、請閱讀下一章節"></a>四、請閱讀下一章節</h2><p>本篇先學習相關知識，以及創建開發環境，下一篇介紹，如何寫一個 subagent、跟如何做一個相同 snmpget、snmpset。以及如何利用 broadcast 尋找支援 snmp 的設備，算是一種 snmp network discovery 的應用吧。</p>
+
+            </div>
+            <hr/>
+
+            
+
+            
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;轉載請註明:
+                    </span>
+                    <a href="https://github.com/tsaiyuyan" class="b-link-green">YuYan's blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/04/25/ubuntu-bian-yi-net-snmp/" class="b-link-green">Ubuntu 編譯 net-snmp</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '4b30a1bd0683a64b2698',
+        clientSecret: 'c750a3ecef2bfa64bbef4b51ead66428b1699f1c',
+        repo: 'blog-comments',
+        owner: 'tsaiyuyan',
+        admin: "tsaiyuyan",
+        id: '2019-04-25T10-00-00',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/05/11/pandora-fms-shi-yong-bi-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Pandora FMS 使用筆記">
+                        
+                        <span class="card-title">Pandora FMS 使用筆記</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            
+熟悉 snmp 協定應用，再來使用 Pandora FMS 做監控。
+
+配置環境
+Vmware
+
+下載 .iso
+CentOS Appli
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/note/" target="_blank">
+                        <span class="chip bg-color">note</span>
+                    </a>
+                    
+                    <a href="/tags/snmp/" target="_blank">
+                        <span class="chip bg-color">snmp</span>
+                    </a>
+                    
+                    <a href="/tags/pondora-FMS/" target="_blank">
+                        <span class="chip bg-color">pondora FMS</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/04/15/vc-emwin-shi-yong-vs2015-2017-zhi-xing/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="VC++ emWin 使用 VS2015_2017 執行">
+                        
+                        <span class="card-title">VC++ emWin 使用 VS2015_2017 執行</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            emWin 測試版本ver-548
+官方文件 HowTo_RunSimulationUnderVS2015_2017.txtMake sur
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Windows/" class="post-category" target="_blank">
+                                    Windows
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/visual-studio/" target="_blank">
+                        <span class="chip bg-color">visual-studio</span>
+                    </a>
+                    
+                    <a href="/tags/emWin/" target="_blank">
+                        <span class="chip bg-color">emWin</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目錄</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">54.6k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/tsaiyuyan" class="tooltipped" target="_blank" data-tooltip="Visit My GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:st3265987410@gmail.com" class="tooltipped" target="_blank" data-tooltip="Email" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="請輸入搜索的關鍵字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
