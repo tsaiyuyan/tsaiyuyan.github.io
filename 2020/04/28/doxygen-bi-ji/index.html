@@ -6,11 +6,15 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Doxygen 筆記, c/c++,Internet programmer,php,Javascript,Linux kernel">
     <meta name="description" content="下載點
+
 先安裝 Doxygen 再安裝 Graphviz
 
-1.Doxygenhttp://www.doxygen.nl/download.html
-2.Graphvizhttps://www.graphviz.org/download/
-">
+1.Doxygen
+Link
+2.Graphviz
+Link
+Windows 下使用 doxygen 閱讀和分析 C/C++代碼
+雖然使用各種 IDE 或者 Source Ins">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -413,7 +417,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        528
+                        515
                     </div>
                     
 
@@ -436,23 +440,30 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="下載點"><a href="#下載點" class="headerlink" title="下載點"></a>下載點</h2><blockquote>
+                <h2>下載點</h2>
+<blockquote>
 <p>先安裝 Doxygen 再安裝 Graphviz</p>
 </blockquote>
-<p>1.Doxygen<br><a href="http://www.doxygen.nl/download.html" target="_blank" rel="noopener">http://www.doxygen.nl/download.html</a></p>
-<p>2.Graphviz<br><a href="https://www.graphviz.org/download/" target="_blank" rel="noopener">https://www.graphviz.org/download/</a></p>
-<h2 id="Windows-下使用-doxygen-閱讀和分析-C-C-代碼"><a href="#Windows-下使用-doxygen-閱讀和分析-C-C-代碼" class="headerlink" title="Windows 下使用 doxygen 閱讀和分析 C/C++代碼"></a>Windows 下使用 doxygen 閱讀和分析 C/C++代碼</h2><p>雖然使用各種 IDE 或者 Source Insight 可以方便地在 windows 下閱讀和分析 C/C++代碼，但是一步步 Go to Definetion 實在令人痛苦。Doxygen 能夠生成函數調用關係圖，所有的函數調用關係可以一目了然，另外他還能統計文檔中所有的類，成員變數，成員函數等。總的來說，Doxygen 不但能從局部把握代碼，還能從全局審視代碼，後者是一般 IDE 和 Source Insight 不能做到的。所以，使用 doxygen 閱讀分析代碼可以達到事半功倍的效果。</p>
-<p>doxygen 的安裝很簡單，到官方網站下載 doxygen 的 windows 安裝程式即可。除了安裝 doxygen 外，還需要安裝 graphviz，因為 doxygen 需要使用 graphviz 的 dot.exe 生成調用圖。graphviz 在它的官方網站上也可以下載到安裝程式。不過我下載的安裝程式在安裝時老是報 cab 檔錯誤。最後我下載了 graphviz 的 release 檔，即安裝程式下面的 zip 壓縮檔，下載完成後解壓縮即可。<br>安裝完 doxygen 後即可進行適當的配置，然後運行 doxyfile 生成文檔。基本的配置前人早有說明，不再贅述。需要注意的是：</p>
+<p>1.Doxygen<br>
+<a href="http://www.doxygen.nl/download.html" target="_blank" rel="noopener">Link</a></p>
+<p>2.Graphviz<br>
+<a href="https://www.graphviz.org/download/" target="_blank" rel="noopener">Link</a></p>
+<h2>Windows 下使用 doxygen 閱讀和分析 C/C++代碼</h2>
+<p>雖然使用各種 IDE 或者 Source Insight 可以方便地在 windows 下閱讀和分析 C/C++代碼，但是一步步 Go to Definetion 實在令人痛苦。Doxygen 能夠生成函數調用關係圖，所有的函數調用關係可以一目了然，另外他還能統計文檔中所有的類，成員變數，成員函數等。總的來說，Doxygen 不但能從局部把握代碼，還能從全局審視代碼，後者是一般 IDE 和 Source Insight 不能做到的。所以，使用 doxygen 閱讀分析代碼可以達到事半功倍的效果。</p>
+<p>doxygen 的安裝很簡單，到官方網站下載 doxygen 的 windows 安裝程式即可。除了安裝 doxygen 外，還需要安裝 graphviz，因為 doxygen 需要使用 graphviz 的 dot.exe 生成調用圖。graphviz 在它的官方網站上也可以下載到安裝程式。不過我下載的安裝程式在安裝時老是報 cab 檔錯誤。最後我下載了 graphviz 的 release 檔，即安裝程式下面的 zip 壓縮檔，下載完成後解壓縮即可。</p>
+<p>安裝完 doxygen 後即可進行適當的配置，然後運行 doxyfile 生成文檔。基本的配置前人早有說明，不再贅述。需要注意的是：</p>
 <ol>
-<li>要勾選 Expert-&gt;Dot 選項卡下面的 HAVE_DOT、CALL_GRAPH 、CALLER_GRAPH 選項。並在 DOT_PATH 下面填入 dot.exe 的路徑，也就是 graphviz 安裝目錄下的 bin 檔夾。<br><strong><em>(default: C:\Program Files (x86)\Graphviz2.38\bin)</em></strong></li>
+<li>要勾選 Expert-&gt;Dot 選項卡下面的 HAVE<em>DOT、CALL_GRAPH 、CALLER_GRAPH 選項。並在 DOT_PATH 下面填入 dot.exe 的路徑，也就是 graphviz 安裝目錄下的 bin 檔夾。<br>
+**</em>(default: C:\Program Files (x86)\Graphviz2.38\bin)_**</li>
 <li>勾選 Wizard-&gt;Project 選項卡下面的 Scan recursively！</li>
 <li>勾選 Expert -&gt;Build 選項卡下面的 EXTRACT_ALL、EXTRACT_PRIVATE、EXTRACT_STATIC、EXTRACT_LOCAL_CLASSES、EXTRACT_LOCAL_METHODS 選項</li>
 <li>如果程式裏面有中文，Exoert -&gt; project -&gt; DOXYFILE_ENCODING INPUT_ENCODING 改為 BIG5</li>
 <li>可以勾掉 LATEX 輸出，這樣節省編譯時間</li>
 <li>Doxygen 效果請參考附件圖片</li>
-<li>Expert -&gt; Source Browser 可以勾選 SOURCE_BROWSER 可以在網站上看到source code</li>
+<li>Expert -&gt; Source Browser 可以勾選 SOURCE_BROWSER 可以在網站上看到 source code</li>
 </ol>
-<p>Vs code 自動生成 Doxygen 格式註釋(有用 Vs code 仁兄可參考)<br><a href="https://www.cnblogs.com/silencehuan/p/11875958.html" target="_blank" rel="noopener">https://www.cnblogs.com/silencehuan/p/11875958.html</a></p>
+<p>Vs code 自動生成 Doxygen 格式註釋(有用 Vs code 仁兄可參考)<br>
+<a href="https://www.cnblogs.com/silencehuan/p/11875958.html" target="_blank" rel="noopener">Link</a></p>
 
             </div>
             <hr/>
@@ -703,7 +714,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">54.6k</span>
+                <span class="white-color">56.5k</span>
             
 
             
