@@ -4,14 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="#  multicast test, c/c++,Internet programmer,php,Javascript,Linux kernel">
-    <meta name="description" content="multicast test
-multicast_server.c
-/*
+    <meta name="keywords" content="Example C code - Multicast, c/c++,Internet programmer,php,Javascript,Linux kernel">
+    <meta name="description" content="multicast_server.c/*
 *multicast_server.c - 多播服務程序
 */
 #define MCAST_PORT 8888
-#define MCAST_ADDR &#34;224.0.0">
+#define MCAST_ADDR &#34;224.0.0.88&#34;
+#define MCA">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +18,7 @@ multicast_server.c
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>#  multicast test | YuYan&#39;s blog</title>
+    <title>Example C code - Multicast | YuYan&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon2.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -266,13 +265,13 @@ multicast_server.c
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        #  multicast test
+                        Example C code - Multicast
                     </div>
                 </div>
             </div>
@@ -388,20 +387,29 @@ multicast_server.c
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/C-C/" class="post-category" target="_blank">
+                                C/C++
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2020-06-03
+                    2020-06-13
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        417
+                        415
                     </div>
                     
 
@@ -424,9 +432,7 @@ multicast_server.c
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>multicast test</h1>
-<h2>multicast_server.c</h2>
-<pre class=" language-language-c++"><code class="language-language-c++">/*
+                <h2 id="multicast-server-c"><a href="#multicast-server-c" class="headerlink" title="multicast_server.c"></a>multicast_server.c</h2><pre class=" language-c++"><code class="language-c++">/*
 *multicast_server.c - 多播服務程序
 */
 #define MCAST_PORT 8888
@@ -436,41 +442,39 @@ multicast_server.c
 
 int main(int argc, char*argv)
 {
-    int s;
-    struct sockaddr_in mcast_addr;
-    s = socket(AF_INET, SOCK_DGRAM, 0); /*建立套接字*/
-    if (s == -1)
-    {
-        perror("socket()");
-        return -1;
-    }
+    int s;
+    struct sockaddr_in mcast_addr;
+    s = socket(AF_INET, SOCK_DGRAM, 0); /*建立套接字*/
+    if (s == -1)
+    {
+        perror("socket()");
+        return -1;
+    }
 
-    memset(&mcast_addr, 0, sizeof(mcast_addr));/*初始化IP多播地址為0*/
-    mcast_addr.sin_family = AF_INET; /*設置協議族類行為AF*/
-    mcast_addr.sin_addr.s_addr = inet_addr(MCAST_ADDR);/*設置多播IP地址*/
-    mcast_addr.sin_port = htons(MCAST_PORT); /*設置多播端口*/
+    memset(&mcast_addr, 0, sizeof(mcast_addr));/*初始化IP多播地址為0*/
+    mcast_addr.sin_family = AF_INET; /*設置協議族類行為AF*/
+    mcast_addr.sin_addr.s_addr = inet_addr(MCAST_ADDR);/*設置多播IP地址*/
+    mcast_addr.sin_port = htons(MCAST_PORT); /*設置多播端口*/
 
-    /*向多播地址發送數據*/
-    while(1) {
-        int n = sendto(s, /*套接字描述符*/
-                        MCAST_DATA, /*數據*/
-                        sizeof(MCAST_DATA), /*長度*/
-                        0,
-                        (struct sockaddr*)&mcast_addr,
-                        sizeof(mcast_addr)) ;
-        if( n < 0)
-        {
-            perror("sendto()");
-            return -2;
-        }
-        sleep(MCAST_INTERVAL); /*等待一段時間*/
-    }
-    return 0；
+    /*向多播地址發送數據*/
+    while(1) {
+        int n = sendto(s, /*套接字描述符*/
+                        MCAST_DATA, /*數據*/
+                        sizeof(MCAST_DATA), /*長度*/
+                        0,
+                        (struct sockaddr*)&mcast_addr,
+                        sizeof(mcast_addr)) ;
+        if( n < 0)
+        {
+            perror("sendto()");
+            return -2;
+        }
+        sleep(MCAST_INTERVAL); /*等待一段時間*/
+    }
+    return 0；
 }
-
 </code></pre>
-<h2>multicast_client.c</h2>
-<pre class=" language-language-c++"><code class="language-language-c++">/*
+<h2 id="multicast-client-c"><a href="#multicast-client-c" class="headerlink" title="multicast_client.c"></a>multicast_client.c</h2><pre class=" language-c++"><code class="language-c++">/*
 *multicast_client.c - 多播的客戶端
 */
 #define MCAST_PORT 8888;
@@ -479,80 +483,79 @@ int main(int argc, char*argv)
 #define BUFF_SIZE 256 /*接收緩衝區大小*/
 int main(int argc, char*argv[])
 {
-    int s; /*套接字文件描述符*/
-    struct sockaddr_in local_addr; /*本地地址*/
-    int err = -1;
+    int s; /*套接字文件描述符*/
+    struct sockaddr_in local_addr; /*本地地址*/
+    int err = -1;
 
-    s = socket(AF_INET, SOCK_DGRAM, 0); /*建立套接字*/
-    if (s == -1)
-    {
-        perror("socket()");
-        return -1;
-    }
+    s = socket(AF_INET, SOCK_DGRAM, 0); /*建立套接字*/
+    if (s == -1)
+    {
+        perror("socket()");
+        return -1;
+    }
 
-    /*初始化地址*/
-    memset(&local_addr, 0, sizeof(local_addr));
-    local_addr.sin_family = AF_INET;
-    local_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    local_addr.sin_port = htons(MCAST_PORT);
+    /*初始化地址*/
+    memset(&local_addr, 0, sizeof(local_addr));
+    local_addr.sin_family = AF_INET;
+    local_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    local_addr.sin_port = htons(MCAST_PORT);
 
-                                                /*綁定socket*/
-    err = bind(s,(struct sockaddr*)&local_addr, sizeof(local_addr)) ;
-    if(err < 0)
-    {
-        perror("bind()");
-        return -2;
-    }
+    /*綁定socket*/
+    err = bind(s,(struct sockaddr*)&local_addr, sizeof(local_addr)) ;
+    if(err < 0)
+    {
+        perror("bind()");
+        return -2;
+    }
 
-    /*設置回環許可*/
-    int loop = 1;
-    err = setsockopt(s,IPPROTO_IP, IP_MULTICAST_LOOP,&loop, sizeof(loop));
-    if(err < 0)
-    {
-        perror("setsockopt():IP_MULTICAST_LOOP");
-        return -3;
-    }
+    /*設置回環許可*/
+    int loop = 1;
+    err = setsockopt(s,IPPROTO_IP, IP_MULTICAST_LOOP,&loop, sizeof(loop));
+    if(err < 0)
+    {
+        perror("setsockopt():IP_MULTICAST_LOOP");
+        return -3;
+    }
 
-    struct ip_mreq mreq; /*加入廣播組*/
-    mreq.imr_multiaddr.s_addr = inet_addr(MCAST_ADDR); /*廣播地址*/
-    mreq.imr_interface.s_addr = htonl(INADDR_ANY); /*網絡接口為默認*/
-                                                        /*將本機加入廣播組*/
-    err = setsockopt(s, IPPROTO_IP, IP_ADD_MEMBERSHIP,&mreq, sizeof
-    (mreq));
-    if (err < 0)
-    {
-        perror("setsockopt():IP_ADD_MEMBERSHIP");
-        return -4;
-    }
+    struct ip_mreq mreq;                                /*加入廣播組*/
+    mreq.imr_multiaddr.s_addr = inet_addr(MCAST_ADDR);  /*廣播地址*/
+    mreq.imr_interface.s_addr = htonl(INADDR_ANY);      /*網絡接口為默認*/
+                                                        /*將本機加入廣播組*/
+    err = setsockopt(s, IPPROTO_IP, IP_ADD_MEMBERSHIP,&mreq, sizeof
+    (mreq));
+    if (err < 0)
+    {
+        perror("setsockopt():IP_ADD_MEMBERSHIP");
+        return -4;
+    }
 
-    int times = 0;
-    int addr_len = 0;
-    char buff[BUFF_SIZE];
-    int n = 0;
-                                        /*循環接收廣播組的消息，5次後退出*/
-    for(times = 0;times<5;times++)
-    {
-        addr_len = sizeof(local_addr);
-        memset(buff, 0, BUFF_SIZE); /*清空接收緩衝區*/
-        /*接收數據*/
-        n = recvfrom(s, buff, BUFF_SIZE, 0,(struct sockaddr*)&local_addr,
-        &addr_len);
-        if( n== -1)
-        {
-            perror("recvfrom()");
-        }
-        /*打印信息*/
-        printf("Recv %dst message from server:%s\n", times, buff);
-        sleep(MCAST_INTERVAL);
-    }
+    int times = 0;
+    int addr_len = 0;
+    char buff[BUFF_SIZE];
+    int n = 0;
+    /*循環接收廣播組的消息，5次後退出*/
+    for(times = 0;times<5;times++)
+    {
+        addr_len = sizeof(local_addr);
+        memset(buff, 0, BUFF_SIZE); /*清空接收緩衝區*/
+        /*接收數據*/
+        n = recvfrom(s, buff, BUFF_SIZE, 0,(struct sockaddr*)&local_addr,
+        &addr_len);
+        if( n== -1)
+        {
+            perror("recvfrom()");
+        }
+        /*打印信息*/
+        printf("Recv %dst message from server:%s\n", times, buff);
+        sleep(MCAST_INTERVAL);
+    }
 
-    /*退出廣播組*/
-    err = setsockopt(s, IPPROTO_IP, IP_DROP_MEMBERSHIP,&mreq, sizeof(mreq));
+    /*退出廣播組*/
+    err = setsockopt(s, IPPROTO_IP, IP_DROP_MEMBERSHIP,&mreq, sizeof(mreq));
 
-    close(s);
-    return 0;
+    close(s);
+    return 0;
 }
-
 </code></pre>
 
             </div>
@@ -569,7 +572,7 @@ int main(int argc, char*argv[])
                     </span>
                     <a href="https://github.com/tsaiyuyan" class="b-link-green">YuYan's blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/06/03/multicast-test/" class="b-link-green">#  multicast test</a>
+                    <a href="/2020/06/13/example-c-code-multicast/" class="b-link-green">Example C code - Multicast</a>
                 </p>
             </div>
         </div>
@@ -591,7 +594,7 @@ int main(int argc, char*argv[])
         repo: 'blog-comments',
         owner: 'tsaiyuyan',
         admin: "tsaiyuyan",
-        id: '2020-06-03T13-25-54',
+        id: '2020-06-13T10-00-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -612,44 +615,57 @@ int main(int argc, char*argv[])
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/03/multicast-test/">
+                <a href="/2020/06/19/ubuntu-shi-yong-docker-bi-ji-part2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="#  multicast test">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Ubuntu 使用 docker 筆記_Part2">
                         
-                        <span class="card-title">#  multicast test</span>
+                        <span class="card-title">Ubuntu 使用 docker 筆記_Part2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            multicast test
-multicast_server.c
-/*
-*multicast_server.c - 多播服務程序
-*/
-#
+                            到研華後，紀錄docker常用的指令，以及一些簡易的DockerFile撰寫筆記
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-03
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-19
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            YuYan
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/note/" target="_blank">
+                        <span class="chip bg-color">note</span>
+                    </a>
+                    
+                    <a href="/tags/ubuntu/" target="_blank">
+                        <span class="chip bg-color">ubuntu</span>
+                    </a>
+                    
+                    <a href="/tags/docker/" target="_blank">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -806,7 +822,7 @@ PHY 0x01: OU
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">56.5k</span>
+                <span class="white-color">57k</span>
             
 
             
