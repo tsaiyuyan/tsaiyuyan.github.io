@@ -6,11 +6,13 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Ubuntu 使用 docker 筆記_Part2, c/c++,Internet programmer,php,Javascript,Linux kernel">
     <meta name="description" content="
-使用 docker 前，建議可以將 docker 加入 sudo 群組，可以省去一直打 sudo 的麻煩。
+使用 docker 前，建議可以將 使用者 加入 docker 群組，可以省去一直打 sudo 的麻煩。
 
-一、安裝 docker安裝指令
+一、安裝 docker
+安裝指令
+
 #Install docker
-$curl -sSL https://get.docker.co">
+$curl -sSL https://get.docker.c">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -421,7 +423,7 @@ $curl -sSL https://get.docker.co">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        574
+                        584
                     </div>
                     
 
@@ -445,14 +447,18 @@ $curl -sSL https://get.docker.co">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>使用 docker 前，建議可以將 docker 加入 sudo 群組，可以省去一直打 sudo 的麻煩。</p>
+<p>使用 docker 前，建議可以將 使用者 加入 docker 群組，可以省去一直打 sudo 的麻煩。</p>
 </blockquote>
-<h2 id="一、安裝-docker"><a href="#一、安裝-docker" class="headerlink" title="一、安裝 docker"></a>一、安裝 docker</h2><h3 id="安裝指令"><a href="#安裝指令" class="headerlink" title="安裝指令"></a>安裝指令</h3><pre class=" language-sh"><code class="language-sh">
+<h2>一、安裝 docker</h2>
+<h3 id="安裝指令"><a class="header-anchor" href="#安裝指令"></a>安裝指令</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">
 #Install docker
 $curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+
 </code></pre>
-<h3 id="Use-docker-without-sudo"><a href="#Use-docker-without-sudo" class="headerlink" title="Use docker without sudo"></a>Use docker without sudo</h3><p>reference: <a href="https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo" target="_blank" rel="noopener">How can I use docker without sudo ?</a></p>
-<pre class=" language-sh"><code class="language-sh"># 1.Add the docker group if it doesn't already exist:
+<h3 id="Use-docker-without-sudo"><a class="header-anchor" href="#Use-docker-without-sudo"></a>Use docker without sudo</h3>
+<p>reference: <a href="https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo" target="_blank" rel="noopener">How can I use docker without sudo ?</a></p>
+<pre class=" language-language-sh"><code class="language-language-sh"># 1.Add the docker group if it doesn't already exist:
 $sudo groupadd docker
 groupadd: group 'docker' already exists
 
@@ -463,9 +469,12 @@ $sudo gpasswd -a yuyan docker
 Adding user yuyan to group docker.
 
 $newgrp docker
-$docker run hello-world</code></pre>
-<h2 id="二、Use-DockerFile-example"><a href="#二、Use-DockerFile-example" class="headerlink" title="二、Use DockerFile example"></a>二、Use DockerFile example</h2><h3 id="1-vim-DockerFile"><a href="#1-vim-DockerFile" class="headerlink" title="1. vim DockerFile"></a>1. vim DockerFile</h3><p><strong><em>這是一個要 build driver 的範例</em></strong></p>
-<pre class=" language-DockerFile"><code class="language-DockerFile"># The container download from dockerhub https://hub.docker.com/_/ubuntu/
+$docker run hello-world
+</code></pre>
+<h2>二、Use DockerFile example</h2>
+<h3 id="1-vim-DockerFile"><a class="header-anchor" href="#1-vim-DockerFile"></a>1. vim DockerFile</h3>
+<p><strong><em>這是一個要 build driver 的範例</em></strong></p>
+<pre class=" language-language-DockerFile"><code class="language-language-DockerFile"># The container download from dockerhub https://hub.docker.com/_/ubuntu/
 # which is official ubuntu dockerhub account
 FROM ubuntu:18.04
 #FROM ubuntu:14.04.5
@@ -495,8 +504,10 @@ RUN apt-get install iputils-ping
 # htop tool (optional)
 RUN apt-get install htop -y
 
-WORKDIR /root</code></pre>
-<h3 id="2-build-container-by-using-Dockerfile"><a href="#2-build-container-by-using-Dockerfile" class="headerlink" title="2. build container by using Dockerfile"></a>2. build container by using Dockerfile</h3><pre class=" language-sh"><code class="language-sh">#sudo docker build -t <main-resp>/<sub-resp>:<tag> ./
+WORKDIR /root
+</code></pre>
+<h3 id="2-build-container-by-using-Dockerfile"><a class="header-anchor" href="#2-build-container-by-using-Dockerfile"></a>2. build container by using Dockerfile</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">#sudo docker build -t <main-resp>/<sub-resp>:<tag> ./
 $docker build -t yuyan/build_env:ver1.0 ./
 
 $docker images
@@ -504,18 +515,22 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 yuyan/build_env     ver1.0              496420cf7797        3 days ago          465MB
 ubuntu              18.04               c3c304cb4f22        8 weeks ago         64.2MB
 hello-world         latest              bf756fb1ae65        5 months ago        13.3kB
-ubuntu              14.04.5             132b7427a3b4        3 years ago         188MB</code></pre>
-<h3 id="3-run-container"><a href="#3-run-container" class="headerlink" title="3. run container"></a>3. run container</h3><blockquote>
-<p>有兩種常用的用法，一種是用完即拋，在 docker run 的指令多補個 –rm，在離開 container 後就會，順便把 container 刪掉</p>
+ubuntu              14.04.5             132b7427a3b4        3 years ago         188MB
+</code></pre>
+<h3 id="3-run-container"><a class="header-anchor" href="#3-run-container"></a>3. run container</h3>
+<blockquote>
+<p>有兩種常用的用法，一種是用完即拋，在 docker run 的指令多補個 --rm，在離開 container 後就會，順便把 container 刪掉</p>
 </blockquote>
-<pre class=" language-sh"><code class="language-sh">$docker run -ti --rm --privileged -v <PATH_TO_SOURCE_CODE>:/root/shared_data <main-resp>/<sub-resp>:<tag> /bin/bash
+<pre class=" language-language-sh"><code class="language-language-sh">$docker run -ti --rm --privileged -v <PATH_TO_SOURCE_CODE>:/root/shared_data <main-resp>/<sub-resp>:<tag> /bin/bash
 
 -v: 讓外部資料夾跟container 內部連動
 <PATH_TO_SOURCE_CODE>: src 存放位子
 -ti :終端機+STDIN
 --rm: container 執行完畢即刻刪除。
---privileged: 讓container可以inmod，跟宿主機的硬體的連動</code></pre>
-<h2 id="三、常用指令"><a href="#三、常用指令" class="headerlink" title="三、常用指令"></a>三、常用指令</h2><pre class=" language-sh"><code class="language-sh">#Run docker service
+--privileged: 讓container可以inmod，跟宿主機的硬體的連動
+</code></pre>
+<h2>三、常用指令</h2>
+<pre class=" language-language-sh"><code class="language-language-sh">#Run docker service
 $service docker start
 
 #List the docker image
@@ -550,6 +565,8 @@ ex. docker commit -m="Update 202006019" -a="yuyan" [container ID] yuyan/build_en
 
 #Restart the stopped docker container
 $docker start -ai [container id]
+#or
+$docker start -ai [container name]
 </code></pre>
 
             </div>
@@ -819,7 +836,7 @@ $docker start -ai [container id]
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">57k</span>
+                <span class="white-color">57.1k</span>
             
 
             
