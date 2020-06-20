@@ -7,8 +7,10 @@
     <meta name="keywords" content="Ubuntu avahi-daemon 移植 imxrt1064(arm-v7-linux-uclibceabi), c/c++,Internet programmer,php,Javascript,Linux kernel">
     <meta name="description" content="前言
 
+
 真香注意
-由於此板子需要遵守廠商規則必須 build 成-static 的程式，但是 avahi-daemon 本身會 build 成 -shard 的程式，所以我們必須修改相關的 makefile，所以單純的./configure">
+
+由於此板子需要遵守廠商規則必須 build 成-static 的程式，但是 avahi-daemon 本身會 build 成 -shard 的程式，所以我們必須修改相關的 makefile，所以單純的./configu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -456,7 +458,9 @@
             <div id="articleContent">
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><!--TODO: -->
 
-<p><strong>真香注意</strong></p>
+<blockquote>
+<p>真香注意</p>
+</blockquote>
 <p>由於此板子需要遵守廠商規則必須 build 成-static 的程式，但是 avahi-daemon 本身會 build 成 -shard 的程式，所以我們必須修改相關的 makefile，所以單純的./configure 已經沒辦法滿足，看不懂我在工三小就直接往下看。</p>
 <h2 id="avahi-daemon-移植-imxrt1064-arm-v7-linux-uclibceabi"><a href="#avahi-daemon-移植-imxrt1064-arm-v7-linux-uclibceabi" class="headerlink" title="avahi-daemon 移植 imxrt1064(arm-v7-linux-uclibceabi)"></a>avahi-daemon 移植 imxrt1064(arm-v7-linux-uclibceabi)</h2><blockquote>
 <p>以下請自行準備相關 toolchain，並遵照廠商提供的編譯方法。</p>
@@ -466,7 +470,7 @@
 <li><a href="http://mirror.fileplanet.com/lfs/pub/blfs/conglomeration/avahi/" target="_blank" rel="noopener">avahi-0.7.tar.gz</a></li>
 <li><a href="https://sourceforge.net/projects/expat/" target="_blank" rel="noopener">expat-2.2.9.tar.bzip</a></li>
 </ul>
-<p><strong>自行解壓縮到指定資料夾，本文示範如下</strong></p>
+<p>自行解壓縮到指定資料夾，本文示範如下</p>
 <pre class=" language-sh"><code class="language-sh">$ tree -L 1 ~/Desktop/avahi-daemon-imxrt1064/
 /home/yuyan/Desktop/avahi-daemon-imxrt1064/
 ├── avahi-0.7
@@ -890,19 +894,17 @@ make[1]: *** [all-recursive] Error 1
 make[1]: Leaving directory '/home/yuyan/Desktop/avahi-daemon-imxrt1064/libdaemon-0.14'
 Makefile:287: recipe for target 'all' failed
 make: *** [all] Error 2</code></pre>
-<p><strong>將這三個文件內的 fork 全部替換成 vfork</strong></p>
+<p>將這三個文件內的 fork 全部替換成 vfork</p>
 <pre class=" language-sh"><code class="language-sh">$vim /home/yuyan/Desktop/avahi-daemon-imxrt1064/libdaemon-0.14/libdaemon/dfork.c
-$vim /home/yuyan/Desktop/avahi-daemon-imxrt1064/libdaemon-0.14/libdaemon/dexec.c
-</code></pre>
+$vim /home/yuyan/Desktop/avahi-daemon-imxrt1064/libdaemon-0.14/libdaemon/dexec.c</code></pre>
 <hr>
-<h3 id="uclinux-gdb-疑難排解-施工中"><a href="#uclinux-gdb-疑難排解-施工中" class="headerlink" title="uclinux gdb 疑難排解(施工中)"></a>uclinux gdb 疑難排解(施工中)</h3><h4 id="fatal-error-curses-h-No-such-file-or-directory"><a href="#fatal-error-curses-h-No-such-file-or-directory" class="headerlink" title="fatal error: curses.h: No such file or directory"></a>fatal error: curses.h: No such file or directory</h4><p>In file included from scripts/kconfig/mconf.c:23:0:<br>scripts/kconfig/lxdialog/dialog.h:38:20: fatal error: curses.h: No such file or directory</p>
+<h3 id="uclinux-gdb-疑難排解"><a href="#uclinux-gdb-疑難排解" class="headerlink" title="uclinux gdb 疑難排解"></a>uclinux gdb 疑難排解</h3><h4 id="fatal-error-curses-h-No-such-file-or-directory"><a href="#fatal-error-curses-h-No-such-file-or-directory" class="headerlink" title="fatal error: curses.h: No such file or directory"></a>fatal error: curses.h: No such file or directory</h4><p>In file included from scripts/kconfig/mconf.c:23:0:<br>scripts/kconfig/lxdialog/dialog.h:38:20: fatal error: curses.h: No such file or directory</p>
 <p>sudo apt-get install libncurses5-dev libncursesw5-dev</p>
 <h4 id="遇到-undefined-symbol-pyunicodeucs4-fromencodedobject"><a href="#遇到-undefined-symbol-pyunicodeucs4-fromencodedobject" class="headerlink" title="遇到 undefined symbol: pyunicodeucs4_fromencodedobject"></a>遇到 undefined symbol: pyunicodeucs4_fromencodedobject</h4><p>LD_PRELOAD=/usr/lib/libpython2.7.so arm-v7-linux-uclibceabi-gdb -ex ‘set environ LD_PRELOAD’ –args my-program-to-debug</p>
 <p>target remote 172.16.28.129:10000</p>
 <p>BASECFLAGS=-m32 LDFLAGS=-m32 CFLAGS=-m32 ./configure –prefix=/usr –enable-shared –enable-unicode=ucs4</p>
 <hr>
-<h2 id="運行環境底下"><a href="#運行環境底下" class="headerlink" title="運行環境底下"></a>運行環境底下</h2><p><strong>必需建置</strong></p>
-<p><strong><em>Folder:</em></strong></p>
+<h2 id="運行環境底下"><a href="#運行環境底下" class="headerlink" title="運行環境底下"></a>運行環境底下</h2><h3 id="必需建置"><a href="#必需建置" class="headerlink" title="必需建置"></a>必需建置</h3><p><strong><em>Folder:</em></strong></p>
 <ol>
 <li>mkdir -p /run/avahi/</li>
 <li>mkdir -p /etc/avahi/services/</li>
@@ -1148,7 +1150,7 @@ No content to disp
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            (施工中)因為公司有跟 NI 儀器合作，但是 NI-VISA 必須要有支援 vxi11 才能秀出\*IDN 相關儀器訊息，於是就開始硬幹 vxi11 之路，因為開發花了大一個禮拜左右，所以我想把自己的相關思路寫下來。
+                            因為公司有跟 NI 儀器合作，但是 NI-VISA 必須要有支援 vxi11 才能秀出\*IDN 相關儀器訊息，於是就開始硬幹 vxi11 之路，因為開發花了大一個禮拜左右，所以我想把自己的相關思路寫下來。
                         
                     </div>
                     <div class="publish-info">
@@ -1283,7 +1285,7 @@ No content to disp
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">57.2k</span>
+                <span class="white-color">57.3k</span>
             
 
             
