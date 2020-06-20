@@ -8,8 +8,10 @@
     <meta name="description" content="
 使用 docker 前，建議可以將使用者加入 docker 群組，可以省去一直打 sudo 的麻煩。
 
-一、安裝 docker安裝指令#Install docker
-$curl -sSL https://get.docker.com/ |">
+一、安裝 docker
+安裝指令
+#Install docker
+$curl -sSL https://get.docker.com/">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -420,7 +422,7 @@ $curl -sSL https://get.docker.com/ |">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        668
+                        670
                     </div>
                     
 
@@ -446,10 +448,14 @@ $curl -sSL https://get.docker.com/ |">
                 <blockquote>
 <p>使用 docker 前，建議可以將使用者加入 docker 群組，可以省去一直打 sudo 的麻煩。</p>
 </blockquote>
-<h2 id="一、安裝-docker"><a href="#一、安裝-docker" class="headerlink" title="一、安裝 docker"></a>一、安裝 docker</h2><h3 id="安裝指令"><a href="#安裝指令" class="headerlink" title="安裝指令"></a>安裝指令</h3><pre class=" language-sh"><code class="language-sh">#Install docker
-$curl -sSL https://get.docker.com/ | sudo sh</code></pre>
-<h3 id="Use-docker-without-sudo"><a href="#Use-docker-without-sudo" class="headerlink" title="Use docker without sudo"></a>Use docker without sudo</h3><p>reference: <a href="https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo" target="_blank" rel="noopener">How can I use docker without sudo ?</a></p>
-<pre class=" language-sh"><code class="language-sh"># 1.Add the docker group if it doesn't already exist:
+<h2>一、安裝 docker</h2>
+<h3 id="安裝指令"><a class="header-anchor" href="#安裝指令"></a>安裝指令</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">#Install docker
+$curl -sSL https://get.docker.com/ | sudo sh
+</code></pre>
+<h3 id="Use-docker-without-sudo"><a class="header-anchor" href="#Use-docker-without-sudo"></a>Use docker without sudo</h3>
+<p>reference: <a href="https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo" target="_blank" rel="noopener">How can I use docker without sudo ?</a></p>
+<pre class=" language-language-sh"><code class="language-language-sh"># 1.Add the docker group if it doesn't already exist:
 $sudo groupadd docker
 groupadd: group 'docker' already exists
 
@@ -460,9 +466,12 @@ $sudo gpasswd -a yuyan docker
 Adding user yuyan to group docker.
 
 $newgrp docker
-$docker run hello-world</code></pre>
-<h2 id="二、Use-DockerFile-example"><a href="#二、Use-DockerFile-example" class="headerlink" title="二、Use DockerFile example"></a>二、Use DockerFile example</h2><h3 id="1-vim-DockerFile"><a href="#1-vim-DockerFile" class="headerlink" title="1. vim DockerFile"></a>1. vim DockerFile</h3><p><strong><em>這是一個要 build driver 的範例</em></strong></p>
-<pre class=" language-DockerFile"><code class="language-DockerFile"># The container download from dockerhub https://hub.docker.com/_/ubuntu/
+$docker run hello-world
+</code></pre>
+<h2>二、Use DockerFile example</h2>
+<h3 id="1-vim-DockerFile"><a class="header-anchor" href="#1-vim-DockerFile"></a>1. vim DockerFile</h3>
+<p><strong><em>這是一個要 build driver 的範例</em></strong></p>
+<pre class=" language-language-DockerFile"><code class="language-language-DockerFile"># The container download from dockerhub https://hub.docker.com/_/ubuntu/
 # which is official ubuntu dockerhub account
 FROM ubuntu:18.04
 #FROM ubuntu:14.04.5
@@ -492,8 +501,10 @@ RUN apt-get install iputils-ping
 # htop tool (optional)
 RUN apt-get install htop -y
 
-WORKDIR /root</code></pre>
-<h3 id="2-build-container-by-using-Dockerfile"><a href="#2-build-container-by-using-Dockerfile" class="headerlink" title="2. build container by using Dockerfile"></a>2. build container by using Dockerfile</h3><pre class=" language-sh"><code class="language-sh">#sudo docker build -t [main-resp]/[sub-resp]:[tag] ./
+WORKDIR /root
+</code></pre>
+<h3 id="2-build-container-by-using-Dockerfile"><a class="header-anchor" href="#2-build-container-by-using-Dockerfile"></a>2. build container by using Dockerfile</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">#sudo docker build -t [main-resp]/[sub-resp]:[tag] ./
 $docker build -t yuyan/build_env:ver1.0 ./
 
 $docker images
@@ -501,11 +512,13 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 yuyan/build_env     ver1.0              496420cf7797        3 days ago          465MB
 ubuntu              18.04               c3c304cb4f22        8 weeks ago         64.2MB
 hello-world         latest              bf756fb1ae65        5 months ago        13.3kB
-ubuntu              14.04.5             132b7427a3b4        3 years ago         188MB</code></pre>
-<h3 id="3-run-container"><a href="#3-run-container" class="headerlink" title="3. run container"></a>3. run container</h3><blockquote>
-<p>有兩種常用的用法，一種是用完即拋，在 docker run 的指令多補個 –rm，在離開 container 後就會，順便把 container 刪掉</p>
+ubuntu              14.04.5             132b7427a3b4        3 years ago         188MB
+</code></pre>
+<h3 id="3-run-container"><a class="header-anchor" href="#3-run-container"></a>3. run container</h3>
+<blockquote>
+<p>有兩種常用的用法，一種是用完即拋，在 docker run 的指令多補個 --rm，在離開 container 後就會，順便把 container 刪掉</p>
 </blockquote>
-<pre class=" language-sh"><code class="language-sh"># 簡易
+<pre class=" language-language-sh"><code class="language-language-sh"># 簡易
 $docker run -ti [main-resp]/[sub-resp]:[tag] /bin/bash
 or
 # 進階
@@ -516,47 +529,49 @@ $docker run -ti --rm --privileged -v [path_to_folder]:/root/shared_data [main-re
 --rm: container 執行完畢即刻刪除。
 --privileged: 讓container可以insmod，跟宿主機的硬體的連動
 [path_to_folder]: 外部資料夾的路徑
-[main-resp]/[sub-resp]:[tag] : 取自己要的名字 ex. yuyan/build_env:ver1.0</code></pre>
-<h2 id="三、常用指令"><a href="#三、常用指令" class="headerlink" title="三、常用指令"></a>三、常用指令</h2><pre class=" language-sh"><code class="language-sh">#Run docker service
-$service docker start
-
-#List the docker image
-$docker images
-
-#Remove docker image
-$docker rmi [image_id]
-
-#Remove all the docker images
-$docker rmi -f $(docker images -q)
-
-#List the docker container (get container id)
-$docker ps -a
-
-#Remove the docker container
-$docker rm [container ID]
-
-#Remove all the docker container
-$docker rm $(docker ps -aq)
-
-#Build docker image
-$docker built -t [main-resp]/[sub-resp]:[tag] [PATH_TO_DOCKERFILE]
+[main-resp]/[sub-resp]:[tag] : 取自己要的名字 ex. yuyan/build_env:ver1.0
+</code></pre>
+<h2>三、常用指令</h2>
+<h3 id="Run-docker-service"><a class="header-anchor" href="#Run-docker-service"></a>Run docker service</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$service docker start
+</code></pre>
+<h3 id="List-the-docker-image"><a class="header-anchor" href="#List-the-docker-image"></a>List the docker image</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker images
+</code></pre>
+<h3 id="Remove-docker-image"><a class="header-anchor" href="#Remove-docker-image"></a>Remove docker image</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker rmi [image_id]
+</code></pre>
+<h3 id="Remove-all-the-docker-images"><a class="header-anchor" href="#Remove-all-the-docker-images"></a>Remove all the docker images</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker rmi -f $(docker images -q)
+</code></pre>
+<h3 id="List-the-docker-container-get-container-id"><a class="header-anchor" href="#List-the-docker-container-get-container-id"></a>List the docker container (get container id)</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker ps -a
+</code></pre>
+<h3 id="Remove-the-docker-container"><a class="header-anchor" href="#Remove-the-docker-container"></a>Remove the docker container</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker rm [container ID]
+</code></pre>
+<h3 id="Remove-all-the-docker-container"><a class="header-anchor" href="#Remove-all-the-docker-container"></a>Remove all the docker container</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker rm $(docker ps -aq)
+</code></pre>
+<h3 id="Build-docker-image"><a class="header-anchor" href="#Build-docker-image"></a>Build docker image</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker built -t [main-resp]/[sub-resp]:[tag] [PATH_TO_DOCKERFILE]
 
 ex. docker build -t yuyan/build_env:ver1.0 ./
-
-#run the docker image
-$docker run -ti -v [PATH_TO_FOLDER]:/root/shared_data [main-resp]/[sub-resp]:[tag] /bin/bash
-
-#Save the docker image modification
-$docker commit -m="COMMIT_MESSAGE" -a="AUTHOR" [container_id] [main-resp]/[sub-resp]:[tag]
+</code></pre>
+<h3 id="run-the-docker-image"><a class="header-anchor" href="#run-the-docker-image"></a>#run the docker image</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker run -ti -v [PATH_TO_FOLDER]:/root/shared_data [main-resp]/[sub-resp]:[tag] /bin/bash
+</code></pre>
+<h3 id="Save-the-docker-image-modification"><a class="header-anchor" href="#Save-the-docker-image-modification"></a>Save the docker image modification</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker commit -m="COMMIT_MESSAGE" -a="AUTHOR" [container_id] [main-resp]/[sub-resp]:[tag]
 ex. docker commit -m="Update 202006019" -a="yuyan" [container_id] yuyan/build_env:ver1.1
-
-#Restart the stopped docker container
-$docker start -ai [container_id]
-#or
+</code></pre>
+<h3 id="Restart-the-stopped-docker-container"><a class="header-anchor" href="#Restart-the-stopped-docker-container"></a>Restart the stopped docker container</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker start -ai [container_id]
+or
 $docker start -ai [container_name]
-
-#List container
-$docker ps -a
+</code></pre>
+<h3 id="List-container"><a class="header-anchor" href="#List-container"></a>List container</h3>
+<pre class=" language-language-sh"><code class="language-language-sh">$docker ps -a
 CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS                      PORTS               NAMES
 3307a856267e        yuyan/build_env:ver1.0   "/bin/bash"         3 days ago          Exited (0) 14 seconds ago                       trusting_hofstadter
 </code></pre>
