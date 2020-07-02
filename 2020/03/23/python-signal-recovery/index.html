@@ -410,7 +410,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        967
+                        975
                     </div>
                     
 
@@ -437,7 +437,9 @@
 <blockquote>
 <p>以前在做天空偵測的時候也類似目前的 case，也就是呢，我們要先分析客戶給的信號圖，在進行必要的裁剪、銳化細節、canny 邊緣檢測，在跟據最後 canny 的圖將信號畫好，(至於說為啥我要做那些步驟，阿就試出來的，我最愛做的就是 try error 這種繁瑣的事情)</p>
 </blockquote>
-<h2 id="設計流程"><a href="#設計流程" class="headerlink" title="設計流程"></a>設計流程</h2><p>以這張圖為例，我們可以看到上下方約 1/3 都是我們不需要的東西，所以我們進行 crop image 的動作 。<br>再來就是那些該死的示波器背景，等等我們就用 blur 把它濾掉，因為輸入屬於中型圖片，所以 blur 我們使用[5,5]的強度。</p>
+<h2>設計流程</h2>
+<p>以這張圖為例，我們可以看到上下方約 1/3 都是我們不需要的東西，所以我們進行 crop image 的動作 。<br>
+再來就是那些該死的示波器背景，等等我們就用 blur 把它濾掉，因為輸入屬於中型圖片，所以 blur 我們使用[5,5]的強度。</p>
 <p>後面畫細節是由上到下，取最高最低兩個點，如果沒有發現像素點就會沿用前一條線高低點。當然這還是有改善空間，模糊不知道用高斯模糊效果好不好，還有很多可以試試看。但因為這件事貌似沒那麼急，就暫時先告一段落，如果有後續發展，會再繼續更新本篇。</p>
 <p><strong>調整出來步驟為</strong></p>
 <ul>
@@ -448,33 +450,42 @@
 <li>step5: canny image 100,200 邊緣檢測   &lt;== sobel 展現的效果不好，所以還是用canny</li>
 <li>step6: result image 畫線</li>
 </ul>
-<p><strong>0QD8imz4.png</strong><br><em>original</em><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/0_1_original_0QD8imz4.png?raw=true" alt="1"></p>
-<p><em>canny</em><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/0_2_canny_0QD8imz4.png?raw=true" alt="2"></p>
-<p><em>result</em><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/0_3_result_0QD8imz4.png?raw=true" alt="3"></p>
+<p><strong>0QD8imz4.png</strong><br>
+<em>original(已移除)</em></p>
+<blockquote>
+<p>(20200702移除)</p>
+</blockquote>
+<p><em>canny</em><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/0_2_canny_0QD8imz4.png?raw=true" alt="2"></p>
+<p><em>result</em><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/0_3_result_0QD8imz4.png?raw=true" alt="3"></p>
 <hr>
-<h2 id="folder-Tree"><a href="#folder-Tree" class="headerlink" title="folder Tree"></a>folder Tree</h2><pre class=" language-bash"><code class="language-bash"><span class="token variable">$tree</span>
+<h2>folder Tree</h2>
+<pre class=" language-language-bash"><code class="language-language-bash">$tree
 D:.
 └─gw_signal_recovery
     ├─input
     ├─output
-    └─tmp</code></pre>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> os<span class="token punctuation">.</span>path <span class="token keyword">import</span> isfile<span class="token punctuation">,</span> join
-<span class="token keyword">from</span> os <span class="token keyword">import</span> listdir
-<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
-<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
-<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
-<span class="token keyword">from</span> PIL <span class="token keyword">import</span> ImageFilter
+    └─tmp
+</code></pre>
+<h2>code</h2>
+<pre class=" language-language-python"><code class="language-language-python">from os.path import isfile, join
+from os import listdir
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
+from PIL import ImageFilter
 
-<span class="token keyword">import</span> cv2   <span class="token comment" spellcheck="true"># if not found,try pip install opencv-python</span>
-<span class="token keyword">import</span> os
+import cv2   # if not found,try pip install opencv-python
+import os
 
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Change the current working directory to path:"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span>
-os<span class="token punctuation">.</span>chdir<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span>
+print("Change the current working directory to path:", os.path.dirname(__file__))
+os.chdir(os.path.dirname(__file__))
 
-onlyfiles <span class="token operator">=</span> <span class="token punctuation">[</span>f <span class="token keyword">for</span> f <span class="token keyword">in</span> listdir<span class="token punctuation">(</span><span class="token string">"./input"</span><span class="token punctuation">)</span> <span class="token keyword">if</span> isfile<span class="token punctuation">(</span>join<span class="token punctuation">(</span><span class="token string">"./input"</span><span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+onlyfiles = [f for f in listdir("./input") if isfile(join("./input", f))]
 
-<span class="token keyword">print</span><span class="token punctuation">(</span>onlyfiles<span class="token punctuation">)</span>
-<span class="token triple-quoted-string string">'''
+print(onlyfiles)
+'''
 3YljKfLQ.png
 4B2Dcn2o.png
 8dJosPug.png
@@ -488,97 +499,97 @@ m-GNRpbw.png
 TO5-rs9o.png
 u4J8dZ7o.png
 VvCGeC4o.png
-'''</span>
+'''
 
-<span class="token comment" spellcheck="true"># 將波形以外的背景填成白色</span>
-
-
-<span class="token keyword">def</span> <span class="token function">floodfill_image</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> power<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    copyImage <span class="token operator">=</span> image<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 複製原圖像</span>
-    h<span class="token punctuation">,</span> w <span class="token operator">=</span> image<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true"># 讀取圖像的寬和高</span>
-    mask <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">[</span>h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> w<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 新建圖像矩陣 +2是官方函數要求</span>
-
-    cv2<span class="token punctuation">.</span>floodFill<span class="token punctuation">(</span>copyImage<span class="token punctuation">,</span> mask<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">517</span><span class="token punctuation">,</span> <span class="token number">260</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>power<span class="token punctuation">,</span>
-                                                                 power<span class="token punctuation">,</span> power<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>power<span class="token punctuation">,</span> power<span class="token punctuation">,</span> power<span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>FLOODFILL_FIXED_RANGE<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">#cv.imshow("floodFill", copyImage)</span>
-    <span class="token keyword">return</span> copyImage
-
-<span class="token comment" spellcheck="true"># 將canny最後結果填上白色</span>
+# 將波形以外的背景填成白色
 
 
-<span class="token keyword">def</span> <span class="token function">result_image</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    copyImage <span class="token operator">=</span> image<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    rows<span class="token punctuation">,</span> cols <span class="token operator">=</span> copyImage<span class="token punctuation">.</span>shape
-    tmp_top <span class="token operator">=</span> <span class="token number">0</span>
-    tmp_down <span class="token operator">=</span> <span class="token number">0</span>
-    <span class="token comment" spellcheck="true"># 圖片大小</span>
-    <span class="token comment" spellcheck="true"># print(str(rows),",",str(cols))</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        top <span class="token operator">=</span> <span class="token number">0</span>
-        down <span class="token operator">=</span> rows
-        <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            k <span class="token operator">=</span> copyImage<span class="token punctuation">[</span>j<span class="token punctuation">,</span> i<span class="token punctuation">]</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>k <span class="token operator">></span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">></span> top<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    top <span class="token operator">=</span> j
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> down<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    down <span class="token operator">=</span> j
-        <span class="token keyword">if</span><span class="token punctuation">(</span>down <span class="token operator">-</span> top <span class="token operator">></span> rows<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            cv2<span class="token punctuation">.</span>line<span class="token punctuation">(</span>copyImage<span class="token punctuation">,</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> tmp_top<span class="token punctuation">)</span><span class="token punctuation">,</span>
-                     <span class="token punctuation">(</span>i<span class="token punctuation">,</span> tmp_down<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true">#print("top =" + str(tmp_top) +",down ="+str(tmp_down))</span>
+def floodfill_image(image, power):
+    copyImage = image.copy()  # 複製原圖像
+    h, w = image.shape[:2]  # 讀取圖像的寬和高
+    mask = np.zeros([h+2, w+2], np.uint8)  # 新建圖像矩陣 +2是官方函數要求
 
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            cv2<span class="token punctuation">.</span>line<span class="token punctuation">(</span>copyImage<span class="token punctuation">,</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> top<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> down<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-            tmp_top <span class="token operator">=</span> top
-            tmp_down <span class="token operator">=</span> down
+    cv2.floodFill(copyImage, mask, (517, 260), (255, 255, 255), (power,
+                                                                 power, power), (power, power, power), cv2.FLOODFILL_FIXED_RANGE)
+    #cv.imshow("floodFill", copyImage)
+    return copyImage
 
-    <span class="token keyword">return</span> copyImage
+# 將canny最後結果填上白色
 
 
-<span class="token keyword">def</span> <span class="token function">cv2_show_img</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> img<span class="token punctuation">,</span> is_save<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    cv2<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>title<span class="token punctuation">,</span> img<span class="token punctuation">)</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>is_save<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span><span class="token string">"output\\"</span> <span class="token operator">+</span> title<span class="token punctuation">,</span> img<span class="token punctuation">)</span>
+def result_image(image):
+    copyImage = image.copy()
+    rows, cols = copyImage.shape
+    tmp_top = 0
+    tmp_down = 0
+    # 圖片大小
+    # print(str(rows),",",str(cols))
+    for i in range(cols):
+        top = 0
+        down = rows
+        for j in range(rows):
+            k = copyImage[j, i]
+            if(k > 100):
+                if (j > top):
+                    top = j
+                if (j < down):
+                    down = j
+        if(down - top > rows/2):
+            cv2.line(copyImage, (i, tmp_top),
+                     (i, tmp_down), (255, 255, 255), 1)
+            #print("top =" + str(tmp_top) +",down ="+str(tmp_down))
+
+        else:
+            cv2.line(copyImage, (i, top), (i, down), (255, 255, 255), 1)
+            tmp_top = top
+            tmp_down = down
+
+    return copyImage
 
 
-index <span class="token operator">=</span> <span class="token number">0</span> <span class="token comment" spellcheck="true">#方便檔案總管排序</span>
-<span class="token comment" spellcheck="true"># === main ===</span>
-<span class="token keyword">for</span> file <span class="token keyword">in</span> onlyfiles<span class="token punctuation">:</span>
-    src <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"input\\"</span> <span class="token operator">+</span> file<span class="token punctuation">)</span>
-    H<span class="token punctuation">,</span> W<span class="token punctuation">,</span> channels <span class="token operator">=</span> src<span class="token punctuation">.</span>shape
+def cv2_show_img(title, img, is_save):
+    cv2.imshow(title, img)
+    if(is_save):
+        cv2.imwrite("output\\" + title, img)
 
-    <span class="token comment" spellcheck="true"># 裁切區域的 x 與 y 座標（左上角）</span>
-    x <span class="token operator">=</span> <span class="token number">10</span>
-    y <span class="token operator">=</span> <span class="token number">90</span>
 
-    <span class="token comment" spellcheck="true"># （右下角）</span>
-    x1 <span class="token operator">=</span> W<span class="token number">-30</span>
-    y1 <span class="token operator">=</span> <span class="token number">545</span>
-    crop_img <span class="token operator">=</span> src<span class="token punctuation">[</span>y<span class="token punctuation">:</span>y1<span class="token punctuation">,</span> x<span class="token punctuation">:</span>x1<span class="token punctuation">]</span>
-    cv2_show_img<span class="token punctuation">(</span>str<span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_1_original_"</span> <span class="token operator">+</span> file <span class="token punctuation">,</span> src<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+index = 0 #方便檔案總管排序
+# === main ===
+for file in onlyfiles:
+    src = cv2.imread("input\\" + file)
+    H, W, channels = src.shape
 
-    <span class="token comment" spellcheck="true">#cv2.imshow("crop_img", crop_img)</span>
+    # 裁切區域的 x 與 y 座標（左上角）
+    x = 10
+    y = 90
 
-    <span class="token comment" spellcheck="true"># flood fill 邊緣偵測</span>
-    ff_img <span class="token operator">=</span> floodfill_image<span class="token punctuation">(</span>crop_img<span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">#cv2.imshow("floodfill", ff_img)</span>
+    # （右下角）
+    x1 = W-30
+    y1 = 545
+    crop_img = src[y:y1, x:x1]
+    cv2_show_img(str(index) + "_1_original_" + file , src, True)
 
-    <span class="token comment" spellcheck="true"># blur 模糊</span>
-    blur <span class="token operator">=</span> cv2<span class="token punctuation">.</span>blur<span class="token punctuation">(</span>ff_img<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 中型圖片</span>
-    <span class="token comment" spellcheck="true">#cv2.imshow("blur", blur)</span>
+    #cv2.imshow("crop_img", crop_img)
 
-    <span class="token comment" spellcheck="true"># kernel 銳化</span>
-    kernel <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
-    kernel_img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>filter2D<span class="token punctuation">(</span>blur<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> kernel<span class="token operator">=</span>kernel<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">#cv2.imshow("kernel", kernel_img)</span>
+    # flood fill 邊緣偵測
+    ff_img = floodfill_image(crop_img, 35)
+    #cv2.imshow("floodfill", ff_img)
 
-    <span class="token comment" spellcheck="true"># canny 邊緣偵測</span>
-    canny <span class="token operator">=</span> cv2<span class="token punctuation">.</span>Canny<span class="token punctuation">(</span>kernel_img<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span>
-    cv2_show_img<span class="token punctuation">(</span>str<span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_2_canny_"</span> <span class="token operator">+</span> file<span class="token punctuation">,</span> canny<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+    # blur 模糊
+    blur = cv2.blur(ff_img, (5, 5))  # 中型圖片
+    #cv2.imshow("blur", blur)
 
-    <span class="token comment" spellcheck="true"># sobel 邊緣偵測(未使用)</span>
-    <span class="token triple-quoted-string string">'''
+    # kernel 銳化
+    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]], np.float32)
+    kernel_img = cv2.filter2D(blur, -1, kernel=kernel)
+    #cv2.imshow("kernel", kernel_img)
+
+    # canny 邊緣偵測
+    canny = cv2.Canny(kernel_img, 100, 200)
+    cv2_show_img(str(index) + "_2_canny_" + file, canny, True)
+
+    # sobel 邊緣偵測(未使用)
+    '''
     Gx = cv2.Sobel(blur,cv2cv.CV_16S,1,0)
     Gy = cv2.Sobel(blur,cv2.CV_16S,0,1)
 
@@ -590,42 +601,70 @@ index <span class="token operator">=</span> <span class="token number">0</span> 
     cv2.imshow("absX", absX)
     cv2.imshow("absY", absY)
     cv2.imshow("sobel", dst)
-    '''</span>
+    '''
 
-    result_img <span class="token operator">=</span> result_image<span class="token punctuation">(</span>canny<span class="token punctuation">)</span>
-    cv2_show_img<span class="token punctuation">(</span>str<span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_3_result_"</span> <span class="token operator">+</span> file<span class="token punctuation">,</span> result_img<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+    result_img = result_image(canny)
+    cv2_show_img(str(index) + "_3_result_" + file, result_img, True)
 
-    <span class="token comment" spellcheck="true"># 按任一鍵繼續下一張</span>
-    cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-    cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    index <span class="token operator">+=</span> <span class="token number">1</span>
+    # 按任一鍵繼續下一張
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    index += 1
+
 </code></pre>
 <hr>
-<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p><strong>3YljKfLQ.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/1_1_original_3YljKfLQ.png?raw=true" alt="4"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/1_2_canny_3YljKfLQ.png?raw=true" alt="5"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/1_3_result_3YljKfLQ.png?raw=true" alt="6"></p>
+<h2>Result</h2>
+<p><strong>3YljKfLQ.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/1_2_canny_3YljKfLQ.png?raw=true" alt="5"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/1_3_result_3YljKfLQ.png?raw=true" alt="6"></p>
 <hr>
-<p><strong>4B2Dcn2o.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/2_1_original_4B2Dcn2o.png?raw=true" alt="7"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/2_2_canny_4B2Dcn2o.png?raw=true" alt="8"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/2_3_result_4B2Dcn2o.png?raw=true" alt="9"></p>
+<p><strong>4B2Dcn2o.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/2_2_canny_4B2Dcn2o.png?raw=true" alt="8"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/2_3_result_4B2Dcn2o.png?raw=true" alt="9"></p>
 <hr>
-<p><strong>8dJosPug.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/3_1_original_8dJosPug.png?raw=true" alt="10"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/3_2_canny_8dJosPug.png?raw=true" alt="11"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/3_3_result_8dJosPug.png?raw=true" alt="12"></p>
+<p><strong>8dJosPug.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/3_2_canny_8dJosPug.png?raw=true" alt="11"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/3_3_result_8dJosPug.png?raw=true" alt="12"></p>
 <hr>
-<p><strong>8uS7qspI.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/4_1_original_8uS7qspI.png?raw=true" alt="13"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/4_2_canny_8uS7qspI.png?raw=true" alt="14"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/4_3_result_8uS7qspI.png?raw=true" alt="15"></p>
+<p><strong>8uS7qspI.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/4_2_canny_8uS7qspI.png?raw=true" alt="14"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/4_3_result_8uS7qspI.png?raw=true" alt="15"></p>
 <hr>
-<p><strong>buY6cs6U.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/5_1_original_buY6cs6U.png?raw=true" alt="16"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/5_2_canny_buY6cs6U.png?raw=true" alt="17"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/5_3_result_buY6cs6U.png?raw=true" alt="18"></p>
+<p><strong>buY6cs6U.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/5_2_canny_buY6cs6U.png?raw=true" alt="17"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/5_3_result_buY6cs6U.png?raw=true" alt="18"></p>
 <hr>
-<p><strong>Clqh9OD0.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/6_1_original_Clqh9OD0.png?raw=true" alt="19"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/6_2_canny_Clqh9OD0.png?raw=true" alt="20"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/6_3_result_Clqh9OD0.png?raw=true" alt="21"></p>
+<p><strong>Clqh9OD0.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/6_2_canny_Clqh9OD0.png?raw=true" alt="20"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/6_3_result_Clqh9OD0.png?raw=true" alt="21"></p>
 <hr>
-<p><strong>DH1QeME4.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/7_1_original_DH1QeME4.png?raw=true" alt="22"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/7_2_canny_DH1QeME4.png?raw=true" alt="23"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/7_3_result_DH1QeME4.png?raw=true" alt="24"></p>
+<p><strong>DH1QeME4.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/7_2_canny_DH1QeME4.png?raw=true" alt="23"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/7_3_result_DH1QeME4.png?raw=true" alt="24"></p>
 <hr>
-<p><strong>jyicdNJM.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/8_1_original_jyicdNJM.png?raw=true" alt="25"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/8_2_canny_jyicdNJM.png?raw=true" alt="26"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/8_3_result_jyicdNJM.png?raw=true" alt="27"></p>
+<p><strong>jyicdNJM.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/8_2_canny_jyicdNJM.png?raw=true" alt="26"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/8_3_result_jyicdNJM.png?raw=true" alt="27"></p>
 <hr>
-<p><strong>KsJUDLN0.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/9_1_original_KsJUDLN0.png?raw=true" alt="28"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/9_2_canny_KsJUDLN0.png?raw=true" alt="29"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/9_3_result_KsJUDLN0.png?raw=true" alt="30"></p>
+<p><strong>KsJUDLN0.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/9_2_canny_KsJUDLN0.png?raw=true" alt="29"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/9_3_result_KsJUDLN0.png?raw=true" alt="30"></p>
 <hr>
-<p><strong>m-GNRpbw.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/10_1_original_m-GNRpbw.png?raw=true" alt="31"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/10_2_canny_m-GNRpbw.png?raw=true" alt="32"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/10_3_result_m-GNRpbw.png?raw=true" alt="33"></p>
+<p><strong>m-GNRpbw.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/10_2_canny_m-GNRpbw.png?raw=true" alt="32"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/10_3_result_m-GNRpbw.png?raw=true" alt="33"></p>
 <hr>
-<p><strong>TO5-rs9o.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/11_1_original_TO5-rs9o.png?raw=true" alt="34"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/11_2_canny_TO5-rs9o.png?raw=true" alt="35"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/11_3_result_TO5-rs9o.png?raw=true" alt="36"></p>
+<p><strong>TO5-rs9o.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/11_2_canny_TO5-rs9o.png?raw=true" alt="35"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/11_3_result_TO5-rs9o.png?raw=true" alt="36"></p>
 <hr>
-<p><strong>u4J8dZ7o.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/12_1_original_u4J8dZ7o.png?raw=true" alt="37"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/12_2_canny_u4J8dZ7o.png?raw=true" alt="38"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/12_3_result_u4J8dZ7o.png?raw=true" alt="39"></p>
+<p><strong>u4J8dZ7o.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/12_2_canny_u4J8dZ7o.png?raw=true" alt="38"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/12_3_result_u4J8dZ7o.png?raw=true" alt="39"></p>
 <hr>
-<p><strong>VvCGeC4o.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/13_1_original_VvCGeC4o.png?raw=true" alt="13"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/13_2_canny_VvCGeC4o.png?raw=true" alt="14"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/13_3_result_VvCGeC4o.png?raw=true" alt="15"></p>
+<p><strong>VvCGeC4o.png</strong><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/13_2_canny_VvCGeC4o.png?raw=true" alt="14"><br>
+<img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/13_3_result_VvCGeC4o.png?raw=true" alt="15"></p>
 <hr>
 
             </div>
