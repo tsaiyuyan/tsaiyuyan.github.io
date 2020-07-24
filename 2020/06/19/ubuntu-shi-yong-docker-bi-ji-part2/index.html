@@ -420,7 +420,7 @@ $curl -sSL https://get.docker.com/ |">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        683
+                        753
                     </div>
                     
 
@@ -485,6 +485,8 @@ RUN apt-get install build-essential -y
 RUN apt-get install linux-headers-`uname -r` -y; exit 0
 RUN apt-get install libssl-dev -y
 RUN apt-get install dkms -y
+# auto completion tool
+RUN apt-get install bash-completion -y
 # killall tool
 RUN apt-get install psmisc -y
 # ping tool
@@ -497,6 +499,10 @@ RUN apt-get -y install sudo
 RUN useradd -m user && echo "user:user" | chpasswd && adduser user sudo
 
 WORKDIR /root</code></pre>
+<p>note:</p>
+<ul>
+<li>bash-completion 會有login logout 的問題哦，所以在執行docker 的時候要用 “bash l” 替代 單純的”/bin/bash”。當然也可以用另外的替代方案，進入後下 source /etc/profile.d/bash_completion.sh 讓此套件有效。</li>
+</ul>
 <h3 id="2-build-container-by-using-Dockerfile"><a href="#2-build-container-by-using-Dockerfile" class="headerlink" title="2. build container by using Dockerfile"></a>2. build container by using Dockerfile</h3><pre class=" language-sh"><code class="language-sh">#sudo docker build -t [main-resp]/[sub-resp]:[tag] ./
 $docker build -t yuyan/build_env:ver1.0 ./
 
@@ -510,10 +516,10 @@ ubuntu              14.04.5             132b7427a3b4        3 years ago         
 <p>有兩種常用的用法，一種是用完即拋，在 docker run 的指令多補個 –rm，在離開 container 後就會，順便把 container 刪掉</p>
 </blockquote>
 <pre class=" language-sh"><code class="language-sh"># 簡易
-$docker run -ti [main-resp]/[sub-resp]:[tag] /bin/bash
+$docker run -ti [main-resp]/[sub-resp]:[tag] bash -l
 or
 # 進階
-$docker run -ti --rm --privileged -v [path_to_folder]:/root/shared_data [main-resp]/[sub-resp]:[tag] /bin/bash
+$docker run -ti --rm --privileged -v [path_to_folder]:/root/shared_data [main-resp]/[sub-resp]:[tag] bash -l
 
 -v: Bind mount a volume.
 -ti: Allocate a pseudo-tty. +  Keep STDIN open even if not attached.
@@ -539,7 +545,7 @@ or
 $docker start -ai [container_name]</code></pre>
 <h3 id="List-container"><a href="#List-container" class="headerlink" title="List container"></a>List container</h3><pre class=" language-sh"><code class="language-sh">$docker ps -a
 CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS                      PORTS               NAMES
-3307a856267e        yuyan/build_env:ver1.0   "/bin/bash"         3 days ago          Exited (0) 14 seconds ago                       trusting_hofstadter</code></pre>
+3307a856267e        yuyan/build_env:ver1.0   "bash -l"         3 days ago          Exited (0) 14 seconds ago                       trusting_hofstadter</code></pre>
 
             </div>
             <hr/>
@@ -598,30 +604,29 @@ CONTAINER ID        IMAGE                   COMMAND             CREATED         
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/06/19/ubuntu-shi-yong-docker-bi-ji-part2/">
+                <a href="/2020/07/24/ubuntu-shi-yong-socksv5-bi-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Ubuntu 使用 docker 筆記_Part2">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Ubuntu 使用 SocksV5 筆記">
                         
-                        <span class="card-title">Ubuntu 使用 docker 筆記_Part2</span>
+                        <span class="card-title">Ubuntu 使用 SocksV5 筆記</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            到研華後，紀錄docker常用的指令，以及一些簡易的DockerFile撰寫筆記
+                            利用docker，創建兩個容器，一個用dante-server當代理伺服器使用，另一個用代理鏈工具proxychains指定應用程式導向代理伺服器。
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-24
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -634,7 +639,6 @@ CONTAINER ID        IMAGE                   COMMAND             CREATED         
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -646,8 +650,8 @@ CONTAINER ID        IMAGE                   COMMAND             CREATED         
                         <span class="chip bg-color">ubuntu</span>
                     </a>
                     
-                    <a href="/tags/docker/" target="_blank">
-                        <span class="chip bg-color">docker</span>
+                    <a href="/tags/socks/" target="_blank">
+                        <span class="chip bg-color">socks</span>
                     </a>
                     
                 </div>
@@ -808,7 +812,7 @@ CONTAINER ID        IMAGE                   COMMAND             CREATED         
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">57.3k</span>
+                <span class="white-color">57.9k</span>
             
 
             
