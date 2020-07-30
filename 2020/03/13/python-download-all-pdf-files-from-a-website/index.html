@@ -8,9 +8,8 @@
     <meta name="description" content="
 本篇算是我第一次寫的 python，所以是筆記不是教學，如果有建議或疑問，歡迎下方留言討論。
 
-1.目標
-希望能下載此頁面，所有的 pdf 檔
-用 chrome 打開後，右鍵檢視原始碼，會發現裡面其實看不到任何.pdf 檔的連結，所以我猜">
+1.目標希望能下載此頁面，所有的 pdf 檔
+用 chrome 打開後，右鍵檢視原始碼，會發現裡面其實看不到任何.pdf 檔的連結，所以我猜想">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -439,20 +438,16 @@
                 <blockquote>
 <p>本篇算是我第一次寫的 python，所以是筆記不是教學，如果有建議或疑問，歡迎下方留言討論。</p>
 </blockquote>
-<h2>1.目標</h2>
-<p>希望能下載<a href="https://tmi.yokogawa.com/cn/library/search/#/t=5" target="_blank" rel="noopener">此頁面</a>，所有的 pdf 檔</p>
-<p>用 chrome 打開後，右鍵檢視原始碼，會發現裡面其實看不到任何.pdf 檔的連結，所以我猜想是這頁面利用載入其他的頁面將其他連結內的.pdf 嵌入近來。<br>
-所以我會先開啟主頁然後檢查主頁裡面的連結，在深入訪問連結看裡面是否有.pdf 的連結，如果有就下載。</p>
-<h2>2.設計思路</h2>
-<ol>
+<h2 id="1-目標"><a href="#1-目標" class="headerlink" title="1.目標"></a>1.目標</h2><p>希望能下載<a href="https://tmi.yokogawa.com/cn/library/search/#/t=5" target="_blank" rel="noopener">此頁面</a>，所有的 pdf 檔</p>
+<p>用 chrome 打開後，右鍵檢視原始碼，會發現裡面其實看不到任何.pdf 檔的連結，所以我猜想是這頁面利用載入其他的頁面將其他連結內的.pdf 嵌入近來。<br>所以我會先開啟主頁然後檢查主頁裡面的連結，在深入訪問連結看裡面是否有.pdf 的連結，如果有就下載。</p>
+<h2 id="2-設計思路"><a href="#2-設計思路" class="headerlink" title="2.設計思路"></a>2.設計思路</h2><ol>
 <li>分析網頁元素。 =&gt; 右鍵檢視原始碼</li>
 <li>確認目標檔案連結。 =&gt; &lt;href&gt;</li>
 <li>coding &amp; debug。</li>
 <li>流程檢驗、改善、例外處理。</li>
 </ol>
-<h2>3.function</h2>
-<p><strong>網頁連線</strong></p>
-<pre class=" language-language-py"><code class="language-language-py">def try_web_connect (url ) :
+<h2 id="3-function"><a href="#3-function" class="headerlink" title="3.function"></a>3.function</h2><p><strong>網頁連線</strong></p>
+<pre class=" language-py"><code class="language-py">def try_web_connect (url ) :
     tries = 5
     while (tries):
         try:
@@ -466,10 +461,9 @@
             time.sleep(3)
             tries -=1
             continue
-    return None
-</code></pre>
+    return None</code></pre>
 <p><strong>下載檔案</strong></p>
-<pre class=" language-language-py"><code class="language-language-py">save_folder = 'I:\\py_downloads\\'
+<pre class=" language-py"><code class="language-py">save_folder = 'I:\\py_downloads\\'
 def download(url):
     #獲取檔名
     filename = url[url.rfind("/")+1:]
@@ -485,10 +479,8 @@ def download(url):
         print(full_path)
         return open(full_path, 'wb').write(r.content)
     else:
-        return -1
-</code></pre>
-<h2>4.程式碼</h2>
-<pre class=" language-language-py"><code class="language-language-py">import requests
+        return -1</code></pre>
+<h2 id="4-程式碼"><a href="#4-程式碼" class="headerlink" title="4.程式碼"></a>4.程式碼</h2><pre class=" language-py"><code class="language-py">import requests
 import os.path
 from bs4 import BeautifulSoup
 import time
@@ -600,7 +592,6 @@ if(r.status_code == 200):
                 enter_download_page(want_url)
 else:
     print('http request error!')
-
 </code></pre>
 
             </div>

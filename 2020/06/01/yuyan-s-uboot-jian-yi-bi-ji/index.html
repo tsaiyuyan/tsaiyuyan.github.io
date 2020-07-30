@@ -5,10 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="YuYan&#39;s Uboot 簡易筆記, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="YuYan’s Uboot 簡易筆記
-uboot command example
+    <meta name="description" content="YuYan’s Uboot 簡易筆記uboot command example
 U-Boot# mii info
-PHY 0x01: OUI = 0x80017, Model = 0x09, Rev = 0x00, 100baseT, F">
+PHY 0x01: OUI = 0x80017, Model = 0x09, Rev = 0x00, 100baseT, FD">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -421,9 +420,8 @@ PHY 0x01: OUI = 0x80017, Model = 0x09, Rev = 0x00, 100baseT, F">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1>YuYan’s Uboot 簡易筆記</h1>
-<p><strong><em>uboot command example</em></strong></p>
-<pre class=" language-language-text"><code class="language-language-text">U-Boot# mii info
+                <h1 id="YuYan’s-Uboot-簡易筆記"><a href="#YuYan’s-Uboot-簡易筆記" class="headerlink" title="YuYan’s Uboot 簡易筆記"></a>YuYan’s Uboot 簡易筆記</h1><p><strong><em>uboot command example</em></strong></p>
+<pre class=" language-text"><code class="language-text">U-Boot# mii info
 PHY 0x01: OUI = 0x80017, Model = 0x09, Rev = 0x00, 100baseT, FDX
 PHY 0x03: OUI = 0x80017, Model = 0x09, Rev = 0x00,  10baseT, HDX
 
@@ -466,42 +464,37 @@ U-Boot# mii dump 1 3
   (fc00:5c00) 3.15-10 =    23    OUI portion
   (03f0:0090) 3. 9- 4 =     9    manufacturer part number
   (000f:0000) 3. 3- 0 =     0    manufacturer rev. number
-
 </code></pre>
-<h2>雜項</h2>
-<ul>
+<h2 id="雜項"><a href="#雜項" class="headerlink" title="雜項"></a>雜項</h2><ul>
 <li>8P8C，也稱<strong>RJ45</strong>，是乙太網路使用雙絞線連接時常用的一種連接器插頭。</li>
 <li>1 個 phy 配 1 個 RJ45，所以板子上有 2 個 RJ45，所以在 uboot 使用 mii info 要能夠找到 2 個 phy。</li>
 <li>phy 上面會有自己所謂的 ID ，稱做 phy id ，會用於 MDIO/MDC 配對時用</li>
 <li>QSGMII 是一種接線法，連接 4 個 phy，負責交換 data，最大 5G(4 個 phy 加起來)</li>
 <li>SGMII 是一種接憲法 搭配 1 個 phy， 負責交換 data，最大 1.25G</li>
 </ul>
-<p>XXXXX_driver.c<br>
-build .ko 檔</p>
-<pre class=" language-language-c"><code class="language-language-c">
-// 這是一個標準的phy範例格式
-static struct phy_driver dp83640_driver = {
-        .phy_id         = DP83640_PHY_ID,
-        .phy_id_mask    = 0xfffffff0,
-        .name           = "NatSemi DP83640",
-        /* PHY_BASIC_FEATURES */
-        .probe          = dp83640_probe,
-        .remove         = dp83640_remove,
-        .soft_reset     = dp83640_soft_reset,
-        .config_init    = dp83640_config_init,
-        .ack_interrupt  = dp83640_ack_interrupt,
-        .config_intr    = dp83640_config_intr,
-        .ts_info        = dp83640_ts_info,
-        .hwtstamp       = dp83640_hwtstamp,
-        .rxtstamp       = dp83640_rxtstamp,
-        .txtstamp       = dp83640_txtstamp,
-};
-</code></pre>
-<h2>lua + C</h2>
-<ul>
+<p>XXXXX_driver.c<br>build .ko 檔</p>
+<pre class=" language-c"><code class="language-c">
+<span class="token comment" spellcheck="true">// 這是一個標準的phy範例格式</span>
+<span class="token keyword">static</span> <span class="token keyword">struct</span> phy_driver dp83640_driver <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">.</span>phy_id         <span class="token operator">=</span> DP83640_PHY_ID<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>phy_id_mask    <span class="token operator">=</span> <span class="token number">0xfffffff0</span><span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>name           <span class="token operator">=</span> <span class="token string">"NatSemi DP83640"</span><span class="token punctuation">,</span>
+        <span class="token comment" spellcheck="true">/* PHY_BASIC_FEATURES */</span>
+        <span class="token punctuation">.</span>probe          <span class="token operator">=</span> dp83640_probe<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>remove         <span class="token operator">=</span> dp83640_remove<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>soft_reset     <span class="token operator">=</span> dp83640_soft_reset<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>config_init    <span class="token operator">=</span> dp83640_config_init<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>ack_interrupt  <span class="token operator">=</span> dp83640_ack_interrupt<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>config_intr    <span class="token operator">=</span> dp83640_config_intr<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>ts_info        <span class="token operator">=</span> dp83640_ts_info<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>hwtstamp       <span class="token operator">=</span> dp83640_hwtstamp<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>rxtstamp       <span class="token operator">=</span> dp83640_rxtstamp<span class="token punctuation">,</span>
+        <span class="token punctuation">.</span>txtstamp       <span class="token operator">=</span> dp83640_txtstamp<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<h2 id="lua-C"><a href="#lua-C" class="headerlink" title="lua + C"></a>lua + C</h2><ul>
 <li>Lua 是一種輕量語言，它的官方版本只包括一個精簡的核心和最基本的庫。這使得 Lua 體積小、啟動速度快。它用 ANSI C 語言編寫並以原始碼形式開放，編譯後僅僅一百餘 K，可以很方便的嵌入別的程式裡。和許多「大而全」的語言不一樣，網路通訊、圖形介面等都沒有預設提供。但是 Lua 可以很容易地被擴充：由宿主語言（通常是 C 或 C++）提供這些功能，Lua 可以使用它們，就像是本來就內建的功能一樣。事實上，現在已經有很多成熟的擴充模組可供選用。</li>
 </ul>
-<pre class=" language-language-bbs"><code class="language-language-bbs">
+<pre class=" language-bbs"><code class="language-bbs">
 標題Re: [問題] 請問有在用 Lua 的大大們...
 
 C 與 Lua 會結合，就是因為沒有十全十美的程式語言
@@ -547,8 +540,7 @@ Lua 跑起來雖然慢，但寫起來簡單，開發速度快
 → hichcock: 重點在於 C + Lua 可以把效能 + 彈性的效果最大化 01/19 09:17
 推 shadow0326: 推 01/19 10:51
 推 eye5002003: 補個優點，lua語法簡單，有機會開放讓非程式人員修改 01/22 22:46
-→ alex70266: 重點是彈性阿，C call lua script 包 C module很常用
-</code></pre>
+→ alex70266: 重點是彈性阿，C call lua script 包 C module很常用</code></pre>
 
             </div>
             <hr/>
