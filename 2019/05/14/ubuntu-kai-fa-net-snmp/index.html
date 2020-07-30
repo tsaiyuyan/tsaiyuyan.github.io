@@ -554,8 +554,8 @@ CMakeLists.txt
 toolchain.cmake</code></pre>
 <h3 id="1-CMakeLists-txt-撰寫"><a href="#1-CMakeLists-txt-撰寫" class="headerlink" title="1. CMakeLists.txt 撰寫"></a>1. CMakeLists.txt 撰寫</h3><p>Source Link:</p>
 <ul>
-<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/blob/master/snmp-command/CMakeLists.txt">https://github.com/tsaiyuyan/netsnmpProjects/blob/master/snmp-command/CMakeLists.txt</a></li>
-<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/blob/master/snmp-subagent/CMakeLists.txt">https://github.com/tsaiyuyan/netsnmpProjects/blob/master/snmp-subagent/CMakeLists.txt</a></li>
+<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/blob/master/snmp-command/CMakeLists.txt" target="_blank" rel="noopener">https://github.com/tsaiyuyan/netsnmpProjects/blob/master/snmp-command/CMakeLists.txt</a></li>
+<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/blob/master/snmp-subagent/CMakeLists.txt" target="_blank" rel="noopener">https://github.com/tsaiyuyan/netsnmpProjects/blob/master/snmp-subagent/CMakeLists.txt</a></li>
 </ul>
 <pre class=" language-cmake"><code class="language-cmake"># CMakeLists.txt
 cmake_minimum_required(VERSION 2.8)
@@ -599,7 +599,7 @@ target_link_libraries(${PROJECT_NAME}.out -lnetsnmpmibs -lnetsnmpagent -lnetsnmp
 </blockquote>
 <p>Source Link:</p>
 <ul>
-<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/blob/master/toolchain.cmake">https://github.com/tsaiyuyan/netsnmpProjects/blob/master/toolchain.cmake</a></li>
+<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/blob/master/toolchain.cmake" target="_blank" rel="noopener">https://github.com/tsaiyuyan/netsnmpProjects/blob/master/toolchain.cmake</a></li>
 </ul>
 <h3 id="3-Makefile-撰寫-可選"><a href="#3-Makefile-撰寫-可選" class="headerlink" title="3. Makefile 撰寫(可選)"></a>3. Makefile 撰寫(可選)</h3><blockquote>
 <p>如果不想要使用 cmake 可以參考本 makefile 的範例，只是沒有 cmake 封裝的那麼好就是了，但也算寫的簡潔明瞭。撰寫 makefile 在於要知道 net-snmp 的 include 和 library 在哪些位置。和要鏈結哪些 lib。</p>
@@ -633,7 +633,7 @@ LIBS<span class="token operator">=</span>-L/usr/local/net-snmp/lib
 </blockquote>
 <p>Source link:</p>
 <ul>
-<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/tree/master/snmp-subagent">https://github.com/tsaiyuyan/netsnmpProjects/tree/master/snmp-subagent</a></li>
+<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/tree/master/snmp-subagent" target="_blank" rel="noopener">https://github.com/tsaiyuyan/netsnmpProjects/tree/master/snmp-subagent</a></li>
 </ul>
 <p>以上就是 only read oid(.1.3.6.1.4.1.16535.1.1.0)跟 write/read oid(.1.3.6.1.4.1.16536.1.1.0)被觸發時，會 call function 的基本代碼，另外官網也有提供，純量(scalar)的 oid 唯讀，詳情請洽官網教學頁面。</p>
 <p>make 之後會產生 snmp-subagent.out，直接執行即可。如果想執行在背景可以將 main()裡面的 dont_fork 參數改成 0，他會以 daemon 的方式執行。</p>
@@ -644,7 +644,7 @@ LIBS<span class="token operator">=</span>-L/usr/local/net-snmp/lib
 </blockquote>
 <p>Source link:</p>
 <ul>
-<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/tree/master/snmp-command">https://github.com/tsaiyuyan/netsnmpProjects/tree/master/snmp-command</a></li>
+<li><a href="https://github.com/tsaiyuyan/netsnmpProjects/tree/master/snmp-command" target="_blank" rel="noopener">https://github.com/tsaiyuyan/netsnmpProjects/tree/master/snmp-command</a></li>
 </ul>
 <p>There are three following functions to mainly use.</p>
 <pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// file:snmp_tool.h</span>
@@ -664,7 +664,7 @@ LIBS<span class="token operator">=</span>-L/usr/local/net-snmp/lib
                     <span class="reprint-tip">
                         <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;轉載請註明:
                     </span>
-                    <a href="https://github.com/tsaiyuyan" class="b-link-green">YuYan's blog</a>
+                    <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
                     <a href="/2019/05/14/ubuntu-kai-fa-net-snmp/" class="b-link-green">Ubuntu 開發 net-snmp</a>
                 </p>
