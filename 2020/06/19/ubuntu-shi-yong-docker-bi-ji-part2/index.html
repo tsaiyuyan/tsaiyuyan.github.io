@@ -453,11 +453,11 @@ $curl -sSL https://get.docker.com/ | sudo sh</code></pre>
 $sudo groupadd docker
 groupadd: group 'docker' already exists
 
-# 2.Add the connected user "$USER" to the docker group.
-# $sudo gpasswd -a $USER docker
+# 2.Add the connected user "[USER]" to the docker group.
+# $sudo gpasswd -a [USER] docker
 # Change the user name to match your preferred user if you do not want to use your current user:
-$sudo gpasswd -a yuyan docker
-Adding user yuyan to group docker.
+$sudo gpasswd -a [USER] docker
+Adding user [USER] to group docker.
 
 $newgrp docker
 $docker run hello-world</code></pre>
