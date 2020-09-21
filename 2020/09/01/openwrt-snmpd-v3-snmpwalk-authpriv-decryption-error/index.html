@@ -5,11 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="OpenWRT snmpd v3 - snmpwalk authpriv Decryption error, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="snmp.conf 設定檔vim /etc/snmp/snmp.conf
+    <meta name="description" content="snmp.conf 設定檔
+
+vim /etc/snmp/snmp.conf
+
 createUser user MD5 &#34;99310362&#34; DES &#34;123456789&#34;
 rouser user priv
 rouser user2
-agentA">
+age">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -420,7 +423,7 @@ agentA">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        244
+                        246
                     </div>
                     
 
@@ -443,31 +446,40 @@ agentA">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="snmp-conf-設定檔"><a href="#snmp-conf-設定檔" class="headerlink" title="snmp.conf 設定檔"></a>snmp.conf 設定檔</h2><p><code>vim /etc/snmp/snmp.conf</code></p>
-<pre class=" language-conf"><code class="language-conf">createUser user MD5 "99310362" DES "123456789"
+                <h2>snmp.conf 設定檔</h2>
+<ul>
+<li><code>vim /etc/snmp/snmp.conf</code></li>
+</ul>
+<pre class=" language-language-conf"><code class="language-language-conf">createUser user MD5 "99310362" DES "123456789"
 rouser user priv
 rouser user2
 agentAddress udp:0.0.0.0:161
 exec .1.3.6.1.4.1.2021.51 ps /bin/ps
-exec .1.3.6.1.4.1.2021.52 openssl /usr/bin/openssl x509 -in /etc/uhttpd.crt -noout -dates -fingerprint -inform der</code></pre>
-<h2 id="snmpwalk-測試，發生問題"><a href="#snmpwalk-測試，發生問題" class="headerlink" title="snmpwalk 測試，發生問題"></a>snmpwalk 測試，發生問題</h2><ol>
+exec .1.3.6.1.4.1.2021.52 openssl /usr/bin/openssl x509 -in /etc/uhttpd.crt -noout -dates -fingerprint -inform der
+</code></pre>
+<h2>snmpwalk 測試，發生問題</h2>
+<ol>
 <li>openWRT 端，執行<code>snmpd -f -Le</code></li>
 <li>測試端，執行<code>snmpwalk -v3 -u user2 -l authNoPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20</code>，可正常運行</li>
 <li>測試端，執行<code>snmpwalk -v3 -u user -l authPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20</code></li>
 </ol>
-<pre class=" language-sh"><code class="language-sh">snmpwalk: Unknown engine ID
+<pre class=" language-language-sh"><code class="language-language-sh">snmpwalk: Unknown engine ID
 or
-snmpwalk: Decryption error</code></pre>
-<h2 id="Use-–with-openssl-internal"><a href="#Use-–with-openssl-internal" class="headerlink" title="Use –with-openssl=internal"></a>Use –with-openssl=internal</h2><p><code>vim net-snmp/Makefile</code></p>
-<pre class=" language-diff"><code class="language-diff">diff --git a/net/net-snmp/Makefile b/net/net-snmp/Makefile
+snmpwalk: Decryption error
+</code></pre>
+<h2>Use option <code>--with-openssl=internal</code></h2>
+<ul>
+<li><code>vim net-snmp/Makefile</code></li>
+</ul>
+<pre class=" language-language-diff"><code class="language-language-diff">diff --git a/net/net-snmp/Makefile b/net/net-snmp/Makefile
 index 3446d151..9728478c 100644
-<span class="token coord">--- a/net/net-snmp/Makefile</span>
-<span class="token coord">+++ b/net/net-snmp/Makefile</span>
+--- a/net/net-snmp/Makefile
++++ b/net/net-snmp/Makefile
 @@ -137,6 +137,7 @@ SNMP_MIB_MODULES_INCLUDED = \
         ucd-snmp/vmstat \
         util_funcs \
         utilities/execute \
-<span class="token inserted">+#      agent/extend \</span>
++#      agent/extend \
 
  SNMP_MIB_MODULES_EXCLUDED = \
         agent_mibs \
@@ -475,15 +487,16 @@ index 3446d151..9728478c 100644
         --with-mib-modules="$(SNMP_MIB_MODULES_INCLUDED)" \
         --with-out-transports="$(SNMP_TRANSPORTS_EXCLUDED)" \
         --with-transports="$(SNMP_TRANSPORTS_INCLUDED)" \
-<span class="token deleted">-       --without-openssl \</span>
-<span class="token inserted">+       --with-openssl=internal \</span>
+-       --without-openssl \
++       --with-openssl=internal \
         --without-libwrap \
         --without-rpm \
-        --without-zlib \</code></pre>
+        --without-zlib \
+</code></pre>
 <p>之後重 build, 即可使用 SNMPV3 authPriv.</p>
 <p>reference :</p>
 <ul>
-<li><a href="https://marc.info/?t=126277134700002&r=1&w=2" target="_blank" rel="noopener">snmpwalk: Decryption error (snmp v3) (openWRT)</a></li>
+<li><a href="https://marc.info/?t=126277134700002&amp;r=1&amp;w=2" target="_blank" rel="noopener">snmpwalk: Decryption error (snmp v3) (openWRT)</a></li>
 <li><a href="https://forum.archive.openwrt.org/viewtopic.php?id=46318" target="_blank" rel="noopener">compile error : snmp v3 with openssl missing libcrypto.so.1.0.0</a></li>
 </ul>
 
