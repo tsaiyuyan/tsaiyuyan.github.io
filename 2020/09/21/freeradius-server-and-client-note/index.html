@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="FreeRadius Server and Client Note, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="What is FreeRADIUS?The FreeRADIUS Server Project is a high performance and highly configurable multi-protocol policy ser">
+    <meta name="description" content="About FreeRADIUSThe FreeRADIUS Server Project is a high performance and highly configurable multi-protocol policy server">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -375,9 +375,17 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">無標籤</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/note/" target="_blank">
+                                <span class="chip bg-color">note</span>
+                            </a>
+                        
+                            <a href="/tags/FreeRadius/" target="_blank">
+                                <span class="chip bg-color">FreeRadius</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -404,7 +412,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        603
+                        602
                     </div>
                     
 
@@ -427,14 +435,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="What-is-FreeRADIUS"><a href="#What-is-FreeRADIUS" class="headerlink" title="What is FreeRADIUS?"></a>What is FreeRADIUS?</h2><p>The FreeRADIUS Server Project is a high performance and highly configurable multi-protocol policy server, supporting RADIUS, DHCPv4 and VMPS. Using RADIUS allows authentication and authorization for a network to be centralized, and minimizes the number of changes that have to be done when adding or deleting new users to a network.</p>
+                <h2 id="About-FreeRADIUS"><a href="#About-FreeRADIUS" class="headerlink" title="About FreeRADIUS"></a>About FreeRADIUS</h2><p>The FreeRADIUS Server Project is a high performance and highly configurable multi-protocol policy server, supporting RADIUS, DHCPv4 and VMPS. Using RADIUS allows authentication and authorization for a network to be centralized, and minimizes the number of changes that have to be done when adding or deleting new users to a network.</p>
 <p>FreeRADIUS can authenticate users on systems such as 802.1x (WiFi), dialup, PPPoE, VPN’s, VoIP, and many others. It supports back-end databases such as MySQL, PostgreSQL, Oracle, Microsoft Active Directory, Redis, OpenLDAP. It is used daily to authenticate the Internet access for hundreds of millions of people, in sites ranging from 10 to 10 million+ users.</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/FreeRADIUS" target="_blank" rel="noopener">wikipedia.org/wiki/FreeRADIUS</a></li>
+<li>wiki : <a href="https://en.wikipedia.org/wiki/FreeRADIUS" target="_blank" rel="noopener">wikipedia.org/wiki/FreeRADIUS</a></li>
 <li>Server docker : [<a href="https://hub.docker.com/r/freeradius/freeradius-server/]" target="_blank" rel="noopener">https://hub.docker.com/r/freeradius/freeradius-server/]</a></li>
-<li>Server ver: 3.0.21</li>
-<li>Client ver: 1.1.7</li>
+<li>Server ver : 3.0.21</li>
+<li>Client ver : 1.1.7</li>
 </ul>
+<hr>
 <h2 id="FreeRadius-Server"><a href="#FreeRadius-Server" class="headerlink" title="FreeRadius-Server"></a>FreeRadius-Server</h2><h3 id="Using-docker-fastly-build-Server-for-test"><a href="#Using-docker-fastly-build-Server-for-test" class="headerlink" title="Using docker fastly build Server for test"></a>Using docker fastly build Server for test</h3><p><code>$docker run -it --rm --name radius-server -p 1812-1813:1812-1813/udp freeradius/freeradius-server /bin/bash</code></p>
 <h3 id="進入-docker"><a href="#進入-docker" class="headerlink" title="進入 docker"></a>進入 docker</h3><pre class=" language-sh"><code class="language-sh"># 更新
 $apt update && apt install vim
@@ -514,34 +523,32 @@ radiusclient: invalid option -- 'h'
 usage: radiusclient [-f config_file] [-p nas_port] [-s | [-a] a1=v1 [a2=v2[...[aN=vN]...]]]
 
 $radiusclient -f /usr/etc/radiusclient/radiusclient.conf -p 1811 User-Name=bob Password=test
-Reply-Message                    = 'Hello, bob'
-</code></pre>
+Reply-Message                    = 'Hello, bob'</code></pre>
 <h4 id="Appendix-Command-line-flags"><a href="#Appendix-Command-line-flags" class="headerlink" title="Appendix: Command line flags"></a>Appendix: Command line flags</h4><pre class=" language-txt"><code class="language-txt">radlogin
 -f
-Path to an alternative configuration file
+        Path to an alternative configuration file
 -i
-File name of the terminal used to determine what to send in the NAS-Port attribute. Normally the tty of stdin is used.
+        File name of the terminal used to determine what to send in the NAS-Port attribute. Normally the tty of stdin is used.
 -n
-Disable display if the radlogin issue file. This option is set by default if radlogin is called with an argument.
+        Disable display if the radlogin issue file. This option is set by default if radlogin is called with an argument.
 -V
-Display version information
+        Display version information
 -h
-Display usage information
+        Display usage information
 
 radacct
 -i
-File name of the terminal used to determine what to send in the NAS-Port attribute. Normally the tty of stdout is used.
+        File name of the terminal used to determine what to send in the NAS-Port attribute. Normally the tty of stdout is used.
 -V
-Display version information
+        Display version information
 -h
-Display usage information
+        Display usage information
 
 radstatus
 -V
-Display version information
+        Display version information
 -h
-Display usage information
-</code></pre>
+        Display usage information</code></pre>
 
             </div>
             <hr/>
@@ -637,6 +644,18 @@ Display usage information
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/note/" target="_blank">
+                        <span class="chip bg-color">note</span>
+                    </a>
+                    
+                    <a href="/tags/FreeRadius/" target="_blank">
+                        <span class="chip bg-color">FreeRadius</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
