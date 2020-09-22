@@ -5,13 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Openssl - Certificate expiration check, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="Docker
+    <meta name="description" content="openssl ca expirationTest enviroment
 docker run -it ubuntu:20.04 bash -l
-vim ca_check.sh
+apt update &amp;amp;&amp;amp; apt install openssl
 
-#!/bin/bash
-if [ $# -eq 0 ]; then
-    echo &#34;No arguments sup">
+Edit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -387,6 +385,14 @@ if [ $# -eq 0 ]; then
                                 <span class="chip bg-color">openssl</span>
                             </a>
                         
+                            <a href="/tags/snmpd/" target="_blank">
+                                <span class="chip bg-color">snmpd</span>
+                            </a>
+                        
+                            <a href="/tags/openwrt/" target="_blank">
+                                <span class="chip bg-color">openwrt</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -414,14 +420,14 @@ if [ $# -eq 0 ]; then
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        373
+                        536
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -437,8 +443,11 @@ if [ $# -eq 0 ]; then
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><ul>
+                <h2 id="openssl-ca-expiration"><a href="#openssl-ca-expiration" class="headerlink" title="openssl ca expiration"></a>openssl ca expiration</h2><h3 id="Test-enviroment"><a href="#Test-enviroment" class="headerlink" title="Test enviroment"></a>Test enviroment</h3><ul>
 <li><code>docker run -it ubuntu:20.04 bash -l</code></li>
+<li><code>apt update &amp;&amp; apt install openssl</code></li>
+</ul>
+<h3 id="Edit-script"><a href="#Edit-script" class="headerlink" title="Edit script"></a>Edit script</h3><ul>
 <li><code>vim ca_check.sh</code></li>
 </ul>
 <pre class=" language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
@@ -470,11 +479,16 @@ ca<span class="token operator">=</span><span class="token variable">$1</span>
 <span class="token keyword">else</span>
     <span class="token keyword">echo</span> <span class="token string">"Certificate has expired or will do so within 30 days!(or is invalid/not found)"</span>
 <span class="token keyword">fi</span></code></pre>
+<h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><pre class=" language-sh"><code class="language-sh">$sh ./ca_check xxxxx.crt
+Certificate is good for another day!
+
+$sh ./ca_check ooooo.pem
+Certificate has expired or will do so within 30 days!(or is invalid/not found)</code></pre>
 <hr>
-<h3 id="snmpd-server"><a href="#snmpd-server" class="headerlink" title="snmpd server"></a>snmpd server</h3><p>Link: <a href="https://hub.docker.com/r/polinux/snmpd" target="_blank" rel="noopener">https://hub.docker.com/r/polinux/snmpd</a></p>
-<ul>
-<li><code>vim /tmp/snmpd.conf</code></li>
-</ul>
+<h2 id="用-snmpd-來管理-CA-是否過期"><a href="#用-snmpd-來管理-CA-是否過期" class="headerlink" title="用 snmpd 來管理 CA 是否過期"></a>用 snmpd 來管理 CA 是否過期</h2><h3 id="用-docker-做個-snmpd-server-測試用"><a href="#用-docker-做個-snmpd-server-測試用" class="headerlink" title="用 docker 做個 snmpd server 測試用"></a>用 docker 做個 snmpd server 測試用</h3><blockquote>
+<p>Link : <a href="https://hub.docker.com/r/polinux/snmpd" target="_blank" rel="noopener">https://hub.docker.com/r/polinux/snmpd</a></p>
+</blockquote>
+<p><code>vim /tmp/snmpd.conf</code></p>
 <pre class=" language-conf"><code class="language-conf">syslocation  Taiwan
 syscontact  XXXXXXXXXXX@gmail.com
 
@@ -486,18 +500,27 @@ createUser wyuyan MD5 99310362 DES 123456789
 agentAddress udp:0.0.0.0:161
 master agentx
 agentxsocket tcp:localhost:1610
-extend .1.3.6.1.4.1.2021.51 ps /bin/ps</code></pre>
+extend .1.3.6.1.4.1.2021.51 ps /bin/ps
+extend .1.3.6.1.4.1.2021.52 ca_check /bin/sh /tmp/ca_check.sh</code></pre>
+<h3 id="啟動-docker"><a href="#啟動-docker" class="headerlink" title="啟動 docker"></a>啟動 docker</h3><ul>
+<li><code>docker run --rm -it --name snmpd -p161:161/udp -v /tmp/snmpd.conf:/etc/snmp/snmpd.conf polinux/snmpd -c /etc/snmp/snmpd.conf -Le</code></li>
+</ul>
+<h3 id="Test-command-example"><a href="#Test-command-example" class="headerlink" title="Test command example"></a>Test command example</h3><ul>
+<li>yuyan : 是唯讀使用者並且有 private 權限</li>
+<li>wyuyan : 是讀寫使用者並沒有 private 權限</li>
+<li>test command like following</li>
+</ul>
+<pre class=" language-sh"><code class="language-sh">$snmpwalk -v3 -u yuyan -l authPriv -a MD5 -A "99310362" -x DES -X 123456789 192.168.7.20
+$snmpwalk -v3 -u wyuyan -l authNoPriv -a MD5 -A "99310362" -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021.51
+$snmpwalk -v3 -u yuyan -l authPriv -a MD5 -A "99310362" -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021</code></pre>
+<hr>
+<h2 id="Openwrt-pre-build-net-snmpd"><a href="#Openwrt-pre-build-net-snmpd" class="headerlink" title="Openwrt pre-build net-snmpd"></a>Openwrt pre-build net-snmpd</h2><blockquote>
+<p>Openwrt 有提供 net-snmpd 的模組使用，</p>
+</blockquote>
 <ul>
-<li><p><code>docker run --rm -it --name snmpd -p161:161/udp -v /tmp/snmpd.conf:/etc/snmpd/snmpd.conf polinux/snmpd -c /etc/snmpd/snmpd.conf -Le</code></p>
-</li>
-<li><p><code>snmpwalk -v3 -u yuyan -l authPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.2</code></p>
-</li>
-<li><p><code>snmpwalk -v3 -u wyuyan -l authNoPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021.51</code></p>
-</li>
-<li><p><code>snmpwalk -v3 -u yuyan -l authPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021</code></p>
-</li>
-<li><p><code>git diff Makefile</code></p>
-</li>
+<li><code>agent/extend</code> : 要有這個 conf 才能使用 extend 關鍵字，extend 可用於執行 shell script 或是一般 command。</li>
+<li><code>--with-openssl=internal</code> : 要打開這個 option snmpdV3 才能使用</li>
+<li><code>git diff Makefile</code></li>
 </ul>
 <pre class=" language-diff"><code class="language-diff">diff --git a/net/net-snmp/Makefile b/net/net-snmp/Makefile
 index 3446d151..02c65e7e 100644
@@ -636,10 +659,9 @@ index 3446d151..02c65e7e 100644
                     <div class="summary">
                         
                             snmp.conf 設定檔
-
 vim /etc/snmp/snmp.conf
 
-createUser user MD5 "99310362"
+createUser user MD5 "99310362" 
                         
                     </div>
                     <div class="publish-info">
@@ -790,7 +812,7 @@ createUser user MD5 "99310362"
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">58.8k</span>
+                <span class="white-color">59.4k</span>
             
 
             

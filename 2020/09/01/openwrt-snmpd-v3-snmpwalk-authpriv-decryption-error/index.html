@@ -6,13 +6,12 @@
     <meta charset="utf-8">
     <meta name="keywords" content="OpenWRT snmpd v3 - snmpwalk authpriv Decryption error, c/c++,Internet programmer,Linux Kernel">
     <meta name="description" content="snmp.conf 設定檔
-
 vim /etc/snmp/snmp.conf
 
 createUser user MD5 &#34;99310362&#34; DES &#34;123456789&#34;
 rouser user priv
 rouser user2
-age">
+agen">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -423,14 +422,14 @@ age">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        246
+                        567
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        1 分
+                        3 分
                     </div>
                     
                 
@@ -446,40 +445,36 @@ age">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2>snmp.conf 設定檔</h2>
-<ul>
+                <h2 id="snmp-conf-設定檔"><a href="#snmp-conf-設定檔" class="headerlink" title="snmp.conf 設定檔"></a>snmp.conf 設定檔</h2><ul>
 <li><code>vim /etc/snmp/snmp.conf</code></li>
 </ul>
-<pre class=" language-language-conf"><code class="language-language-conf">createUser user MD5 "99310362" DES "123456789"
+<pre class=" language-conf"><code class="language-conf">createUser user MD5 "99310362" DES "123456789"
 rouser user priv
 rouser user2
 agentAddress udp:0.0.0.0:161
 exec .1.3.6.1.4.1.2021.51 ps /bin/ps
-exec .1.3.6.1.4.1.2021.52 openssl /usr/bin/openssl x509 -in /etc/uhttpd.crt -noout -dates -fingerprint -inform der
-</code></pre>
-<h2>snmpwalk 測試，發生問題</h2>
-<ol>
+exec .1.3.6.1.4.1.2021.52 openssl /usr/bin/openssl x509 -in /etc/uhttpd.crt -noout -dates -fingerprint -inform der</code></pre>
+<h2 id="snmpwalk-測試，發生問題"><a href="#snmpwalk-測試，發生問題" class="headerlink" title="snmpwalk 測試，發生問題"></a>snmpwalk 測試，發生問題</h2><ol>
 <li>openWRT 端，執行<code>snmpd -f -Le</code></li>
 <li>測試端，執行<code>snmpwalk -v3 -u user2 -l authNoPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20</code>，可正常運行</li>
-<li>測試端，執行<code>snmpwalk -v3 -u user -l authPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20</code></li>
+<li>測試端，執行<code>snmpwalk -v3 -u user -l authPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021.52</code></li>
 </ol>
-<pre class=" language-language-sh"><code class="language-language-sh">snmpwalk: Unknown engine ID
+<p>iso.3.6.1.4.1.2021.52.1.0 = INTEGER: 1<br>iso.3.6.1.4.1.2021.52.2.1.2.8.99.97.95.99.104.101.99.107 = STRING: “/bin/sh”<br>iso.3.6.1.4.1.2021.52.2.1.3.8.99.97.95.99.104.101.99.107 = STRING: “/tmp/ca_check.sh”<br>iso.3.6.1.4.1.2021.52.2.1.4.8.99.97.95.99.104.101.99.107 = “”<br>iso.3.6.1.4.1.2021.52.2.1.5.8.99.97.95.99.104.101.99.107 = INTEGER: 5<br>iso.3.6.1.4.1.2021.52.2.1.6.8.99.97.95.99.104.101.99.107 = INTEGER: 1<br>iso.3.6.1.4.1.2021.52.2.1.7.8.99.97.95.99.104.101.99.107 = INTEGER: 1<br>iso.3.6.1.4.1.2021.52.2.1.20.8.99.97.95.99.104.101.99.107 = INTEGER: 4<br>iso.3.6.1.4.1.2021.52.2.1.21.8.99.97.95.99.104.101.99.107 = INTEGER: 1<br>iso.3.6.1.4.1.2021.52.3.1.1.8.99.97.95.99.104.101.99.107 = STRING: “/bin/sh: can’t open ‘/tmp/ca_check.sh’”<br>iso.3.6.1.4.1.2021.52.3.1.2.8.99.97.95.99.104.101.99.107 = STRING: “/bin/sh: can’t open ‘/tmp/ca_check.sh’”<br>iso.3.6.1.4.1.2021.52.3.1.3.8.99.97.95.99.104.101.99.107 = INTEGER: 1<br>iso.3.6.1.4.1.2021.52.3.1.4.8.99.97.95.99.104.101.99.107 = INTEGER: 2<br>iso.3.6.1.4.1.2021.52.4.1.2.8.99.97.95.99.104.101.99.107.1 = STRING: “/bin/sh: can’t open ‘/tmp/ca_check.sh’”</p>
+<pre class=" language-sh"><code class="language-sh">snmpwalk: Unknown engine ID
 or
-snmpwalk: Decryption error
-</code></pre>
-<h2>Use option <code>--with-openssl=internal</code></h2>
-<ul>
+snmpwalk: Decryption error</code></pre>
+<h2 id="Use-option-with-openssl-internal"><a href="#Use-option-with-openssl-internal" class="headerlink" title="Use option --with-openssl=internal"></a>Use option <code>--with-openssl=internal</code></h2><ul>
 <li><code>vim net-snmp/Makefile</code></li>
 </ul>
-<pre class=" language-language-diff"><code class="language-language-diff">diff --git a/net/net-snmp/Makefile b/net/net-snmp/Makefile
+<pre class=" language-diff"><code class="language-diff">diff --git a/net/net-snmp/Makefile b/net/net-snmp/Makefile
 index 3446d151..9728478c 100644
---- a/net/net-snmp/Makefile
-+++ b/net/net-snmp/Makefile
+<span class="token coord">--- a/net/net-snmp/Makefile</span>
+<span class="token coord">+++ b/net/net-snmp/Makefile</span>
 @@ -137,6 +137,7 @@ SNMP_MIB_MODULES_INCLUDED = \
         ucd-snmp/vmstat \
         util_funcs \
         utilities/execute \
-+#      agent/extend \
+<span class="token inserted">+#      agent/extend \</span>
 
  SNMP_MIB_MODULES_EXCLUDED = \
         agent_mibs \
@@ -487,16 +482,15 @@ index 3446d151..9728478c 100644
         --with-mib-modules="$(SNMP_MIB_MODULES_INCLUDED)" \
         --with-out-transports="$(SNMP_TRANSPORTS_EXCLUDED)" \
         --with-transports="$(SNMP_TRANSPORTS_INCLUDED)" \
--       --without-openssl \
-+       --with-openssl=internal \
+<span class="token deleted">-       --without-openssl \</span>
+<span class="token inserted">+       --with-openssl=internal \</span>
         --without-libwrap \
         --without-rpm \
-        --without-zlib \
-</code></pre>
+        --without-zlib \</code></pre>
 <p>之後重 build, 即可使用 SNMPV3 authPriv.</p>
 <p>reference :</p>
 <ul>
-<li><a href="https://marc.info/?t=126277134700002&amp;r=1&amp;w=2" target="_blank" rel="noopener">snmpwalk: Decryption error (snmp v3) (openWRT)</a></li>
+<li><a href="https://marc.info/?t=126277134700002&r=1&w=2" target="_blank" rel="noopener">snmpwalk: Decryption error (snmp v3) (openWRT)</a></li>
 <li><a href="https://forum.archive.openwrt.org/viewtopic.php?id=46318" target="_blank" rel="noopener">compile error : snmp v3 with openssl missing libcrypto.so.1.0.0</a></li>
 </ul>
 
@@ -573,11 +567,7 @@ index 3446d151..9728478c 100644
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            Docker
-docker run -it ubuntu:20.04 bash -l
-vim ca_check.sh
-
-#!/bin/bas
+                            用openssl檢查CA是否到期，以及應用snmpd去管理CA，最後介紹openwrt開啟 snmp V3 要注意什麼。
                         
                     </div>
                     <div class="publish-info">
@@ -601,6 +591,14 @@ vim ca_check.sh
                     
                     <a href="/tags/openssl/" target="_blank">
                         <span class="chip bg-color">openssl</span>
+                    </a>
+                    
+                    <a href="/tags/snmpd/" target="_blank">
+                        <span class="chip bg-color">snmpd</span>
+                    </a>
+                    
+                    <a href="/tags/openwrt/" target="_blank">
+                        <span class="chip bg-color">openwrt</span>
                     </a>
                     
                 </div>
@@ -777,7 +775,7 @@ vim ca_check.sh
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">58.8k</span>
+                <span class="white-color">59.4k</span>
             
 
             
