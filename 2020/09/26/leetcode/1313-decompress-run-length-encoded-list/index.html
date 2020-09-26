@@ -4,10 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="933. Number of Recent Calls, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="Link: https://leetcode.com/problems/number-of-recent-calls/
-Write a class RecentCounter to count recent requests.
-It has">
+    <meta name="keywords" content="1313. Decompress Run-Length Encoded List, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="Link: https://leetcode.com/problems/decompress-run-length-encoded-list/
+We are given a list nums of integers representin">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +14,7 @@ It has">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>933. Number of Recent Calls | YuYan&#39;s blog</title>
+    <title>1313. Decompress Run-Length Encoded List | YuYan&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon2.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -262,13 +261,13 @@ It has">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        933. Number of Recent Calls
+                        1313. Decompress Run-Length Encoded List
                     </div>
                 </div>
             </div>
@@ -407,14 +406,14 @@ It has">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2019-05-22
+                    2020-09-26
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        358
+                        197
                     </div>
                     
 
@@ -437,49 +436,58 @@ It has">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Link: <a href="https://leetcode.com/problems/number-of-recent-calls/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-recent-calls/</a></p>
-<p>Write a class RecentCounter to count recent requests.</p>
-<p>It has only one method: ping(int t), where t represents some time in milliseconds.</p>
-<p>Return the number of pings that have been made from 3000 milliseconds ago until now.</p>
-<p>Any ping with time in [t - 3000, t] will count, including the current ping.</p>
-<p>It is guaranteed that every call to ping uses a strictly larger value of t than before.</p>
+                <p>Link: <a href="https://leetcode.com/problems/decompress-run-length-encoded-list/" target="_blank" rel="noopener">https://leetcode.com/problems/decompress-run-length-encoded-list/</a></p>
+<p>We are given a list nums of integers representing a list compressed with run-length encoding.</p>
+<p>Consider each adjacent pair of elements [freq, val] = [nums[2<em>i], nums[2</em>i+1]] (with i &gt;= 0).  For each such pair, there are freq elements with value val concatenated in a sublist. Concatenate all the sublists from left to right to generate the decompressed list.</p>
+<p>Return the decompressed list.</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: inputs = ["RecentCounter","ping","ping","ping","ping"], inputs = [[],[1],[100],[3001],[3002]]
-Output: [null,1,2,3,3]</code></pre>
-<p>Note:</p>
-<ol>
-<li>Each test case will have at most 10000 calls to ping.</li>
-<li>Each test case will call ping with strictly increasing values of t.</li>
-<li>Each call to ping will have 1 &lt;= t &lt;= 10^9.</li>
-</ol>
+<pre class=" language-language-txt"><code class="language-language-txt">Input: nums = [1,2,3,4]
+Output: [2,4,4,4]
+Explanation: The first pair [1,2] means we have freq = 1 and val = 2 so we generate the array [2].
+The second pair [3,4] means we have freq = 3 and val = 4 so we generate [4,4,4].
+At the end the concatenation [2] + [4,4,4] is [2,4,4,4].
+</code></pre>
+<p>Example 2:</p>
+<pre class=" language-language-txt"><code class="language-language-txt">Input: nums = [1,1,2,3]
+Output: [1,3,3]
+</code></pre>
+<p>Constraints:</p>
+<ul>
+<li>2 &lt;= nums.length &lt;= 100</li>
+<li>nums.length % 2 == 0</li>
+<li>1 &lt;= nums[i] &lt;= 100</li>
+</ul>
 <hr>
 <p>題目翻譯:</p>
-<p>共享寫一個類 RecentCounter 來計算最近的請求。 它只有一個方法：ping（int t），其中 t 代表一些時間（以毫秒為單位）。 返回從 3000 毫秒前到現在為止的 ping 數。 在[t-3000，t]中任何時間 ping 都將計數，包括當前 ping。 保證每次調用 ping 都使用比之前嚴格更大的 t 值。</p>
-<p>程式思路:<br>用一個 deque 容器將時間存起來，為了方便查找所以每次都會從第一個元素開始判斷是否有在 t-3000 時間以內，如果沒有就刪除元素，最後返回容器的總元素量就是答案。</p>
-<pre class=" language-c++"><code class="language-c++">class RecentCounter {
+<p>解壓縮。</p>
+<p>程式思路:</p>
+<p>很easy</p>
+<pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
-    deque <int> pings;
-    RecentCounter() {
-    }
-    int ping(int t) {
-        pings.emplace_back(t);
-        for(auto it = pings.begin();it != pings.end();it++)
+    vector<string> fizzBuzz(int n)
+    {
+        vector<string> res;
+        for(int i = 1;i <= n;i++)
         {
-            if((*it >= t - 3000))
+            string foo;
+            if(i%3 == 0)
             {
-                pings.erase(pings.begin(),it);
-                break;
+                foo += "Fizz";
             }
+            if(i%5 == 0)
+            {
+                foo += "Buzz";
+            }
+            if(foo.length()==0)
+            {
+                foo += std::to_string(i);
+            }
+            res.push_back(foo);
         }
-        return pings.size();
+        return res;
     }
 };
-
-/**
- * Your RecentCounter object will be instantiated and called as such:
- * RecentCounter* obj = new RecentCounter();
- * int param_1 = obj->ping(t);
- */</code></pre>
+</code></pre>
 
             </div>
             <hr/>
@@ -495,7 +503,7 @@ public:
                     </span>
                     <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/05/22/leetcode/933-number-of-recent-calls/" class="b-link-green">933. Number of Recent Calls</a>
+                    <a href="/2020/09/26/leetcode/1313-decompress-run-length-encoded-list/" class="b-link-green">1313. Decompress Run-Length Encoded List</a>
                 </p>
             </div>
         </div>
@@ -517,7 +525,7 @@ public:
         repo: 'blog-comments',
         owner: 'tsaiyuyan',
         admin: "tsaiyuyan",
-        id: '2019-05-22T14-15-00',
+        id: '2020-09-26T11-47-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -538,70 +546,29 @@ public:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/06/04/yuyan-s-pwx-gong-zuo-bi-ji/">
+                <a href="/2020/09/26/leetcode/1313-decompress-run-length-encoded-list/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="YuYan's PWX 工作筆記">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="1313. Decompress Run-Length Encoded List">
                         
-                        <span class="card-title">YuYan's PWX 工作筆記</span>
+                        <span class="card-title">1313. Decompress Run-Length Encoded List</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            PWX的機器研究，研究他如何透過master跟slave傳指令，他的 Network Communication Interface 是如何實現的。
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-06-04
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/ezio-worklog/" class="post-category" target="_blank">
-                                    ezio_worklog
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/05/22/leetcode/1046-last-stone-weight/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="1046. Last Stone Weight">
-                        
-                        <span class="card-title">1046. Last Stone Weight</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary">
-                        
-                            Link: https://leetcode.com/problems/last-stone-weight/
-We have a colle
+                            Link: https://leetcode.com/problems/decompress-run-length-encoded-list
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-22
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-26
                             </span>
                         <span class="publish-author">
                             
@@ -615,6 +582,7 @@ We have a colle
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -624,6 +592,59 @@ We have a colle
                     
                     <a href="/tags/Easy/" target="_blank">
                         <span class="chip bg-color">Easy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/09/21/freeradius-server-and-client-note/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="FreeRadius Server and Client Note">
+                        
+                        <span class="card-title">FreeRadius Server and Client Note</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            FreeRadius 使用筆記
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/note/" target="_blank">
+                        <span class="chip bg-color">note</span>
+                    </a>
+                    
+                    <a href="/tags/FreeRadius/" target="_blank">
+                        <span class="chip bg-color">FreeRadius</span>
                     </a>
                     
                 </div>

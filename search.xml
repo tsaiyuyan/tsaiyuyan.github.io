@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>1313. Decompress Run-Length Encoded List</title>
+      <link href="/2020/09/26/leetcode/1313-decompress-run-length-encoded-list/"/>
+      <url>/2020/09/26/leetcode/1313-decompress-run-length-encoded-list/</url>
+      
+        <content type="html"><![CDATA[<p>Link: <a href="https://leetcode.com/problems/decompress-run-length-encoded-list/" target="_blank" rel="noopener">https://leetcode.com/problems/decompress-run-length-encoded-list/</a></p><p>We are given a list nums of integers representing a list compressed with run-length encoding.</p><p>Consider each adjacent pair of elements [freq, val] = [nums[2<em>i], nums[2</em>i+1]] (with i &gt;= 0).  For each such pair, there are freq elements with value val concatenated in a sublist. Concatenate all the sublists from left to right to generate the decompressed list.</p><p>Return the decompressed list.</p><p>Example 1:</p><pre class=" language-language-txt"><code class="language-language-txt">Input: nums = [1,2,3,4]Output: [2,4,4,4]Explanation: The first pair [1,2] means we have freq = 1 and val = 2 so we generate the array [2].The second pair [3,4] means we have freq = 3 and val = 4 so we generate [4,4,4].At the end the concatenation [2] + [4,4,4] is [2,4,4,4].</code></pre><p>Example 2:</p><pre class=" language-language-txt"><code class="language-language-txt">Input: nums = [1,1,2,3]Output: [1,3,3]</code></pre><p>Constraints:</p><ul><li>2 &lt;= nums.length &lt;= 100</li><li>nums.length % 2 == 0</li><li>1 &lt;= nums[i] &lt;= 100</li></ul><hr><p>題目翻譯:</p><p>解壓縮。</p><p>程式思路:</p><p>很easy</p><pre class=" language-language-c"><code class="language-language-c">class Solution {public:    vector<string> fizzBuzz(int n)    {        vector<string> res;        for(int i = 1;i <= n;i++)        {            string foo;            if(i%3 == 0)            {                foo += "Fizz";            }            if(i%5 == 0)            {                foo += "Buzz";            }            if(foo.length()==0)            {                foo += std::to_string(i);            }            res.push_back(foo);        }        return res;    }};</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c/c++ </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>FreeRadius Server and Client Note</title>
       <link href="/2020/09/21/freeradius-server-and-client-note/"/>
       <url>/2020/09/21/freeradius-server-and-client-note/</url>
