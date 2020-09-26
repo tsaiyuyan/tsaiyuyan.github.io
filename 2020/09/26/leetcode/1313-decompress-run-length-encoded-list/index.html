@@ -413,7 +413,7 @@ We are given a list nums of integers representin">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        197
+                        219
                     </div>
                     
 
@@ -438,7 +438,7 @@ We are given a list nums of integers representin">
             <div id="articleContent">
                 <p>Link: <a href="https://leetcode.com/problems/decompress-run-length-encoded-list/" target="_blank" rel="noopener">https://leetcode.com/problems/decompress-run-length-encoded-list/</a></p>
 <p>We are given a list nums of integers representing a list compressed with run-length encoding.</p>
-<p>Consider each adjacent pair of elements [freq, val] = [nums[2<em>i], nums[2</em>i+1]] (with i &gt;= 0).  For each such pair, there are freq elements with value val concatenated in a sublist. Concatenate all the sublists from left to right to generate the decompressed list.</p>
+<p>Consider each adjacent pair of elements [freq, val] = [nums[2<em>i], nums[2</em>i+1]] (with i &gt;= 0). For each such pair, there are freq elements with value val concatenated in a sublist. Concatenate all the sublists from left to right to generate the decompressed list.</p>
 <p>Return the decompressed list.</p>
 <p>Example 1:</p>
 <pre class=" language-language-txt"><code class="language-language-txt">Input: nums = [1,2,3,4]
@@ -461,30 +461,22 @@ Output: [1,3,3]
 <p>題目翻譯:</p>
 <p>解壓縮。</p>
 <p>程式思路:</p>
-<p>很easy</p>
+<p>很 easy</p>
 <pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
-    vector<string> fizzBuzz(int n)
-    {
-        vector<string> res;
-        for(int i = 1;i <= n;i++)
+    vector<int> decompressRLElist(vector<int>& nums) {
+        vector<int> result;
+        for(int i = 0; i < nums.size(); i++)
         {
-            string foo;
-            if(i%3 == 0)
+            if( i%2 == 1 )
             {
-                foo += "Fizz";
+                for(int j = 0; j < nums[i-1]; j++)
+                {
+                    result.push_back(nums[i]);
+                }
             }
-            if(i%5 == 0)
-            {
-                foo += "Buzz";
-            }
-            if(foo.length()==0)
-            {
-                foo += std::to_string(i);
-            }
-            res.push_back(foo);
         }
-        return res;
+        return result;
     }
 };
 </code></pre>
