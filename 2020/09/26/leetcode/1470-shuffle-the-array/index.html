@@ -4,13 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C++ 中文unicode在終端機而且卡住解決方法, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="1.環境
-使用 VS2017 測試，實際上只要有支援到 std:locale 的編譯器即可(基本上都有支援)
-
-再來專案設置使用unicode開發
-
-//project-&amp;gt;General-&amp;gt;Character Set = &amp;gt">
+    <meta name="keywords" content="1470. Shuffle the Array, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="Link: https://leetcode.com/problems/shuffle-the-array/
+Given the array nums consisting of 2n elements in the form [x1,x2">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C++ 中文unicode在終端機而且卡住解決方法 | YuYan&#39;s blog</title>
+    <title>1470. Shuffle the Array | YuYan&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon2.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -265,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C++ 中文unicode在終端機而且卡住解決方法
+                        1470. Shuffle the Array
                     </div>
                 </div>
             </div>
@@ -382,8 +378,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/std-locale/" target="_blank">
-                                <span class="chip bg-color">std::locale</span>
+                            <a href="/tags/c-c/" target="_blank">
+                                <span class="chip bg-color">c/c++</span>
+                            </a>
+                        
+                            <a href="/tags/Easy/" target="_blank">
+                                <span class="chip bg-color">Easy</span>
                             </a>
                         
                     </div>
@@ -394,8 +394,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/C-C/" class="post-category" target="_blank">
-                                C/C++
+                            <a href="/categories/LeetCode/" class="post-category" target="_blank">
+                                LeetCode
                             </a>
                         
                     </div>
@@ -406,14 +406,14 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2018-02-13
+                    2020-09-26
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        85
+                        173
                     </div>
                     
 
@@ -436,51 +436,37 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-環境"><a href="#1-環境" class="headerlink" title="1.環境"></a>1.環境</h2><blockquote>
-<p>使用 VS2017 測試，實際上只要有支援到 std:locale 的編譯器即可(基本上都有支援)</p>
-</blockquote>
-<p>再來專案設置使用unicode開發</p>
-<blockquote>
-<p>//project-&gt;General-&gt;Character Set = &gt; “Use Unicode Character Set”</p>
-</blockquote>
-<h2 id="2-程式碼"><a href="#2-程式碼" class="headerlink" title="2. 程式碼"></a>2. 程式碼</h2><pre class=" language-c++"><code class="language-c++">//main.cpp
-#include <iostream>
-using namespace std;
-
-//project->General->Character Set = > "Use Unicode Character Set"
-
-int main (int argc,char *argv[])
-{
-    locale::global(locale(""));
-    wcout.imbue(locale(""));
-
-    wcout << L"wcout << abcdefg" << endl;
-    wcout << L"wcout << 測試中文:一二三四" << endl;
-
-    //使用完畢時要呼叫下面兩行 ,才不會有 memory leak問題   <===重要
-    locale::global(locale("C"));
-    wcout.imbue(locale("C"));
-
-    //===== 無使用 std::locale 會發生終端機打印時卡住
-    wcout << L"wcout << abcdefg" << endl;
-    wcout << L"wcout << 測試中文:一二三四" << endl;  //"測試中文:一二三四" can't printf
-
-    int x; cin >> x;
-    return 0;
-}</code></pre>
-<h2 id="3-Output"><a href="#3-Output" class="headerlink" title="3.Output"></a>3.Output</h2><pre class=" language-text"><code class="language-text">wcout << abcdefg
-wcout << 測試中文:一二三四
-wcout << abcdefg
-wcout <<</code></pre>
-<h2 id="4-Node"><a href="#4-Node" class="headerlink" title="4. Node"></a>4. Node</h2><p>記得使用前呼叫</p>
-<pre class=" language-c++"><code class="language-c++">locale::global(locale(""));
-wcout.imbue(locale(""));</code></pre>
-<p>使用後要再呼叫(不然會有 memory leak 發生哦)</p>
-<pre class=" language-c++"><code class="language-c++">locale::global(locale("C"));
-wcout.imbue(locale("C"));</code></pre>
-<h2 id="5-github-連結"><a href="#5-github-連結" class="headerlink" title="5.github 連結"></a>5.github 連結</h2><ul>
-<li><a href="https://github.com/tsaiyuyan/windows7/tree/master/console/std_localeTest" target="_blank" rel="noopener">Code</a></li>
-</ul>
+                <p>Link: <a href="https://leetcode.com/problems/shuffle-the-array/" target="_blank" rel="noopener">https://leetcode.com/problems/shuffle-the-array/</a></p>
+<p>Given the array nums consisting of 2n elements in the form <code>[x1,x2,...,xn,y1,y2,...,yn]</code>.</p>
+<p>Return the array in the form <code>[x1,y1,x2,y2,...,xn,yn]</code>.</p>
+<p>Example 1:</p>
+<pre class=" language-txt"><code class="language-txt">Input: nums = [2,5,1,3,4,7], n = 3
+Output: [2,3,5,4,1,7]
+Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].</code></pre>
+<p>Example 2:</p>
+<pre class=" language-txt"><code class="language-txt">Input: nums = [1,2,3,4,4,3,2,1], n = 4
+Output: [1,4,2,3,3,2,4,1]</code></pre>
+<p>Example 3:</p>
+<pre class=" language-txt"><code class="language-txt">Input: nums = [1,1,2,2], n = 2
+Output: [1,2,1,2]</code></pre>
+<hr>
+<p>題目翻譯:</p>
+<p>排陣列</p>
+<p>程式思路:</p>
+<p>很 easy</p>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">shuffle</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> result<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> size <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            result<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            result<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>size <span class="token operator">+</span> i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -496,7 +482,7 @@ wcout.imbue(locale("C"));</code></pre>
                     </span>
                     <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/02/13/c-zhong-wen-unicode-zai-zhong-duan-ji-er-qie-qia-zhu-jie-jue-fang-fa/" class="b-link-green">C++ 中文unicode在終端機而且卡住解決方法</a>
+                    <a href="/2020/09/26/leetcode/1470-shuffle-the-array/" class="b-link-green">1470. Shuffle the Array</a>
                 </p>
             </div>
         </div>
@@ -518,7 +504,7 @@ wcout.imbue(locale("C"));</code></pre>
         repo: 'blog-comments',
         owner: 'tsaiyuyan',
         admin: "tsaiyuyan",
-        id: '2018-02-13T18-00-00',
+        id: '2020-09-26T13-41-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -539,51 +525,53 @@ wcout.imbue(locale("C"));</code></pre>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2018/02/21/git-clean-zhi-ling/">
+                <a href="/2020/09/26/leetcode/1470-shuffle-the-array/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Git clean 指令">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="1470. Shuffle the Array">
                         
-                        <span class="card-title">Git clean 指令</span>
+                        <span class="card-title">1470. Shuffle the Array</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            檢查即將被移除的”已忽略檔案” (含資料夾內)git clean -nXdf
-移除”已忽略檔案” (含資料夾內)git clean -Xdf
+                            Link: https://leetcode.com/problems/shuffle-the-array/
+Given the array
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-02-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%89%88%E6%8E%A7/" class="post-category" target="_blank">
-                                    版控
+                            <a href="/categories/LeetCode/" class="post-category" target="_blank">
+                                    LeetCode
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/git/" target="_blank">
-                        <span class="chip bg-color">git</span>
+                    <a href="/tags/c-c/" target="_blank">
+                        <span class="chip bg-color">c/c++</span>
                     </a>
                     
-                    <a href="/tags/clean/" target="_blank">
-                        <span class="chip bg-color">clean</span>
+                    <a href="/tags/Easy/" target="_blank">
+                        <span class="chip bg-color">Easy</span>
                     </a>
                     
                 </div>
@@ -597,34 +585,31 @@ wcout.imbue(locale("C"));</code></pre>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/02/13/ubuntu-jia-ru-xin-de-zhang-hu/">
+                <a href="/2020/09/26/leetcode/1313-decompress-run-length-encoded-list/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Ubuntu加入新的帳戶">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="1313. Decompress Run-Length Encoded List">
                         
-                        <span class="card-title">Ubuntu加入新的帳戶</span>
+                        <span class="card-title">1313. Decompress Run-Length Encoded List</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            
-原本目的:以前開 AWS 會拿到一組金鑰，但每次都用鑰匙 ssh 登入連線實在很不方便。
-
-1.Ubuntu 加入新的帳戶 (tsaiyu
+                            Link: https://leetcode.com/problems/decompress-run-length-encoded-list
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-02-13
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category" target="_blank">
-                                    Linux
+                            <a href="/categories/LeetCode/" class="post-category" target="_blank">
+                                    LeetCode
                                 </a>
                             
                             
@@ -634,8 +619,12 @@ wcout.imbue(locale("C"));</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ubuntu/" target="_blank">
-                        <span class="chip bg-color">ubuntu</span>
+                    <a href="/tags/c-c/" target="_blank">
+                        <span class="chip bg-color">c/c++</span>
+                    </a>
+                    
+                    <a href="/tags/Easy/" target="_blank">
+                        <span class="chip bg-color">Easy</span>
                     </a>
                     
                 </div>

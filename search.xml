@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>1470. Shuffle the Array</title>
+      <link href="/2020/09/26/leetcode/1470-shuffle-the-array/"/>
+      <url>/2020/09/26/leetcode/1470-shuffle-the-array/</url>
+      
+        <content type="html"><![CDATA[<p>Link: <a href="https://leetcode.com/problems/shuffle-the-array/" target="_blank" rel="noopener">https://leetcode.com/problems/shuffle-the-array/</a></p><p>Given the array nums consisting of 2n elements in the form <code>[x1,x2,...,xn,y1,y2,...,yn]</code>.</p><p>Return the array in the form <code>[x1,y1,x2,y2,...,xn,yn]</code>.</p><p>Example 1:</p><pre class=" language-txt"><code class="language-txt">Input: nums = [2,5,1,3,4,7], n = 3Output: [2,3,5,4,1,7]Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].</code></pre><p>Example 2:</p><pre class=" language-txt"><code class="language-txt">Input: nums = [1,2,3,4,4,3,2,1], n = 4Output: [1,4,2,3,3,2,4,1]</code></pre><p>Example 3:</p><pre class=" language-txt"><code class="language-txt">Input: nums = [1,1,2,2], n = 2Output: [1,2,1,2]</code></pre><hr><p>題目翻譯:</p><p>排陣列</p><p>程式思路:</p><p>很 easy</p><pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>public<span class="token punctuation">:</span>    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">shuffle</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> result<span class="token punctuation">;</span>        <span class="token keyword">int</span> size <span class="token operator">=</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>        <span class="token punctuation">{</span>            result<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            result<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>size <span class="token operator">+</span> i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token keyword">return</span> result<span class="token punctuation">;</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c/c++ </tag>
+            
+            <tag> Easy </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1313. Decompress Run-Length Encoded List</title>
       <link href="/2020/09/26/leetcode/1313-decompress-run-length-encoded-list/"/>
       <url>/2020/09/26/leetcode/1313-decompress-run-length-encoded-list/</url>
