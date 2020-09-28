@@ -4,11 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Ubuntu工具tmux, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="0.功能簡述這個工具可以將終端機切成好幾個 bash 來使用，就可以不用一直多開終端機或是 putty 連線，導致視窗過多時找不到想看的終端機。
-1.安裝$sudo apt-get tmux
-2.開始使用$tmux
-3.操作筆記(官方)常用">
+    <meta name="keywords" content="algorithm - test2, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="Question輸入一個金額 dst，列出最佳找法。
+Anwser程式思路:
+用 BFS 直接展開解
+#include &amp;lt;iostream&gt;
+#include &amp;lt;queue&gt;
+#include &amp;lt;vector&gt;
+using">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Ubuntu工具tmux | YuYan&#39;s blog</title>
+    <title>algorithm - test2 | YuYan&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon2.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -263,13 +266,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Ubuntu工具tmux
+                        algorithm - test2
                     </div>
                 </div>
             </div>
@@ -380,12 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ubuntu/" target="_blank">
-                                <span class="chip bg-color">ubuntu</span>
-                            </a>
-                        
-                            <a href="/tags/tools/" target="_blank">
-                                <span class="chip bg-color">tools</span>
+                            <a href="/tags/c-c/" target="_blank">
+                                <span class="chip bg-color">c/c++</span>
                             </a>
                         
                     </div>
@@ -396,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category" target="_blank">
-                                Linux
+                            <a href="/categories/Exercise/" class="post-category" target="_blank">
+                                Exercise
                             </a>
                         
                     </div>
@@ -408,14 +407,14 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2018-02-13
+                    2020-09-28
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        305
+                        242
                     </div>
                     
 
@@ -438,29 +437,81 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="0-功能簡述"><a href="#0-功能簡述" class="headerlink" title="0.功能簡述"></a>0.功能簡述</h2><p>這個工具可以將終端機切成好幾個 bash 來使用，就可以不用一直多開終端機或是 putty 連線，<br>導致視窗過多時找不到想看的終端機。</p>
-<h2 id="1-安裝"><a href="#1-安裝" class="headerlink" title="1.安裝"></a>1.安裝</h2><pre class=" language-sh"><code class="language-sh">$sudo apt-get tmux</code></pre>
-<h2 id="2-開始使用"><a href="#2-開始使用" class="headerlink" title="2.開始使用"></a>2.開始使用</h2><pre class=" language-sh"><code class="language-sh">$tmux</code></pre>
-<h2 id="3-操作筆記-官方"><a href="#3-操作筆記-官方" class="headerlink" title="3.操作筆記(官方)"></a>3.操作筆記(官方)</h2><pre class=" language-text"><code class="language-text">常用
-tmux ls                 列出所有未關閉的 bash;
-tmux a -t N             移動到未關閉的 bash N;
-Ctrl + b + %            分割畫面(水平);
-Ctrl + b + space        分割畫面(垂直);
-Ctrl + b + 數字         切換到指定的數字畫面;
-Ctrl + b + c            建立新的視窗；(增加一個新bash)
-Ctrl + b + d            卸載目前的 client；(跳出目前 的tmux
-Ctrl + d = exit         目前的bash exit</code></pre>
-<hr>
-<pre class=" language-text"><code class="language-text">Ctrl + b + l            與先前選擇的視窗間切換；
-Ctrl + b + n            移動到下個視窗；
-Ctrl + b + p            移動到上個視窗；
-Ctrl + b + &            刪除目前的視窗；
-Ctrl + b + ,            重新命名目前的視窗；
-Ctrl + b + %            將目前的視窗分離到兩個區塊；
-Ctrl + b + q            顯示各分割區塊的號碼（用來切換到不同的區塊）
-Ctrl + b + o            切換到下個區塊；
-Ctrl + b + ?            列出所有快捷鍵的說明；
-Ctrl + b + w            列出目前 clinet 的視窗，可以用數字鍵切換；</code></pre>
+                <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>輸入一個金額 dst，列出最佳找法。</p>
+<h2 id="Anwser"><a href="#Anwser" class="headerlink" title="Anwser"></a>Anwser</h2><p>程式思路:</p>
+<p>用 BFS 直接展開解</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+using namespace std<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">printpath</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> size <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> path<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> path<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">" use "</span> <span class="token operator">&lt;&lt;</span> size <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" coins"</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">isNotVisited</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> size <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>path<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> x<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">solution</span><span class="token punctuation">(</span><span class="token keyword">int</span> dst<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> coin<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ways <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> visited<span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> path<span class="token punctuation">;</span>
+    queue <span class="token operator">&lt;</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">></span> q<span class="token punctuation">;</span>
+
+    path<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        path <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">int</span> last <span class="token operator">=</span> path<span class="token punctuation">[</span>path<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>last <span class="token operator">==</span> dst<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">printpath</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ways<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> sum <span class="token operator">=</span> coin<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> last<span class="token punctuation">;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>sum <span class="token operator">></span> dst<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isNotVisited</span><span class="token punctuation">(</span>sum<span class="token punctuation">,</span> path<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">newpath</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                newpath<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>newpath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> ways<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> TEST(x) printf("------------\n",x,solution(x));</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">TEST</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">TEST</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">TEST</span><span class="token punctuation">(</span><span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><pre class=" language-log"><code class="language-log">1 1 1 10  use 4 coins
+------------
+1 5 10  use 3 coins
+------------
+1 1 1 10 10  use 5 coins
+------------</code></pre>
 
             </div>
             <hr/>
@@ -476,7 +527,7 @@ Ctrl + b + w            列出目前 clinet 的視窗，可以用數字鍵切換
                     </span>
                     <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/02/13/ubuntu-gong-ju-tmux/" class="b-link-green">Ubuntu工具tmux</a>
+                    <a href="/2020/09/28/algorithm-test/test2/" class="b-link-green">algorithm - test2</a>
                 </p>
             </div>
         </div>
@@ -498,7 +549,7 @@ Ctrl + b + w            列出目前 clinet 的視窗，可以用數字鍵切換
         repo: 'blog-comments',
         owner: 'tsaiyuyan',
         admin: "tsaiyuyan",
-        id: '2018-02-13T15-06-00',
+        id: '2020-09-28T18-32-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -519,49 +570,51 @@ Ctrl + b + w            列出目前 clinet 的視窗，可以用數字鍵切換
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2018/02/13/ubuntu-jia-ru-xin-de-zhang-hu/">
+                <a href="/2020/09/28/algorithm-test/test2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Ubuntu加入新的帳戶">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="algorithm - test2">
                         
-                        <span class="card-title">Ubuntu加入新的帳戶</span>
+                        <span class="card-title">algorithm - test2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            
-原本目的:以前開 AWS 會拿到一組金鑰，但每次都用鑰匙 ssh 登入連線實在很不方便。
-
-1.Ubuntu 加入新的帳戶 (tsaiyu
+                            Question輸入一個金額 dst，列出最佳找法。
+Anwser程式思路:
+用 BFS 直接展開解
+#include &lt;iostre
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-02-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category" target="_blank">
-                                    Linux
+                            <a href="/categories/Exercise/" class="post-category" target="_blank">
+                                    Exercise
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/ubuntu/" target="_blank">
-                        <span class="chip bg-color">ubuntu</span>
+                    <a href="/tags/c-c/" target="_blank">
+                        <span class="chip bg-color">c/c++</span>
                     </a>
                     
                 </div>
@@ -575,32 +628,31 @@ Ctrl + b + w            列出目前 clinet 的視窗，可以用數字鍵切換
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/02/12/vc-how-to-detect-if-im-compiling-code-with-visual-studio-version/">
+                <a href="/2020/09/27/algorithm-test/test1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="VC++ How to Detect if I'm Compiling Code With Visual Studio Version?">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="algorithm - test1">
                         
-                        <span class="card-title">VC++ How to Detect if I'm Compiling Code With Visual Studio Version?</span>
+                        <span class="card-title">algorithm - test1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            版本對照代碼MSVC++ 14.1 _MSC_VER == 1912 (Visual Studio 2017)
-MSVC++ 14.1 _M
+                            QuestionGiven a string with “a~z” and “&lt;” that represent you type t
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-02-12
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Windows/" class="post-category" target="_blank">
-                                    Windows
+                            <a href="/categories/Exercise/" class="post-category" target="_blank">
+                                    Exercise
                                 </a>
                             
                             
@@ -610,8 +662,8 @@ MSVC++ 14.1 _M
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/visual-studio/" target="_blank">
-                        <span class="chip bg-color">visual-studio</span>
+                    <a href="/tags/c-c/" target="_blank">
+                        <span class="chip bg-color">c/c++</span>
                     </a>
                     
                 </div>
