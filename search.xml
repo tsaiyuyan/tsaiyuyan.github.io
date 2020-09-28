@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>algorithm - test1</title>
+      <link href="/2020/09/27/algorithm-test/test1/"/>
+      <url>/2020/09/27/algorithm-test/test1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>Given a string with “a~z” and “&lt;” that represent you type the keyboard (“&lt;” means backspace).</p><p>For example, “abc&lt;&lt;dd&lt;&lt;” represents “a”, and “zzz&lt;&lt;&lt;” represents “”.</p><p>不會出現刪到空格的情形，例如 “a&lt;&lt;”（我猜實際面試的時候這問題要你自己問）</p><ul><li><p>基本 - Implement a function<br>bool equal(string, string) that whether the two strings are equal.</p></li><li><p>延伸 1 - Can you avoid using extra O(n) space?</p></li><li><p>延伸 2 - Can you avoid using extra O(n) space and avoid modifying the input string?</p></li></ul><h2 id="Anwser"><a href="#Anwser" class="headerlink" title="Anwser"></a>Anwser</h2><p>程式思路:</p><p>先做好一個對照組，用 deque 做方便後續驗證，<br>字串如果從頭掃到尾變數會太大，所以這次的兩個字串應該從尾巴開始往頭掃。兩個字串個別用兩個變數作筆記，</p><p>an,bn 為記錄 ‘&lt;’的數量, ap,bp 為紀錄目前掃到哪個位置。</p><ul><li>int an = 0, bn = 0;</li><li>int ap = a.length() - 1, bp = b.length() - 1;</li></ul><pre class=" language-c++"><code class="language-c++">#include <stdio.h>#include <deque>#include <string>#include <iostream>using namespace std;string func(string input) {    std::deque<char> q;    for (auto it : input) {        if (it != '<')            q.push_back(it);        else            if (!q.empty())                q.pop_back();    }    //out << input << " >> "  << string(q.begin(), q.begin()).c_str() << endl;    return string(q.begin(), q.end());}bool equal(string a, string b) {    return !func(a).compare(func(b));}bool equal2(string a, string b) {    int an = 0, bn = 0;    int ap = a.length() - 1, bp = b.length() - 1;    while (ap >= 0 && bp >= 0) {        //value compare        if (a[ap] != '<' && b[bp] != '<') {            if ((an == 0) && (bn == 0)) {                if (a[ap] != b[bp])                    return false;                else                    ap--, bp--; continue;            }        }        // symbol or letter?        if (a[ap] == '<')            an++, ap--;        else if (an > 0)            ap--, an--;        if (b[bp] == '<')            bn++, bp--;        else if (bn > 0)            ap--, bn--;    }    //why break?    if (ap != bp) {        //final         while (bp >= 0) {            if (b[bp] == '<')                bn++, bp--;            else //letter            {                if (bn > 0)                    bp--, bn--;                else                    break;            }        }        while (ap >= 0) {            if (a[ap] == '<')                an++, ap--;            else //letter            {                if (an > 0)                    ap--, an--;                else                    break;            }        }    }    return (ap == bp) ? true : false;}#define YTEST PTEST#define PRINTF(a,b) printf(#a" "#b" is equal? %s", equal(a, b) ? "yes" : "no");  printf( "  %s\n", equal2(a, b) ? "yes" : "no");#define PTEST(a,b) printf(#a" "#b"  is pass? %s\n", (equal2(a, b) == equal(a,b)) ? "yes" : "no");int main() {    YTEST("aab<c<<dd<", "bazzb<zz<<<<");    YTEST("aab<<<", "bbb<<<<");    YTEST("abc", "abc");    YTEST("abc", "abc<");    YTEST("abc", "<abc");    YTEST("abc<<<<<<<<", "<<<<<<<<<");    YTEST("<<<<<<<<abc<<", "a");    return 0;}</code></pre><h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><pre class=" language-log"><code class="language-log">"aab<c<<dd<" "bazzb<zz<<<<"  is pass? yes"aab<<<" "bbb<<<<"  is pass? yes"abc" "abc"  is pass? yes"abc" "abc<"  is pass? yes"abc" "<abc"  is pass? yes"abc<<<<<<<<" "<<<<<<<<<"  is pass? yes"<<<<<<<<abc<<" "a"  is pass? yes</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Exercise </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> c/c++ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1122. Relative Sort Array</title>
       <link href="/2020/09/26/leetcode/1122-relative-sort-array/"/>
       <url>/2020/09/26/leetcode/1122-relative-sort-array/</url>
