@@ -439,24 +439,27 @@ We are given an array A of N lowercase letter strings">
                 <p>Link: <a href="https://leetcode.com/problems/delete-columns-to-make-sorted/" target="_blank" rel="noopener">https://leetcode.com/problems/delete-columns-to-make-sorted/</a></p>
 <p>We are given an array A of N lowercase letter strings, all of the same length.</p>
 <p>Now, we may choose any set of deletion indices, and for each string, we delete all the characters in those indices.</p>
-<p>For example, if we have an array A = [“abcdef”,”uvwxyz”] and deletion indices {0, 2, 3}, then the final array after deletions is [“bef”, “vyz”], and the remaining columns of A are [“b”,”v”], [“e”,”y”], and [“f”,”z”]. (Formally, the c-th column is [A[0][c], A[1][c], …, A[A.length-1][c]].)</p>
+<p>For example, if we have an array A = [“abcdef”,“uvwxyz”] and deletion indices {0, 2, 3}, then the final array after deletions is [“bef”, “vyz”], and the remaining columns of A are [“b”,“v”], [“e”,“y”], and [“f”,“z”]. (Formally, the c-th column is [A[0][c], A[1][c], …, A[A.length-1][c]].)</p>
 <p>Suppose we chose a set of deletion indices D such that after deletions, each remaining column in A is in non-decreasing sorted order.</p>
 <p>Return the minimum possible value of D.length.</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: ["cba","daf","ghi"]
+<pre class=" language-language-text"><code class="language-language-text">Input: ["cba","daf","ghi"]
 Output: 1
 Explanation:
 After choosing D = {1}, each column ["c","d","g"] and ["a","f","i"] are in non-decreasing sorted order.
 If we chose D = {}, then a column ["b","a","h"] would not be in non-decreasing sorted order.
+
 </code></pre>
 <p>Example 2:</p>
-<pre class=" language-text"><code class="language-text">Input: ["a","b"]
+<pre class=" language-language-text"><code class="language-language-text">Input: ["a","b"]
 Output: 0
-Explanation: D = {}</code></pre>
+Explanation: D = {}
+</code></pre>
 <p>Example 3:</p>
-<pre class=" language-text"><code class="language-text">Input: ["zyx","wvu","tsr"]
+<pre class=" language-language-text"><code class="language-language-text">Input: ["zyx","wvu","tsr"]
 Output: 3
-Explanation: D = {0, 1, 2}</code></pre>
+Explanation: D = {0, 1, 2}
+</code></pre>
 <p>Note:</p>
 <ul>
 <li>1 &lt;= A.length &lt;= 100</li>
@@ -466,12 +469,12 @@ Explanation: D = {0, 1, 2}</code></pre>
 <p>題目翻譯:</p>
 <p>我們給出了一個 N 個小寫字母串的數組 A，它們的長度都相同。</p>
 <p>現在，我們可以選擇任何一組刪除索引，對於每個字符串，我們刪除這些索引中的所有字符。</p>
-<p>例如，如果我們有一個數組 A = [“abcdef”，”uvwxyz”]和刪除索引{0,2,3}，那麼刪除後的最後一個數組是[“bef”，”vyz”]，以及 A 的剩餘列是[“b”，”v”]，[“e”，”y”]和[“f”，”z”]。 （形式上，第 c 列是[A [0][c]，A [1][c]，…，A [A.length-1][c]]。）</p>
+<p>例如，如果我們有一個數組 A = [“abcdef”，“uvwxyz”]和刪除索引{0,2,3}，那麼刪除後的最後一個數組是[“bef”，“vyz”]，以及 A 的剩餘列是[“b”，“v”]，[“e”，“y”]和[“f”，“z”]。 （形式上，第 c 列是[A [0][c]，A [1][c]，…，A [A.length-1][c]]。）</p>
 <p>假設我們選擇了一個一組刪除索引 D 使得在刪除之後，A 中的每個剩餘列處於非遞減排序順序。</p>
 <p>返回 D.length 的最小可能值。</p>
 <p>程式思路:</p>
 <p>用 dfs 來實作此題目。</p>
-<pre class=" language-c++"><code class="language-c++">class Solution {
+<pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
     int minDeletionSize(vector<string>& A) {
         int result = 0;
@@ -488,7 +491,8 @@ public:
         }
         return result;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -765,7 +769,7 @@ G
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

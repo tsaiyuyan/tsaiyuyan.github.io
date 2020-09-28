@@ -444,8 +444,9 @@ It has">
 <p>Any ping with time in [t - 3000, t] will count, including the current ping.</p>
 <p>It is guaranteed that every call to ping uses a strictly larger value of t than before.</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: inputs = ["RecentCounter","ping","ping","ping","ping"], inputs = [[],[1],[100],[3001],[3002]]
-Output: [null,1,2,3,3]</code></pre>
+<pre class=" language-language-text"><code class="language-language-text">Input: inputs = ["RecentCounter","ping","ping","ping","ping"], inputs = [[],[1],[100],[3001],[3002]]
+Output: [null,1,2,3,3]
+</code></pre>
 <p>Note:</p>
 <ol>
 <li>Each test case will have at most 10000 calls to ping.</li>
@@ -455,8 +456,9 @@ Output: [null,1,2,3,3]</code></pre>
 <hr>
 <p>題目翻譯:</p>
 <p>共享寫一個類 RecentCounter 來計算最近的請求。 它只有一個方法：ping（int t），其中 t 代表一些時間（以毫秒為單位）。 返回從 3000 毫秒前到現在為止的 ping 數。 在[t-3000，t]中任何時間 ping 都將計數，包括當前 ping。 保證每次調用 ping 都使用比之前嚴格更大的 t 值。</p>
-<p>程式思路:<br>用一個 deque 容器將時間存起來，為了方便查找所以每次都會從第一個元素開始判斷是否有在 t-3000 時間以內，如果沒有就刪除元素，最後返回容器的總元素量就是答案。</p>
-<pre class=" language-c++"><code class="language-c++">class RecentCounter {
+<p>程式思路:<br>
+用一個 deque 容器將時間存起來，為了方便查找所以每次都會從第一個元素開始判斷是否有在 t-3000 時間以內，如果沒有就刪除元素，最後返回容器的總元素量就是答案。</p>
+<pre class=" language-language-c"><code class="language-language-c">class RecentCounter {
 public:
     deque <int> pings;
     RecentCounter() {
@@ -479,7 +481,8 @@ public:
  * Your RecentCounter object will be instantiated and called as such:
  * RecentCounter* obj = new RecentCounter();
  * int param_1 = obj->ping(t);
- */</code></pre>
+ */
+</code></pre>
 
             </div>
             <hr/>
@@ -743,7 +746,7 @@ We have a colle
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

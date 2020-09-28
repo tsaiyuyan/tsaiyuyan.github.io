@@ -437,20 +437,23 @@ Given an 2D board, count how many battleships are in it. The">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>Link: <a href="https://leetcode.com/problems/battleships-in-a-board/" target="_blank" rel="noopener">https://leetcode.com/problems/battleships-in-a-board/</a></p>
-<p>Given an 2D board, count how many battleships are in it. The battleships are represented with ‘X’s, empty slots are represented with ‘.’s. You may assume the following rules:</p>
+<p>Given an 2D board, count how many battleships are in it. The battleships are represented with 'X’s, empty slots are represented with '.'s. You may assume the following rules:</p>
 <ul>
 <li>You receive a valid board, made of only battleships or empty slots.</li>
 <li>Battleships can only be placed horizontally or vertically. In other words, they can only be made of the shape 1xN (1 row, N columns) or Nx1 (N rows, 1 column), where N can be of any size.</li>
 <li>At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.</li>
 </ul>
 <p>Example:</p>
-<pre class=" language-text"><code class="language-text">X..X
+<pre class=" language-language-text"><code class="language-language-text">X..X
 ...X
-...X</code></pre>
-<p>In the above board there are 2 battleships.<br>Invalid Example:</p>
-<pre class=" language-text"><code class="language-text">...X
+...X
+</code></pre>
+<p>In the above board there are 2 battleships.<br>
+Invalid Example:</p>
+<pre class=" language-language-text"><code class="language-language-text">...X
 XXXX
-...X</code></pre>
+...X
+</code></pre>
 <p>This is an invalid board that you will not receive - as battleships will always have a cell separating between them.</p>
 <p>Follow up:</p>
 <ul>
@@ -458,14 +461,15 @@ XXXX
 </ul>
 <hr>
 <p>題目翻譯:</p>
-<p>給定 2D 板，計算其中有多少戰列艦。戰列艦用’X’表示，空位用’。’表示。您可以遵守以下規則：</p>
+<p>給定 2D 板，計算其中有多少戰列艦。戰列艦用’X’表示，空位用’。'表示。您可以遵守以下規則：</p>
 <ul>
 <li>您收到一個有效的板，僅由戰艦或空槽組成。</li>
 <li>Battleships 只能水平放置或垂直放置。換句話說，它們只能由 1xN（1 行，N 列）或 Nx1（N 行，1 列）的形狀組成，其中 N 可以是任何大小。</li>
 <li>至少有一個水平或垂直的單元格在兩艘戰列艦之間分開 - 沒有相鄰的戰列艦。</li>
 </ul>
-<p>程式思路:<br>遇到’X’時檢查它的上方跟左方是不是’X’，如果都不是表示這個點就是船頭。</p>
-<pre class=" language-c++"><code class="language-c++">class Solution {
+<p>程式思路:<br>
+遇到’X’時檢查它的上方跟左方是不是’X’，如果都不是表示這個點就是船頭。</p>
+<pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
     int countBattleships(vector<vector<char>>& board) {
         int result = 0;
@@ -490,7 +494,8 @@ public:
         }
         return result;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -754,7 +759,7 @@ Giv
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

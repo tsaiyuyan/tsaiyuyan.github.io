@@ -440,11 +440,13 @@ You’re given strings J representing the types of ston">
 <p>You’re given strings J representing the types of stones that are jewels, and S representing the stones you have. Each character in S is a type of stone you have. You want to know how many of the stones you have are also jewels.</p>
 <p>The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so “a” is considered a different type of stone from “A”.</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: J = "aA", S = "aAAbbbb"
-Output: 3</code></pre>
+<pre class=" language-language-text"><code class="language-language-text">Input: J = "aA", S = "aAAbbbb"
+Output: 3
+</code></pre>
 <p>Example 2:</p>
-<pre class=" language-text"><code class="language-text">Input: J = "z", S = "ZZ"
-Output: 0</code></pre>
+<pre class=" language-language-text"><code class="language-language-text">Input: J = "z", S = "ZZ"
+Output: 0
+</code></pre>
 <p>Note:</p>
 <ul>
 <li>S and J will consist of letters and have length at most 50.</li>
@@ -452,10 +454,11 @@ Output: 0</code></pre>
 </ul>
 <hr>
 <p>題目翻譯:</p>
-<p>你得到的字符串 J 代表珠寶的石頭類型，S 代表你擁有的寶石。 S 中的每個角色都是你擁有的一種石頭。你想知道你有多少寶石也是珠寶。<br>J 中的字母保證不同，J 和 S 中的所有字符都是字母。字母區分大小寫，因此“a”被認為是與“A”不同類型的石頭。</p>
+<p>你得到的字符串 J 代表珠寶的石頭類型，S 代表你擁有的寶石。 S 中的每個角色都是你擁有的一種石頭。你想知道你有多少寶石也是珠寶。<br>
+J 中的字母保證不同，J 和 S 中的所有字符都是字母。字母區分大小寫，因此“a”被認為是與“A”不同類型的石頭。</p>
 <p>程式思路:</p>
 <p>建立一個珠寶石頭類型 hash table 在比對自已擁有的珠寶，就能輕鬆解題。</p>
-<pre class=" language-c++"><code class="language-c++">class Solution {
+<pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
     int numJewelsInStones(string J, string S) {
         unsigned int ret = 0;
@@ -472,7 +475,8 @@ public:
         }
         return ret;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -738,7 +742,7 @@ windows 在使用螢幕小鍵盤的時候，千萬不
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

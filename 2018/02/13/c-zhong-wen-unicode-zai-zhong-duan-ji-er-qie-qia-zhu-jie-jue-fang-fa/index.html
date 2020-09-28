@@ -413,7 +413,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        85
+                        210
                     </div>
                     
 
@@ -443,41 +443,41 @@
 <blockquote>
 <p>//project-&gt;General-&gt;Character Set = &gt; “Use Unicode Character Set”</p>
 </blockquote>
-<h2 id="2-程式碼"><a href="#2-程式碼" class="headerlink" title="2. 程式碼"></a>2. 程式碼</h2><pre class=" language-c++"><code class="language-c++">//main.cpp
-#include <iostream>
-using namespace std;
+<h2 id="2-程式碼"><a href="#2-程式碼" class="headerlink" title="2. 程式碼"></a>2. 程式碼</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//main.cpp</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+using namespace std<span class="token punctuation">;</span>
 
-//project->General->Character Set = > "Use Unicode Character Set"
+<span class="token comment" spellcheck="true">//project->General->Character Set = > "Use Unicode Character Set"</span>
 
-int main (int argc,char *argv[])
-{
-    locale::global(locale(""));
-    wcout.imbue(locale(""));
+<span class="token keyword">int</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span><span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    locale<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">global</span><span class="token punctuation">(</span><span class="token function">locale</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    wcout<span class="token punctuation">.</span><span class="token function">imbue</span><span class="token punctuation">(</span><span class="token function">locale</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    wcout << L"wcout << abcdefg" << endl;
-    wcout << L"wcout << 測試中文:一二三四" << endl;
+    wcout <span class="token operator">&lt;&lt;</span> L<span class="token string">"wcout &lt;&lt; abcdefg"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    wcout <span class="token operator">&lt;&lt;</span> L<span class="token string">"wcout &lt;&lt; 測試中文:一二三四"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 
-    //使用完畢時要呼叫下面兩行 ,才不會有 memory leak問題   <===重要
-    locale::global(locale("C"));
-    wcout.imbue(locale("C"));
+    <span class="token comment" spellcheck="true">//使用完畢時要呼叫下面兩行 ,才不會有 memory leak問題   &lt;===重要</span>
+    locale<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">global</span><span class="token punctuation">(</span><span class="token function">locale</span><span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    wcout<span class="token punctuation">.</span><span class="token function">imbue</span><span class="token punctuation">(</span><span class="token function">locale</span><span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //===== 無使用 std::locale 會發生終端機打印時卡住
-    wcout << L"wcout << abcdefg" << endl;
-    wcout << L"wcout << 測試中文:一二三四" << endl;  //"測試中文:一二三四" can't printf
+    <span class="token comment" spellcheck="true">//===== 無使用 std::locale 會發生終端機打印時卡住</span>
+    wcout <span class="token operator">&lt;&lt;</span> L<span class="token string">"wcout &lt;&lt; abcdefg"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    wcout <span class="token operator">&lt;&lt;</span> L<span class="token string">"wcout &lt;&lt; 測試中文:一二三四"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//"測試中文:一二三四" can't printf</span>
 
-    int x; cin >> x;
-    return 0;
-}</code></pre>
+    <span class="token keyword">int</span> x<span class="token punctuation">;</span> cin <span class="token operator">>></span> x<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="3-Output"><a href="#3-Output" class="headerlink" title="3.Output"></a>3.Output</h2><pre class=" language-text"><code class="language-text">wcout << abcdefg
 wcout << 測試中文:一二三四
 wcout << abcdefg
 wcout <<</code></pre>
 <h2 id="4-Node"><a href="#4-Node" class="headerlink" title="4. Node"></a>4. Node</h2><p>記得使用前呼叫</p>
-<pre class=" language-c++"><code class="language-c++">locale::global(locale(""));
-wcout.imbue(locale(""));</code></pre>
+<pre class=" language-c"><code class="language-c">locale<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">global</span><span class="token punctuation">(</span><span class="token function">locale</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+wcout<span class="token punctuation">.</span><span class="token function">imbue</span><span class="token punctuation">(</span><span class="token function">locale</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>使用後要再呼叫(不然會有 memory leak 發生哦)</p>
-<pre class=" language-c++"><code class="language-c++">locale::global(locale("C"));
-wcout.imbue(locale("C"));</code></pre>
+<pre class=" language-c"><code class="language-c">locale<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">global</span><span class="token punctuation">(</span><span class="token function">locale</span><span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+wcout<span class="token punctuation">.</span><span class="token function">imbue</span><span class="token punctuation">(</span><span class="token function">locale</span><span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="5-github-連結"><a href="#5-github-連結" class="headerlink" title="5.github 連結"></a>5.github 連結</h2><ul>
 <li><a href="https://github.com/tsaiyuyan/windows7/tree/master/console/std_localeTest" target="_blank" rel="noopener">Code</a></li>
 </ul>
@@ -755,7 +755,7 @@ wcout.imbue(locale("C"));</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

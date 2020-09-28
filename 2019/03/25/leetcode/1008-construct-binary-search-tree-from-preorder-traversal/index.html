@@ -440,8 +440,9 @@ Return the root node of a bina">
 <p>Return the root node of a binary search tree that matches the given preorder traversal.</p>
 <p>(Recall that a binary search tree is a binary tree where for every node, any descendant of node.left has a value &lt; node.val, and any descendant of node.right has a value &gt; node.val. Also recall that a preorder traversal displays the value of the node first, then traverses node.left, then traverses node.right.)</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: [8,5,1,7,10,12]
-Output: [8,5,10,1,7,null,12]</code></pre>
+<pre class=" language-language-text"><code class="language-language-text">Input: [8,5,1,7,10,12]
+Output: [8,5,10,1,7,null,12]
+</code></pre>
 <p><img src="https://assets.leetcode.com/uploads/2019/03/06/1266.png" alt="1"></p>
 <p>Note:</p>
 <ul>
@@ -452,8 +453,9 @@ Output: [8,5,10,1,7,null,12]</code></pre>
 <p>題目翻譯:</p>
 <p>返回與給定的前序遍歷匹配的二叉搜索樹的根節點。</p>
 <p>（回想一下二進制搜索樹是一個二叉樹，對於每個節點，node.left 的任何後代都有一個值 node.val。還記得那個 preorder 遍歷首先顯示節點的值，然後遍歷 node.left，然後遍歷 node.right。）</p>
-<p>程式思路:<br>這題是用印出來的 preoder 去逆推原本樹的樣子。node 先，再來 left 再來 right，其實就只是把元素按照大小做簡單的插入分類就能解題了。</p>
-<pre class=" language-c++"><code class="language-c++">/**
+<p>程式思路:<br>
+這題是用印出來的 preoder 去逆推原本樹的樣子。node 先，再來 left 再來 right，其實就只是把元素按照大小做簡單的插入分類就能解題了。</p>
+<pre class=" language-language-c"><code class="language-language-c">/**
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -491,7 +493,8 @@ public:
         }
         return root;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -768,7 +771,7 @@ In a array A of siz
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

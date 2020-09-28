@@ -413,14 +413,14 @@ windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        370
+                        499
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -446,70 +446,70 @@ windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一
 <h2 id="1-呼叫小鍵盤"><a href="#1-呼叫小鍵盤" class="headerlink" title="1.呼叫小鍵盤"></a>1.呼叫小鍵盤</h2><blockquote>
 <p>簡單的用 cmd 方式就可以呼叫了</p>
 </blockquote>
-<pre class=" language-c++"><code class="language-c++">ShellExecute( NULL, NULL, L"osk", NULL,NULL,SW_SHOW);</code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token function">ShellExecute</span><span class="token punctuation">(</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> L<span class="token string">"osk"</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span><span class="token constant">NULL</span><span class="token punctuation">,</span>SW_SHOW<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p>用 FindWindow 確認有沒有開啟成功。</p>
 </blockquote>
-<pre class=" language-c++"><code class="language-c++">if(::FindWindow(L"OSKMainClass", NULL))
-{
-    printf("osk open successed\n");
-}</code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">FindWindow</span><span class="token punctuation">(</span>L<span class="token string">"OSKMainClass"</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"osk open successed\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="2-移動小鍵盤"><a href="#2-移動小鍵盤" class="headerlink" title="2.移動小鍵盤"></a>2.移動小鍵盤</h2><blockquote>
 <p>MoveWindow 或是 SetWindowPos 在 UAC 的狀態下，用一般使用者都是沒辦法移動小鍵盤了，所以呢，呼叫小鍵盤前，需要去修改”登錄擋”，沒錯就是登錄擋，HKEY_CURRENT_USER\SOFTWARE\Microsoft\Osk，到這個位置把參數換一換就能夠達到 MoveWindow 的功能了。</p>
 </blockquote>
-<pre class=" language-c++"><code class="language-c++">DWORD WindowLeft=0;//視窗左上角的位置
-DWORD WindowTop=0;//視窗左上角的位置
-DWORD WindowWidth=1024//視窗左上角的位置
-DWORD WindowHeight=768//視窗左上角的位置
-HKEY hKey;
-LPCTSTR sk = TEXT("SOFTWARE\\Microsoft\\Osk");
+<pre class=" language-c"><code class="language-c">DWORD WindowLeft<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//視窗左上角的位置</span>
+DWORD WindowTop<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//視窗左上角的位置</span>
+DWORD WindowWidth<span class="token operator">=</span><span class="token number">1024</span><span class="token comment" spellcheck="true">//視窗左上角的位置</span>
+DWORD WindowHeight<span class="token operator">=</span><span class="token number">768</span><span class="token comment" spellcheck="true">//視窗左上角的位置</span>
+HKEY hKey<span class="token punctuation">;</span>
+LPCTSTR sk <span class="token operator">=</span> <span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"SOFTWARE\\Microsoft\\Osk"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-LONG openRes = RegOpenKeyEx(HKEY_CURRENT_USER, sk, 0, KEY_ALL_ACCESS , &hKey);
+LONG openRes <span class="token operator">=</span> <span class="token function">RegOpenKeyEx</span><span class="token punctuation">(</span>HKEY_CURRENT_USER<span class="token punctuation">,</span> sk<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> KEY_ALL_ACCESS <span class="token punctuation">,</span> <span class="token operator">&amp;</span>hKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-if (openRes==ERROR_SUCCESS)
-{
-    printf("Success opening key.");
-    auto lambda = [=] (const wchar_t *valuename,DWORD value){
-        LONG setRes = RegSetValueEx(hKey, valuename, 0, REG_DWORD, (const BYTE*)&value, sizeof(value));
+<span class="token keyword">if</span> <span class="token punctuation">(</span>openRes<span class="token operator">==</span>ERROR_SUCCESS<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Success opening key."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> lambda <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token keyword">const</span> wchar_t <span class="token operator">*</span>valuename<span class="token punctuation">,</span>DWORD value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        LONG setRes <span class="token operator">=</span> <span class="token function">RegSetValueEx</span><span class="token punctuation">(</span>hKey<span class="token punctuation">,</span> valuename<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> REG_DWORD<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">const</span> BYTE<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>value<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        if (setRes == ERROR_SUCCESS)
-        {
-            wprintf(L"Success writing to Registry. valuename = %s value = %d",valuename,value);
-        } else
-        {
-            wprintf(L"Error writing to Registry. valuename = %s value = %d",valuename,value);
-        }
-        //cout << setRes << endl;
-    };
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>setRes <span class="token operator">==</span> ERROR_SUCCESS<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">wprintf</span><span class="token punctuation">(</span>L<span class="token string">"Success writing to Registry. valuename = %s value = %d"</span><span class="token punctuation">,</span>valuename<span class="token punctuation">,</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">wprintf</span><span class="token punctuation">(</span>L<span class="token string">"Error writing to Registry. valuename = %s value = %d"</span><span class="token punctuation">,</span>valuename<span class="token punctuation">,</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//cout &lt;&lt; setRes &lt;&lt; endl;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-    lambda(L"WindowLeft",WindowLeft);
-    lambda(L"WindowTop",WindowTop);
-    lambda(L"WindowWidth",WindowWidth);
-    lambda(L"WindowHeight",WindowHeight);
-    lambda(L"UseTextPrediction",0); //關閉文字預測
-    lambda(L"NavigationMode",0); //關閉 Nav模式
+    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"WindowLeft"</span><span class="token punctuation">,</span>WindowLeft<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"WindowTop"</span><span class="token punctuation">,</span>WindowTop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"WindowWidth"</span><span class="token punctuation">,</span>WindowWidth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"WindowHeight"</span><span class="token punctuation">,</span>WindowHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"UseTextPrediction"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//關閉文字預測</span>
+    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"NavigationMode"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//關閉 Nav模式</span>
 
-    LONG closeOut = RegCloseKey(hKey);
-    if (closeOut == ERROR_SUCCESS)
-    {
-        printf("Success closing key.");
-    } else
-    {
-        printf("Error closing key.");
-    }
-} else
-{
-    printf("Error opening key.");
-}</code></pre>
+    LONG closeOut <span class="token operator">=</span> <span class="token function">RegCloseKey</span><span class="token punctuation">(</span>hKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>closeOut <span class="token operator">==</span> ERROR_SUCCESS<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Success closing key."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Error closing key."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Error opening key."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="3-關閉小鍵盤-amp-修改一些客製參數"><a href="#3-關閉小鍵盤-amp-修改一些客製參數" class="headerlink" title="3.關閉小鍵盤&amp;修改一些客製參數"></a>3.關閉小鍵盤&amp;修改一些客製參數</h2><blockquote>
 <p>用 SendMessage 對 osk 發送 SC_CLOSE 即可</p>
 </blockquote>
-<pre class=" language-c++"><code class="language-c++">HWND hKbd=0;
-hKbd = ::FindWindowW(L"OSKMainClass",NULL);
-if(hKbd)
-{
-    ::SendMessage(hKbd,WM_SYSCOMMAND, SC_CLOSE,0);    //
-}</code></pre>
+<pre class=" language-c"><code class="language-c">HWND hKbd<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+hKbd <span class="token operator">=</span> <span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">FindWindowW</span><span class="token punctuation">(</span>L<span class="token string">"OSKMainClass"</span><span class="token punctuation">,</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>hKbd<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">SendMessage</span><span class="token punctuation">(</span>hKbd<span class="token punctuation">,</span>WM_SYSCOMMAND<span class="token punctuation">,</span> SC_CLOSE<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="4-Administrator-無節操控制-不建議"><a href="#4-Administrator-無節操控制-不建議" class="headerlink" title="4.Administrator 無節操控制(不建議)"></a>4.Administrator 無節操控制(不建議)</h2><blockquote>
 <p>用最強權限控制，當然是最沒有節操的。</p>
 </blockquote>
@@ -785,7 +785,7 @@ $ npm ins
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

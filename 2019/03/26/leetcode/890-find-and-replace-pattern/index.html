@@ -443,11 +443,12 @@ You have a list of words and a pattern, and you want to kn">
 <p>Return a list of the words in words that match the given pattern.</p>
 <p>You may return the answer in any order.</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
+<pre class=" language-language-text"><code class="language-language-text">Input: words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
 Output: ["mee","aqq"]
 Explanation: "mee" matches the pattern because there is a permutation {a -> m, b -> e, ...}.
 "ccc" does not match the pattern because {a -> c, b -> c, ...} is not a permutation,
 since a and b map to the same letter.
+
 </code></pre>
 <p>Note:</p>
 <ul>
@@ -458,11 +459,12 @@ since a and b map to the same letter.
 <p>題目翻譯:</p>
 <p>你有一個單詞列表和一個模式，你想知道單詞中哪些單詞與模式匹配。</p>
 <p>如果存在字母 p 的排列，則字符與模式匹配，以便在用 p（x）替換模式中的每個字母 x 後，我們得到所需的字。</p>
-<p>（回想一下，字母的排列是從字母到字母的雙向排列：每個字母都映射到另一個字母，沒有兩個字母映射到同一個字母。）<br>返回與給定模式匹配的單詞列表。</p>
+<p>（回想一下，字母的排列是從字母到字母的雙向排列：每個字母都映射到另一個字母，沒有兩個字母映射到同一個字母。）<br>
+返回與給定模式匹配的單詞列表。</p>
 <p>您可以按任何順序返回答案</p>
 <p>程式思路:</p>
 <p>建構一張 1 對 1 的表，不可多對 1,不可 1 對多。 有點線性函數的概念。用 map 檢查有沒有 1 對多，用 set 檢查有沒有多對 1。</p>
-<pre class=" language-c++"><code class="language-c++">class Solution {
+<pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
     vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
         vector <string > result;
@@ -490,7 +492,8 @@ public:
         }
         return result;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -767,7 +770,7 @@ There is a
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

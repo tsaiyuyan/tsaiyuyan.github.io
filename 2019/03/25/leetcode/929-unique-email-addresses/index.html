@@ -413,7 +413,7 @@ Every email consists of a local name and a domain name, sepa">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        623
+                        624
                     </div>
                     
 
@@ -438,16 +438,17 @@ Every email consists of a local name and a domain name, sepa">
             <div id="articleContent">
                 <p>Link: <a href="https://leetcode.com/problems/unique-email-addresses/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-email-addresses/</a></p>
 <p>Every email consists of a local name and a domain name, separated by the @ sign.</p>
-<p>For example, in <a href="mailto:alice@leetcode.com">alice@leetcode.com</a>, alice is the local name, and leetcode.com is the domain name.</p>
-<p>Besides lowercase letters, these emails may contain ‘.’s or ‘+’s.</p>
-<p>If you add periods (‘.’) between some characters in the local name part of an email address, mail sent there will be forwarded to the same address without dots in the local name. For example, “<a href="mailto:alice.z@leetcode.com">alice.z@leetcode.com</a>“ and “<a href="mailto:alicez@leetcode.com">alicez@leetcode.com</a>“ forward to the same email address. (Note that this rule does not apply for domain names.)</p>
-<p>If you add a plus (‘+’) in the local name, everything after the first plus sign will be ignored. This allows certain emails to be filtered, for example <a href="mailto:m.y+name@email.com">m.y+name@email.com</a> will be forwarded to <a href="mailto:my@email.com">my@email.com</a>. (Again, this rule does not apply for domain names.)</p>
+<p>For example, in alice@leetcode.com, alice is the local name, and leetcode.com is the domain name.</p>
+<p>Besides lowercase letters, these emails may contain '.'s or '+'s.</p>
+<p>If you add periods (’.’) between some characters in the local name part of an email address, mail sent there will be forwarded to the same address without dots in the local name. For example, “alice.z@leetcode.com” and “alicez@leetcode.com” forward to the same email address. (Note that this rule does not apply for domain names.)</p>
+<p>If you add a plus (’+’) in the local name, everything after the first plus sign will be ignored. This allows certain emails to be filtered, for example m.y+name@email.com will be forwarded to my@email.com. (Again, this rule does not apply for domain names.)</p>
 <p>It is possible to use both of these rules at the same time.</p>
 <p>Given a list of emails, we send one email to each address in the list. How many different addresses actually receive mails?</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]
+<pre class=" language-language-text"><code class="language-language-text">Input: ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]
 Output: 2
-Explanation: "testemail@leetcode.com" and "testemail@lee.tcode.com" actually receive mails</code></pre>
+Explanation: "testemail@leetcode.com" and "testemail@lee.tcode.com" actually receive mails
+</code></pre>
 <p>Note:</p>
 <ul>
 <li>1 &lt;= emails[i].length &lt;= 100</li>
@@ -457,15 +458,16 @@ Explanation: "testemail@leetcode.com" and "testemail@lee.tcode.com" actually rec
 <hr>
 <p>題目翻譯:</p>
 <p>每封電子郵件都包含本地名稱和域名，以@符號分隔。</p>
-<p>例如，在 <a href="mailto:alice@leetcode.com">alice@leetcode.com</a> 中，alice 是本地名稱，leetcode.com 是域名。</p>
-<p>除了小寫字母，這些電子郵件可能包含’。’或’+’。</p>
-<p>如果在電子郵件地址的本地名稱部分中的某些字符之間添加句點（’.’），則在那裡發送的郵件將被轉發到本地名稱中沒有點的同一地址。例如，“<a href="mailto:alice.z@leetcode.com">alice.z@leetcode.com</a>”和“<a href="mailto:alicez@leetcode.com">alicez@leetcode.com</a>”轉發到同一個電子郵件地址。 （請注意，此規則不適用於域名。）</p>
-<p>如果在本地名稱中添加加號（’+’），則會忽略第一個加號後面的所有內容。這允許過濾某些電子郵件，例如 m.y+name<br>email.com 將轉發到 <a href="mailto:my@email.com">my@email.com</a>。 （同樣，此規則不適用於域名。）</p>
+<p>例如，在 alice@leetcode.com 中，alice 是本地名稱，leetcode.com 是域名。</p>
+<p>除了小寫字母，這些電子郵件可能包含’。‘或’+’。</p>
+<p>如果在電子郵件地址的本地名稱部分中的某些字符之間添加句點（’.’），則在那裡發送的郵件將被轉發到本地名稱中沒有點的同一地址。例如，“alice.z@leetcode.com”和“alicez@leetcode.com”轉發到同一個電子郵件地址。 （請注意，此規則不適用於域名。）</p>
+<p>如果在本地名稱中添加加號（’+’），則會忽略第一個加號後面的所有內容。這允許過濾某些電子郵件，例如 m.y+name<br>
+email.com 將轉發到 my@email.com。 （同樣，此規則不適用於域名。）</p>
 <p>可以同時使用這兩個規則。</p>
 <p>鑑於電子郵件列表，我們會向列表中的每個地址發送一封電子郵件。有多少不同的地址實際接收郵件？</p>
 <p>程式思路:</p>
-<p>準備一個 set 的容器，每條 email 處理時，在遇到‘@’or’+’ 符號前，先判斷 account 的 id 並忽略’.’遇到’+’開始忽略直到遇到‘@’，一遇到‘@’ 直接複製至後段。</p>
-<pre class=" language-c++"><code class="language-c++">class Solution {
+<p>準備一個 set 的容器，每條 email 處理時，在遇到’@‘or’+’ 符號前，先判斷 account 的 id 並忽略’.‘遇到’+‘開始忽略直到遇到’@’，一遇到’@’ 直接複製至後段。</p>
+<pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
     int numUniqueEmails(vector<string>& emails) {
         set<string> email_set;
@@ -488,7 +490,8 @@ public:
         }
         return email_set.size();
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -765,7 +768,7 @@ Given an inte
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

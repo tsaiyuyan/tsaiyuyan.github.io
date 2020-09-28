@@ -441,16 +441,18 @@ Given a binary matrix A, we want to flip the image horizontally, ">
 <p>To flip an image horizontally means that each row of the image is reversed. For example, flipping [1, 1, 0] horizontally results in [0, 1, 1].</p>
 <p>To invert an image means that each 0 is replaced by 1, and each 1 is replaced by 0. For example, inverting [0, 1, 1] results in [1, 0, 0].</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: [[1,1,0],[1,0,1],[0,0,0]]
+<pre class=" language-language-text"><code class="language-language-text">Input: [[1,1,0],[1,0,1],[0,0,0]]
 Output: [[1,0,0],[0,1,0],[1,1,1]]
 Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
 Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
+
 </code></pre>
 <p>Example 2:</p>
-<pre class=" language-text"><code class="language-text">Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+<pre class=" language-language-text"><code class="language-language-text">Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
 Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
 Explanation: First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
-Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</code></pre>
+Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+</code></pre>
 <p>Notes:</p>
 <ul>
 <li>1 &lt;= A.length = A[0].length &lt;= 20</li>
@@ -463,7 +465,7 @@ Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</code></pre>
 <p>反轉圖像意味著每個 0 替換為 1，每個 1 替換為 0.例如，反轉[0,1,1]會產生[1,0,0]。</p>
 <p>程式思路:</p>
 <p>很基本二維陣列(圖像處理)題目，邊 reverse 邊 invert。</p>
-<pre class=" language-c++"><code class="language-c++">class Solution {
+<pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
     vector<vector<int>> flipAndInvertImage(vector<vector<int>>& A) {
         const int row = A.size();
@@ -485,7 +487,8 @@ public:
         }
         return A;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -762,7 +765,7 @@ Given an arr
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

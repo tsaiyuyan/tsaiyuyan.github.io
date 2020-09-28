@@ -413,7 +413,7 @@ Given the root node of a binary search tree (BST) ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        366
+                        367
                     </div>
                     
 
@@ -441,32 +441,36 @@ Given the root node of a binary search tree (BST) ">
 <p>Note that there may exist multiple valid ways for the insertion, as long as the tree remains a BST after insertion. You can return any of them.</p>
 <p>For example,</p>
 <p>Given the tree:</p>
-<pre class=" language-text"><code class="language-text">        4
+<pre class=" language-language-text"><code class="language-language-text">        4
        / \
       2   7
      / \
-    1   3</code></pre>
-<p>And the value to insert: 5<br>You can return this binary search tree:</p>
-<pre class=" language-text"><code class="language-text">         4
+    1   3
+</code></pre>
+<p>And the value to insert: 5<br>
+You can return this binary search tree:</p>
+<pre class=" language-language-text"><code class="language-language-text">         4
        /   \
       2     7
      / \   /
-    1   3 5</code></pre>
+    1   3 5
+</code></pre>
 <p>This tree is also valid:</p>
-<pre class=" language-text"><code class="language-text">         5
+<pre class=" language-language-text"><code class="language-language-text">         5
        /   \
       2     7
      / \
     1   3
          \
-          4</code></pre>
+          4
+</code></pre>
 <hr>
 <p>題目翻譯:</p>
 <p>給定二叉搜索樹（BST）的根節點和要插入樹的值，將值插入 BST。插入後返回 BST 的根節點。保證原始 BST 中不存在新值。</p>
 <p>請注意，只要樹在插入後仍為 BST，就可能存在多種有效的插入方式。你可以退回任何一個。</p>
 <p>程式思路:</p>
 <p>簡單的二元素搜索，插入值比較大就往右子樹，比較小就往左子樹，一樣的話就表示樹已有此值直接退出，沒的話就繼續直到，找到空指標時就做插入的動作。</p>
-<pre class=" language-c++"><code class="language-c++">/**
+<pre class=" language-language-c"><code class="language-language-c">/**
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -509,7 +513,8 @@ public:
         }
         return root;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -786,7 +791,7 @@ Every emai
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

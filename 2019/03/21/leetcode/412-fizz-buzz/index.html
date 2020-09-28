@@ -413,7 +413,7 @@ Write a program that outputs the string representation of numbers from 1 ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        177
+                        211
                     </div>
                     
 
@@ -467,31 +467,31 @@ Return:
 <p>但是對於三的倍數，它應該輸出“Fizz”而不是數字和五個輸出“Buzz”的倍數。對於三個和五個輸出“FizzBu​​zz”的倍數的數字。</p>
 <p>程式思路:</p>
 <p>很 easy 的題目，但不知道為啥遞交率才 59%。</p>
-<pre class=" language-c++"><code class="language-c++">class Solution {
-public:
-    vector<string> fizzBuzz(int n)
-    {
-        vector<string> res;
-        for(int i = 1;i <= n;i++)
-        {
-            string foo;
-            if(i%3 == 0)
-            {
-                foo += "Fizz";
-            }
-            if(i%5 == 0)
-            {
-                foo += "Buzz";
-            }
-            if(foo.length()==0)
-            {
-                foo += std::to_string(i);
-            }
-            res.push_back(foo);
-        }
-        return res;
-    }
-};</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    vector<span class="token operator">&lt;</span>string<span class="token operator">></span> <span class="token function">fizzBuzz</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        vector<span class="token operator">&lt;</span>string<span class="token operator">></span> res<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            string foo<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                foo <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"Fizz"</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">%</span><span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                foo <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"Buzz"</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>foo<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                foo <span class="token operator">+</span><span class="token operator">=</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">to_string</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            res<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -767,7 +767,7 @@ Implement function
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

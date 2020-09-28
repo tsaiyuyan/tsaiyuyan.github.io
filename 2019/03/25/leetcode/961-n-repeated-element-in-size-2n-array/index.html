@@ -413,7 +413,7 @@ In a array A of size 2N, there are N+1 unique elements, and exactly o">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        210
+                        231
                     </div>
                     
 
@@ -460,24 +460,24 @@ Output: 5</code></pre>
 <p>返回元素重複 N 次。</p>
 <p>程式思路:</p>
 <p>雖然題目有限制元素的大小，就可以使用 hash table 來做這題，但覺得還是寫成動態會比較好些，就使用 unordered_map 容器來寫。</p>
-<pre class=" language-c++"><code class="language-c++">class Solution {
-public:
-    int repeatedNTimes(vector<int>& A) {
-        unordered_map <int,int> NTimes_map;
-        int output = 0;
-        for(auto element : A)
-        {
-            auto ret = NTimes_map.insert ( std::pair<char,int>(element,0) );
-            if (ret.second == false) {
-                // std::cout << "element already existed";
-                //NTimes_map[element]++;
-                output = element;
-                break;
-            }
-        }
-        return output;
-    }
-};</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">repeatedNTimes</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> A<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        unordered_map <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> NTimes_map<span class="token punctuation">;</span>
+        <span class="token keyword">int</span> output <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> element <span class="token punctuation">:</span> A<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">auto</span> ret <span class="token operator">=</span> NTimes_map<span class="token punctuation">.</span><span class="token function">insert</span> <span class="token punctuation">(</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>pair<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span>element<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>ret<span class="token punctuation">.</span>second <span class="token operator">==</span> false<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// std::cout &lt;&lt; "element already existed";</span>
+                <span class="token comment" spellcheck="true">//NTimes_map[element]++;</span>
+                output <span class="token operator">=</span> element<span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> output<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -753,7 +753,7 @@ There is a table Wo
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

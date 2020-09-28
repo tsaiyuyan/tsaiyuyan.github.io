@@ -450,445 +450,445 @@ $cd build
 $cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/cjson
 $make
 $sudo make install</code></pre>
-<h2 id="Example-Code"><a href="#Example-Code" class="headerlink" title="Example Code"></a>Example Code</h2><h3 id="Parser-JSON-string"><a href="#Parser-JSON-string" class="headerlink" title="Parser JSON string"></a>Parser JSON string</h3><pre class=" language-c++"><code class="language-c++">#include<stdio.h>
-#include<json-c/json.h>
+<h2 id="Example-Code"><a href="#Example-Code" class="headerlink" title="Example Code"></a>Example Code</h2><h3 id="Parser-JSON-string"><a href="#Parser-JSON-string" class="headerlink" title="Parser JSON string"></a>Parser JSON string</h3><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;json-c/json.h></span></span>
 
-#define EXAMPLE_JSON    "./example.json"
-#define NULL_NULL       "NULL"
-#define BOOL_BOOLEAN    "BOOLEAN"
-#define STR_STRING      "STRING"
-#define NUM_INTEGER     "NUMBER"
-#define NUM_DOUBLE      "DOUBLE"
-#define ARR_ARRAY       "ARRAY"
-#define OBJ_OBJECT      "OBJECT"
-#define NULL_MEMBER_NULL    "MEMBER_NULL"
-#define BOOL_MEMBER_BOOLEAN "MEMBER_BOOLEAN"
-#define STR_MEMBER_STRING   "MEMBER_STRING"
-#define NUM_MEMBER_INTEGER  "MEMBER_NUMBER"
-#define NUM_MEMBER_DOUBLE   "MEMBER_DOUBLE"
-#define ARR_MEMBER_ARRAY    "MEMBER_ARRAY"
+<span class="token macro property">#<span class="token directive keyword">define</span> EXAMPLE_JSON    "./example.json"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> NULL_NULL       "NULL"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> BOOL_BOOLEAN    "BOOLEAN"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> STR_STRING      "STRING"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> NUM_INTEGER     "NUMBER"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> NUM_DOUBLE      "DOUBLE"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> ARR_ARRAY       "ARRAY"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> OBJ_OBJECT      "OBJECT"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> NULL_MEMBER_NULL    "MEMBER_NULL"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> BOOL_MEMBER_BOOLEAN "MEMBER_BOOLEAN"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> STR_MEMBER_STRING   "MEMBER_STRING"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> NUM_MEMBER_INTEGER  "MEMBER_NUMBER"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> NUM_MEMBER_DOUBLE   "MEMBER_DOUBLE"</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> ARR_MEMBER_ARRAY    "MEMBER_ARRAY"</span>
 
-int write_to_json_file(char* filename)
-{
-    int ret = 0;
-    json_object *json_obj = NULL;
-    json_object *array_obj = NULL;
-    json_object *new_obj = NULL;
-    json_object *tmp_obj = NULL;
-    json_object *tmp1_obj = NULL;
+<span class="token keyword">int</span> <span class="token function">write_to_json_file</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> filename<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>json_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>array_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>new_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>tmp_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>tmp1_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a base object
-    json_obj = json_object_new_object();
-    if (!json_obj)
-    {
-        printf("Cannot create object\n");
-        ret = -1;
-        goto error;
-    }
+    <span class="token comment" spellcheck="true">//new a base object</span>
+    json_obj <span class="token operator">=</span> <span class="token function">json_object_new_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>json_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create object\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //new a null
-    json_object_object_add(json_obj, NULL_NULL, NULL);
+    <span class="token comment" spellcheck="true">//new a null</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>json_obj<span class="token punctuation">,</span> NULL_NULL<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //new a boolean
-    tmp_obj = json_object_new_boolean(1);
-    if (!tmp_obj)
-    {
-        printf("Cannot create boolean object for %s\n", BOOL_BOOLEAN);
-        ret = -1;
-        goto error;
-    }
-    json_object_object_add(json_obj, BOOL_BOOLEAN, tmp_obj);
-    tmp_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a boolean</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_new_boolean</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create boolean object for %s\n"</span><span class="token punctuation">,</span> BOOL_BOOLEAN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>json_obj<span class="token punctuation">,</span> BOOL_BOOLEAN<span class="token punctuation">,</span> tmp_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a string
-    tmp_obj = json_object_new_string("string");
-    if (!tmp_obj)
-    {
-        printf("Cannot create string object for %s\n", STR_STRING);
-        ret = -1;
-        goto error;
-    }
-    json_object_object_add(json_obj, STR_STRING, tmp_obj);
-    tmp_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a string</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_new_string</span><span class="token punctuation">(</span><span class="token string">"string"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create string object for %s\n"</span><span class="token punctuation">,</span> STR_STRING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>json_obj<span class="token punctuation">,</span> STR_STRING<span class="token punctuation">,</span> tmp_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a integer
-    tmp_obj = json_object_new_int(100);
-    if (!tmp_obj)
-    {
-        printf("Cannot create number object for %s\n", NUM_INTEGER);
-        ret = -1;
-        goto error;
-    }
-    json_object_object_add(json_obj, NUM_INTEGER, tmp_obj);
-    tmp_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a integer</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_new_int</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create number object for %s\n"</span><span class="token punctuation">,</span> NUM_INTEGER<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>json_obj<span class="token punctuation">,</span> NUM_INTEGER<span class="token punctuation">,</span> tmp_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a double
-    tmp_obj = json_object_new_double(3.1415926);
-    if (!tmp_obj)
-    {
-        printf("Cannot create double object for %s\n", NUM_DOUBLE);
-        ret = -1;
-        goto error;
-    }
-    json_object_object_add(json_obj, NUM_DOUBLE, tmp_obj);
-    tmp_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a double</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_new_double</span><span class="token punctuation">(</span><span class="token number">3.1415926</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create double object for %s\n"</span><span class="token punctuation">,</span> NUM_DOUBLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>json_obj<span class="token punctuation">,</span> NUM_DOUBLE<span class="token punctuation">,</span> tmp_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a array
-    array_obj = json_object_new_array();
-    if (!array_obj)
-    {
-        printf("Cannot create array object\n");
-        ret = -1;
-        goto error;
-    }
+    <span class="token comment" spellcheck="true">//new a array</span>
+    array_obj <span class="token operator">=</span> <span class="token function">json_object_new_array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>array_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create array object\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //new a string and add to the array
-    new_obj = json_object_new_string("str1");
-    if (!new_obj)
-    {
-        printf("Cannot create string object for %s\n", ARR_ARRAY);
-        ret = -1;
-        goto error;
-    }
-    json_object_array_add(array_obj, new_obj);
-    new_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a string and add to the array</span>
+    new_obj <span class="token operator">=</span> <span class="token function">json_object_new_string</span><span class="token punctuation">(</span><span class="token string">"str1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>new_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create string object for %s\n"</span><span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_array_add</span><span class="token punctuation">(</span>array_obj<span class="token punctuation">,</span> new_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    new_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a string and add to the array
-    new_obj = json_object_new_string("str2");
-    if (!new_obj)
-    {
-        printf("Cannot create string object for %s\n", ARR_ARRAY);
-        ret = -1;
-        goto error;
-    }
-    json_object_array_add(array_obj, new_obj);
-    new_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a string and add to the array</span>
+    new_obj <span class="token operator">=</span> <span class="token function">json_object_new_string</span><span class="token punctuation">(</span><span class="token string">"str2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>new_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create string object for %s\n"</span><span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_array_add</span><span class="token punctuation">(</span>array_obj<span class="token punctuation">,</span> new_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    new_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a string and add to the array
-    new_obj = json_object_new_string("str3");
-    if (!new_obj)
-    {
-        printf("Cannot create string object for %s\n", ARR_ARRAY);
-        ret = -1;
-        goto error;
-    }
-    json_object_array_add(array_obj, new_obj);
-    new_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a string and add to the array</span>
+    new_obj <span class="token operator">=</span> <span class="token function">json_object_new_string</span><span class="token punctuation">(</span><span class="token string">"str3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>new_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create string object for %s\n"</span><span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_array_add</span><span class="token punctuation">(</span>array_obj<span class="token punctuation">,</span> new_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    new_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //add array to the base object
-    json_object_object_add(json_obj, ARR_ARRAY, array_obj);
-    array_obj = NULL;
+    <span class="token comment" spellcheck="true">//add array to the base object</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>json_obj<span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">,</span> array_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    array_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new an object
-    tmp_obj = json_object_new_object();
-    if (!tmp_obj)
-    {
-        printf("Cannot create object\n");
-        ret = -1;
-        goto error;
-    }
+    <span class="token comment" spellcheck="true">//new an object</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_new_object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create object\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //add a null to the object
-    json_object_object_add(tmp_obj, NULL_MEMBER_NULL, NULL);
+    <span class="token comment" spellcheck="true">//add a null to the object</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> NULL_MEMBER_NULL<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //new a boolean and add to the object
-    tmp1_obj = json_object_new_boolean(0);
-    if (!tmp1_obj)
-    {
-        printf("Cannot create boolean object for %s\n", BOOL_MEMBER_BOOLEAN);
-        ret = -1;
-        goto error;
-    }
-    json_object_object_add(tmp_obj, BOOL_MEMBER_BOOLEAN, tmp1_obj);
-    tmp1_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a boolean and add to the object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_new_boolean</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create boolean object for %s\n"</span><span class="token punctuation">,</span> BOOL_MEMBER_BOOLEAN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> BOOL_MEMBER_BOOLEAN<span class="token punctuation">,</span> tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a string and add to the object
-    tmp1_obj = json_object_new_string("string");
-    if (!tmp1_obj)
-    {
-        printf("Cannot create string object for %s\n", STR_MEMBER_STRING);
-        ret = -1;
-        goto error;
-    }
-    json_object_object_add(tmp_obj, STR_MEMBER_STRING, tmp1_obj);
-    tmp1_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a string and add to the object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_new_string</span><span class="token punctuation">(</span><span class="token string">"string"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create string object for %s\n"</span><span class="token punctuation">,</span> STR_MEMBER_STRING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> STR_MEMBER_STRING<span class="token punctuation">,</span> tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a integer and add to the object
-    tmp1_obj = json_object_new_int(200);
-    if (!tmp1_obj)
-    {
-        printf("Cannot create number object for %s\n", NUM_MEMBER_INTEGER);
-        ret = -1;
-        goto error;
-    }
-    json_object_object_add(tmp_obj, NUM_MEMBER_INTEGER, tmp1_obj);
-    tmp1_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a integer and add to the object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_new_int</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create number object for %s\n"</span><span class="token punctuation">,</span> NUM_MEMBER_INTEGER<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> NUM_MEMBER_INTEGER<span class="token punctuation">,</span> tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a double and add to the object
-    tmp1_obj = json_object_new_double(0.123456789);
-    if (!tmp1_obj)
-    {
-        printf("Cannot create double object for %s\n", NUM_MEMBER_DOUBLE);
-        ret = -1;
-        goto error;
-    }
-    json_object_object_add(tmp_obj, NUM_MEMBER_DOUBLE, tmp1_obj);
-    tmp1_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a double and add to the object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_new_double</span><span class="token punctuation">(</span><span class="token number">0.123456789</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create double object for %s\n"</span><span class="token punctuation">,</span> NUM_MEMBER_DOUBLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> NUM_MEMBER_DOUBLE<span class="token punctuation">,</span> tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a array
-    array_obj = json_object_new_array();
-    if (!array_obj)
-    {
-        printf("Cannot create array object\n");
-        ret = -1;
-        goto error;
-    }
+    <span class="token comment" spellcheck="true">//new a array</span>
+    array_obj <span class="token operator">=</span> <span class="token function">json_object_new_array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>array_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create array object\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //new a integer and add to array
-    new_obj = json_object_new_int(1);
-    if (!new_obj)
-    {
-        printf("Cannot create string object for %s\n", ARR_MEMBER_ARRAY);
-        ret = -1;
-        goto error;
-    }
-    json_object_array_add(array_obj, new_obj);
-    new_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a integer and add to array</span>
+    new_obj <span class="token operator">=</span> <span class="token function">json_object_new_int</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>new_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create string object for %s\n"</span><span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_array_add</span><span class="token punctuation">(</span>array_obj<span class="token punctuation">,</span> new_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    new_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a integer and add to array
-    new_obj = json_object_new_int(2);
-    if (!new_obj)
-    {
-        printf("Cannot create string object for %s\n", ARR_MEMBER_ARRAY);
-        ret = -1;
-        goto error;
-    }
-    json_object_array_add(array_obj, new_obj);
-    new_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a integer and add to array</span>
+    new_obj <span class="token operator">=</span> <span class="token function">json_object_new_int</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>new_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create string object for %s\n"</span><span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_array_add</span><span class="token punctuation">(</span>array_obj<span class="token punctuation">,</span> new_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    new_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //new a integer and add to array
-    new_obj = json_object_new_int(3);
-    if (!new_obj)
-    {
-        printf("Cannot create string object for %s\n", ARR_MEMBER_ARRAY);
-        ret = -1;
-        goto error;
-    }
-    json_object_array_add(array_obj, new_obj);
-    new_obj = NULL;
+    <span class="token comment" spellcheck="true">//new a integer and add to array</span>
+    new_obj <span class="token operator">=</span> <span class="token function">json_object_new_int</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>new_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot create string object for %s\n"</span><span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">json_object_array_add</span><span class="token punctuation">(</span>array_obj<span class="token punctuation">,</span> new_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    new_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //add array to the object
-    json_object_object_add(tmp_obj, ARR_MEMBER_ARRAY, array_obj);
-    array_obj = NULL;
+    <span class="token comment" spellcheck="true">//add array to the object</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">,</span> array_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    array_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //add the object to base object
-    json_object_object_add(json_obj, OBJ_OBJECT, tmp_obj);
-    tmp_obj = NULL;
+    <span class="token comment" spellcheck="true">//add the object to base object</span>
+    <span class="token function">json_object_object_add</span><span class="token punctuation">(</span>json_obj<span class="token punctuation">,</span> OBJ_OBJECT<span class="token punctuation">,</span> tmp_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmp_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //write the base object to write.json
-    json_object_to_file(filename, json_obj);
+    <span class="token comment" spellcheck="true">//write the base object to write.json</span>
+    <span class="token function">json_object_to_file</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> json_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-error:
-    json_object_put(tmp1_obj);
-    json_object_put(tmp_obj);
-    json_object_put(new_obj);
-    json_object_put(array_obj);
-    json_object_put(json_obj);
+error<span class="token punctuation">:</span>
+    <span class="token function">json_object_put</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">json_object_put</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">json_object_put</span><span class="token punctuation">(</span>new_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">json_object_put</span><span class="token punctuation">(</span>array_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">json_object_put</span><span class="token punctuation">(</span>json_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return ret;
-}
+    <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int read_from_json_file(char *filename)
-{
-    int ret = 0;
-    json_object *test_obj = NULL;
-    json_object *tmp_obj = NULL;
-    json_object *tmp1_obj = NULL;
-    json_object *tmp2_obj = NULL;
+<span class="token keyword">int</span> <span class="token function">read_from_json_file</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>filename<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>test_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>tmp_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>tmp1_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+    json_object <span class="token operator">*</span>tmp2_obj <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
 
-    //get json object from file
-    test_obj = json_object_from_file(filename);
-    if (!test_obj)
-    {
-        printf("Cannot open %s\n", filename);
-        ret = -1;
-        goto error;
-    }
+    <span class="token comment" spellcheck="true">//get json object from file</span>
+    test_obj <span class="token operator">=</span> <span class="token function">json_object_from_file</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>test_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot open %s\n"</span><span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //get null
-    tmp_obj = json_object_object_get(test_obj, NULL_NULL);
-    if (tmp_obj)
-    {
-        printf("Cannot get %s object\n", NULL_NULL);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %s\n", NULL_NULL, "null");
+    <span class="token comment" spellcheck="true">//get null</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>test_obj<span class="token punctuation">,</span> NULL_NULL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> NULL_NULL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %s\n"</span><span class="token punctuation">,</span> NULL_NULL<span class="token punctuation">,</span> <span class="token string">"null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get boolean
-    tmp_obj = json_object_object_get(test_obj, BOOL_BOOLEAN);
-    if (!tmp_obj)
-    {
-        printf("Cannot get %s object\n", BOOL_BOOLEAN);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %s\n", BOOL_BOOLEAN, ((json_object_get_boolean(tmp_obj))?("TRUE"):("FALSE")));
+    <span class="token comment" spellcheck="true">//get boolean</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>test_obj<span class="token punctuation">,</span> BOOL_BOOLEAN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> BOOL_BOOLEAN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %s\n"</span><span class="token punctuation">,</span> BOOL_BOOLEAN<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">json_object_get_boolean</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">(</span><span class="token string">"TRUE"</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token string">"FALSE"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get string
-    tmp_obj = json_object_object_get(test_obj, STR_STRING);
-    if (!tmp_obj)
-    {
-        printf("Cannot get %s object\n", STR_STRING);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %s\n", STR_STRING, json_object_get_string(tmp_obj));
+    <span class="token comment" spellcheck="true">//get string</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>test_obj<span class="token punctuation">,</span> STR_STRING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> STR_STRING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %s\n"</span><span class="token punctuation">,</span> STR_STRING<span class="token punctuation">,</span> <span class="token function">json_object_get_string</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get integer
-    tmp_obj = json_object_object_get(test_obj, NUM_INTEGER);
-    if (!tmp_obj)
-    {
-        printf("Cannot get %s object\n", NUM_INTEGER);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %d\n", NUM_INTEGER, json_object_get_int(tmp_obj));
+    <span class="token comment" spellcheck="true">//get integer</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>test_obj<span class="token punctuation">,</span> NUM_INTEGER<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> NUM_INTEGER<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %d\n"</span><span class="token punctuation">,</span> NUM_INTEGER<span class="token punctuation">,</span> <span class="token function">json_object_get_int</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get double
-    tmp_obj = json_object_object_get(test_obj, NUM_DOUBLE);
-    if (!tmp_obj)
-    {
-        printf("Cannot get %s object\n", NUM_DOUBLE);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %F\n", NUM_DOUBLE, json_object_get_double(tmp_obj));
+    <span class="token comment" spellcheck="true">//get double</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>test_obj<span class="token punctuation">,</span> NUM_DOUBLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> NUM_DOUBLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %F\n"</span><span class="token punctuation">,</span> NUM_DOUBLE<span class="token punctuation">,</span> <span class="token function">json_object_get_double</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get array
-    tmp_obj = json_object_object_get(test_obj, ARR_ARRAY);
-    if (!tmp_obj)
-    {
-        printf("Cannot get %s object\n", ARR_ARRAY);
-        ret = -1;
-        goto error;
-    }
-    //get the length of the array
-    printf("%s size = %d\n", ARR_ARRAY, json_object_array_length(tmp_obj));
+    <span class="token comment" spellcheck="true">//get array</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>test_obj<span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//get the length of the array</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s size = %d\n"</span><span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">,</span> <span class="token function">json_object_array_length</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get the value of array[0]
-    tmp1_obj = json_object_array_get_idx(tmp_obj, 0);
-    printf("%s[0] = %s\n", ARR_ARRAY, json_object_get_string(tmp1_obj));
+    <span class="token comment" spellcheck="true">//get the value of array[0]</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_array_get_idx</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s[0] = %s\n"</span><span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">,</span> <span class="token function">json_object_get_string</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get the value of array[1]
-    tmp1_obj = json_object_array_get_idx(tmp_obj, 1);
-    printf("%s[1] = %s\n", ARR_ARRAY, json_object_get_string(tmp1_obj));
+    <span class="token comment" spellcheck="true">//get the value of array[1]</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_array_get_idx</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s[1] = %s\n"</span><span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">,</span> <span class="token function">json_object_get_string</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get the value of array[2]
-    tmp1_obj = json_object_array_get_idx(tmp_obj, 2);
-    printf("%s[2] = %s\n", ARR_ARRAY, json_object_get_string(tmp1_obj));
+    <span class="token comment" spellcheck="true">//get the value of array[2]</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_array_get_idx</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s[2] = %s\n"</span><span class="token punctuation">,</span> ARR_ARRAY<span class="token punctuation">,</span> <span class="token function">json_object_get_string</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get object
-    tmp_obj = json_object_object_get(test_obj, OBJ_OBJECT);
-    if (!tmp_obj)
-    {
-        printf("Cannot get %s object\n", OBJ_OBJECT);
-        ret = -1;
-        goto error;
-    }
+    <span class="token comment" spellcheck="true">//get object</span>
+    tmp_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>test_obj<span class="token punctuation">,</span> OBJ_OBJECT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> OBJ_OBJECT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //get null within a object
-    tmp1_obj = json_object_object_get(tmp_obj, NULL_MEMBER_NULL);
-    if (tmp1_obj)
-    {
-        printf("Cannot get %s object\n", NULL_MEMBER_NULL);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %s\n", NULL_MEMBER_NULL, "null");
+    <span class="token comment" spellcheck="true">//get null within a object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> NULL_MEMBER_NULL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> NULL_MEMBER_NULL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %s\n"</span><span class="token punctuation">,</span> NULL_MEMBER_NULL<span class="token punctuation">,</span> <span class="token string">"null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get boolean within a object
-    tmp1_obj = json_object_object_get(tmp_obj, BOOL_MEMBER_BOOLEAN);
-    if (!tmp1_obj)
-    {
-        printf("Cannot get %s object\n", BOOL_MEMBER_BOOLEAN);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %s\n", BOOL_MEMBER_BOOLEAN, ((json_object_get_boolean(tmp1_obj))?("TRUE"):("FALSE")));
+    <span class="token comment" spellcheck="true">//get boolean within a object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> BOOL_MEMBER_BOOLEAN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> BOOL_MEMBER_BOOLEAN<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %s\n"</span><span class="token punctuation">,</span> BOOL_MEMBER_BOOLEAN<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">json_object_get_boolean</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">(</span><span class="token string">"TRUE"</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token string">"FALSE"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get string within a object
-    tmp1_obj = json_object_object_get(tmp_obj, STR_MEMBER_STRING);
-    if (!tmp1_obj)
-    {
-        printf("Cannot get %s object\n", STR_MEMBER_STRING);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %s\n", STR_MEMBER_STRING, json_object_get_string(tmp1_obj));
+    <span class="token comment" spellcheck="true">//get string within a object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> STR_MEMBER_STRING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> STR_MEMBER_STRING<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %s\n"</span><span class="token punctuation">,</span> STR_MEMBER_STRING<span class="token punctuation">,</span> <span class="token function">json_object_get_string</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get integer within a object
-    tmp1_obj = json_object_object_get(tmp_obj, NUM_MEMBER_INTEGER);
-    if (!tmp1_obj)
-    {
-        printf("Cannot get %s object\n", NUM_MEMBER_INTEGER);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %d\n", NUM_MEMBER_INTEGER, json_object_get_int(tmp1_obj));
+    <span class="token comment" spellcheck="true">//get integer within a object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> NUM_MEMBER_INTEGER<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> NUM_MEMBER_INTEGER<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %d\n"</span><span class="token punctuation">,</span> NUM_MEMBER_INTEGER<span class="token punctuation">,</span> <span class="token function">json_object_get_int</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get double within a object
-    tmp1_obj = json_object_object_get(tmp_obj, NUM_MEMBER_DOUBLE);
-    if (!tmp1_obj)
-    {
-        printf("Cannot get %s object\n", NUM_MEMBER_DOUBLE);
-        ret = -1;
-        goto error;
-    }
-    printf("%s = %F\n", NUM_MEMBER_DOUBLE, json_object_get_double(tmp1_obj));
+    <span class="token comment" spellcheck="true">//get double within a object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> NUM_MEMBER_DOUBLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> NUM_MEMBER_DOUBLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s = %F\n"</span><span class="token punctuation">,</span> NUM_MEMBER_DOUBLE<span class="token punctuation">,</span> <span class="token function">json_object_get_double</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get array within a object
-    tmp1_obj = json_object_object_get(tmp_obj, ARR_MEMBER_ARRAY);
-    if (!tmp1_obj)
-    {
-        printf("Cannot get %s object\n", ARR_MEMBER_ARRAY);
-        ret = -1;
-        goto error;
-    }
-    //get the length of the array within a object
-    printf("%s size = %d\n", ARR_MEMBER_ARRAY, json_object_array_length(tmp1_obj));
+    <span class="token comment" spellcheck="true">//get array within a object</span>
+    tmp1_obj <span class="token operator">=</span> <span class="token function">json_object_object_get</span><span class="token punctuation">(</span>tmp_obj<span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>tmp1_obj<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Cannot get %s object\n"</span><span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ret <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">goto</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//get the length of the array within a object</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s size = %d\n"</span><span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">,</span> <span class="token function">json_object_array_length</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get the value of array[0] within a object
-    tmp2_obj = json_object_array_get_idx(tmp1_obj, 0);
-    printf("%s[0] = %d\n", ARR_MEMBER_ARRAY, json_object_get_int(tmp2_obj));
+    <span class="token comment" spellcheck="true">//get the value of array[0] within a object</span>
+    tmp2_obj <span class="token operator">=</span> <span class="token function">json_object_array_get_idx</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s[0] = %d\n"</span><span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">,</span> <span class="token function">json_object_get_int</span><span class="token punctuation">(</span>tmp2_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get the value of array[0] within a object
-    tmp2_obj = json_object_array_get_idx(tmp1_obj, 1);
-    printf("%s[1] = %d\n", ARR_MEMBER_ARRAY, json_object_get_int(tmp2_obj));
+    <span class="token comment" spellcheck="true">//get the value of array[0] within a object</span>
+    tmp2_obj <span class="token operator">=</span> <span class="token function">json_object_array_get_idx</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s[1] = %d\n"</span><span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">,</span> <span class="token function">json_object_get_int</span><span class="token punctuation">(</span>tmp2_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    //get the value of array[0] within a object
-    tmp2_obj = json_object_array_get_idx(tmp1_obj, 2);
-    printf("%s[2] = %d\n", ARR_MEMBER_ARRAY, json_object_get_int(tmp2_obj));
+    <span class="token comment" spellcheck="true">//get the value of array[0] within a object</span>
+    tmp2_obj <span class="token operator">=</span> <span class="token function">json_object_array_get_idx</span><span class="token punctuation">(</span>tmp1_obj<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s[2] = %d\n"</span><span class="token punctuation">,</span> ARR_MEMBER_ARRAY<span class="token punctuation">,</span> <span class="token function">json_object_get_int</span><span class="token punctuation">(</span>tmp2_obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-error:
-    json_object_put(test_obj);
+error<span class="token punctuation">:</span>
+    <span class="token function">json_object_put</span><span class="token punctuation">(</span>test_obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return ret;
-}
+    <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main(int argc, char *argv[])
-{
-    int ret = 0;
-    ret = write_to_json_file(EXAMPLE_JSON);
-    if (ret != 0)
-        printf("Fail to write a json file\n");
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    ret <span class="token operator">=</span> <span class="token function">write_to_json_file</span><span class="token punctuation">(</span>EXAMPLE_JSON<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Fail to write a json file\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    ret = read_from_json_file(EXAMPLE_JSON);
-    if (ret != 0)
-        printf("Fail to read a json file\n");
+    ret <span class="token operator">=</span> <span class="token function">read_from_json_file</span><span class="token punctuation">(</span>EXAMPLE_JSON<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ret <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Fail to read a json file\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return 0;
-}</code></pre>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="Composer-JSON-string"><a href="#Composer-JSON-string" class="headerlink" title="Composer JSON string"></a>Composer JSON string</h3><pre class=" language-c"><code class="language-c"></code></pre>
 <h2 id="Build-and-Execute"><a href="#Build-and-Execute" class="headerlink" title="Build and Execute"></a>Build and Execute</h2><h3 id="CMakelists-File"><a href="#CMakelists-File" class="headerlink" title="CMakelists File"></a>CMakelists File</h3><pre class=" language-cmake"><code class="language-cmake">//CMakelists.txt
 cmake_minimum_required(VERSION 2.8)
@@ -1197,7 +1197,7 @@ $./a.out</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

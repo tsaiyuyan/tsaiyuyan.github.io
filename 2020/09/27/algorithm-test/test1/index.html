@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="algorithm - test1, c/c++,Internet programmer,Linux Kernel">
     <meta name="description" content="QuestionGiven a string with “a~z” and “-“ that represent you type the keyboard (“-“ means backspace).
-For example, abc--">
+For example, “abc–">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -409,14 +409,14 @@ For example, abc--">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        368
+                        525
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -433,7 +433,7 @@ For example, abc--">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>Given a string with “a~z” and “-“ that represent you type the keyboard (“-“ means backspace).</p>
-<p>For example, <code>abc--dd--</code> represents <code>a</code>, and <code>zzz---</code> represents <code></code></p>
+<p>For example, “abc–dd–” represents “a”, and “zzz—“ represents “”</p>
 <p>不會出現刪到空格的情形，例如 “a–”（我猜實際面試的時候這問題要你自己問）</p>
 <ul>
 <li><p>基本 - Implement a function<br>bool equal(string, string) that whether the two strings are equal.</p>
@@ -450,98 +450,97 @@ For example, abc--">
 <li>int an = 0, bn = 0;</li>
 <li>int ap = a.length() - 1, bp = b.length() - 1;</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">#include "stdio.h"
-#include "deque"
-#include "string"
-#include "iostream"
-using namespace std;
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;deque></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+using namespace std<span class="token punctuation">;</span>
 
-string func(string input) {
-    std::deque<char> q;
-    for (auto it : input) {
-        if (it != '-')
-            q.push_back(it);
-        else
-            if (!q.empty())
-                q.pop_back();
-    }
-    //out << input << " >> "  << string(q.begin(), q.begin()).c_str() << endl;
-    return string(q.begin(), q.end());
-}
-bool equal(string a, string b) {
-    return !func(a).compare(func(b));
-}
-bool equal2(string a, string b) {
-    int an = 0, bn = 0;
-    int ap = a.length() - 1, bp = b.length() - 1;
-    while (ap >= 0 && bp >= 0) {
-        //value compare
-        if (a[ap] != '-' && b[bp] != '-') {
-            if ((an == 0) && (bn == 0)) {
-                if (a[ap] != b[bp])
-                    return false;
-                else
-                    ap--, bp--; continue;
-            }
-        }
+string <span class="token function">func</span><span class="token punctuation">(</span>string input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>deque<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">></span> q<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> it <span class="token punctuation">:</span> input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">!=</span> <span class="token string">'&lt;'</span><span class="token punctuation">)</span>
+            q<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                q<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//out &lt;&lt; input &lt;&lt; " >> "  &lt;&lt; string(q.begin(), q.begin()).c_str() &lt;&lt; endl;</span>
+    <span class="token keyword">return</span> <span class="token function">string</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> q<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+bool <span class="token function">equal</span><span class="token punctuation">(</span>string a<span class="token punctuation">,</span> string b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">!</span><span class="token function">func</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">compare</span><span class="token punctuation">(</span><span class="token function">func</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+bool <span class="token function">equal2</span><span class="token punctuation">(</span>string a<span class="token punctuation">,</span> string b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> an <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> bn <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> ap <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> bp <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>ap <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> bp <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//value compare</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>ap<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token string">'&lt;'</span> <span class="token operator">&amp;&amp;</span> b<span class="token punctuation">[</span>bp<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token string">'&lt;'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>an <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>bn <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>ap<span class="token punctuation">]</span> <span class="token operator">!=</span> b<span class="token punctuation">[</span>bp<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+                <span class="token keyword">else</span>
+                    ap<span class="token operator">--</span><span class="token punctuation">,</span> bp<span class="token operator">--</span><span class="token punctuation">;</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
 
-        // symbol or letter?
-        if (a[ap] == '-')
-            an++, ap--;
-        else if (an > 0)
-            ap--, an--;
+        <span class="token comment" spellcheck="true">// symbol or letter?</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>ap<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'&lt;'</span><span class="token punctuation">)</span>
+            an<span class="token operator">++</span><span class="token punctuation">,</span> ap<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>an <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+            ap<span class="token operator">--</span><span class="token punctuation">,</span> an<span class="token operator">--</span><span class="token punctuation">;</span>
 
-        if (b[bp] == '-')
-            bn++, bp--;
-        else if (bn > 0)
-            ap--, bn--;
-    }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>b<span class="token punctuation">[</span>bp<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'&lt;'</span><span class="token punctuation">)</span>
+            bn<span class="token operator">++</span><span class="token punctuation">,</span> bp<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>bn <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+            ap<span class="token operator">--</span><span class="token punctuation">,</span> bn<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    //why break?
-    if (ap != bp) {
-        //final
-        while (bp >= 0) {
-            if (b[bp] == '-')
-                bn++, bp--;
-            else //letter
-            {
-                if (bn > 0)
-                    bp--, bn--;
-                else
-                    break;
-            }
-        }
+    <span class="token comment" spellcheck="true">//why break?</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ap <span class="token operator">!=</span> bp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//final</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>bp <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>b<span class="token punctuation">[</span>bp<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'&lt;'</span><span class="token punctuation">)</span>
+                bn<span class="token operator">++</span><span class="token punctuation">,</span> bp<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token comment" spellcheck="true">//letter</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>bn <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    bp<span class="token operator">--</span><span class="token punctuation">,</span> bn<span class="token operator">--</span><span class="token punctuation">;</span>
+                <span class="token keyword">else</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
 
-        while (ap >= 0) {
-            if (a[ap] == '-')
-                an++, ap--;
-            else //letter
-            {
-                if (an > 0)
-                    ap--, an--;
-                else
-                    break;
-            }
-        }
-    }
-    return (ap == bp) ? true : false;
-}
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>ap <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>ap<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'&lt;'</span><span class="token punctuation">)</span>
+                an<span class="token operator">++</span><span class="token punctuation">,</span> ap<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token comment" spellcheck="true">//letter</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>an <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    ap<span class="token operator">--</span><span class="token punctuation">,</span> an<span class="token operator">--</span><span class="token punctuation">;</span>
+                <span class="token keyword">else</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>ap <span class="token operator">==</span> bp<span class="token punctuation">)</span> <span class="token operator">?</span> true <span class="token punctuation">:</span> false<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-#define YTEST PTEST
-#define PRINTF(a,b) printf(#a" "#b" is equal? %s", equal(a, b) ? "yes" : "no");  printf( "  %s\n", equal2(a, b) ? "yes" : "no");
-#define PTEST(a,b) printf(#a" "#b"  is pass? %s\n", (equal2(a, b) == equal(a,b)) ? "yes" : "no");
+<span class="token macro property">#<span class="token directive keyword">define</span> YTEST PTEST</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> PRINTF(a,b) printf(#a" "#b" is equal? %s", equal(a, b) ? "yes" : "no");  printf( "  %s\n", equal2(a, b) ? "yes" : "no");</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> PTEST(a,b) printf(#a" "#b"  is pass? %s\n", (equal2(a, b) == equal(a,b)) ? "yes" : "no");</span>
 
-int main() {
-    YTEST("aab-c--dd-", "bazzb-zz----");
-    YTEST("aab---", "bbb----");
-    YTEST("abc", "abc");
-    YTEST("abc", "abc-");
-    YTEST("abc", "-abc");
-    YTEST("abc--------", "---------");
-    YTEST("--------abc--", "a");
-    return 0;
-}
-</code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">YTEST</span><span class="token punctuation">(</span><span class="token string">"aab&lt;c&lt;&lt;dd&lt;"</span><span class="token punctuation">,</span> <span class="token string">"bazzb&lt;zz&lt;&lt;&lt;&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">YTEST</span><span class="token punctuation">(</span><span class="token string">"aab&lt;&lt;&lt;"</span><span class="token punctuation">,</span> <span class="token string">"bbb&lt;&lt;&lt;&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">YTEST</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">,</span> <span class="token string">"abc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">YTEST</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">,</span> <span class="token string">"abc&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">YTEST</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">,</span> <span class="token string">"&lt;abc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">YTEST</span><span class="token punctuation">(</span><span class="token string">"abc&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;"</span><span class="token punctuation">,</span> <span class="token string">"&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">YTEST</span><span class="token punctuation">(</span><span class="token string">"&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;abc&lt;&lt;"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -814,7 +813,7 @@ int main() {
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

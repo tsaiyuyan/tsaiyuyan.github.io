@@ -440,21 +440,24 @@ We are given the head node root of a binary tree, where additio">
 <p>We are given the head node root of a binary tree, where additionally every node’s value is either a 0 or a 1.</p>
 <p>Return the same tree where every subtree (of the given tree) not containing a 1 has been removed.</p>
 <p>(Recall that the subtree of a node X is X, plus every node that is a descendant of X.)</p>
-<pre class=" language-text"><code class="language-text">Example 1:
+<pre class=" language-language-text"><code class="language-language-text">Example 1:
 Input: [1,null,0,0,1]
 Output: [1,null,0,null,1]
 
 Explanation:
 Only the red nodes satisfy the property "every subtree not containing a 1".
-The diagram on the right represents the answer.</code></pre>
+The diagram on the right represents the answer.
+</code></pre>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/06/1028_2.png" alt="1"></p>
-<pre class=" language-text"><code class="language-text">Example 2:
+<pre class=" language-language-text"><code class="language-language-text">Example 2:
 Input: [1,0,1,0,0,0,1]
-Output: [1,null,1,null,1]</code></pre>
+Output: [1,null,1,null,1]
+</code></pre>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/06/1028_1.png" alt="2"></p>
-<pre class=" language-text"><code class="language-text">Example 3:
+<pre class=" language-language-text"><code class="language-language-text">Example 3:
 Input: [1,1,0,1,1,0,1,0]
-Output: [1,1,0,1,1,null,1]</code></pre>
+Output: [1,1,0,1,1,null,1]
+</code></pre>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/05/1028.png" alt="3"></p>
 <p>Note:</p>
 <ul>
@@ -466,7 +469,7 @@ Output: [1,1,0,1,1,null,1]</code></pre>
 <p>檢查每個節點的左子樹和右子樹有無包含 1 的點，如果沒有就將其節點砍掉。</p>
 <p>程式思路:</p>
 <p>遞迴基本練習。</p>
-<pre class=" language-c++"><code class="language-c++">/**
+<pre class=" language-language-c"><code class="language-language-c">/**
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -490,7 +493,8 @@ public:
         else
            return root;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -767,7 +771,7 @@ You have
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

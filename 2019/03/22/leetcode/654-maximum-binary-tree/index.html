@@ -445,7 +445,7 @@ Given an integer array with no duplicates. A maximum tree build">
 </ol>
 <p>Construct the maximum tree by the given array and output the root node of this tree.</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: [3,2,1,6,0,5]
+<pre class=" language-language-text"><code class="language-language-text">Input: [3,2,1,6,0,5]
 Output: return the tree root node representing the following tree:
 
       6
@@ -454,7 +454,8 @@ Output: return the tree root node representing the following tree:
     \    /
      2  0
        \
-        1</code></pre>
+        1
+</code></pre>
 <p>Note:</p>
 <ul>
 <li>The size of the given array will be in the range [1,1000].</li>
@@ -468,8 +469,9 @@ Output: return the tree root node representing the following tree:
 <li>右子樹是從右部分子陣列構造的最大樹數除以最大數量。</li>
 </ol>
 <p>按給定數組構造最大樹，並輸出該樹的根節點。</p>
-<p>程式思路:<br>準備一個 stack 容器，每一個新元素加入時檢查 stack 最上面的元素是否大於新元素，如果不是的話將其元素 pop 出來為 child。也就是新元素的左子樹會得到容器內的最大的元素(如果新元素值夠大的話)。</p>
-<pre class=" language-c++"><code class="language-c++">/**
+<p>程式思路:<br>
+準備一個 stack 容器，每一個新元素加入時檢查 stack 最上面的元素是否大於新元素，如果不是的話將其元素 pop 出來為 child。也就是新元素的左子樹會得到容器內的最大的元素(如果新元素值夠大的話)。</p>
+<pre class=" language-language-c"><code class="language-language-c">/**
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -498,7 +500,8 @@ public:
         }
         return up(numeric_limits<int>::max());
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -774,7 +777,7 @@ Every emai
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             

@@ -445,13 +445,14 @@ We have a collection of rocks, each rock has a positive integer w">
 </ul>
 <p>At the end, there is at most 1 stone left. Return the weight of this stone (or 0 if there are no stones left.)</p>
 <p>Example 1:</p>
-<pre class=" language-text"><code class="language-text">Input: [2,7,4,1,8,1]
+<pre class=" language-language-text"><code class="language-language-text">Input: [2,7,4,1,8,1]
 Output: 1
 Explanation:
 We combine 7 and 8 to get 1 so the array converts to [2,4,1,1,1] then,
 we combine 2 and 4 to get 2 so the array converts to [2,1,1,1] then,
 we combine 2 and 1 to get 1 so the array converts to [1,1,1] then,
-we combine 1 and 1 to get 0 so the array converts to [1] then that's the value of last stone.</code></pre>
+we combine 1 and 1 to get 0 so the array converts to [1] then that's the value of last stone.
+</code></pre>
 <p>Note:</p>
 <ol>
 <li>1 &lt;= stones.length &lt;= 30</li>
@@ -460,9 +461,11 @@ we combine 1 and 1 to get 0 so the array converts to [1] then that's the value o
 <hr>
 <p>題目翻譯:</p>
 <p>我們有一個岩石集合，每個岩石都有一個正整數權重。 每轉一圈，我們選擇兩塊最重的岩石並將它們粉碎在一起。 假設寶石的權重為 x 和 y，x &lt;= y。 這次粉碎的結果是：</p>
-<p>如果 x == y，兩塊石頭都被徹底摧毀;<br>如果 x！= y，重量 x 的石頭被完全破壞，重量 y 的石頭具有新的重量 y-x。 最後，剩下最多 1 塊石頭。 返回這塊石頭的重量（如果沒有留下石塊，則返回 0）</p>
-<p>程式思路:<br>每次從 vector 取出兩個最大的數字，將其碰撞留下較大的，將其塞回去</p>
-<pre class=" language-c++"><code class="language-c++">class Solution
+<p>如果 x == y，兩塊石頭都被徹底摧毀;<br>
+如果 x！= y，重量 x 的石頭被完全破壞，重量 y 的石頭具有新的重量 y-x。 最後，剩下最多 1 塊石頭。 返回這塊石頭的重量（如果沒有留下石塊，則返回 0）</p>
+<p>程式思路:<br>
+每次從 vector 取出兩個最大的數字，將其碰撞留下較大的，將其塞回去</p>
+<pre class=" language-language-c"><code class="language-language-c">class Solution
 {
 public:
     int lastStoneWeight(vector<int>& stones)
@@ -486,7 +489,8 @@ public:
         }
         return 0;
     }
-};</code></pre>
+};
+</code></pre>
 
             </div>
             <hr/>
@@ -758,7 +762,7 @@ Write a cl
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">61.5k</span>
+                <span class="white-color">62.1k</span>
             
 
             
