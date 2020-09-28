@@ -5,8 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="algorithm - test1, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="QuestionGiven a string with “a~z” and “&amp;lt;” that represent you type the keyboard (“&amp;lt;” means backspace).
-For example,">
+    <meta name="description" content="Question
+Given a string with “a~z” and “&amp;lt;” that represent you type the keyboard (&amp;quot;&amp;lt;&amp;quot; means backspace).
+F">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -409,7 +410,7 @@ For example,">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        234
+                        238
                     </div>
                     
 
@@ -432,25 +433,32 @@ For example,">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>Given a string with “a~z” and “&lt;” that represent you type the keyboard (“&lt;” means backspace).</p>
-<p>For example, “abc&lt;&lt;dd&lt;&lt;” represents “a”, and “zzz&lt;&lt;&lt;” represents “”.</p>
+                <h2>Question</h2>
+<p>Given a string with “a~z” and “&lt;” that represent you type the keyboard (&quot;&lt;&quot; means backspace).</p>
+<p>For example, <code>abc&lt;&lt;dd&lt;&lt;</code> represents <code>a</code>, and <code>zzz&lt;&lt;&lt;</code> represents <code> </code></p>
 <p>不會出現刪到空格的情形，例如 “a&lt;&lt;”（我猜實際面試的時候這問題要你自己問）</p>
 <ul>
-<li><p>基本 - Implement a function<br>bool equal(string, string) that whether the two strings are equal.</p>
+<li>
+<p>基本 - Implement a function<br>
+bool equal(string, string) that whether the two strings are equal.</p>
 </li>
-<li><p>延伸 1 - Can you avoid using extra O(n) space?</p>
+<li>
+<p>延伸 1 - Can you avoid using extra O(n) space?</p>
 </li>
-<li><p>延伸 2 - Can you avoid using extra O(n) space and avoid modifying the input string?</p>
+<li>
+<p>延伸 2 - Can you avoid using extra O(n) space and avoid modifying the input string?</p>
 </li>
 </ul>
-<h2 id="Anwser"><a href="#Anwser" class="headerlink" title="Anwser"></a>Anwser</h2><p>程式思路:</p>
-<p>先做好一個對照組，用 deque 做方便後續驗證，<br>字串如果從頭掃到尾變數會太大，所以這次的兩個字串應該從尾巴開始往頭掃。兩個字串個別用兩個變數作筆記，</p>
-<p>an,bn 為記錄 ‘&lt;’的數量, ap,bp 為紀錄目前掃到哪個位置。</p>
+<h2>Anwser</h2>
+<p>程式思路:</p>
+<p>先做好一個對照組，用 deque 做方便後續驗證，<br>
+字串如果從頭掃到尾變數會太大，所以這次的兩個字串應該從尾巴開始往頭掃。兩個字串個別用兩個變數作筆記，</p>
+<p>an,bn 為記錄 '&lt;'的數量, ap,bp 為紀錄目前掃到哪個位置。</p>
 <ul>
 <li>int an = 0, bn = 0;</li>
 <li>int ap = a.length() - 1, bp = b.length() - 1;</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">#include <stdio.h>
+<pre class=" language-language-c++"><code class="language-language-c++">#include <stdio.h>
 #include <deque>
 #include <string>
 #include <iostream>
@@ -541,14 +549,8 @@ int main() {
     YTEST("<<<<<<<<abc<<", "a");
     return 0;
 }
+
 </code></pre>
-<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><pre class=" language-log"><code class="language-log">"aab<c<<dd<" "bazzb<zz<<<<"  is pass? yes
-"aab<<<" "bbb<<<<"  is pass? yes
-"abc" "abc"  is pass? yes
-"abc" "abc<"  is pass? yes
-"abc" "<abc"  is pass? yes
-"abc<<<<<<<<" "<<<<<<<<<"  is pass? yes
-"<<<<<<<<abc<<" "a"  is pass? yes</code></pre>
 
             </div>
             <hr/>
@@ -624,7 +626,8 @@ int main() {
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            QuestionGiven a string with “a~z” and “&lt;” that represent you type t
+                            Question
+Given a string with “a~z” and “&lt;” that represent you type 
                         
                     </div>
                     <div class="publish-info">
