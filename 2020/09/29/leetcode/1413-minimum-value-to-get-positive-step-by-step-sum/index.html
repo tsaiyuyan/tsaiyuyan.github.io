@@ -4,14 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="algorithm - test2, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="Question輸入一個金額 dst，列出最佳找法。
-Anwser程式思路:
-用 BFS 直接展開解
-#include &amp;lt;iostream&gt;
-#include &amp;lt;queue&gt;
-#include &amp;lt;vector&gt;
-using">
+    <meta name="keywords" content="1413. Minimum Value to Get Positive Step by Step Sum, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="Link: https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/
+Given an array of integers nums, you">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +14,7 @@ using">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>algorithm - test2 | YuYan&#39;s blog</title>
+    <title>1413. Minimum Value to Get Positive Step by Step Sum | YuYan&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon2.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -266,13 +261,13 @@ using">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        algorithm - test2
+                        1413. Minimum Value to Get Positive Step by Step Sum
                     </div>
                 </div>
             </div>
@@ -387,6 +382,10 @@ using">
                                 <span class="chip bg-color">c/c++</span>
                             </a>
                         
+                            <a href="/tags/Easy/" target="_blank">
+                                <span class="chip bg-color">Easy</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -395,8 +394,8 @@ using">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Exercise/" class="post-category" target="_blank">
-                                Exercise
+                            <a href="/categories/LeetCode/" class="post-category" target="_blank">
+                                LeetCode
                             </a>
                         
                     </div>
@@ -407,14 +406,14 @@ using">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2020-09-28
+                    2020-09-29
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        242
+                        259
                     </div>
                     
 
@@ -437,81 +436,52 @@ using">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p>輸入一個金額 dst，列出最佳找法。</p>
-<h2 id="Anwser"><a href="#Anwser" class="headerlink" title="Anwser"></a>Anwser</h2><p>程式思路:</p>
-<p>用 BFS 直接展開解</p>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
-using namespace std<span class="token punctuation">;</span>
+                <p>Link: <a href="https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum/</a></p>
+<p>Given an array of integers nums, you start with an initial positive value startValue.</p>
+<p>In each iteration, you calculate the step by step sum of startValue plus elements in nums (from left to right).</p>
+<p>Return the minimum positive value of startValue such that the step by step sum is never less than 1.</p>
+<p>Example 1:</p>
+<pre class=" language-text"><code class="language-text">Input: nums = [-3,2,-3,4,2]
+Output: 5
+Explanation: If you choose startValue = 4, in the third iteration your step by step sum is less than 1.
+                step by step sum
+                startValue = 4 | startValue = 5 | nums
+                  (4 -3 ) = 1  | (5 -3 ) = 2    |  -3
+                  (1 +2 ) = 3  | (2 +2 ) = 4    |   2
+                  (3 -3 ) = 0  | (4 -3 ) = 1    |  -3
+                  (0 +4 ) = 4  | (1 +4 ) = 5    |   4
+                  (4 +2 ) = 6  | (5 +2 ) = 7    |   2</code></pre>
+<p>Example 2:</p>
+<pre class=" language-text"><code class="language-text">Input: nums = [1,2]
+Output: 1
+Explanation: Minimum start value should be positive.</code></pre>
+<p>Example 3:</p>
+<pre class=" language-text"><code class="language-text">Input: nums = [1,-2,-3]
+Output: 5</code></pre>
+<p>Constraints:</p>
+<ul>
+<li>1 &lt;= nums.length &lt;= 100</li>
+<li>-100 &lt;= nums[i] &lt;= 100</li>
+</ul>
+<hr>
+<p>題目翻譯:</p>
+<p>選擇一個 startvalue 而這個值在跟陣列的從頭到尾的元素相加時不能小於 1。 startvalue 至少要是正數。</p>
+<p>程式思路:</p>
+<p>很 easy 的題目。</p>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">minStartValue</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-<span class="token keyword">void</span> <span class="token function">printpath</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> size <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        cout <span class="token operator">&lt;&lt;</span> path<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> path<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    cout <span class="token operator">&lt;&lt;</span> <span class="token string">" use "</span> <span class="token operator">&lt;&lt;</span> size <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" coins"</span><span class="token punctuation">;</span>
-    cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">int</span> <span class="token function">isNotVisited</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> path<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> size <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>path<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> x<span class="token punctuation">)</span>
-            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">int</span> <span class="token function">solution</span><span class="token punctuation">(</span><span class="token keyword">int</span> dst<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> coin<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> ways <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> visited<span class="token punctuation">;</span>
-    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> path<span class="token punctuation">;</span>
-    queue <span class="token operator">&lt;</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">></span> q<span class="token punctuation">;</span>
-
-    path<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        path <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">int</span> last <span class="token operator">=</span> path<span class="token punctuation">[</span>path<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>last <span class="token operator">==</span> dst<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token function">printpath</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            ways<span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> step_min <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> it <span class="token punctuation">:</span> nums<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            x <span class="token operator">+</span><span class="token operator">=</span> it<span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>step_min <span class="token operator">></span> x<span class="token punctuation">)</span>
+                step_min <span class="token operator">=</span> x<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> sum <span class="token operator">=</span> coin<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> last<span class="token punctuation">;</span>
-
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>sum <span class="token operator">></span> dst<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isNotVisited</span><span class="token punctuation">(</span>sum<span class="token punctuation">,</span> path<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">newpath</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                newpath<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>newpath<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span>  <span class="token punctuation">(</span>step_min <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token number">1</span> <span class="token operator">-</span> step_min<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> ways<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> TEST(x) printf("------------\n",x,solution(x));</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">TEST</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">TEST</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">TEST</span><span class="token punctuation">(</span><span class="token number">23</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><pre class=" language-log"><code class="language-log">1 1 1 10  use 4 coins
-------------
-1 5 10  use 3 coins
-------------
-1 1 1 10 10  use 5 coins
-------------</code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -527,7 +497,7 @@ using namespace std<span class="token punctuation">;</span>
                     </span>
                     <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/09/28/algorithm-test/test2/" class="b-link-green">algorithm - test2</a>
+                    <a href="/2020/09/29/leetcode/1413-minimum-value-to-get-positive-step-by-step-sum/" class="b-link-green">1413. Minimum Value to Get Positive Step by Step Sum</a>
                 </p>
             </div>
         </div>
@@ -549,7 +519,7 @@ using namespace std<span class="token punctuation">;</span>
         repo: 'blog-comments',
         owner: 'tsaiyuyan',
         admin: "tsaiyuyan",
-        id: '2020-09-28T18-32-00',
+        id: '2020-09-29T16-00-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -570,29 +540,30 @@ using namespace std<span class="token punctuation">;</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/09/29/leetcode/1403-minimum-subsequence-in-non-increasing-order/">
+                <a href="/2020/09/29/leetcode/1413-minimum-value-to-get-positive-step-by-step-sum/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="1403. Minimum Subsequence in Non-Increasing Order">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="1413. Minimum Value to Get Positive Step by Step Sum">
                         
-                        <span class="card-title">1403. Minimum Subsequence in Non-Increasing Order</span>
+                        <span class="card-title">1413. Minimum Value to Get Positive Step by Step Sum</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            Link: https://leetcode.com/problems/minimum-subsequence-in-non-increas
+                            Link: https://leetcode.com/problems/minimum-value-to-get-positive-step
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -605,6 +576,7 @@ using namespace std<span class="token punctuation">;</span>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -627,31 +599,31 @@ using namespace std<span class="token punctuation">;</span>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/27/algorithm-test/test1/">
+                <a href="/2020/09/29/leetcode/1403-minimum-subsequence-in-non-increasing-order/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="algorithm - test1">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="1403. Minimum Subsequence in Non-Increasing Order">
                         
-                        <span class="card-title">algorithm - test1</span>
+                        <span class="card-title">1403. Minimum Subsequence in Non-Increasing Order</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            QuestionGiven a string with “a~z” and “&lt;” that represent you type t
+                            Link: https://leetcode.com/problems/minimum-subsequence-in-non-increas
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-27
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Exercise/" class="post-category" target="_blank">
-                                    Exercise
+                            <a href="/categories/LeetCode/" class="post-category" target="_blank">
+                                    LeetCode
                                 </a>
                             
                             
@@ -663,6 +635,10 @@ using namespace std<span class="token punctuation">;</span>
                     
                     <a href="/tags/c-c/" target="_blank">
                         <span class="chip bg-color">c/c++</span>
+                    </a>
+                    
+                    <a href="/tags/Easy/" target="_blank">
+                        <span class="chip bg-color">Easy</span>
                     </a>
                     
                 </div>
