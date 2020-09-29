@@ -4,13 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="visual-studio 控制Windows螢幕小鍵盤的方法(非administrator), c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="環境
-OS: Windows7
-IDE:Visual Studio 2012
-
-0.功能描述
-windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一個虛擬鍵盤，你以前 XP 時代或許還行得通，但碰到現在 UAC 時代(vista ">
+    <meta name="keywords" content="1403. Minimum Subsequence in Non-Increasing Order, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="Link: https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/
+Given the array nums, obtain a subseque">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +14,7 @@ windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>visual-studio 控制Windows螢幕小鍵盤的方法(非administrator) | YuYan&#39;s blog</title>
+    <title>1403. Minimum Subsequence in Non-Increasing Order | YuYan&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon2.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -265,13 +261,13 @@ windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        visual-studio 控制Windows螢幕小鍵盤的方法(非administrator)
+                        1403. Minimum Subsequence in Non-Increasing Order
                     </div>
                 </div>
             </div>
@@ -382,8 +378,12 @@ windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/visual-studio/" target="_blank">
-                                <span class="chip bg-color">visual-studio</span>
+                            <a href="/tags/c-c/" target="_blank">
+                                <span class="chip bg-color">c/c++</span>
+                            </a>
+                        
+                            <a href="/tags/Easy/" target="_blank">
+                                <span class="chip bg-color">Easy</span>
                             </a>
                         
                     </div>
@@ -394,8 +394,8 @@ windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Windows/" class="post-category" target="_blank">
-                                Windows
+                            <a href="/categories/LeetCode/" class="post-category" target="_blank">
+                                LeetCode
                             </a>
                         
                     </div>
@@ -406,14 +406,14 @@ windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2019-03-20
+                    2020-09-29
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        499
+                        378
                     </div>
                     
 
@@ -436,83 +436,48 @@ windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h2><ul>
-<li>OS: Windows7</li>
-<li>IDE:Visual Studio 2012</li>
+                <p>Link: <a href="https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/" target="_blank" rel="noopener">https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/</a></p>
+<p>Given the array nums, obtain a subsequence of the array whose sum of elements is strictly greater than the sum of the non included elements in such subsequence.</p>
+<p>If there are multiple solutions, return the subsequence with minimum size and if there still exist multiple solutions, return the subsequence with the maximum total sum of all its elements. A subsequence of an array can be obtained by erasing some (possibly zero) elements from the array.</p>
+<p>Note that the solution with the given constraints is guaranteed to be unique. Also return the answer sorted in non-increasing order.</p>
+<p>Example 1:</p>
+<pre class=" language-text"><code class="language-text">Input: nums = [4,3,10,9,8]
+Output: [10,9]
+Explanation: The subsequences [10,9] and [10,8] are minimal such that the sum of their elements is strictly greater than the sum of elements not included, however, the subsequence [10,9] has the maximum total sum of its elements.</code></pre>
+<p>Example 2:</p>
+<pre class=" language-text"><code class="language-text">Input: nums = [4,4,7,6,7]
+Output: [7,7,6]
+Explanation: The subsequence [7,7] has the sum of its elements equal to 14 which is not strictly greater than the sum of elements not included (14 = 4 + 4 + 6). Therefore, the subsequence [7,6,7] is the minimal satisfying the conditions. Note the subsequence has to returned in non-decreasing order.</code></pre>
+<p>Example 3:</p>
+<pre class=" language-text"><code class="language-text">Input: nums = [6]
+Output: [6]</code></pre>
+<p>Constraints:</p>
+<ul>
+<li>1 &lt;= nums.length &lt;= 500</li>
+<li>1 &lt;= nums[i] &lt;= 100</li>
 </ul>
-<h2 id="0-功能描述"><a href="#0-功能描述" class="headerlink" title="0.功能描述"></a>0.功能描述</h2><blockquote>
-<p>windows 在使用螢幕小鍵盤的時候，千萬不要傻傻的自己撰寫一個虛擬鍵盤，你以前 XP 時代或許還行得通，但碰到現在 UAC 時代(vista 以後預設都是開啟)，你最好就是直接用作業系統提供的，好處很多，不用自己撰寫多國語系，就算客戶有埋怨，我們也可以跟客戶講說，我們是呼叫系統的。</p>
-</blockquote>
-<h2 id="1-呼叫小鍵盤"><a href="#1-呼叫小鍵盤" class="headerlink" title="1.呼叫小鍵盤"></a>1.呼叫小鍵盤</h2><blockquote>
-<p>簡單的用 cmd 方式就可以呼叫了</p>
-</blockquote>
-<pre class=" language-c"><code class="language-c"><span class="token function">ShellExecute</span><span class="token punctuation">(</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> L<span class="token string">"osk"</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span><span class="token constant">NULL</span><span class="token punctuation">,</span>SW_SHOW<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<blockquote>
-<p>用 FindWindow 確認有沒有開啟成功。</p>
-</blockquote>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">FindWindow</span><span class="token punctuation">(</span>L<span class="token string">"OSKMainClass"</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"osk open successed\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="2-移動小鍵盤"><a href="#2-移動小鍵盤" class="headerlink" title="2.移動小鍵盤"></a>2.移動小鍵盤</h2><blockquote>
-<p>MoveWindow 或是 SetWindowPos 在 UAC 的狀態下，用一般使用者都是沒辦法移動小鍵盤了，所以呢，呼叫小鍵盤前，需要去修改”登錄擋”，沒錯就是登錄擋，HKEY_CURRENT_USER\SOFTWARE\Microsoft\Osk，到這個位置把參數換一換就能夠達到 MoveWindow 的功能了。</p>
-</blockquote>
-<pre class=" language-c"><code class="language-c">DWORD WindowLeft<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//視窗左上角的位置</span>
-DWORD WindowTop<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//視窗左上角的位置</span>
-DWORD WindowWidth<span class="token operator">=</span><span class="token number">1024</span><span class="token comment" spellcheck="true">//視窗左上角的位置</span>
-DWORD WindowHeight<span class="token operator">=</span><span class="token number">768</span><span class="token comment" spellcheck="true">//視窗左上角的位置</span>
-HKEY hKey<span class="token punctuation">;</span>
-LPCTSTR sk <span class="token operator">=</span> <span class="token function">TEXT</span><span class="token punctuation">(</span><span class="token string">"SOFTWARE\\Microsoft\\Osk"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-LONG openRes <span class="token operator">=</span> <span class="token function">RegOpenKeyEx</span><span class="token punctuation">(</span>HKEY_CURRENT_USER<span class="token punctuation">,</span> sk<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> KEY_ALL_ACCESS <span class="token punctuation">,</span> <span class="token operator">&amp;</span>hKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">(</span>openRes<span class="token operator">==</span>ERROR_SUCCESS<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Success opening key."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">auto</span> lambda <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token keyword">const</span> wchar_t <span class="token operator">*</span>valuename<span class="token punctuation">,</span>DWORD value<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        LONG setRes <span class="token operator">=</span> <span class="token function">RegSetValueEx</span><span class="token punctuation">(</span>hKey<span class="token punctuation">,</span> valuename<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> REG_DWORD<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">const</span> BYTE<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>value<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>setRes <span class="token operator">==</span> ERROR_SUCCESS<span class="token punctuation">)</span>
+<hr>
+<p>題目翻譯:</p>
+<p>就是在陣列中取最少的元素，而這些被選重的元素總和必須大於其他元素合。</p>
+<p>程式思路:</p>
+<p>很 easy 的題目。先把陣列排過一遍，然後計算總合，在慢慢扣掉元素值，即是答案。</p>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">minSubsequence</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>nums<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>greater<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">auto</span> sum <span class="token operator">=</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">accumulate</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nums<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> dsum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>i<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
         <span class="token punctuation">{</span>
-            <span class="token function">wprintf</span><span class="token punctuation">(</span>L<span class="token string">"Success writing to Registry. valuename = %s value = %d"</span><span class="token punctuation">,</span>valuename<span class="token punctuation">,</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span>
-        <span class="token punctuation">{</span>
-            <span class="token function">wprintf</span><span class="token punctuation">(</span>L<span class="token string">"Error writing to Registry. valuename = %s value = %d"</span><span class="token punctuation">,</span>valuename<span class="token punctuation">,</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>sum <span class="token operator">&lt;</span> dsum<span class="token punctuation">)</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            sum <span class="token operator">-</span><span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            dsum <span class="token operator">+</span><span class="token operator">=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//cout &lt;&lt; setRes &lt;&lt; endl;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"WindowLeft"</span><span class="token punctuation">,</span>WindowLeft<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"WindowTop"</span><span class="token punctuation">,</span>WindowTop<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"WindowWidth"</span><span class="token punctuation">,</span>WindowWidth<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"WindowHeight"</span><span class="token punctuation">,</span>WindowHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"UseTextPrediction"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//關閉文字預測</span>
-    <span class="token function">lambda</span><span class="token punctuation">(</span>L<span class="token string">"NavigationMode"</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//關閉 Nav模式</span>
-
-    LONG closeOut <span class="token operator">=</span> <span class="token function">RegCloseKey</span><span class="token punctuation">(</span>hKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>closeOut <span class="token operator">==</span> ERROR_SUCCESS<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Success closing key."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Error closing key."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span> <span class="token keyword">else</span>
-<span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Error opening key."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="3-關閉小鍵盤-amp-修改一些客製參數"><a href="#3-關閉小鍵盤-amp-修改一些客製參數" class="headerlink" title="3.關閉小鍵盤&amp;修改一些客製參數"></a>3.關閉小鍵盤&amp;修改一些客製參數</h2><blockquote>
-<p>用 SendMessage 對 osk 發送 SC_CLOSE 即可</p>
-</blockquote>
-<pre class=" language-c"><code class="language-c">HWND hKbd<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-hKbd <span class="token operator">=</span> <span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">FindWindowW</span><span class="token punctuation">(</span>L<span class="token string">"OSKMainClass"</span><span class="token punctuation">,</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>hKbd<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">SendMessage</span><span class="token punctuation">(</span>hKbd<span class="token punctuation">,</span>WM_SYSCOMMAND<span class="token punctuation">,</span> SC_CLOSE<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="4-Administrator-無節操控制-不建議"><a href="#4-Administrator-無節操控制-不建議" class="headerlink" title="4.Administrator 無節操控制(不建議)"></a>4.Administrator 無節操控制(不建議)</h2><blockquote>
-<p>用最強權限控制，當然是最沒有節操的。</p>
-</blockquote>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -528,7 +493,7 @@ hKbd <span class="token operator">=</span> <span class="token punctuation">:</sp
                     </span>
                     <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/20/vc-kong-zhi-windows-ying-mu-xiao-jian-pan-de-fang-fa-fei-administrator/" class="b-link-green">visual-studio 控制Windows螢幕小鍵盤的方法(非administrator)</a>
+                    <a href="/2020/09/29/leetcode/1403-minimum-subsequence-in-non-increasing-order/" class="b-link-green">1403. Minimum Subsequence in Non-Increasing Order</a>
                 </p>
             </div>
         </div>
@@ -550,7 +515,7 @@ hKbd <span class="token operator">=</span> <span class="token punctuation">:</sp
         repo: 'blog-comments',
         owner: 'tsaiyuyan',
         admin: "tsaiyuyan",
-        id: '2019-03-20T16-39-00',
+        id: '2020-09-29T15-00-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -571,30 +536,30 @@ hKbd <span class="token operator">=</span> <span class="token punctuation">:</sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/03/21/leetcode/771-jewels-and-stones/">
+                <a href="/2020/09/29/leetcode/1403-minimum-subsequence-in-non-increasing-order/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="771. Jewels and Stones">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="1403. Minimum Subsequence in Non-Increasing Order">
                         
-                        <span class="card-title">771. Jewels and Stones</span>
+                        <span class="card-title">1403. Minimum Subsequence in Non-Increasing Order</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            Link: https://leetcode.com/problems/jewels-and-stones/submissions/
-You
+                            Link: https://leetcode.com/problems/minimum-subsequence-in-non-increas
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -607,6 +572,7 @@ You
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -629,45 +595,47 @@ You
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/20/hexo-blog-note/">
+                <a href="/2020/09/28/algorithm-test/test2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hexo Blog Note">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="algorithm - test2">
                         
-                        <span class="card-title">Hexo Blog Note</span>
+                        <span class="card-title">algorithm - test2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            
-20200422 更新
-
-系統環境配置
-安裝 Node.js
-安裝 Git
-安裝 Hexo
-
-$ cd d:/hexo
-$ npm ins
+                            Question輸入一個金額 dst，列出最佳找法。
+Anwser程式思路:
+用 BFS 直接展開解
+#include &lt;iostre
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Hexo/" class="post-category" target="_blank">
-                                    Hexo
+                            <a href="/categories/Exercise/" class="post-category" target="_blank">
+                                    Exercise
                                 </a>
                             
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c-c/" target="_blank">
+                        <span class="chip bg-color">c/c++</span>
+                    </a>
+                    
                 </div>
                 
             </div>
