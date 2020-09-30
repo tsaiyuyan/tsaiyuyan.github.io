@@ -413,7 +413,7 @@ Given two binary trees and imagine that when you put ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        360
+                        362
                     </div>
                     
 
@@ -440,7 +440,7 @@ Given two binary trees and imagine that when you put ">
 <p>Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.</p>
 <p>You need to merge them into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of new tree.</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input:
+<pre class=" language-text"><code class="language-text">Input:
     Tree 1                     Tree 2
           1                         2
          / \                       / \
@@ -454,7 +454,6 @@ Merged tree:
        4   5
       / \   \
      5   4   7
-
 </code></pre>
 <p>Note: The merging process must start from the root nodes of both trees.</p>
 <hr>
@@ -463,7 +462,7 @@ Merged tree:
 <p>您需要將它們合併到一個新的二叉樹中。合併規則是，如果兩個節點重疊，則將節點值加起來作為合併節點的新值。否則，NOT null 節點將用作新樹的節點。</p>
 <p>程式思路:</p>
 <p>用 dfs 來實作此題目，不過為了不破壞原本的 t1,t2,所以我自己用了一個新的樹，如果要解省空間的話就讓 t2 直接加在 t1 上。</p>
-<pre class=" language-language-c"><code class="language-language-c">/**
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -471,22 +470,21 @@ Merged tree:
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
- */
+ */</span>
 
-class Solution {
-public:
-    TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
-        if(!t1 && !t2)
-            return nullptr;
-        //merged_tree = tree1 + tree2
+class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">mergeTrees</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> t1<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> t2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>t1 <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>t2<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> nullptr<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//merged_tree = tree1 + tree2</span>
 
-        TreeNode* node = new TreeNode((t1 ? t1->val : 0) + (t2 ? t2->val : 0));
-        node->left = mergeTrees((t1)?t1->left:nullptr, (t2)?t2->left:nullptr);
-        node->right = mergeTrees((t1)?t1->right:nullptr, (t2)?t2->right:nullptr);
-        return node;
-    }
-};
-</code></pre>
+        TreeNode<span class="token operator">*</span> node <span class="token operator">=</span> new <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t1 <span class="token operator">?</span> t1<span class="token operator">-></span>val <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>t2 <span class="token operator">?</span> t2<span class="token operator">-></span>val <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        node<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token function">mergeTrees</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t1<span class="token punctuation">)</span><span class="token operator">?</span> t1<span class="token operator">-></span>left <span class="token punctuation">:</span> nullptr<span class="token punctuation">,</span> <span class="token punctuation">(</span>t2<span class="token punctuation">)</span><span class="token operator">?</span> t2<span class="token operator">-></span>left <span class="token punctuation">:</span> nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        node<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token function">mergeTrees</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t1<span class="token punctuation">)</span><span class="token operator">?</span> t1<span class="token operator">-></span>right <span class="token punctuation">:</span> nullptr<span class="token punctuation">,</span> <span class="token punctuation">(</span>t2<span class="token punctuation">)</span><span class="token operator">?</span> t2<span class="token operator">-></span>right <span class="token punctuation">:</span> nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> node<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -763,7 +761,7 @@ We
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">63k</span>
+                <span class="white-color">63.6k</span>
             
 
             
