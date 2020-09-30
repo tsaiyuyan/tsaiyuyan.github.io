@@ -8,10 +8,10 @@
     <meta name="description" content="snmp.conf 設定檔
 vim /etc/snmp/snmp.conf
 
-createUser user MD5 &#34;99310362&#34; DES &#34;123456789&#34;
+createUser user MD5 &#34;987654321&#34; DES &#34;123456789&#34;
 rouser user priv
 rouser user2
-agen">
+age">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -448,7 +448,7 @@ agen">
                 <h2 id="snmp-conf-設定檔"><a href="#snmp-conf-設定檔" class="headerlink" title="snmp.conf 設定檔"></a>snmp.conf 設定檔</h2><ul>
 <li><code>vim /etc/snmp/snmp.conf</code></li>
 </ul>
-<pre class=" language-conf"><code class="language-conf">createUser user MD5 "99310362" DES "123456789"
+<pre class=" language-conf"><code class="language-conf">createUser user MD5 "987654321" DES "123456789"
 rouser user priv
 rouser user2
 agentAddress udp:0.0.0.0:161
@@ -456,8 +456,8 @@ exec .1.3.6.1.4.1.2021.51 ps /bin/ps
 exec .1.3.6.1.4.1.2021.52 openssl /usr/bin/openssl x509 -in /etc/uhttpd.crt -noout -dates -fingerprint -inform der</code></pre>
 <h2 id="snmpwalk-測試"><a href="#snmpwalk-測試" class="headerlink" title="snmpwalk 測試"></a>snmpwalk 測試</h2><ol>
 <li>openWRT 端，執行<code>snmpd -f -Le</code></li>
-<li>測試端，執行<code>snmpwalk -v3 -u user2 -l authNoPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20</code>，可正常運行</li>
-<li>測試端，執行<code>snmpwalk -v3 -u user -l authPriv -a MD5 -A &quot;99310362&quot; -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021.52</code></li>
+<li>測試端，執行<code>snmpwalk -v3 -u user2 -l authNoPriv -a MD5 -A &quot;987654321&quot; -x DES -X 123456789 192.168.7.20</code>，可正常運行</li>
+<li>測試端，執行<code>snmpwalk -v3 -u user -l authPriv -a MD5 -A &quot;987654321&quot; -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021.52</code></li>
 </ol>
 <pre class=" language-log"><code class="language-log">iso.3.6.1.4.1.2021.52.1.0 = INTEGER: 1
 iso.3.6.1.4.1.2021.52.2.1.2.8.99.97.95.99.104.101.99.107 = STRING: "/bin/sh"

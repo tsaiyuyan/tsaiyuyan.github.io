@@ -494,8 +494,8 @@ syscontact  XXXXXXXXXXX@gmail.com
 
 rouser  yuyan priv
 rwuser  wyuyan
-createUser yuyan MD5 99310362 DES 123456789
-createUser wyuyan MD5 99310362 DES 123456789
+createUser yuyan MD5 987654321 DES 123456789
+createUser wyuyan MD5 987654321 DES 123456789
 
 agentAddress udp:0.0.0.0:161
 master agentx
@@ -510,9 +510,9 @@ extend .1.3.6.1.4.1.2021.52 ca_check /bin/sh /tmp/ca_check.sh</code></pre>
 <li>wyuyan : 是讀寫使用者並沒有 private 權限</li>
 <li>test command like following</li>
 </ul>
-<pre class=" language-sh"><code class="language-sh">$snmpwalk -v3 -u yuyan -l authPriv -a MD5 -A "99310362" -x DES -X 123456789 192.168.7.20
-$snmpwalk -v3 -u wyuyan -l authNoPriv -a MD5 -A "99310362" -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021.51
-$snmpwalk -v3 -u yuyan -l authPriv -a MD5 -A "99310362" -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021</code></pre>
+<pre class=" language-sh"><code class="language-sh">$snmpwalk -v3 -u yuyan -l authPriv -a MD5 -A "987654321" -x DES -X 123456789 192.168.7.20
+$snmpwalk -v3 -u wyuyan -l authNoPriv -a MD5 -A "987654321" -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021.51
+$snmpwalk -v3 -u yuyan -l authPriv -a MD5 -A "987654321" -x DES -X 123456789 192.168.7.20 .1.3.6.1.4.1.2021</code></pre>
 <hr>
 <h2 id="OpenWrt-pre-build-net-snmpd"><a href="#OpenWrt-pre-build-net-snmpd" class="headerlink" title="OpenWrt pre-build net-snmpd"></a>OpenWrt pre-build net-snmpd</h2><blockquote>
 <p>OpenWrt 有提供 net-snmpd 的模組使用，</p>
@@ -673,7 +673,7 @@ index 3446d151..02c65e7e 100644
                             snmp.conf 設定檔
 vim /etc/snmp/snmp.conf
 
-createUser user MD5 "99310362" 
+createUser user MD5 "987654321"
                         
                     </div>
                     <div class="publish-info">
