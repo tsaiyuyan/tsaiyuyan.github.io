@@ -416,7 +416,7 @@ erase
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        633
+                        651
                     </div>
                     
 
@@ -566,7 +566,10 @@ std<span class="token punctuation">:</span><span class="token punctuation">:</sp
 <h3 id="5-for-each"><a href="#5-for-each" class="headerlink" title="5. for_each"></a>5. for_each</h3><pre class=" language-c"><code class="language-c"><span class="token function">for_each</span><span class="token punctuation">(</span>A<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>A<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span> a <span class="token operator">*</span><span class="token operator">=</span> a<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">for_each</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>x <span class="token operator">=</span> <span class="token function">tolower</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">for_each</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>x <span class="token operator">=</span> <span class="token function">toupper</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h3 id="6-lamba"><a href="#6-lamba" class="headerlink" title="6. lamba"></a>6. lamba</h3><!--TODO -->
+<h3 id="6-lamba"><a href="#6-lamba" class="headerlink" title="6. lamba"></a>6. lamba</h3><h3 id="7-count-if"><a href="#7-count-if" class="headerlink" title="7. count_if"></a>7. count_if</h3><pre class=" language-c"><code class="language-c">vector <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> count<span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token function">count_if</span><span class="token punctuation">(</span><span class="token function">begin</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">end</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span>maxi<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">auto</span> <span class="token operator">&amp;</span>p<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> p <span class="token operator">==</span> maxi<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre>
+<!--TODO -->
 
             </div>
             <hr/>
@@ -842,7 +845,7 @@ Given a st
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">63.8k</span>
+                <span class="white-color">64k</span>
             
 
             
