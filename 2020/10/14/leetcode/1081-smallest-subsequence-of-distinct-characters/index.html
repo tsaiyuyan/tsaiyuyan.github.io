@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="461. Hamming Distance, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="Link: https://leetcode.com/problems/di-string-match/
-The Hamming distance between two integers is the number of position">
+    <meta name="keywords" content="1081. Smallest Subsequence of Distinct Characters, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="Link: [https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/]
+Return the lexicographically smallest">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@ The Hamming distance between two integers is the number of position">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>461. Hamming Distance | YuYan&#39;s blog</title>
+    <title>1081. Smallest Subsequence of Distinct Characters | YuYan&#39;s blog</title>
     <link rel="icon" type="image/png" href="/favicon2.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -261,13 +261,13 @@ The Hamming distance between two integers is the number of position">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        461. Hamming Distance
+                        1081. Smallest Subsequence of Distinct Characters
                     </div>
                 </div>
             </div>
@@ -382,8 +382,8 @@ The Hamming distance between two integers is the number of position">
                                 <span class="chip bg-color">c/c++</span>
                             </a>
                         
-                            <a href="/tags/Easy/" target="_blank">
-                                <span class="chip bg-color">Easy</span>
+                            <a href="/tags/Medium/" target="_blank">
+                                <span class="chip bg-color">Medium</span>
                             </a>
                         
                     </div>
@@ -406,14 +406,14 @@ The Hamming distance between two integers is the number of position">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
-                    2019-03-26
+                    2020-10-14
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        161
+                        165
                     </div>
                     
 
@@ -436,43 +436,60 @@ The Hamming distance between two integers is the number of position">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Link: <a href="https://leetcode.com/problems/di-string-match/" target="_blank" rel="noopener">https://leetcode.com/problems/di-string-match/</a></p>
-<p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
-<p>Given two integers x and y, calculate the Hamming distance.</p>
-<p>Note:<br>
-0 ≤ x, y &lt; 2^31.</p>
-<p>Example:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: x = 1, y = 4
-
-Output: 2
-
-Explanation:
-1   (0 0 0 1)
-4   (0 1 0 0)
-       ↑   ↑
-
-The above arrows point to positions where the corresponding bits are different.
+                <p>Link: [https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/]<br>
+Return the lexicographically smallest subsequence of s that contains all the distinct characters of s exactly once.</p>
+<p>Note: This question is the same as 316: [https://leetcode.com/problems/remove-duplicate-letters/]</p>
+<p>Example 1:</p>
+<pre class=" language-language-txt"><code class="language-language-txt">Input: s = "bcabc"
+Output: "abc"
 </code></pre>
+<p>Example 2:</p>
+<pre class=" language-language-txt"><code class="language-language-txt">Input: s = "cbacdcbc"
+Output: "acdb"
+</code></pre>
+<p>Constraints:</p>
+<ul>
+<li>1 &lt;= s.length &lt;= 1000</li>
+<li>s consists of lowercase English letters.</li>
+</ul>
 <hr>
 <p>題目翻譯:</p>
-<p>兩個整數之間的漢明距離是相應位不同的位置數。</p>
-<p>給定兩個整數 x 和 y，計算漢明距離。</p>
+<p>X</p>
 <p>程式思路:</p>
-<p>幾&quot;個&quot;位元不同就是漢名距離。</p>
+<p>X</p>
 <pre class=" language-language-c"><code class="language-language-c">class Solution {
 public:
-    int hammingDistance(int x, int y) {
-        int ex = x ^ y;
-        int result = 0;
-        while(ex != 0)
-        {
-            if(ex %2 == 1)
-            {
-               result++;
-            }
-            ex = ex >> 1;
+    string smallestSubsequence(string s) {
+        vector <int> seen (26,false);
+        vector <int> freq (26,0);
+        stack <char> stk;
+        for (auto c : s) {
+            freq[c - 'a']++;
         }
-        return result;
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s[i];
+
+            freq[ch - 'a']--;
+            if (seen[ch - 'a'])
+                continue;
+
+            while (!stk.empty() && stk.top() > ch && freq[stk.top() - 'a'] > 0) {
+                seen[stk.top() - 'a'] = false;
+                stk.pop();
+            }
+
+            stk.push(ch);
+            seen[ch - 'a'] = true;
+        }
+
+        string res;
+        while (!stk.empty()) {
+            res += stk.top();
+            stk.pop();
+        }
+        reverse(res.begin(), res.end());
+        return res;
     }
 };
 </code></pre>
@@ -491,7 +508,7 @@ public:
                     </span>
                     <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/26/leetcode/461-hamming-distance/" class="b-link-green">461. Hamming Distance</a>
+                    <a href="/2020/10/14/leetcode/1081-smallest-subsequence-of-distinct-characters/" class="b-link-green">1081. Smallest Subsequence of Distinct Characters</a>
                 </p>
             </div>
         </div>
@@ -513,7 +530,7 @@ public:
         repo: 'blog-comments',
         owner: 'tsaiyuyan',
         admin: "tsaiyuyan",
-        id: '2019-03-26T15-30-00',
+        id: '2020-10-14T10-00-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -534,29 +551,30 @@ public:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/03/27/leetcode/921-minimum-add-to-make-parentheses-valid/">
+                <a href="/2020/10/14/leetcode/1081-smallest-subsequence-of-distinct-characters/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="921. Minimum Add to Make Parentheses Valid">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="1081. Smallest Subsequence of Distinct Characters">
                         
-                        <span class="card-title">921. Minimum Add to Make Parentheses Valid</span>
+                        <span class="card-title">1081. Smallest Subsequence of Distinct Characters</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            Link: https://leetcode.com/problems/minimum-add-to-make-parentheses-va
+                            Link: [https://leetcode.com/problems/smallest-subsequence-of-distinct-
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -569,6 +587,7 @@ public:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -591,25 +610,25 @@ public:
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/03/26/leetcode/942-di-string-match/">
+                <a href="/2020/10/05/leetcode/1399-count-largest-group/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="942. DI String Match">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="1399_Count Largest Group">
                         
-                        <span class="card-title">942. DI String Match</span>
+                        <span class="card-title">1399_Count Largest Group</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            Link: https://leetcode.com/problems/di-string-match/
-Given a string S 
+                            Link: https://leetcode.com/problems/count-largest-group/
+Given an inte
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-26
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-05
                             </span>
                         <span class="publish-author">
                             
