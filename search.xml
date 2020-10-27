@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Ubuntu 啟用 google bbr</title>
+      <link href="/2020/10/27/ubuntu-qi-yong-google-bbr/"/>
+      <url>/2020/10/27/ubuntu-qi-yong-google-bbr/</url>
+      
+        <content type="html"><![CDATA[<p>reference:</p><ul><li>quic: [https://en.wikipedia.org/wiki/QUIC]</li><li>eanble bbr: [https://www.mf8.biz/ubuntu-20-04-bbr/]</li></ul><p>Ubuntu 18.04 默認內核是 4.15版本的內核</p><p>Linux Kernel 內核升級到 4.9 及以上版本可以實現 BBR 加速，由於，由於Ubuntu 20.04 默認的內核就是 5.4 版本的內核，並已經默認編譯了 TCP BBR 模塊，所以可以直接通過參數開啟。</p><p>新的 TCP 擁塞控制算法 BBR (Bottleneck Bandwidth and RTT) 可以讓服務器的帶寬儘量跑慢，並且儘量不要有排隊的情況，讓網絡服務更佳穩定和高效。</p><p>修改系統變量</p><pre class=" language-language-sh"><code class="language-language-sh">echo net.core.default_qdisc=fq >> /etc/sysctl.confecho net.ipv4.tcp_congestion_control=bbr >> /etc/sysctl.conf</code></pre><p>保存生效</p><pre class=" language-language-sh"><code class="language-language-sh">sysctl -p</code></pre><p>執行</p><pre class=" language-language-sh"><code class="language-language-sh">sysctl net.ipv4.tcp_available_congestion_control如果結果是這樣sysctl net.ipv4.tcp_available_congestion_controlnet.ipv4.tcp_available_congestion_control = bbr cubic reno</code></pre><p>或是用 <code>lsmod | grep tcp_bbr</code>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> quic </tag>
+            
+            <tag> bbr </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1081. Smallest Subsequence of Distinct Characters</title>
       <link href="/2020/10/14/leetcode/1081-smallest-subsequence-of-distinct-characters/"/>
       <url>/2020/10/14/leetcode/1081-smallest-subsequence-of-distinct-characters/</url>
