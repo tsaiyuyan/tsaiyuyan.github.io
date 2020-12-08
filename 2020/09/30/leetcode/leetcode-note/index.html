@@ -5,7 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="LeetCode Note., c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="Common Container1. string
+    <meta name="description" content="Common Container
+1. string
+
 substr(i,str.length()-i)
 find
 rfind
@@ -13,7 +15,8 @@ c_str()
 erase
 
 2. vector
-用emplace_front, emplace, emplace_">
+
+用emplace_front, emplace, empla">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -416,14 +419,14 @@ erase
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        750
+                        133
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        4 分
+                        1 分
                     </div>
                     
                 
@@ -439,25 +442,30 @@ erase
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Common-Container"><a href="#Common-Container" class="headerlink" title="Common Container"></a>Common Container</h2><h3 id="1-string"><a href="#1-string" class="headerlink" title="1. string"></a>1. string</h3><ul>
+                <h2>Common Container</h2>
+<h3 id="1-string"><a class="header-anchor" href="#1-string"></a>1. string</h3>
+<ul>
 <li>substr(i,str.length()-i)</li>
 <li>find</li>
 <li>rfind</li>
 <li>c_str()</li>
 <li>erase</li>
 </ul>
-<h3 id="2-vector"><a href="#2-vector" class="headerlink" title="2. vector"></a>2. vector</h3><ul>
+<h3 id="2-vector"><a class="header-anchor" href="#2-vector"></a>2. vector</h3>
+<ul>
 <li>用<code>emplace_front, emplace, emplace_back</code> 代替 <code>push_front, insert, push_back</code></li>
 <li>emplace 相關函式可以減少記憶體拷貝和移動。當插入 rvalue，它節約了一次 move 構造，當插入 lvalue，它節約了一次 copy 構造。</li>
 <li>pop_back()</li>
 </ul>
-<h3 id="3-queue-and-deque"><a href="#3-queue-and-deque" class="headerlink" title="3. queue and deque"></a>3. queue and deque</h3><blockquote>
+<h3 id="3-queue-and-deque"><a class="header-anchor" href="#3-queue-and-deque"></a>3. queue and deque</h3>
+<blockquote>
 <p>Hint: Deque is short for “Double ended queue”.</p>
 </blockquote>
 <ul>
 <li><code>Queue</code>: you can insert only in one end and remove from the other.</li>
 <li><code>Deque</code>: you can insert and remove from both ends.</li>
-<li>Methods:<ul>
+<li>Methods:
+<ul>
 <li>emplace_back(val)</li>
 <li>erase</li>
 <li>empty()</li>
@@ -466,132 +474,202 @@ erase
 </ul>
 </li>
 </ul>
-<h3 id="4-stack"><a href="#4-stack" class="headerlink" title="4. stack"></a>4. stack</h3><ul>
+<h3 id="4-stack"><a class="header-anchor" href="#4-stack"></a>4. stack</h3>
+<ul>
 <li>s.top()</li>
 <li>s.pop()</li>
 <li>s.push()</li>
 </ul>
-<h3 id="5-map-and-unordered-map"><a href="#5-map-and-unordered-map" class="headerlink" title="5. map and unordered_map"></a>5. map and unordered_map</h3><pre class=" language-c"><code class="language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>unordered_map<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> umap<span class="token punctuation">;</span>
-string J <span class="token operator">=</span> <span class="token string">"12345678abcdef"</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>J<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-    umap<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span> pair<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span> J<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//...</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>umap<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token operator">!=</span> umap<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">//...</span></code></pre>
-<pre class=" language-c"><code class="language-c">unordered_map <span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">></span> table<span class="token punctuation">;</span>
-
-string pattern<span class="token punctuation">,</span>word<span class="token punctuation">;</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">auto</span> ret <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>pair <span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span><span class="token keyword">char</span><span class="token operator">></span> <span class="token punctuation">(</span>pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>word<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>second <span class="token operator">==</span> false<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//already exist</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<h3 id="5-map-and-unordered-map"><a class="header-anchor" href="#5-map-and-unordered-map"></a>5. map and unordered_map</h3>
+<pre class=" language-language-c"><code class="language-language-c">std::unordered_map<char,int> umap;
+string J = "12345678abcdef";
+for (unsigned i=0; i<J.length(); ++i)
+    umap.insert( pair<char, int>( J.at(i), i));
+//...
+if(umap.find('a') != umap.end())
+//...
 </code></pre>
-<h3 id="6-set-and-unordered-set"><a href="#6-set-and-unordered-set" class="headerlink" title="6. set and unordered_set"></a>6. set and unordered_set</h3><blockquote>
+<pre class=" language-language-c"><code class="language-language-c">unordered_map <char, char> table;
+
+string pattern,word;
+for(i = 0; i< pattern.length(); i++)
+{
+    auto ret = table.insert(std::pair <char,char> (pattern[i],word[i]));
+    if(ret.second == false)
+    {
+        //already exist
+    }
+}
+
+</code></pre>
+<h3 id="6-set-and-unordered-set"><a class="header-anchor" href="#6-set-and-unordered-set"></a>6. set and unordered_set</h3>
+<blockquote>
 <p>常用於紀錄是否有重複之類的</p>
 </blockquote>
 <ul>
 <li>.insert</li>
 </ul>
-<pre class=" language-c"><code class="language-c">unordered_set <span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">></span> mark<span class="token punctuation">;</span>
-<span class="token keyword">auto</span> ret <span class="token operator">=</span> mark<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>second <span class="token operator">==</span> false<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-     <span class="token comment" spellcheck="true">//already exist</span>
-<span class="token punctuation">}</span></code></pre>
+<pre class=" language-language-c"><code class="language-language-c">unordered_set <char> mark;
+auto ret = mark.insert('a');
+if(ret.second == false)
+{
+     //already exist
+}
+</code></pre>
 <hr>
-<h2 id="Functions-or-Methods"><a href="#Functions-or-Methods" class="headerlink" title="Functions or Methods"></a>Functions or Methods</h2><h3 id="1-找容器極值"><a href="#1-找容器極值" class="headerlink" title="1.找容器極值"></a>1.找容器極值</h3><ul>
-<li><code>int max = *std::max_element(nums.begin(),nums.end())</code></li>
-<li><code>int min = *std::min_element(nums.begin(),nums.end())</code></li>
-<li><code>int sum = std::accumulate(nums.begin(), nums.end(), 0)</code></li>
-</ul>
-<h3 id="2-型態極值"><a href="#2-型態極值" class="headerlink" title="2.型態極值"></a>2.型態極值</h3><blockquote>
+<h2>Functions or Methods</h2>
+<h3 id="1-找容器極值"><a class="header-anchor" href="#1-找容器極值"></a>1.找容器極值</h3>
+<pre class=" language-language-c"><code class="language-language-c">int max = *std::max_element(nums.begin(),nums.end())
+int min = *std::min_element(nums.begin(),nums.end())
+int sum = std::accumulate(nums.begin(), nums.end(), 0)
+</code></pre>
+<h3 id="2-型態極值"><a class="header-anchor" href="#2-型態極值"></a>2.型態極值</h3>
+<blockquote>
 <p>有些題目會用到極值來判斷</p>
 </blockquote>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;limits></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<pre class=" language-language-c"><code class="language-language-c">#include <limits>
+#include <iostream>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"bool\t"</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span>bool<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">lowest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\t\t"</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span>bool<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\t\t"</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span>bool<span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span>
-              <span class="token operator">&lt;&lt;</span> <span class="token string">"uchar\t"</span>
-              <span class="token operator">&lt;&lt;</span> <span class="token operator">+</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">lowest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\t\t"</span>
-              <span class="token operator">&lt;&lt;</span> <span class="token operator">+</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\t\t"</span>
-              <span class="token operator">&lt;&lt;</span> <span class="token operator">+</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span>
-              <span class="token operator">&lt;&lt;</span> <span class="token string">"int\t"</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">lowest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\t'</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\t'</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span>
-              <span class="token operator">&lt;&lt;</span> <span class="token string">"float\t"</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">lowest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\t'</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\t'</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">float</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span>
-              <span class="token operator">&lt;&lt;</span> <span class="token string">"double\t"</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">lowest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\t'</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\t'</span>
-              <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>numeric_limits<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">'\n'</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+int main()
+{
+    std::cout << "bool\t"
+              << std::numeric_limits<bool>::lowest() << "\t\t"
+              << std::numeric_limits<bool>::min() << "\t\t"
+              << std::numeric_limits<bool>::max() << '\n'
+              << "uchar\t"
+              << +std::numeric_limits<unsigned char>::lowest() << "\t\t"
+              << +std::numeric_limits<unsigned char>::min() << "\t\t"
+              << +std::numeric_limits<unsigned char>::max() << '\n'
+              << "int\t"
+              << std::numeric_limits<int>::lowest() << '\t'
+              << std::numeric_limits<int>::min() << '\t'
+              << std::numeric_limits<int>::max() << '\n'
+              << "float\t"
+              << std::numeric_limits<float>::lowest() << '\t'
+              << std::numeric_limits<float>::min() << '\t'
+              << std::numeric_limits<float>::max() << '\n'
+              << "double\t"
+              << std::numeric_limits<double>::lowest() << '\t'
+              << std::numeric_limits<double>::min() << '\t'
+              << std::numeric_limits<double>::max() << '\n';
+}
+</code></pre>
 <p>Possible output:</p>
-<pre class=" language-log"><code class="language-log">bool 0 0 1
+<pre class=" language-language-log"><code class="language-language-log">bool 0 0 1
 uchar 0 0 255
 int -2147483648 -2147483648 2147483647
 float -3.40282e+38 1.17549e-38 3.40282e+38
-double -1.79769e+308 2.22507e-308 1.79769e+308</code></pre>
-<h3 id="3-排序-sort"><a href="#3-排序-sort" class="headerlink" title="3. 排序 sort"></a>3. 排序 sort</h3><ul>
+double -1.79769e+308 2.22507e-308 1.79769e+308
+</code></pre>
+<h3 id="3-排序-sort"><a class="header-anchor" href="#3-排序-sort"></a>3. 排序 sort</h3>
+<ul>
 <li><code>std::sort(vector.begin(), vector.end(), std::less&lt;int&gt;())</code> : 由大排到小</li>
 <li><code>std::sort(vector.begin(), vector.end(), std::greater&lt;int&gt;())</code> : 由小排到大</li>
 </ul>
-<h3 id="4-轉換大小寫"><a href="#4-轉換大小寫" class="headerlink" title="4. 轉換大小寫"></a>4. 轉換大小寫</h3><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// c++</span>
-string str<span class="token punctuation">;</span>
-std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">transform</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">:</span>tolower<span class="token punctuation">)</span><span class="token punctuation">;</span>
-std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">transform</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">:</span>toupper<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">for_each</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>x <span class="token operator">=</span> <span class="token function">tolower</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">for_each</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>x <span class="token operator">=</span> <span class="token function">toupper</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h3 id="4-轉換大小寫"><a class="header-anchor" href="#4-轉換大小寫"></a>4. 轉換大小寫</h3>
+<pre class=" language-language-c"><code class="language-language-c">// c++
+string str;
+std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+for_each(str.begin(), str.end(), [](char &x){x = tolower(x);});
+for_each(str.begin(), str.end(), [](char &x){x = toupper(x);});
 
-<span class="token comment" spellcheck="true">// c</span>
-<span class="token keyword">int</span> offset <span class="token operator">=</span> <span class="token string">'A'</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> str<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span><span class="token string">'A'</span> <span class="token operator">&amp;&amp;</span> str<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> <span class="token string">'Z'</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        str<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> offset<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="5-for-each"><a href="#5-for-each" class="headerlink" title="5. for_each"></a>5. for_each</h3><pre class=" language-c"><code class="language-c"><span class="token function">for_each</span><span class="token punctuation">(</span>A<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>A<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span> a <span class="token operator">*</span><span class="token operator">=</span> a<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">for_each</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>x <span class="token operator">=</span> <span class="token function">tolower</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">for_each</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>x <span class="token operator">=</span> <span class="token function">toupper</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">for_each</span><span class="token punctuation">(</span>nums<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nums<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span>sum<span class="token punctuation">,</span> <span class="token operator">&amp;</span>nums<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">&amp;</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span> sum <span class="token operator">+</span><span class="token operator">=</span> n<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h3 id="6-Lambda"><a href="#6-Lambda" class="headerlink" title="6. Lambda"></a>6. Lambda</h3><p>Capturing Local Variables by Reference inside Lambda</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// Local Variables</span>
-std<span class="token punctuation">:</span><span class="token punctuation">:</span>string msg <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> counter <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// Defining Lambda function and</span>
-<span class="token comment" spellcheck="true">// Capturing Local variables by Reference</span>
-<span class="token keyword">auto</span> func <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span>msg<span class="token punctuation">,</span> <span class="token operator">&amp;</span>counter<span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                       <span class="token comment" spellcheck="true">//...</span>
-                       <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+// c
+int offset = 'A' - 'a';
+for(int i =0; i < str.length() ; i++)
+{
+    if(str[i] >='A' && str[i] <= 'Z')
+    {
+        str[i] -= offset;
+    }
+}
+</code></pre>
+<h3 id="5-for-each"><a class="header-anchor" href="#5-for-each"></a>5. for_each</h3>
+<pre class=" language-language-c"><code class="language-language-c">for_each(A.begin(),A.end(), [](int &a){ a *= a;});
+for_each(str.begin(), str.end(), [](char &x){x = tolower(x);});
+for_each(str.begin(), str.end(), [](char &x){x = toupper(x);});
+for_each(nums.begin(), nums.end(), [&sum, &nums](int& n) { sum += n; });
+</code></pre>
+<h3 id="6-Lambda"><a class="header-anchor" href="#6-Lambda"></a>6. Lambda</h3>
+<p>Capturing Local Variables by Reference inside Lambda</p>
+<pre class=" language-language-c"><code class="language-language-c">// Local Variables
+std::string msg = "Hello";
+int counter = 10;
+// Defining Lambda function and
+// Capturing Local variables by Reference
+auto func = [&msg, &counter] () {
+                       //...
+                       };
+</code></pre>
 <p>Capture All Local Variables from outer scope by Value</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// Capturing all Local variables by Value</span>
-<span class="token keyword">auto</span> func <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                   <span class="token comment" spellcheck="true">//...</span>
-                   <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-language-c"><code class="language-language-c">// Capturing all Local variables by Value
+auto func = [=] () {
+                   //...
+                   };
+</code></pre>
 <p>Capture all local variables from outer scope by Reference</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">// Capturing all Local variables by Reference</span>
-<span class="token keyword">auto</span> func <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                   <span class="token comment" spellcheck="true">//...</span>
-                   <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<h3 id="7-count-if"><a href="#7-count-if" class="headerlink" title="7. count_if"></a>7. count_if</h3><pre class=" language-c"><code class="language-c">vector <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> count<span class="token punctuation">;</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token function">count_if</span><span class="token punctuation">(</span><span class="token function">begin</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">end</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span>maxi<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">auto</span> <span class="token operator">&amp;</span>p<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> p <span class="token operator">==</span> maxi<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre>
-<!--TODO -->
+<pre class=" language-language-c"><code class="language-language-c">// Capturing all Local variables by Reference
+auto func = [&] () {
+                   //...
+                   };
+</code></pre>
+<h3 id="7-count-if"><a class="header-anchor" href="#7-count-if"></a>7. count_if</h3>
+<pre class=" language-language-c"><code class="language-language-c">vector <int> count;
+...
+count_if(begin(count), end(count), [&maxi](const auto &p) {return p == maxi;}
+</code></pre>
+<h3 id="What’s-the-most-efficient-way-to-erase-duplicates-and-sort-a-vector"><a class="header-anchor" href="#What’s-the-most-efficient-way-to-erase-duplicates-and-sort-a-vector"></a>What’s the most efficient way to erase duplicates and sort a vector</h3>
+<pre class=" language-language-c"><code class="language-language-c">//ust using vector, sort + unique
+sort( vec.begin(), vec.end() );
+vec.erase( unique( vec.begin(), vec.end() ), vec.end() );
 
-<h2 id="名詞"><a href="#名詞" class="headerlink" title="名詞"></a>名詞</h2><h3 id="the-smallest-in-lexicographical-order"><a href="#the-smallest-in-lexicographical-order" class="headerlink" title="the smallest in lexicographical order"></a>the smallest in lexicographical order</h3><p>最小字典序</p>
+//Convert to set (manually)
+set<int> s;
+unsigned size = vec.size();
+for( unsigned i = 0; i < size; ++i ) s.insert( vec[i] );
+vec.assign( s.begin(), s.end() );
+
+//Convert to set (using a constructor)
+set<int> s( vec.begin(), vec.end() );
+vec.assign( s.begin(), s.end() );
+...
+
+## 河內塔
+
+```c
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int cnt; //全局變量，每次調用會+1
+
+void move(int id, char from, char to) // 打印移動方式：編號，從哪個盤子移動到哪個盤子
+{
+    printf ("step %d: move %d from %c->%c\n", ++cnt, id, from, to);
+}
+
+void hanoi(int n, char x, char y, char z)
+{
+    if(n == 0)//注意遞歸的出口，不然就是死遞歸了
+        return;
+    hanoi(n - 1, x, z, y); //將n-1個在x柱子上的盤子通過z這個柱子移動到y這個柱子上。
+    move(n, x, z);
+    hanoi(n - 1, y, x, z); //將n-1個在y柱子上的盤子通過x這個柱子移動到z這個柱子上。
+}
+
+int main()
+{
+    int n;
+    cnt = 0;
+    scanf ("%d", &n);
+    hanoi(n, 'A', 'B', 'C');
+    return 0;
+}
+
+</code></pre>
+<!--TODO -->
+<h2>名詞</h2>
+<h3 id="the-smallest-in-lexicographical-order"><a class="header-anchor" href="#the-smallest-in-lexicographical-order"></a>the smallest in lexicographical order</h3>
+<p>最小字典序</p>
 
             </div>
             <hr/>
@@ -867,7 +945,7 @@ Given a st
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">65.2k</span>
+                <span class="white-color">64.6k</span>
             
 
             
