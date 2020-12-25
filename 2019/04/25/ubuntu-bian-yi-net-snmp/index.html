@@ -489,17 +489,18 @@ extend script2 /etc/snmp/scripts/script2.sh
 <hr>
 <h3 id="net-snmp-指令"><a href="#net-snmp-指令" class="headerlink" title="net-snmp 指令"></a>net-snmp 指令</h3><h4 id="1-snmpwalk"><a href="#1-snmpwalk" class="headerlink" title="1.snmpwalk"></a>1.snmpwalk</h4><p>執行一系列 snmpgetnext 指令的集合。</p>
 <pre class=" language-text"><code class="language-text">snmpwalk的用法
-snmpwalk -v 1或2(代表SNMP版本) -c SNMP读密码 IP地址 OID(对象标示符)
+snmpwalk -v 1或2(代表SNMP版本) -c SNMP讀密碼 IP地址 OID(對象標示符)
 
 (1) -v： 指定snmp的版本, 1或者2；
-(2) -c:    指定连接设备SNMP读密码；
-(3) IP:    指定要walk的设备的IP地址；
-(4) Oid：代表要获取设备的指标oid；
+(2) -c:    指定連接設備SNMP讀密碼；
+(3) IP:    指定要walk的設備的IP地址；
+(4) Oid：代表要獲取設備的指標oid；
 
-用法举例：
+用法舉例：
 
-例如获取cisco设备192.168.17.191的接口类型
-Snmpwalk –v 2 –c public 192.168.17.191 1.3.6.1.2.1.2.2.1.3</code></pre>
+例如獲取cisco設備192.168.17.191的接口類型
+
+snmpwalk –v 2c –c public 192.168.17.191 1.3.6.1.2.1.2.2.1.3</code></pre>
 <h4 id="2-snmpget"><a href="#2-snmpget" class="headerlink" title="2.snmpget"></a>2.snmpget</h4><p>可從指定的主機擷取 MIB 資訊。</p>
 <h4 id="3-snmpgetnext"><a href="#3-snmpgetnext" class="headerlink" title="3.snmpgetnext"></a>3.snmpgetnext</h4><p>循序存取沒有定義 index 的資訊。</p>
 <h4 id="4-snmpset"><a href="#4-snmpset" class="headerlink" title="4.snmpset"></a>4.snmpset</h4><p>將指定的資訊寫入定義好的 MIB 資料庫中。</p>
@@ -814,7 +815,7 @@ CentOS Appli
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">64.6k</span>
+                <span class="white-color">65.4k</span>
             
 
             
