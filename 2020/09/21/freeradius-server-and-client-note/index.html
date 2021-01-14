@@ -412,7 +412,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        499
+                        503
                     </div>
                     
 
@@ -444,7 +444,7 @@
 <li>Client ver : 1.1.7</li>
 </ul>
 <hr>
-<h2 id="FreeRadius-Server"><a href="#FreeRadius-Server" class="headerlink" title="FreeRadius-Server"></a>FreeRadius-Server</h2><h3 id="Using-docker-fastly-build-Server-for-test"><a href="#Using-docker-fastly-build-Server-for-test" class="headerlink" title="Using docker fastly build Server for test"></a>Using docker fastly build Server for test</h3><p><code>$docker run -it --rm --name radius-server -p 1812-1813:1812-1813/udp freeradius/freeradius-server /bin/bash</code></p>
+<h2 id="FreeRadius-Server"><a href="#FreeRadius-Server" class="headerlink" title="FreeRadius-Server"></a>FreeRadius-Server</h2><h3 id="Using-docker-fastly-build-Server-for-test"><a href="#Using-docker-fastly-build-Server-for-test" class="headerlink" title="Using docker fastly build Server for test"></a>Using docker fastly build Server for test</h3><p><code>$docker run -it --rm --name radius-server -p 1812-1813:1812-1813/udp -v ~/Desktop/radius_shared:/shared freeradius/freeradius-server bash -l</code></p>
 <h3 id="進入-docker"><a href="#進入-docker" class="headerlink" title="進入 docker"></a>進入 docker</h3><pre class=" language-sh"><code class="language-sh"># 更新
 $apt update && apt install vim
 
