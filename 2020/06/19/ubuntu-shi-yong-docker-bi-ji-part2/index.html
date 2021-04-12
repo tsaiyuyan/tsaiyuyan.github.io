@@ -420,7 +420,7 @@ $curl -sSL https://get.docker.com/ |">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        753
+                        812
                     </div>
                     
 
@@ -447,7 +447,14 @@ $curl -sSL https://get.docker.com/ |">
 <p>使用 docker 前，建議可以將使用者加入 docker 群組，可以省去一直打 sudo 的麻煩。</p>
 </blockquote>
 <h2 id="一、安裝-docker"><a href="#一、安裝-docker" class="headerlink" title="一、安裝 docker"></a>一、安裝 docker</h2><h3 id="安裝指令"><a href="#安裝指令" class="headerlink" title="安裝指令"></a>安裝指令</h3><pre class=" language-sh"><code class="language-sh">#Install docker
-$curl -sSL https://get.docker.com/ | sudo sh</code></pre>
+$curl -sSL https://get.docker.com/ | sudo sh
+
+#Install docker-compose
+$sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+$sudo chmod +x /usr/local/bin/docker-compose
+$sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+$docker-compose --version
+docker-compose version 1.28.5, build 1110ad01</code></pre>
 <h3 id="Use-docker-without-sudo"><a href="#Use-docker-without-sudo" class="headerlink" title="Use docker without sudo"></a>Use docker without sudo</h3><p>reference: <a href="https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo" target="_blank" rel="noopener">How can I use docker without sudo ?</a></p>
 <pre class=" language-sh"><code class="language-sh"># 1.Add the docker group if it doesn't already exist:
 $sudo groupadd docker
@@ -812,7 +819,7 @@ CONTAINER ID        IMAGE                   COMMAND             CREATED         
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">65.4k</span>
+                <span class="white-color">66k</span>
             
 
             
