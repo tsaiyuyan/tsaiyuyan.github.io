@@ -443,7 +443,7 @@ xinte">
 <p>因為要節省 embadded system 的空間，所以改使用 tftp 去 download 二進制檔案。<br>相比 NFS 是比較小包，但是沒有列出檔案的功能，這點要稍微注意一下。</p>
 </blockquote>
 <h2 id="一、安裝-TFTP-服務-在-host-端"><a href="#一、安裝-TFTP-服務-在-host-端" class="headerlink" title="一、安裝 TFTP 服務(在 host 端)"></a>一、安裝 TFTP 服務(在 host 端)</h2><blockquote>
-<p>xinted 跟 tftpd-hda 擇一即可</p>
+<p>xinted 跟 tftpd-hpa 擇一即可</p>
 </blockquote>
 <h3 id="tftpd-hpa-recommended"><a href="#tftpd-hpa-recommended" class="headerlink" title="tftpd-hpa (recommended)"></a>tftpd-hpa (recommended)</h3><h4 id="1-下載-tftpd-hpa"><a href="#1-下載-tftpd-hpa" class="headerlink" title="1.下載 tftpd-hpa"></a>1.下載 tftpd-hpa</h4><pre class=" language-sh"><code class="language-sh">$sudo apt-get install tftpd-hpa</code></pre>
 <h4 id="2-設定分享的目錄-以下是-home-yuyan-Public-tftp"><a href="#2-設定分享的目錄-以下是-home-yuyan-Public-tftp" class="headerlink" title="2.設定分享的目錄, 以下是 /home/yuyan/Public/tftp"></a>2.設定分享的目錄, 以下是 /home/yuyan/Public/tftp</h4><pre class=" language-sh"><code class="language-sh">$sudo mkdir -p /home/yuyan/Public/tftp
@@ -458,7 +458,7 @@ TFTP_OPTIONS="-l -c -s"
 #-c: Allow new files to be created
 #-s: Change  root  directory  on startup.
 #-l:  Run the server in standalone (listen) mode, rather than run from inetd.</code></pre>
-<h4 id="4-重啟-tftpd-hpa"><a href="#4-重啟-tftpd-hpa" class="headerlink" title="4. 重啟 tftpd-hpa"></a>4. 重啟 tftpd-hpa</h4><pre class=" language-sh"><code class="language-sh">$sudo service tftpd-ha restart</code></pre>
+<h4 id="4-重啟-tftpd-hpa"><a href="#4-重啟-tftpd-hpa" class="headerlink" title="4. 重啟 tftpd-hpa"></a>4. 重啟 tftpd-hpa</h4><pre class=" language-sh"><code class="language-sh">$sudo service tftpd-hpa restart</code></pre>
 <hr>
 <h3 id="xinetd-has-been"><a href="#xinetd-has-been" class="headerlink" title="xinetd(has-been)"></a>xinetd(has-been)</h3><h4 id="1-下載-xinetd"><a href="#1-下載-xinetd" class="headerlink" title="1.下載 xinetd"></a>1.下載 xinetd</h4><pre class=" language-sh"><code class="language-sh">$sudo apt-get install xinetd tftp tftp-server</code></pre>
 <h4 id="2-設定分享的目錄-以下是-home-yuyan-Public-tftp-1"><a href="#2-設定分享的目錄-以下是-home-yuyan-Public-tftp-1" class="headerlink" title="2.設定分享的目錄,以下是 /home/yuyan/Public/tftp"></a>2.設定分享的目錄,以下是 /home/yuyan/Public/tftp</h4><pre class=" language-sh"><code class="language-sh">$sudo mkdir -p /home/yuyan/Public/tftp
@@ -477,6 +477,7 @@ service tftp
     cps = 100 2
 }</code></pre>
 <h4 id="4-restart-xinetd-service"><a href="#4-restart-xinetd-service" class="headerlink" title="4. restart xinetd service"></a>4. restart xinetd service</h4><pre class=" language-sh"><code class="language-sh">$sudo /etc/init.d/xinetd restart</code></pre>
+<hr>
 <h2 id="二、用busybox-tftp-測試-guest-端"><a href="#二、用busybox-tftp-測試-guest-端" class="headerlink" title="二、用busybox tftp 測試 (guest 端)"></a>二、用busybox tftp 測試 (guest 端)</h2><p><strong><em>tftp help</em></strong></p>
 <pre class=" language-sh"><code class="language-sh">$ busybox tftp --help
 BusyBox v1.26.2 (2020-05-13 07:49:33 UTC) multi-call binary.
