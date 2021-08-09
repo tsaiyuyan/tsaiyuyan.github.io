@@ -419,7 +419,7 @@ Build OpenLDAP with Openssl，only client ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        258
+                        268
                     </div>
                     
 
@@ -455,6 +455,7 @@ tar zxvf openldap-2.4.58.tgz ; cd openldap-2.4.58
 # other option --exec-prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin --libexecdir=/usr/lib --sysconfdir=/etc
 
 # 只選build client tools，不然再產生 doc 的檔案時候會出現 /bin/sh: 15: soelim: not found 的錯誤
+# 或是安裝 apt-get install groff groff-base
 sed -i 's/SUBDIRS= include libraries clients servers tests doc/SUBDIRS= include libraries clients/ ' Makefile
 
 # 解決 undefined reference to `lutil_memcmp’.
