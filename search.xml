@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Ubuntu 手動新增 swap</title>
+      <link href="/2021/08/10/ubuntu-shou-dong-xin-zeng-swap/"/>
+      <url>/2021/08/10/ubuntu-shou-dong-xin-zeng-swap/</url>
+      
+        <content type="html"><![CDATA[<h2>1. 切割 16GB 空間做為 swap 使用</h2><pre><code>sudo fallocate -l 16G /swapfile</code></pre><h2>2. 告知系統使用此檔案，啟用 swap 功能</h2><pre><code>sudo chmod 600 /swapfilesudo mkswap /swapfilesudo swapon /swapfile</code></pre><h2>3. 將 swap 設定為開機自動掛載</h2><pre><code>sudo vim /etc/fstab# 加上/swapfile   none swap    sw 0 0</code></pre><h3 id="4-fallocate-fallocate-failed-Text-file-busy"><a class="header-anchor" href="#4-fallocate-fallocate-failed-Text-file-busy"></a>4. fallocate: fallocate failed: Text file busy</h3><pre><code>sudo swapoff -a</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> swap </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Ubuntu OpenLDAP 移植 mips64-octeon-linux(mips64-octeon-linux-gnu)</title>
       <link href="/2021/04/12/ubuntu-openldap-yi-zhi-mips64-octeon-linux-mips64-octeon-linux-gnu/"/>
       <url>/2021/04/12/ubuntu-openldap-yi-zhi-mips64-octeon-linux-mips64-octeon-linux-gnu/</url>
