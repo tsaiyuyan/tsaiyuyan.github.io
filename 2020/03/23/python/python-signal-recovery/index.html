@@ -1,0 +1,976 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Python - Signal Recovery, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="
+
+以前在做天空偵測的時候也類似目前的 case，也就是呢，我們要先分析客戶給的信號圖，在進行必要的裁剪、銳化細節、canny 邊緣檢測，在跟據最後 canny 的圖將信號畫好，(至於說為啥我要做那些步驟，阿就試出來的，我最愛做的就是 tr">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Python - Signal Recovery | YuYan&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon2.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo2.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">YuYan's blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>Friends</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo2.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">YuYan's blog</div>
+        <div class="logo-desc">
+            
+            記錄一些工作經驗、知識，或轉錄一些好文章，避免日後忘記。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                Friends
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/tsaiyuyan" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/tsaiyuyan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Python - Signal Recovery
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/side-project/" target="_blank">
+                                <span class="chip bg-color">side-project</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Python/" class="post-category" target="_blank">
+                                Python
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
+                    2020-03-23
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
+                        973
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
+                        4 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>閱讀次數:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <!-- 求後續 -->
+<blockquote>
+<p>以前在做天空偵測的時候也類似目前的 case，也就是呢，我們要先分析客戶給的信號圖，在進行必要的裁剪、銳化細節、canny 邊緣檢測，在跟據最後 canny 的圖將信號畫好，(至於說為啥我要做那些步驟，阿就試出來的，我最愛做的就是 try error 這種繁瑣的事情)</p>
+</blockquote>
+<h2 id="設計流程"><a href="#設計流程" class="headerlink" title="設計流程"></a>設計流程</h2><p>以這張圖為例，我們可以看到上下方約 1/3 都是我們不需要的東西，所以我們進行 crop image 的動作 。<br>再來就是那些該死的示波器背景，等等我們就用 blur 把它濾掉，因為輸入屬於中型圖片，所以 blur 我們使用[5,5]的強度。</p>
+<p>後面畫細節是由上到下，取最高最低兩個點，如果沒有發現像素點就會沿用前一條線高低點。當然這還是有改善空間，模糊不知道用高斯模糊效果好不好，還有很多可以試試看。但因為這件事貌似沒那麼急，就暫時先告一段落，如果有後續發展，會再繼續更新本篇。</p>
+<p><strong>調整出來步驟為</strong></p>
+<ul>
+<li>step1: crop image 裁剪原圖</li>
+<li>step2: floodfill image 嘗試塗掉背景  &lt;== 強度應該可以再調整</li>
+<li>step3: kernel image 銳化留下來的部分,’[[0, -1, 0], [-1, 5, -1], [0, -1, 0]’</li>
+<li>step4: blur image 抹掉細節(模糊),’[5,5]’   &lt;== 或許可以用高斯模糊</li>
+<li>step5: canny image 100,200 邊緣檢測   &lt;== sobel 展現的效果不好，所以還是用canny</li>
+<li>step6: result image 畫線</li>
+</ul>
+<p><strong>0QD8imz4.png</strong><br><em>original(已移除)</em></p>
+<blockquote>
+<p>(20200702移除)</p>
+</blockquote>
+<p><em>canny</em><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/0_2_canny_0QD8imz4.png?raw=true" alt="2"></p>
+<p><em>result</em><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/0_3_result_0QD8imz4.png?raw=true" alt="3"></p>
+<hr>
+<h2 id="folder-Tree"><a href="#folder-Tree" class="headerlink" title="folder Tree"></a>folder Tree</h2><pre class=" language-bash"><code class="language-bash"><span class="token variable">$tree</span>
+D:.
+└─gw_signal_recovery
+    ├─input
+    ├─output
+    └─tmp</code></pre>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> os<span class="token punctuation">.</span>path <span class="token keyword">import</span> isfile<span class="token punctuation">,</span> join
+<span class="token keyword">from</span> os <span class="token keyword">import</span> listdir
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> ImageFilter
+
+<span class="token keyword">import</span> cv2   <span class="token comment" spellcheck="true"># if not found,try pip install opencv-python</span>
+<span class="token keyword">import</span> os
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Change the current working directory to path:"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span>
+os<span class="token punctuation">.</span>chdir<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+onlyfiles <span class="token operator">=</span> <span class="token punctuation">[</span>f <span class="token keyword">for</span> f <span class="token keyword">in</span> listdir<span class="token punctuation">(</span><span class="token string">"./input"</span><span class="token punctuation">)</span> <span class="token keyword">if</span> isfile<span class="token punctuation">(</span>join<span class="token punctuation">(</span><span class="token string">"./input"</span><span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>onlyfiles<span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">'''
+3YljKfLQ.png
+4B2Dcn2o.png
+8dJosPug.png
+8uS7qspI.png
+buY6cs6U.png
+Clqh9OD0.png
+DH1QeME4.png
+jyicdNJM.png
+KsJUDLN0.png
+m-GNRpbw.png
+TO5-rs9o.png
+u4J8dZ7o.png
+VvCGeC4o.png
+'''</span>
+
+<span class="token comment" spellcheck="true"># 將波形以外的背景填成白色</span>
+
+
+<span class="token keyword">def</span> <span class="token function">floodfill_image</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> power<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    copyImage <span class="token operator">=</span> image<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 複製原圖像</span>
+    h<span class="token punctuation">,</span> w <span class="token operator">=</span> image<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true"># 讀取圖像的寬和高</span>
+    mask <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">[</span>h<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">,</span> w<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>uint8<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 新建圖像矩陣 +2是官方函數要求</span>
+
+    cv2<span class="token punctuation">.</span>floodFill<span class="token punctuation">(</span>copyImage<span class="token punctuation">,</span> mask<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">517</span><span class="token punctuation">,</span> <span class="token number">260</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>power<span class="token punctuation">,</span>
+                                                                 power<span class="token punctuation">,</span> power<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>power<span class="token punctuation">,</span> power<span class="token punctuation">,</span> power<span class="token punctuation">)</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>FLOODFILL_FIXED_RANGE<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">#cv.imshow("floodFill", copyImage)</span>
+    <span class="token keyword">return</span> copyImage
+
+<span class="token comment" spellcheck="true"># 將canny最後結果填上白色</span>
+
+
+<span class="token keyword">def</span> <span class="token function">result_image</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    copyImage <span class="token operator">=</span> image<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    rows<span class="token punctuation">,</span> cols <span class="token operator">=</span> copyImage<span class="token punctuation">.</span>shape
+    tmp_top <span class="token operator">=</span> <span class="token number">0</span>
+    tmp_down <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token comment" spellcheck="true"># 圖片大小</span>
+    <span class="token comment" spellcheck="true"># print(str(rows),",",str(cols))</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        top <span class="token operator">=</span> <span class="token number">0</span>
+        down <span class="token operator">=</span> rows
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            k <span class="token operator">=</span> copyImage<span class="token punctuation">[</span>j<span class="token punctuation">,</span> i<span class="token punctuation">]</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>k <span class="token operator">></span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">></span> top<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    top <span class="token operator">=</span> j
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;</span> down<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    down <span class="token operator">=</span> j
+        <span class="token keyword">if</span><span class="token punctuation">(</span>down <span class="token operator">-</span> top <span class="token operator">></span> rows<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            cv2<span class="token punctuation">.</span>line<span class="token punctuation">(</span>copyImage<span class="token punctuation">,</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> tmp_top<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                     <span class="token punctuation">(</span>i<span class="token punctuation">,</span> tmp_down<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">#print("top =" + str(tmp_top) +",down ="+str(tmp_down))</span>
+
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            cv2<span class="token punctuation">.</span>line<span class="token punctuation">(</span>copyImage<span class="token punctuation">,</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> top<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> down<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            tmp_top <span class="token operator">=</span> top
+            tmp_down <span class="token operator">=</span> down
+
+    <span class="token keyword">return</span> copyImage
+
+
+<span class="token keyword">def</span> <span class="token function">cv2_show_img</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> img<span class="token punctuation">,</span> is_save<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    cv2<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>title<span class="token punctuation">,</span> img<span class="token punctuation">)</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>is_save<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cv2<span class="token punctuation">.</span>imwrite<span class="token punctuation">(</span><span class="token string">"output\\"</span> <span class="token operator">+</span> title<span class="token punctuation">,</span> img<span class="token punctuation">)</span>
+
+
+index <span class="token operator">=</span> <span class="token number">0</span> <span class="token comment" spellcheck="true">#方便檔案總管排序</span>
+<span class="token comment" spellcheck="true"># === main ===</span>
+<span class="token keyword">for</span> file <span class="token keyword">in</span> onlyfiles<span class="token punctuation">:</span>
+    src <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span><span class="token string">"input\\"</span> <span class="token operator">+</span> file<span class="token punctuation">)</span>
+    H<span class="token punctuation">,</span> W<span class="token punctuation">,</span> channels <span class="token operator">=</span> src<span class="token punctuation">.</span>shape
+
+    <span class="token comment" spellcheck="true"># 裁切區域的 x 與 y 座標（左上角）</span>
+    x <span class="token operator">=</span> <span class="token number">10</span>
+    y <span class="token operator">=</span> <span class="token number">90</span>
+
+    <span class="token comment" spellcheck="true"># （右下角）</span>
+    x1 <span class="token operator">=</span> W<span class="token number">-30</span>
+    y1 <span class="token operator">=</span> <span class="token number">545</span>
+    crop_img <span class="token operator">=</span> src<span class="token punctuation">[</span>y<span class="token punctuation">:</span>y1<span class="token punctuation">,</span> x<span class="token punctuation">:</span>x1<span class="token punctuation">]</span>
+    cv2_show_img<span class="token punctuation">(</span>str<span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_1_original_"</span> <span class="token operator">+</span> file <span class="token punctuation">,</span> src<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">#cv2.imshow("crop_img", crop_img)</span>
+
+    <span class="token comment" spellcheck="true"># flood fill 邊緣偵測</span>
+    ff_img <span class="token operator">=</span> floodfill_image<span class="token punctuation">(</span>crop_img<span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">#cv2.imshow("floodfill", ff_img)</span>
+
+    <span class="token comment" spellcheck="true"># blur 模糊</span>
+    blur <span class="token operator">=</span> cv2<span class="token punctuation">.</span>blur<span class="token punctuation">(</span>ff_img<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 中型圖片</span>
+    <span class="token comment" spellcheck="true">#cv2.imshow("blur", blur)</span>
+
+    <span class="token comment" spellcheck="true"># kernel 銳化</span>
+    kernel <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+    kernel_img <span class="token operator">=</span> cv2<span class="token punctuation">.</span>filter2D<span class="token punctuation">(</span>blur<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> kernel<span class="token operator">=</span>kernel<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">#cv2.imshow("kernel", kernel_img)</span>
+
+    <span class="token comment" spellcheck="true"># canny 邊緣偵測</span>
+    canny <span class="token operator">=</span> cv2<span class="token punctuation">.</span>Canny<span class="token punctuation">(</span>kernel_img<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span>
+    cv2_show_img<span class="token punctuation">(</span>str<span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_2_canny_"</span> <span class="token operator">+</span> file<span class="token punctuation">,</span> canny<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># sobel 邊緣偵測(未使用)</span>
+    <span class="token triple-quoted-string string">'''
+    Gx = cv2.Sobel(blur,cv2cv.CV_16S,1,0)
+    Gy = cv2.Sobel(blur,cv2.CV_16S,0,1)
+
+    absX = cv2.convertScaleAbs(Gx)
+    absY = cv2.convertScaleAbs(Gy)
+
+    dst = cv2.addWeighted(absX,0.5,absY,0.5,0)
+
+    cv2.imshow("absX", absX)
+    cv2.imshow("absY", absY)
+    cv2.imshow("sobel", dst)
+    '''</span>
+
+    result_img <span class="token operator">=</span> result_image<span class="token punctuation">(</span>canny<span class="token punctuation">)</span>
+    cv2_show_img<span class="token punctuation">(</span>str<span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_3_result_"</span> <span class="token operator">+</span> file<span class="token punctuation">,</span> result_img<span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># 按任一鍵繼續下一張</span>
+    cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    cv2<span class="token punctuation">.</span>destroyAllWindows<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    index <span class="token operator">+=</span> <span class="token number">1</span>
+</code></pre>
+<hr>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p><strong>3YljKfLQ.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/1_2_canny_3YljKfLQ.png?raw=true" alt="5"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/1_3_result_3YljKfLQ.png?raw=true" alt="6"></p>
+<hr>
+<p><strong>4B2Dcn2o.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/2_2_canny_4B2Dcn2o.png?raw=true" alt="8"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/2_3_result_4B2Dcn2o.png?raw=true" alt="9"></p>
+<hr>
+<p><strong>8dJosPug.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/3_2_canny_8dJosPug.png?raw=true" alt="11"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/3_3_result_8dJosPug.png?raw=true" alt="12"></p>
+<hr>
+<p><strong>8uS7qspI.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/4_2_canny_8uS7qspI.png?raw=true" alt="14"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/4_3_result_8uS7qspI.png?raw=true" alt="15"></p>
+<hr>
+<p><strong>buY6cs6U.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/5_2_canny_buY6cs6U.png?raw=true" alt="17"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/5_3_result_buY6cs6U.png?raw=true" alt="18"></p>
+<hr>
+<p><strong>Clqh9OD0.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/6_2_canny_Clqh9OD0.png?raw=true" alt="20"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/6_3_result_Clqh9OD0.png?raw=true" alt="21"></p>
+<hr>
+<p><strong>DH1QeME4.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/7_2_canny_DH1QeME4.png?raw=true" alt="23"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/7_3_result_DH1QeME4.png?raw=true" alt="24"></p>
+<hr>
+<p><strong>jyicdNJM.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/8_2_canny_jyicdNJM.png?raw=true" alt="26"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/8_3_result_jyicdNJM.png?raw=true" alt="27"></p>
+<hr>
+<p><strong>KsJUDLN0.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/9_2_canny_KsJUDLN0.png?raw=true" alt="29"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/9_3_result_KsJUDLN0.png?raw=true" alt="30"></p>
+<hr>
+<p><strong>m-GNRpbw.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/10_2_canny_m-GNRpbw.png?raw=true" alt="32"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/10_3_result_m-GNRpbw.png?raw=true" alt="33"></p>
+<hr>
+<p><strong>TO5-rs9o.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/11_2_canny_TO5-rs9o.png?raw=true" alt="35"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/11_3_result_TO5-rs9o.png?raw=true" alt="36"></p>
+<hr>
+<p><strong>u4J8dZ7o.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/12_2_canny_u4J8dZ7o.png?raw=true" alt="38"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/12_3_result_u4J8dZ7o.png?raw=true" alt="39"></p>
+<hr>
+<p><strong>VvCGeC4o.png</strong><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/13_2_canny_VvCGeC4o.png?raw=true" alt="14"><br><img src="https://github.com/tsaiyuyan/tsaiyuyan.github.io/blob/master/img/gw_signal_rescovery/13_3_result_VvCGeC4o.png?raw=true" alt="15"></p>
+<hr>
+
+            </div>
+            <hr/>
+
+            
+
+            
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;轉載請註明:
+                    </span>
+                    <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2020/03/23/python/python-signal-recovery/" class="b-link-green">Python - Signal Recovery</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '4b30a1bd0683a64b2698',
+        clientSecret: 'c750a3ecef2bfa64bbef4b51ead66428b1699f1c',
+        repo: 'blog-comments',
+        owner: 'tsaiyuyan',
+        admin: "tsaiyuyan",
+        id: '2020-03-23T10-00-00',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/03/26/ezio-worklog/yuyan-s-zuo-pin-zhan-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="YuYan's 作品展示">
+                        
+                        <span class="card-title">YuYan's 作品展示</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            
+
+  
+  
+    輸入密碼，查看文章。
+    
+  
+
+Incorrect Password!
+No content to disp
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/interview/" class="post-category" target="_blank">
+                                    interview
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/18/about-yu-yan-tsai-yuyan-cv/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="About Yu-Yan Tsai (Yuyan) - CV">
+                        
+                        <span class="card-title">About Yu-Yan Tsai (Yuyan) - CV</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            Yu-Yan Tsai(Ezio)
+Email: st3265987410@gmail.com Phone: +886-923-XXX-XX
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/interview/" class="post-category" target="_blank">
+                                    interview
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目錄</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">66k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/tsaiyuyan" class="tooltipped" target="_blank" data-tooltip="Visit My GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:st3265987410@gmail.com" class="tooltipped" target="_blank" data-tooltip="Email" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="請輸入搜索的關鍵字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

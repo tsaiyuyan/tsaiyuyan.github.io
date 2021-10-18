@@ -1,0 +1,819 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="YuYan&#39;s TI-RTOS TM4C1294NCPDT網卡開發筆記, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="
+
+  
+  
+    輸入密碼，查看文章。
+    
+  
+
+Incorrect Password!
+No content to display!
+
+U2FsdGVkX1+uFHOxn2IIDDZCQGYu4WK3s27PCkI9Itej">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>YuYan&#39;s TI-RTOS TM4C1294NCPDT網卡開發筆記 | YuYan&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon2.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo2.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">YuYan's blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>Friends</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo2.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">YuYan's blog</div>
+        <div class="logo-desc">
+            
+            記錄一些工作經驗、知識，或轉錄一些好文章，避免日後忘記。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                Friends
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/tsaiyuyan" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/tsaiyuyan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        YuYan&#39;s TI-RTOS TM4C1294NCPDT網卡開發筆記
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/uniflash/" target="_blank">
+                                <span class="chip bg-color">uniflash</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/TI-RTOS/" class="post-category" target="_blank">
+                                TI-RTOS
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
+                    2019-08-04
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
+                        259
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
+                        1 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>閱讀次數:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="輸入密碼，查看文章。" />
+    <label for="pass">輸入密碼，查看文章。</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+U2FsdGVkX1+uFHOxn2IIDDZCQGYu4WK3s27PCkI9Itejr893HEOanKX7F4opjud4iGWfFr3zg2c9aNrwZLhIBEuYySsfjlF880LILcWu69DpV0imxDOblHSruM22I3AK5vev2sCPgka/acMNWbW0nXZ9cW98P51LvR7S/w4aLzuSpsuWPAoQMyMX11XpwYCRn7y4HdSx/Sh/nfwey5vwiNQSnuafXGhwFPCAmv3QzAQJjzHLYcJaCesCVadVOqPvQHL8ZsZSdgZMJhjgEPnxnwK18OiIMZdKrN7jn1VRFMctFNi1WD0519UmNAWNDpfeV/P3KKBZ19sWYvj2zIQutYprwU/ZEXvPv3MlqxJDscElhawA9a7pAk3rGJCjnpJVIADFwlxPMgz1Z0Na8HAr0WT+4aBDUFlRPFDuXPnLV15P9TPUCPMcOpc143dwVGpfvdGFXiLwn8ZJreIIn4KKuoHTFUGs5x2Ah32Odv1DUaA+pBYmrn5PKhIZiwv1y9rGnVPIo0Ae9rL3RA+PtBTUuu0jzD5q+C0ZKPO29tsx8OBC2jCBRvxM6yGbuDtYrbe3F2QdRlFsAKvKWTvUPLDC7kl3J29NFMK265b/QpgLgkWs7vw5p3Ft/tVChAL5GaRszxY2iDPaIALbQ6GOP5Sexztf3EnINNXGLjTOp0UKPo9qDdPFL3KwCepSpdva/IJLUTVaEOgGFJJHDSUDdaH3oP7MJVYL8BJA7DROV1d8n0GlTO7TbALed6wQ/j+3iH09bm6/fJFc3118iRR29YMCe74cA5B476icpgZpRpg67pBr0gH6HJwAXKzr7sXRzUm2QrqNvkuA2NsrcDW/wQKJG6LeY+I3+N+72+CpK4Wx6NekInHgtmf2cM50RY+Bb03Z3UQhM83hxgCCLcpl5dPxSzvGXrXoZg3yDYplWDQw3vz29Xfl5gbJyBBQ7LOQnhmeap1SHijmTQMsiBRPnxubgOW4iKXEbHslFlwCfKE9/FQ2qTWWXs/cmQ/tJo7SGjYBZEIV73z/Ruxhu/71uNCI0rdmXjmJfKhDXpwdFBe8Dg5pYdaomCJDhFuvqOKeRi5toaeVFktzOF5s7axqy6++tbmlSbumYlATf2rqnZqUlvZE4XeaLs1f33lBOa8uZIwTCMsKSAa3es219sJa+Rr+Owhy7PAf4VGGqIEl/gN/ucwhTzMfz3FLTTVdzy9PH/z52we4kp3MpVzUb3xaeTXYTQM1wG773JjVCT2MenRJxgcLvVD6EVR6k/mxglOLYfe3b4jwJ4mw1Nd5bNsQQq5bdufJHWesOx0HzfTpdJ5oqEQWcM9GQSbgdBx/JLlYVFgNFFP11fnAg7Yyj6mg0oBYceurAnqHsYblzWjncoOz7DX9aj2lfA5+Hi8gHjtcMbWfjsmWrapFSutVtqE6lb5hwBz6I7qYByJu4smuEcVahGYjE1s5hJC6AZxgdXEY0nCIqOMH52xVolKFibqilwOYqxeblo5WK8+u1DMJqhSzmJv24/gCoIdTIoscC44tTRuhqspMr04xtZ8yMIp0C+zNJLe5j++jU7OfKGDRvsj8Dhbsr2LERLSvAFeP5jKVqZmNYCD3N5vR5CaY4Qq/UBXqI+VXK0e09vuVDrG7aoPBdK1E/O2JUpZ12mNhKfnY8BnLBTjU3FhBpFS3zd4g/FDf2XKx4fCE3SklQ9BxPDPy6lJPkDZU4rBLKsiT51+9X02ifHn9F1Jt5hrysuHvbQ5EdUGlXM9fl0MVYDEGe+/byhduCNkVX+CHmaZFJcP7qgb5xlswVOtPkPDxwtlXGLvZ6dpOnR1YUCqjoHAtFuEtvwIkFc/ZQd1t2N86AXDSYCugUbzvUUluyKy3gQ7IFDmdZbgu8tj0K9DMwk5Lky2aW1EsK+lsmbbjWevpmxT30L2kwhQnUTuKbKn+cy+2Axu3ld52etgwDEl984DoH+Hy66je12knG9k4UEGzUBeR4vgCCFbM68PRpv16lrr+oDqjNwYTnn+et7rMUFH7h6vkSp59boyfz8zmvZB5+cl0umoY0hIgj1HyEt6khmxunHg4779trtSqhehKmr7XPSCOFK2VvTcecPjsHRgrsYwaruarl9xkhC0fAQuoQaCKoFRw4ydy8aEVNZlCIukGHHx+MNfiSKoVN55WpwxW48wJ8RNxPoiA1n7WV3DI7yQOGwjrKln21Pcb0dxNk/KdCqvmBYWUzPiAEKJFyfaHETxCHfXSfiVXW794ApTB5VTAu2124i6AcziimO8c0JdTthDHYZgCuXUUKZ2BQ/BfA3DTAA1bA4m0Sl7+Ct2jXfpXDobjUfmdv4tNeDATjY2c0slXkDc5U600RTh3s3hFtXQEMLuDR+mF+lHsQesidpwqIk7L+f833eVwDQ8Q8uQCoLGoMx/vSZKZUF7st3n9sE9Sn8U8vKbVXG+h/Tf8jZiRDrFtnE9IHuXvVVKwAWZMnqQT+FUo4ozM4d4wyYvbZuiFyKSrNuFNdXmdo4ZibxDD3XgqUaUkDaEkQKlmS36ZRIU4z036OTFr02jcz2lQvBFAh4UOdYYypn34TG2BRWV0BeoWcZyQwiq8fUZsLlErR2hYtmWSOdGwskKrsujVY3vvydcjkmJlyCGhDIxBPdO98ywjempcni3X2dqkh0FM1K6QG3idDrV+nMsMjBm7DisXfW56Dry2SC/vYOEZRFRhFfDOHhjpsRPfFHAlaTxKHJIpMrgWvabTa3k+WYjZG0ULYRKc0s9vvSQmzvdpzvD5JlgPAS7fmiI3zncYxW6zMcn8mQjwKGVHz3L7tOKKO8HH3mEE14XuFW1IdxWG6/fQm4yR/vLQdcC8JwUS3YJY4Gy5Gw/BiwjmNuCZFSWksILq5vqdHrFLUfIYhsJn0li2yR+bCVr2SSZTTEqcIL7wgcy8E5SVI3w7guI+aGNdbH53XDul4hRc1p/bxOjysaf4AYRjBTxOAkVWhGayXfZJFyzXpWX2tnAHUha3d6zZisS4CtskBW3Qcz3G07qmZVBkpwCO3NTPgqfs45o8MxvHOHXMxe2RuACcDVBCS6E9VRsV8JWjlVIGUOfw4lz4/4l8KMV6hYbsWQ6AkjP7rhWxno/b00V5z+sBBNYZsBi0MST1sYZwutcQ8wzf9Frbd2+AntfoXBNxxAe9lV2KlXRggAKRMVHmSyiKr1Hd4DFcRnylU9o/953zO05982H8KSMbNUlzGsOMgBj/BXx3LqIx+ziX0Tf5V/rygfeRBJtqlKpJAFzhFikYSlBNwmr3KXHNE6WSNoSCz2sE/fpKnAzjoNbe26u/BstPz89j5pnwc8JCP/Izz+RelM3zflVv9mMQaPWt2QXOkfUxmsZb5Dww9/wUX65dbLjYCyB9PJrIwMPfBg47u2lZoJa3ousO3XwhuWMHYlCt0Zz1+D5xW4MkniT9gue3A8KwML1/eTlxHBaMd7Qt2Ax03fllvweCioNy9AxvzQWpm+lX+ZRJ/CwPYzcaaxmOVJQbxr4erSOl27XVoYQ5t87MfdBHN3W1wYW9KVAhUZVWZ7axvvuDpr7vCiFa+Kf3YJ1MN2i2WCCWRbBdLHLm/whSWNgncj9NyrXlFfKw9+qWBoP69d+iCrIUsPB9EfSafXuPrZxm+7bME3yDRfKPc73XIGXFXNOie9a7TcdXT7MpRYn+mtjQTXiK8UfQgzkNiC6xFr68d69k14dB9J81mbdz1y4o3S6cuNS5brulxALBdcGqerSoFy63EhW6maQO5aOSBgPyco1PV3cWvoaKuKcqkUepv2FsVtK99Wd15jursMdte5LT6dSOjjyO88xYUyheCiFvI61nSbY/NU/VYUNy8VHjvnPOJ11aOp4uTzOPDY5a+fYUOsuiDWYZdNSZHIINSylfinDiWLJ4GCnOH6zE4gO324lnPr2+bddOBKMQ7+5mzuli43AT18bUMQVEJi5k2PzsyMn7X8tlXmEhk0i8VOaiwkKHYd9n15qK/QW1os2Yw6RgNpLafuaD/kD1Ik6umk4eJpUK8tShnBjTf04xeUSERPGY0C223zDMOE4IfjtDK5GWiqaiNafOJFnOS77G5Gp+ohqo4QvWFY+AsNes7qQ2NHBmHvwGPOCERzbsLYJzznyJ1ZRxyyU8zG0knLJ1ilku2cu+Uss29ldVRHwUVh3VlCTX70YQ+khOBVMcHXoCDLmmOpcJLpyu8S85CpNSM/c2b67U9ZEjg9xfamNZ/A03qs4FTKfj4UxkRI/CiWvZDZSYzuc2COF83jRzyZ48USwq4hB+DTbnE3sDAEJMCmXc6VDMdTRcRj21gRCvfm36gJekgJOSFlyLchBRwGUKeOcv0fsOtx9ciwx+UCaE235rvB/I+waoVV8urRCjN1Y3KTgLIZd6e6FHAx9Cl/7h6ywghMvyIptE00AuBglY1lNzqaLlFPe4Gu7vppg2mn8BVJx9u/kqzZVbfJ9UuBsIPNqxsSUg7idocYGqQ2DTgW6/TVZlhiIOHUrQmuq6q9aj+smbq8xEzaGH58wAgyQ3oQel5z3RDGpsOqM09AIZkZhol4aGWamUrPoHPNSpA/9AmXw5ziX00bIthrgFLAAk5979Nwcpq/4umQeczrTd2mmE8pTZKL8rWr5qcO/PCNItosGxE3FPEsdl6Q4z1e3oIqz1F3sODfoN9oSjONfvY+rFO0Mlq7JUJUysr1OQUg7lEwIuz8I+T6TuirFepnEMYp//nDmMmJ2pZFW8C9eN1yLM/Y8cYTF9zbKFk/Axt8kxUjwbJFAf3rvBBz+iwkQmte2cndjjvo3WLJ+liLOSC6ajniPV8j/hu6LIjXis7NZXUOCFZfC6oqLMf2A6/TkSkOZOu3sAyPzbiV+3vCBIucb95tHNGVaEoYSnF/OZ6o3zR6v6w2qtJRtOKZGA6n55rzcD6q3fZAVD0iJw+tYRkY764p8kWHbWm49rUhyyz2Rac2aqkVrMV+ajEYHJg/ADM5sn/8T9A/QElL5jeFFnzy1aaQ/cuXoORhQTi72me+P+aGU5Jun+FoxFLfFgHlrJ5pfrWRfOHPqTWKVwKofVow9HJ4xiKbiXy4aSKSAiT2Mpb8X9sePgntFL7rQtSmUeWXBWQN7FBlzVCP9ncHZ9wW2Zl2eGIzN6g8dXHXXYzeB8c3birpaEEwqnW5KBHn5Q3Mkd03YDlsE7g/V9yw/eVqUSY8Y4DuW0/7bReXa2lC51bRBzgSW0GVSjzk4xVXpzxH38q0Vjm/2UW1Y0zSJ8TojpDvD4YJXiH8IrhErp5JRyQ5MWkgr7q7/uJv6xAd1EebFQ+ivWCpcKpMcMPbwB+lLXKSo++YXH0vd88218RfUKZSgSMPqbSQLKsYxkFW+B48IzrNInqHBpZc4IyK//8TKHuvOHdeAKWFdhas2SKBnbNhzfuTzmu+oE8LvskPEf5BBcv7G7CVnE/eo10qYHyckHNeJhlw0YtgHDNu+UkbjHAVuGZ5cr4GbQWnV46KuuMTYdv2xKhdTpIt4f2q2bquGGfsmbjj31431kSUEJn0lkZfqC3uIYL4w+3P1cpCxpPEUvO9KVRJof03BmK04N6rzPH+FhIxvt328DnHzmU7AaB+eD0mDt0nIo1uH6XQybh8q88WtwWrBPv1ae+3R0BO7T/gDuSxsfyApLwNX560/6i1lO2t8dTVsINEuGmSqdi1e8ynlT9bo6R72uwVDkQzK0wDT3ONH8iyehxPfhYh29uiRe6uxAfbfiaL+mGquSNTswmK2C9Hd9JcuRzzZoF5m53BwR5vKnINbkkIYbXvuQI4K7cO8S/lbiq9uOUcKCyI0WXHjwr0PKA3ZOLTaY152CXtnG4sDjiKL7SEHjVtkGuublF/tjn6yUDimcc/mLOuPWxu7XCoBT1RnWQLC1wtPmKxpO0/tpvqtMaPgKIxUCu2m0h7INITQaCfW8sVJsuEbNC20tz/Z7glZQs1yzIsRexOxYPw1VA0LKhx719M7ZvlLz1mouvgMocTk0pinzZh81JWenoD2wto5RpDRPcKLz41fR+o7kUPz+nHDrxNdyY6lckSMCokbcTI4zOHwZW4wACOcuqXGDajgultDGa8zPqP86NHIj26cUiLG5ZsOZ8oVa+5e5ZY8U18z0+mDb5/lpF2Q0XhO3HPGSWrlpEcxYBPdbKMy3on7BpZY/9tPvNiI6ZGewTMGbGoW4r95M25w8mYKIFZwSSOVLMnuENvq7+w1iJF3wvyCWhFR3NNwKK0sQFO2DUecKPw/08QtKDt6slnIY/SvaKYDKVyHWbG+q4dHBRiWqFXAZee71S7imXlHW3tX+hM5URolb/2JyGbPlI69Y49GagaRh5LSkOfxwsgfTS3BMr3hnVkLjdtqjYxV2sVf4tvHt/JV72z+Dn18YHgecHiAnDvYUayDFfq8Ga3mB+Vdi7LbpcJApz30cSbrtQXJcLQYEOqowmKJfRokhMulXC6aS4Ll7ij6/aw0TlBkZnTqjloa+hCisyhGpvbWDh+25+7uSrjsAcZktPY1LYtRh6R3Uof2YykNL0+D7R4hFoW1h6bl7WSluAl83rCnGvRkOJ+PpAHtOGEzH3pTHYzRqx3vx3qOJ51bbcGD/vSHTWx+2pHhY4v2GSbaqLleWbyuPM/5Df4NqRiA0J9pEwaI4V/YJSfxnOFgtPKuSB3UHX3gzda/KukEQXpZqKpY8j96tDm3wFJ9ZrLBBCpRtMi0UoRK+Rm0u/tqFYpL62nXh0k3mbcSS9Z+o4NvuiPTKdZbwWEHLkW3foGR8mHTLErT6U/gMnXqeHwwXqZA3TG2IFZo/JzwnBsVbL605YLz2rZdoU1ouhZ9jZl5boar+px1wrtDd7UEIk8CwmxnCS6NwRgRQooCz2bHfYEPV3Li69qPftWP5xX1vZHLRZjP6rGgJXPn9ZEJH+5VGkEPUnsnVDBOUmj4a5axZcB7QBd2FlHFjedNlTVE32kyg82tnv5T7OyCvSSq5AnyQ5DJF7ZD1jorG6rTHMCd+lpi0cVfuEBnDsTBe4MWENNzt4AVBEDVvwMYTU7LetckQH1vH8wWzQEyjwAiAqkJhKx6Y0qYE1wWhrwqM+qXl5bsMEzrD+rrQ/Vg+0tVJSTg52osLHsBCwgjwcV7tI2xM1In2vVOzUPZFm/0jnZhSE+dQelPgqQpX+iT1biSoNs8zI4f3uJW20OlFKwU6OyrbSNjaz0+8bUqAhLDxXH9WZQOicu45xCBjdZObcf6gRNyesSZVJYZiC/XqJhs4HKZzQ/lBCeGXNNDjVC/UCbcYUmrC3UVQTjkiDc8GyRbl1pxOzZFCsv9gWRmHZ1N9Y5UZ9RghScGUuW9VeIr5Mj2vI6euaHY+6ATBBmvbjqZbG7lRjz2a//g0UBW2uLS7Pz196HXOxIdvBzipoPdKHsp1G5t7YGVKzL5c3lt2KtE/T/jhiCfuYUTqP5zrLRPDxf1hGTRe2Yjzrwxuq24D+5GCZvAU+vOphdYT3JA4GLQVTW5uYGKACT3JltxLPJ2KUQq/Y41RBPBRg91tclSkKu0bjs+dEM/F5l355c5OoQ8KvaniNKJ8yGrkltfPOavkyhtcRZHd7Kb4bWaZMtROGR3IYZMls63gLprPo5hZYr3GWv3PcXULUWSARHt+9xeBafXNNrX9Gef5jqsA3kH6tzepjhmxQD0zYX8oTfQtfrWtiZruVJNYdFgbgFKhQIQTEbs2Xd5Mk+w31JGym2eYmydDDcw+vjX1dMoY4zMAAnjZ1Lscq/VK9AofRnN22/id2ydJLcu+ziBuiOqABGiGARgg+dI5fL9ICl9JPmFLHMsT28Q0BYK2uMF83WLpcISnNfrxvDdCYZQMrTQPWDzGJPrxxrvTPc9LOnjPtkKtoEQNeZ0MocfScg5VnElEcB82xK+0WjXRwrBi4JrM4MoBzV7B6JYfJitfq1F3G5ezbiNyqYwZcpXnwv2S5eQhe/z7rR4v0IVezhoclj8aQoxtuvjCXa7xRkOhc/YAE+WH0d+kXIoylD1Z1RW/xo7QgQjiNIN1h59sr1hhAMgwW8tIFIvkwrq4R2MV4u6U3i3LyzQHq0q2dvazAumocAClKPnETXKXxN+QMnge5IvXTm121mmkTjI0s3E9rs2ZwK947d0fz8359Uon+91Wiq73kX/AX1+6hVs2aHzrGwF1eIjtKffu0xpcUG2s7G9H1yTq/oywxaIZyCAJJZkZU0gj7wIDD1jpmRNoAYuszuZgIvG216uGO+IpaUpPfiKklxLSE1bJAv2JFZxUOL4ZuwdRN5skZRHHyl00iGKp5TLrsNLLo7WDXQGRusRrawZdRhd0L0Ev/NWY7y55LVoKHIdA953Qgw==
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+            </div>
+            <hr/>
+
+            
+
+            
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;轉載請註明:
+                    </span>
+                    <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/08/04/ti-rtos/ti-rtos-tm4c1294ncpdt-wang-qia-kai-fa-bi-ji/" class="b-link-green">YuYan&#39;s TI-RTOS TM4C1294NCPDT網卡開發筆記</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '4b30a1bd0683a64b2698',
+        clientSecret: 'c750a3ecef2bfa64bbef4b51ead66428b1699f1c',
+        repo: 'blog-comments',
+        owner: 'tsaiyuyan',
+        admin: "tsaiyuyan",
+        id: '2019-08-04T12-00-00',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/08/16/linux/ubuntu-avahi-daemon-yi-zhi-arm-linux-arm-linux-gnueabihf/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Ubuntu avahi-daemon 移植 arm-linux(arm-linux-gnueabihf)">
+                        
+                        <span class="card-title">Ubuntu avahi-daemon 移植 arm-linux(arm-linux-gnueabihf)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            avahi-daemon 移植 arm-linux的相關筆記
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/avahi/" target="_blank">
+                        <span class="chip bg-color">avahi</span>
+                    </a>
+                    
+                    <a href="/tags/mDNS/" target="_blank">
+                        <span class="chip bg-color">mDNS</span>
+                    </a>
+                    
+                    <a href="/tags/ubuntu/" target="_blank">
+                        <span class="chip bg-color">ubuntu</span>
+                    </a>
+                    
+                    <a href="/tags/cross-compiler/" target="_blank">
+                        <span class="chip bg-color">cross-compiler</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/15/ezio-worklog/yuyan-s-golang-xue-xi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="YuYan's Golang 學習">
+                        
+                        <span class="card-title">YuYan's Golang 學習</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            (未完成)
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/interview/" class="post-category" target="_blank">
+                                    interview
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/note/" target="_blank">
+                        <span class="chip bg-color">note</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目錄</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">66k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/tsaiyuyan" class="tooltipped" target="_blank" data-tooltip="Visit My GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:st3265987410@gmail.com" class="tooltipped" target="_blank" data-tooltip="Email" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="請輸入搜索的關鍵字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
