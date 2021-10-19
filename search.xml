@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Ubuntu 工具 graph-easy</title>
+      <link href="/2021/10/19/linux/ubuntu-gong-ju-graph-easy/"/>
+      <url>/2021/10/19/linux/ubuntu-gong-ju-graph-easy/</url>
+      
+        <content type="html"><![CDATA[<p>reference:</p><ul><li>graph-easy-cn : <a href="https://weishu.gitbooks.io/graph-easy-cn/content/hinting/flow.html" target="_blank" rel="noopener">https://weishu.gitbooks.io/graph-easy-cn/content/hinting/flow.html</a></li></ul><h3 id="1-install-graph-easy"><a class="header-anchor" href="#1-install-graph-easy"></a>1. install graph-easy</h3><pre class=" language-language-sh"><code class="language-language-sh">$sudo apt install libgraph-easy-perl</code></pre><h3 id="2-edit-file"><a class="header-anchor" href="#2-edit-file"></a>2. edit file</h3><pre class=" language-language-sh"><code class="language-language-sh">$vim simple.txtgraph { flow: south; }[start] -> [userpass search?][userpass search?] - match ->  [fast accept/drop][userpass search?] - not found -> [black search?][black search?] - match -> [try_cnt over?][black search?] - not found -> [LDAP/RADIUS check][LDAP/RADIUS check] - success -> [accept and update userpass][LDAP/RADIUS check] - fail  -> [drop and update userpass/black][try_cnt over?] - yes -> [ban drop, is hacker?][try_cnt over?] - no -> [LDAP/RADIUS check]</code></pre><h3 id="3-graph-it"><a class="header-anchor" href="#3-graph-it"></a>3. graph it</h3><pre class=" language-language-sh"><code class="language-language-sh">$graph-easy ./simple.txt</code></pre><h3 id="4-LRU-cache-as-example"><a class="header-anchor" href="#4-LRU-cache-as-example"></a>4. LRU cache as example</h3><p>cache display:</p><pre class=" language-language-sh"><code class="language-language-sh">### LRU - Least Recently Used Cache ###+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +' 1.userpass cache:                                         ''                                                           '' +-----------------++--------++--------------------------+ '' |     latest      || oldest ||         invalid          | '' +-----------------++--------++--------------------------+ ''                                                           '+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ++ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +' 2.black cache:                                            ''                                                           '' +-----------------++--------++--------------------------+ '' |     latest      || oldest ||         invalid          | '' +-----------------++--------++--------------------------+ ''                                                           '+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +head                                                     tail</code></pre><p>graph display:</p><pre class=" language-language-sh"><code class="language-language-sh">                                            +----------------------------+                                            |           start            |                                            +----------------------------+                                              |                                              |                                              v+--------------------------------+  match   +----------------------------+|        fast accept/drop        | <------- |      userpass search?      |+--------------------------------+          +----------------------------+                                              |                                              | not found                                              v                                            +----------------------------+                                            |       black search?        | -+                                            +----------------------------+  |                                              |                             |                                              | match                       |                                              v                             |+--------------------------------+  yes     +----------------------------+  ||      ban drop, is hacker?      | <------- |       try_cnt over?        |  | not found+--------------------------------+          +----------------------------+  |                                              |                             |                                              | no                          |                                              v                             |+--------------------------------+  fail    +----------------------------+  || drop and update userpass/black | <------- |     LDAP/RADIUS check      | <++--------------------------------+          +----------------------------+                                              |                                              | success                                              v                                            +----------------------------+                                            | accept and update userpass |                                            +----------------------------+</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> graph-easy </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo - gitalk 403 issue</title>
       <link href="/2021/10/18/hexo/hexo-gitalk-403-issue/"/>
       <url>/2021/10/18/hexo/hexo-gitalk-403-issue/</url>
