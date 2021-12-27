@@ -5,8 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Gstreamer 編譯筆記, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="build documentationsudo apt install libglib2.0-dev
-flex bisongst/parse/meson.build:7:0: ERROR: Program(s) [‘flex’, ‘win_">
+    <meta name="description" content="build documentation  sudo apt install libglib2.0-devflex bison  gst/parse/meson.build:7:0: ERROR: Program(s) [&amp;#39;flex&amp;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -396,7 +395,7 @@ flex bisongst/parse/meson.build:7:0: ERROR: Program(s) [‘flex’, ‘win_">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        506
+                        518
                     </div>
                     
 
@@ -419,23 +418,26 @@ flex bisongst/parse/meson.build:7:0: ERROR: Program(s) [‘flex’, ‘win_">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="build-documentation"><a href="#build-documentation" class="headerlink" title="build documentation"></a>build documentation</h1><p>sudo apt install libglib2.0-dev</p>
-<h1 id="flex-bison"><a href="#flex-bison" class="headerlink" title="flex bison"></a>flex bison</h1><p>gst/parse/meson.build:7:0: ERROR: Program(s) [‘flex’, ‘win_flex’] not found or not executable<br>sudo apt-get install flex bison</p>
-<h1 id="libxml2-dev"><a href="#libxml2-dev" class="headerlink" title="libxml2-dev"></a>libxml2-dev</h1><p>Package libxml-2.0 was not found in the pkg-config search path.<br>sudo apt-get install libxml2-dev</p>
-<h1 id="json-glib-1-0"><a href="#json-glib-1-0" class="headerlink" title="json-glib-1.0"></a>json-glib-1.0</h1><p>Package json-glib-1.0 was not found in the pkg-config search path<br>sudo apt-get install libjson-glib-dev<br>pkg-config –cflags json-glib-1.0</p>
-<h1 id="hotdoc"><a href="#hotdoc" class="headerlink" title="hotdoc"></a>hotdoc</h1><p>docs/meson.build:37:0: ERROR: Program(s) [‘hotdoc’] not found or not executabl<br>sudo -s<br>python3 -m pip install hotdoc</p>
-<h1 id="ninja"><a href="#ninja" class="headerlink" title="ninja"></a>ninja</h1><p>sudo apt-get install ninja-build =&gt; 1.5 fail<br>python3.7 -m pip install ninja =&gt; 1.9.0.git.kitware.dyndep-1.jobserver-1</p>
-<p>meson build/ =&gt;libpng12-dev fail</p>
-<h2 id="FFMEG"><a href="#FFMEG" class="headerlink" title="FFMEG"></a>FFMEG</h2><p>../subprojects/FFmpeg/libavfilter/avf_showcqt.c:40:35: fatal error: fontconfig/fontconfig.h: No such file or directory<br>compilation terminated.<br>sudo apt-get install libpng-dev libfreetype6-dev libfontconfig1-dev</p>
-<p>meson configure -Dgst-plugins-bad:iqa=disabled -Dgst-plugins-good:png=disabled build/<br>ninja -C build</p>
-<h1 id="libpng16-dev"><a href="#libpng16-dev" class="headerlink" title="libpng16-dev"></a>libpng16-dev</h1><p>/usr/include/libpng12/pngconf.h:383:21: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘<strong>attribute</strong>’ before ‘.’ token<br>            <strong>pngconf.h</strong> in libpng already includes setjmp.h;<br>                     ^<br>/usr/include/libpng12/pngconf.h:384:12: error: unknown type name ‘<strong>dont</strong>’<br>            <strong>dont</strong> include it again.;<br>            ^<br>/usr/include/libpng12/pngconf.h:384:29: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘<strong>attribute</strong>’ before ‘it’<br>            <strong>dont</strong> include it again.;<br>                             ^<br>/usr/include/libpng12/pngconf.h:384:29: error: unknown type name ‘it’</p>
+                <h1 id="build-documentation"><a href="#build-documentation" class="headerlink" title="build documentation"></a>build documentation</h1><pre><code>  sudo apt install libglib2.0-dev</code></pre><h2 id="flex-bison"><a href="#flex-bison" class="headerlink" title="flex bison"></a>flex bison</h2><pre><code>  gst/parse/meson.build:7:0: ERROR: Program(s) [&#39;flex&#39;, &#39;win_flex&#39;] not found or not executable
+  sudo apt-get install flex bison</code></pre><h2 id="libxml2-dev"><a href="#libxml2-dev" class="headerlink" title="libxml2-dev"></a>libxml2-dev</h2><p>Package libxml-2.0 was not found in the pkg-config search path.<br>sudo apt-get install libxml2-dev</p>
+<h2 id="json-glib-1-0"><a href="#json-glib-1-0" class="headerlink" title="json-glib-1.0"></a>json-glib-1.0</h2><p>Package json-glib-1.0 was not found in the pkg-config search path</p>
+<pre><code>  sudo apt-get install libjson-glib-dev
+  pkg-config --cflags json-glib-1.0</code></pre><h2 id="hotdoc"><a href="#hotdoc" class="headerlink" title="hotdoc"></a>hotdoc</h2><pre><code>  docs/meson.build:37:0: ERROR: Program(s) [&#39;hotdoc&#39;] not found or not executabl
+  sudo -s
+  python3 -m pip install hotdoc</code></pre><h1 id="ninja"><a href="#ninja" class="headerlink" title="ninja"></a>ninja</h1><pre><code>  sudo apt-get install ninja-build =&gt; 1.5 fail
+  python3.7 -m pip install ninja =&gt; 1.9.0.git.kitware.dyndep-1.jobserver-1</code></pre><p>meson build/ =&gt;libpng12-dev fail</p>
+<h2 id="FFMEG"><a href="#FFMEG" class="headerlink" title="FFMEG"></a>FFMEG</h2><pre class=" language-sh"><code class="language-sh">../subprojects/FFmpeg/libavfilter/avf_showcqt.c:40:35: fatal error: fontconfig/fontconfig.h: No such file or directory
+compilation terminated.
+sudo apt-get install libpng-dev libfreetype6-dev libfontconfig1-dev
+
+meson configure -Dgst-plugins-bad:iqa=disabled -Dgst-plugins-good:png=disabled build/
+ninja -C build</code></pre>
+<h1 id="libpng16-dev"><a href="#libpng16-dev" class="headerlink" title="libpng16-dev"></a>libpng16-dev</h1><p>/usr/include/libpng12/pngconf.h:383:21: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘<strong>attribute</strong>’ before ‘.’ token<br><strong>pngconf.h</strong> in libpng already includes setjmp.h;<br>^<br>/usr/include/libpng12/pngconf.h:384:12: error: unknown type name ‘<strong>dont</strong>’<br><strong>dont</strong> include it again.;<br>^<br>/usr/include/libpng12/pngconf.h:384:29: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘<strong>attribute</strong>’ before ‘it’<br><strong>dont</strong> include it again.;<br>^<br>/usr/include/libpng12/pngconf.h:384:29: error: unknown type name ‘it’</p>
 <p>sudo apt-get install libpng16-dev -y</p>
-<h1 id="升級python-3-5到3-7"><a href="#升級python-3-5到3-7" class="headerlink" title="升級python 3.5到3.7"></a>升級python 3.5到3.7</h1><p><a href="https://medium.com/k2shouai/ubuntu-16-04-%E6%9B%B4%E6%96%B0-python-3-7-f08cee97a64b" target="_blank" rel="noopener">https://medium.com/k2shouai/ubuntu-16-04-%E6%9B%B4%E6%96%B0-python-3-7-f08cee97a64b</a></p>
+<h2 id="升級-python-3-5-到-3-7"><a href="#升級-python-3-5-到-3-7" class="headerlink" title="升級 python 3.5 到 3.7"></a>升級 python 3.5 到 3.7</h2><p><a href="https://medium.com/k2shouai/ubuntu-16-04-%E6%9B%B4%E6%96%B0-python-3-7-f08cee97a64b" target="_blank" rel="noopener">https://medium.com/k2shouai/ubuntu-16-04-%E6%9B%B4%E6%96%B0-python-3-7-f08cee97a64b</a></p>
 <p>sudo python3 -m pip install –upgrade pip</p>
-<h1 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h1><p>apt-get install cmake</p>
-<h1 id="ERROR-Dependency-“mount”-not-found-tried-pkgconfig"><a href="#ERROR-Dependency-“mount”-not-found-tried-pkgconfig" class="headerlink" title="ERROR: Dependency “mount” not found, tried pkgconfig"></a>ERROR: Dependency “mount” not found, tried pkgconfig</h1><p>sudo apt install libmount</p>
-<p>libmount-dev flex bison cmake</p>
-<h2 id="meson-result"><a href="#meson-result" class="headerlink" title="meson result"></a>meson result</h2><pre class=" language-sh"><code class="language-sh">All GStreamer modules 1.17.0.1
+<h2 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h2><pre><code>  apt-get install cmake</code></pre><h2 id="ERROR-Dependency-“mount”-not-found-tried-pkgconfig"><a href="#ERROR-Dependency-“mount”-not-found-tried-pkgconfig" class="headerlink" title="ERROR: Dependency “mount” not found, tried pkgconfig"></a>ERROR: Dependency “mount” not found, tried pkgconfig</h2><pre><code>  sudo apt install libmount
+  libmount-dev flex bison cmake</code></pre><h2 id="meson-result"><a href="#meson-result" class="headerlink" title="meson result"></a>meson result</h2><pre class=" language-sh"><code class="language-sh">All GStreamer modules 1.17.0.1
 
   Subprojects
                         FFmpeg: YES 3 warnings
@@ -737,7 +739,7 @@ Found ninja-1.9.0.git.kitware.dyndep-1.jobserver-1 at /home/yuyan/.local/bin/nin
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.1k</span>
+                <span class="white-color">66.3k</span>
             
 
             
