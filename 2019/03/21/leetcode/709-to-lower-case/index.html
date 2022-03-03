@@ -413,7 +413,7 @@ Implement function ToLowerCase() that has a string parameter str, and">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        108
+                        146
                     </div>
                     
 
@@ -439,47 +439,41 @@ Implement function ToLowerCase() that has a string parameter str, and">
                 <p>Link: <a href="https://leetcode.com/problems/to-lower-case/" target="_blank" rel="noopener">https://leetcode.com/problems/to-lower-case/</a></p>
 <p>Implement function ToLowerCase() that has a string parameter str, and returns the same string in lowercase.</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: "Hello"
-Output: "hello"
-</code></pre>
+<pre class=" language-text"><code class="language-text">Input: "Hello"
+Output: "hello"</code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: "here"
-Output: "here"
-</code></pre>
+<pre class=" language-text"><code class="language-text">Input: "here"
+Output: "here"</code></pre>
 <p>Example 3:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: "LOVELY"
-Output: "lovely"
-</code></pre>
+<pre class=" language-text"><code class="language-text">Input: "LOVELY"
+Output: "lovely"</code></pre>
 <hr>
-<p>題目翻譯:<br>
-做一個大寫轉小寫 ToLowerCase()的 function</p>
-<p>程式思路:<br>
-看要用 STD 提供的 function 或是自己寫一個都能輕鬆解題。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    string toLowerCase(string str)
-    {
-        /*
+<p>題目翻譯:<br>做一個大寫轉小寫 ToLowerCase()的 function</p>
+<p>程式思路:<br>看要用 STD 提供的 function 或是自己寫一個都能輕鬆解題。</p>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    string <span class="token function">toLowerCase</span><span class="token punctuation">(</span>string str<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">/*
         // c
         int offset = 'A' - 'a';
-        for(int i =0; i < str.length() ; i++)
+        for(int i =0; i &lt; str.length() ; i++)
         {
-            if(str[i] >='A' && str[i] <= 'Z')
+            if(str[i] >='A' &amp;&amp; str[i] &lt;= 'Z')
             {
                 str[i] -= offset;
             }
         }
-        */
-        // or  c++   std::transform
-        std::transform(str.begin(), str.end(), str.begin(), ::tolower);
-        /*
+        */</span>
+        <span class="token comment" spellcheck="true">// or  c++   std::transform</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">transform</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> str<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">:</span>tolower<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/*
         // or  c++   std::for_each
-        for_each(str.begin(), str.end(), [](char &x){x = tolower(x);});
-        */
-        return str;
-    }
-};
-</code></pre>
+        for_each(str.begin(), str.end(), [](char &amp;x){x = tolower(x);});
+        */</span>
+        <span class="token keyword">return</span> str<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -742,10 +736,18 @@ Photoshop 有許多指令不用滑鼠點選，透過鍵盤使用快捷鍵，將�
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

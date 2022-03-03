@@ -9,8 +9,7 @@
 
 graph-easy-cn : https://weishu.gitbooks.io/graph-easy-cn/content/hinting/flow.html
 
-1. install graph-easy
-$s">
+1. install graph-easy$su">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -417,7 +416,7 @@ $s">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        132
+                        131
                     </div>
                     
 
@@ -444,11 +443,8 @@ $s">
 <ul>
 <li>graph-easy-cn : <a href="https://weishu.gitbooks.io/graph-easy-cn/content/hinting/flow.html" target="_blank" rel="noopener">https://weishu.gitbooks.io/graph-easy-cn/content/hinting/flow.html</a></li>
 </ul>
-<h3 id="1-install-graph-easy"><a class="header-anchor" href="#1-install-graph-easy"></a>1. install graph-easy</h3>
-<pre class=" language-language-sh"><code class="language-language-sh">$sudo apt install libgraph-easy-perl
-</code></pre>
-<h3 id="2-edit-file"><a class="header-anchor" href="#2-edit-file"></a>2. edit file</h3>
-<pre class=" language-language-sh"><code class="language-language-sh">$vim simple.txt
+<h3 id="1-install-graph-easy"><a href="#1-install-graph-easy" class="headerlink" title="1. install graph-easy"></a>1. install graph-easy</h3><pre class=" language-sh"><code class="language-sh">$sudo apt install libgraph-easy-perl</code></pre>
+<h3 id="2-edit-file"><a href="#2-edit-file" class="headerlink" title="2. edit file"></a>2. edit file</h3><pre class=" language-sh"><code class="language-sh">$vim simple.txt
 graph { flow: south; }
 [start] -> [userpass search?]
 [userpass search?] - match ->  [fast accept/drop]
@@ -458,14 +454,10 @@ graph { flow: south; }
 [LDAP/RADIUS check] - success -> [accept and update userpass]
 [LDAP/RADIUS check] - fail  -> [drop and update userpass/black]
 [try_cnt over?] - yes -> [ban drop, is hacker?]
-[try_cnt over?] - no -> [LDAP/RADIUS check]
-</code></pre>
-<h3 id="3-graph-it"><a class="header-anchor" href="#3-graph-it"></a>3. graph it</h3>
-<pre class=" language-language-sh"><code class="language-language-sh">$graph-easy ./simple.txt
-</code></pre>
-<h3 id="4-LRU-cache-as-example"><a class="header-anchor" href="#4-LRU-cache-as-example"></a>4. LRU cache as example</h3>
-<p>cache display:</p>
-<pre class=" language-language-sh"><code class="language-language-sh">### LRU - Least Recently Used Cache ###
+[try_cnt over?] - no -> [LDAP/RADIUS check]</code></pre>
+<h3 id="3-graph-it"><a href="#3-graph-it" class="headerlink" title="3. graph it"></a>3. graph it</h3><pre class=" language-sh"><code class="language-sh">$graph-easy ./simple.txt</code></pre>
+<h3 id="4-LRU-cache-as-example"><a href="#4-LRU-cache-as-example" class="headerlink" title="4. LRU cache as example"></a>4. LRU cache as example</h3><p>cache display:</p>
+<pre class=" language-sh"><code class="language-sh">### LRU - Least Recently Used Cache ###
 + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
 ' 1.userpass cache:                                         '
 '                                                           '
@@ -483,10 +475,9 @@ graph { flow: south; }
 ' +-----------------++--------++--------------------------+ '
 '                                                           '
 + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
-head                                                     tail
-</code></pre>
+head                                                     tail</code></pre>
 <p>graph display:</p>
-<pre class=" language-language-sh"><code class="language-language-sh">                                            +----------------------------+
+<pre class=" language-sh"><code class="language-sh">                                            +----------------------------+
                                             |           start            |
                                             +----------------------------+
                                               |
@@ -518,8 +509,7 @@ head                                                     tail
                                               v
                                             +----------------------------+
                                             | accept and update userpass |
-                                            +----------------------------+
-</code></pre>
+                                            +----------------------------+</code></pre>
 
             </div>
             <hr/>
@@ -582,59 +572,6 @@ head                                                     tail
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/17/git-github-bi-ji/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Git Github 筆記">
-                        
-                        <span class="card-title">Git Github 筆記</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary">
-                        
-                            git commits 大合併# Reset the current branch to the commit just before th
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-12-17
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%89%88%E6%8E%A7/" class="post-category" target="_blank">
-                                    版控
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/git/" target="_blank">
-                        <span class="chip bg-color">git</span>
-                    </a>
-                    
-                    <a href="/tags/github/" target="_blank">
-                        <span class="chip bg-color">github</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/2021/10/19/linux/ubuntu-gong-ju-socat/">
                     <div class="card-image">
                         
@@ -651,9 +588,9 @@ head                                                     tail
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-10-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-10-19
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -677,6 +614,48 @@ head                                                     tail
                         <span class="chip bg-color">socat</span>
                     </a>
                     
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/18/hexo/hexo-gitalk-403-issue/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Hexo - gitalk 403 issue">
+                        
+                        <span class="card-title">Hexo - gitalk 403 issue</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            issueblog 文章底下 gitalk 插件，再登入 github 帳號後 一直轉圈，並得到 error code 403
+solver
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-10-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Hexo/" class="post-category" target="_blank">
+                                    Hexo
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
                 </div>
                 
             </div>
@@ -791,10 +770,18 @@ head                                                     tail
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

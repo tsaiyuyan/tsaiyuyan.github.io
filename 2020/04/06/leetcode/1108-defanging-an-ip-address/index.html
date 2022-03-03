@@ -440,13 +440,11 @@ Given a valid (IPv4) IP address, return a defanged version ">
 <p>Given a valid (IPv4) IP address, return a defanged version of that IP address.</p>
 <p>A defanged IP address replaces every period “.” with “[.]”.</p>
 <p>Example 1:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: address = "1.1.1.1"
-Output: "1[.]1[.]1[.]1"
-</code></pre>
+<pre class=" language-txt"><code class="language-txt">Input: address = "1.1.1.1"
+Output: "1[.]1[.]1[.]1"</code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: address = "255.100.50.0"
-Output: "255[.]100[.]50[.]0"
-</code></pre>
+<pre class=" language-txt"><code class="language-txt">Input: address = "255.100.50.0"
+Output: "255[.]100[.]50[.]0"</code></pre>
 <p>Constraints:</p>
 <ul>
 <li>The given address is a valid IPv4 address.</li>
@@ -456,21 +454,20 @@ Output: "255[.]100[.]50[.]0"
 <p>X</p>
 <p>程式思路:</p>
 <p>直接硬幹</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    string defangIPaddr(string address) {
-        string output;
-        for(auto ptr : address)
-        {
-            if(ptr!='.')
-                output+=ptr;
-            else
-                output+="[.]";
-        }
-        return output;
-    }
-};
-</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    string <span class="token function">defangIPaddr</span><span class="token punctuation">(</span>string address<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        string output<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> ptr <span class="token punctuation">:</span> address<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>ptr<span class="token operator">!=</span><span class="token string">'.'</span><span class="token punctuation">)</span>
+                output<span class="token operator">+</span><span class="token operator">=</span>ptr<span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                output<span class="token operator">+</span><span class="token operator">=</span><span class="token string">"[.]"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> output<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -739,10 +736,18 @@ No content to disp
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

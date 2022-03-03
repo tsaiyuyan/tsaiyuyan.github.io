@@ -413,7 +413,7 @@ You’re given strings J representing the types of ston">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        282
+                        319
                     </div>
                     
 
@@ -440,13 +440,11 @@ You’re given strings J representing the types of ston">
 <p>You’re given strings J representing the types of stones that are jewels, and S representing the stones you have. Each character in S is a type of stone you have. You want to know how many of the stones you have are also jewels.</p>
 <p>The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so “a” is considered a different type of stone from “A”.</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: J = "aA", S = "aAAbbbb"
-Output: 3
-</code></pre>
+<pre class=" language-text"><code class="language-text">Input: J = "aA", S = "aAAbbbb"
+Output: 3</code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: J = "z", S = "ZZ"
-Output: 0
-</code></pre>
+<pre class=" language-text"><code class="language-text">Input: J = "z", S = "ZZ"
+Output: 0</code></pre>
 <p>Note:</p>
 <ul>
 <li>S and J will consist of letters and have length at most 50.</li>
@@ -454,29 +452,27 @@ Output: 0
 </ul>
 <hr>
 <p>題目翻譯:</p>
-<p>你得到的字符串 J 代表珠寶的石頭類型，S 代表你擁有的寶石。 S 中的每個角色都是你擁有的一種石頭。你想知道你有多少寶石也是珠寶。<br>
-J 中的字母保證不同，J 和 S 中的所有字符都是字母。字母區分大小寫，因此“a”被認為是與“A”不同類型的石頭。</p>
+<p>你得到的字符串 J 代表珠寶的石頭類型，S 代表你擁有的寶石。 S 中的每個角色都是你擁有的一種石頭。你想知道你有多少寶石也是珠寶。<br>J 中的字母保證不同，J 和 S 中的所有字符都是字母。字母區分大小寫，因此“a”被認為是與“A”不同類型的石頭。</p>
 <p>程式思路:</p>
 <p>建立一個珠寶石頭類型 hash table 在比對自已擁有的珠寶，就能輕鬆解題。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    int numJewelsInStones(string J, string S) {
-        unsigned int ret = 0;
-        std::unordered_map<char,int> umap;
-        for (unsigned i=0; i<J.length(); ++i)
-        {
-            umap.insert( pair<char, int>( J.at(i), i));
-        }
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">numJewelsInStones</span><span class="token punctuation">(</span>string J<span class="token punctuation">,</span> string S<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">unsigned</span> <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>unordered_map<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> umap<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>J<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            umap<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span> pair<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span> J<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        for (unsigned i=0; i<S.length(); ++i)
-        {
-            if(umap.find(S.at(i)) != umap.end())
-                ret ++;
-        }
-        return ret;
-    }
-};
-</code></pre>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>S<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>umap<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>S<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> umap<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                ret <span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -739,10 +735,18 @@ windows 在使用螢幕小鍵盤的時候，千萬不
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

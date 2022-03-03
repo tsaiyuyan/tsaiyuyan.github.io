@@ -413,7 +413,7 @@ There is a robot starting at position (0, 0), the origin, on">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        432
+                        434
                     </div>
                     
 
@@ -441,15 +441,13 @@ There is a robot starting at position (0, 0), the origin, on">
 <p>The move sequence is represented by a string, and the character moves[i] represents its ith move. Valid moves are R (right), L (left), U (up), and D (down). If the robot returns to the origin after it finishes all of its moves, return true. Otherwise, return false.</p>
 <p>Note: The way that the robot is “facing” is irrelevant. “R” will always make the robot move to the right once, “L” will always make it move left, etc. Also, assume that the magnitude of the robot’s movement is the same for each move.</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: "UD"
+<pre class=" language-text"><code class="language-text">Input: "UD"
 Output: true
-Explanation: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.
-</code></pre>
+Explanation: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.</code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: "LL"
+<pre class=" language-text"><code class="language-text">Input: "LL"
 Output: false
-Explanation: The robot moves left twice. It ends up two "moves" to the left of the origin. We return false because it is not at the origin at the end of its moves.
-</code></pre>
+Explanation: The robot moves left twice. It ends up two "moves" to the left of the origin. We return false because it is not at the origin at the end of its moves.</code></pre>
 <hr>
 <p>題目翻譯:</p>
 <p>在 2D 平面上有一個從位置（0,0）開始的機器人。給定其移動序列，判斷該機器人在完成移動後是否在（0,0）處結束。</p>
@@ -457,34 +455,33 @@ Explanation: The robot moves left twice. It ends up two "moves" to the left of t
 <p>注意：機器人“面對”的方式無關緊要。 “R”將始終使機器人向右移動一次，“L”將始終向左移動等。此外，假設每次移動機器人的移動幅度相同。</p>
 <p>程式思路:</p>
 <p>簡單的+1-1 的題目。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    bool judgeCircle(string moves) {
-        int x = 0,y = 0;
-        for(auto c : moves)
-        {
-            switch(c)
-            {
-                case 'R':
-                    x++;
-                    break;
-                case 'L':
-                    x--;
-                    break;
-                case 'U':
-                    y++;
-                    break;
-                case 'D':
-                    y--;
-                    break;
-                default:
-                    break;
-            }
-        }
-        return (x == 0 && y==0);
-    }
-};
-</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    bool <span class="token function">judgeCircle</span><span class="token punctuation">(</span>string moves<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> c <span class="token punctuation">:</span> moves<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">switch</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">case</span> <span class="token string">'R'</span><span class="token punctuation">:</span>
+                    x<span class="token operator">++</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token keyword">case</span> <span class="token string">'L'</span><span class="token punctuation">:</span>
+                    x<span class="token operator">--</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token keyword">case</span> <span class="token string">'U'</span><span class="token punctuation">:</span>
+                    y<span class="token operator">++</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token keyword">case</span> <span class="token string">'D'</span><span class="token punctuation">:</span>
+                    y<span class="token operator">--</span><span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token keyword">default</span><span class="token punctuation">:</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> y<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -758,10 +755,18 @@ You have
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

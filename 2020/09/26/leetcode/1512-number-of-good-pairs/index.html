@@ -414,7 +414,7 @@ A pair (i,j) is called good i">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        176
+                        181
                     </div>
                     
 
@@ -442,19 +442,16 @@ A pair (i,j) is called good i">
 <p>A pair (i,j) is called good if nums[i] == nums[j] and i &lt; j.</p>
 <p>Return the number of good pairs.</p>
 <p>Example 1:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: nums = [1,2,3,1,1,3]
+<pre class=" language-txt"><code class="language-txt">Input: nums = [1,2,3,1,1,3]
 Output: 4
-Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
-</code></pre>
+Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.</code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: nums = [1,1,1,1]
+<pre class=" language-txt"><code class="language-txt">Input: nums = [1,1,1,1]
 Output: 6
-Explanation: Each pair in the array are good.
-</code></pre>
+Explanation: Each pair in the array are good.</code></pre>
 <p>Example 3:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: nums = [1,2,3]
-Output: 0
-</code></pre>
+<pre class=" language-txt"><code class="language-txt">Input: nums = [1,2,3]
+Output: 0</code></pre>
 <p>Constraints:</p>
 <ul>
 <li>1 &lt;= nums.length &lt;= 100</li>
@@ -465,22 +462,21 @@ Output: 0
 <p>keyword <code>nums[i] == nums[j] and i &lt; j</code></p>
 <p>程式思路:</p>
 <p>很 easy 的題目，<code>nums[i] == nums[j] and i &lt; j</code> 照這個條件做就好。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    int numIdenticalPairs(vector<int>& nums) {
-        int ret = 0;
-        for(int j = 1;j < nums.size();j++)
-        {
-            for(int i = 0;i < j; i++)
-            {
-                if( nums[i] == nums[j])
-                    ret++;
-            }
-        }
-        return ret;
-    }
-};
-</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">numIdenticalPairs</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> nums<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> ret <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>j <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> j<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                    ret<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -753,10 +749,18 @@ The
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

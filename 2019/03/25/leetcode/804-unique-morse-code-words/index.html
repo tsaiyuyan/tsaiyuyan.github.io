@@ -413,7 +413,7 @@ International Morse Code defines a standard encoding where ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        384
+                        389
                     </div>
                     
 
@@ -437,13 +437,12 @@ International Morse Code defines a standard encoding where ">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>Link: <a href="https://leetcode.com/problems/unique-morse-code-words/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-morse-code-words/</a></p>
-<p>International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: “a” maps to “.-”, “b” maps to “-…”, “c” maps to “-.-.”, and so on.</p>
+<p>International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: “a” maps to “.-“, “b” maps to “-…”, “c” maps to “-.-.”, and so on.</p>
 <p>For convenience, the full table for the 26 letters of the English alphabet is given below:</p>
-<pre class=" language-language-text"><code class="language-language-text">[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
-</code></pre>
-<p>Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. For example, “cba” can be written as “-.-…–…”, (which is the concatenation “-.-.” + “-…” + “.-”). We’ll call such a concatenation, the transformation of a word.</p>
+<pre class=" language-text"><code class="language-text">[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]</code></pre>
+<p>Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. For example, “cba” can be written as “-.-..–…”, (which is the concatenation “-.-.” + “-…” + “.-“). We’ll call such a concatenation, the transformation of a word.</p>
 <p>Return the number of different transformations among all words we have.</p>
-<pre class=" language-language-text"><code class="language-language-text">Example:
+<pre class=" language-text"><code class="language-text">Example:
 Input: words = ["gin", "zen", "gig", "msg"]
 Output: 2
 Explanation:
@@ -451,10 +450,8 @@ The transformation of each word is:
 "gin" -> "--...-."
 "zen" -> "--...-."
 "gig" -> "--...--."
-"msg" -> "--...--."
-</code></pre>
-<p>There are 2 different transformations, “–…-.” and “–…--.”.<br>
-Note:</p>
+"msg" -> "--...--."</code></pre>
+<p>There are 2 different transformations, “–…-.” and “–…–.”.<br>Note:</p>
 <ul>
 <li>The length of words will be at most 100.</li>
 <li>Each words[i] will have length in range [1, 12].</li>
@@ -464,34 +461,32 @@ Note:</p>
 <p>題目翻譯:</p>
 <p>國際莫爾斯電碼定義了一種標準編碼，其中每個字母映射到一系列點和短劃線，如下所示：“a”映射到“.-”，“b”映射到“-…”，“c”映射到“-。-。“， 等等。</p>
 <p>為方便起見，下面給出了 26 個英文字母的完整表格：</p>
-<pre class=" language-language-text"><code class="language-language-text">[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
-</code></pre>
-<p>現在，給定一個單詞列表，每個單詞可以寫成串聯每個字母的摩爾斯電碼。例如，“cba”可以寫成&quot;-.-…–…&quot;，（這是串聯&quot;-.-.&quot; + “-…” + “.-”）。我們稱之為串聯，即一個詞的轉換。</p>
+<pre class=" language-text"><code class="language-text">[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]</code></pre>
+<p>現在，給定一個單詞列表，每個單詞可以寫成串聯每個字母的摩爾斯電碼。例如，“cba”可以寫成”-.-..–…”，（這是串聯”-.-.” + “-…” + “.-“）。我們稱之為串聯，即一個詞的轉換。</p>
 <p>返回我們所有單詞中不同變換的數量。</p>
 <p>程式思路:</p>
 <p>利用 set 容器的特性，輕鬆就能做出此題</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    int uniqueMorseRepresentations(vector<string>& words) {
-        set <string> transformations;
-        vector <string >Morse_table = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
-        for(auto word : words)
-        {
-            string tmp;
-            for (int i = 0; i < word.length();i++)
-            {
-               auto offset = (word[i] - 'a');
-               if(offset < Morse_table.size())
-                    tmp += Morse_table[offset];
-               else
-                    break; //invalid char;
-            }
-            transformations.insert(tmp);
-        }
-        return transformations.size();
-    }
-}
-</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">uniqueMorseRepresentations</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token operator">&amp;</span> words<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        set <span class="token operator">&lt;</span>string<span class="token operator">></span> transformations<span class="token punctuation">;</span>
+        vector <span class="token operator">&lt;</span>string <span class="token operator">></span>Morse_table <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">".-"</span><span class="token punctuation">,</span><span class="token string">"-..."</span><span class="token punctuation">,</span><span class="token string">"-.-."</span><span class="token punctuation">,</span><span class="token string">"-.."</span><span class="token punctuation">,</span><span class="token string">"."</span><span class="token punctuation">,</span><span class="token string">"..-."</span><span class="token punctuation">,</span><span class="token string">"--."</span><span class="token punctuation">,</span><span class="token string">"...."</span><span class="token punctuation">,</span><span class="token string">".."</span><span class="token punctuation">,</span><span class="token string">".---"</span><span class="token punctuation">,</span><span class="token string">"-.-"</span><span class="token punctuation">,</span><span class="token string">".-.."</span><span class="token punctuation">,</span><span class="token string">"--"</span><span class="token punctuation">,</span><span class="token string">"-."</span><span class="token punctuation">,</span><span class="token string">"---"</span><span class="token punctuation">,</span><span class="token string">".--."</span><span class="token punctuation">,</span><span class="token string">"--.-"</span><span class="token punctuation">,</span><span class="token string">".-."</span><span class="token punctuation">,</span><span class="token string">"..."</span><span class="token punctuation">,</span><span class="token string">"-"</span><span class="token punctuation">,</span><span class="token string">"..-"</span><span class="token punctuation">,</span><span class="token string">"...-"</span><span class="token punctuation">,</span><span class="token string">".--"</span><span class="token punctuation">,</span><span class="token string">"-..-"</span><span class="token punctuation">,</span><span class="token string">"-.--"</span><span class="token punctuation">,</span><span class="token string">"--.."</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> word <span class="token punctuation">:</span> words<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            string tmp<span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> word<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+               <span class="token keyword">auto</span> offset <span class="token operator">=</span> <span class="token punctuation">(</span>word<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token keyword">if</span><span class="token punctuation">(</span>offset <span class="token operator">&lt;</span> Morse_table<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                    tmp <span class="token operator">+</span><span class="token operator">=</span> Morse_table<span class="token punctuation">[</span>offset<span class="token punctuation">]</span><span class="token punctuation">;</span>
+               <span class="token keyword">else</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//invalid char;</span>
+            <span class="token punctuation">}</span>
+            transformations<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> transformations<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -765,10 +760,18 @@ There is a table Wo
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

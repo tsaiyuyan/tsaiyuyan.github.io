@@ -5,8 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="1081. Smallest Subsequence of Distinct Characters, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="Link: [https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/]
-Return the lexicographically smallest">
+    <meta name="description" content="Link: [https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/]Return the lexicographically smallest ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -413,7 +412,7 @@ Return the lexicographically smallest">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        165
+                        176
                     </div>
                     
 
@@ -436,17 +435,14 @@ Return the lexicographically smallest">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Link: [https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/]<br>
-Return the lexicographically smallest subsequence of s that contains all the distinct characters of s exactly once.</p>
-<p>Note: This question is the same as 316: [https://leetcode.com/problems/remove-duplicate-letters/]</p>
+                <p>Link: [<a href="https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/]" target="_blank" rel="noopener">https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/]</a><br>Return the lexicographically smallest subsequence of s that contains all the distinct characters of s exactly once.</p>
+<p>Note: This question is the same as 316: [<a href="https://leetcode.com/problems/remove-duplicate-letters/]" target="_blank" rel="noopener">https://leetcode.com/problems/remove-duplicate-letters/]</a></p>
 <p>Example 1:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: s = "bcabc"
-Output: "abc"
-</code></pre>
+<pre class=" language-txt"><code class="language-txt">Input: s = "bcabc"
+Output: "abc"</code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: s = "cbacdcbc"
-Output: "acdb"
-</code></pre>
+<pre class=" language-txt"><code class="language-txt">Input: s = "cbacdcbc"
+Output: "acdb"</code></pre>
 <p>Constraints:</p>
 <ul>
 <li>1 &lt;= s.length &lt;= 1000</li>
@@ -457,42 +453,41 @@ Output: "acdb"
 <p>X</p>
 <p>程式思路:</p>
 <p>X</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    string smallestSubsequence(string s) {
-        vector <int> seen (26,false);
-        vector <int> freq (26,0);
-        stack <char> stk;
-        for (auto c : s) {
-            freq[c - 'a']++;
-        }
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    string <span class="token function">smallestSubsequence</span><span class="token punctuation">(</span>string s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        vector <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">seen</span> <span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">,</span>false<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vector <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">freq</span> <span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stack <span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">></span> stk<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> c <span class="token punctuation">:</span> s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            freq<span class="token punctuation">[</span>c <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s[i];
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> s<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">char</span> ch <span class="token operator">=</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-            freq[ch - 'a']--;
-            if (seen[ch - 'a'])
-                continue;
+            freq<span class="token punctuation">[</span>ch <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>seen<span class="token punctuation">[</span>ch <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">continue</span><span class="token punctuation">;</span>
 
-            while (!stk.empty() && stk.top() > ch && freq[stk.top() - 'a'] > 0) {
-                seen[stk.top() - 'a'] = false;
-                stk.pop();
-            }
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>stk<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> stk<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> ch <span class="token operator">&amp;&amp;</span> freq<span class="token punctuation">[</span>stk<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                seen<span class="token punctuation">[</span>stk<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> false<span class="token punctuation">;</span>
+                stk<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
 
-            stk.push(ch);
-            seen[ch - 'a'] = true;
-        }
+            stk<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            seen<span class="token punctuation">[</span>ch <span class="token operator">-</span> <span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> true<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        string res;
-        while (!stk.empty()) {
-            res += stk.top();
-            stk.pop();
-        }
-        reverse(res.begin(), res.end());
-        return res;
-    }
-};
-</code></pre>
+        string res<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>stk<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            res <span class="token operator">+</span><span class="token operator">=</span> stk<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            stk<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">reverse</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> res<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -772,10 +767,18 @@ Given an inte
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

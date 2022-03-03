@@ -415,7 +415,7 @@ On a 2-dimensional grid, there are 4 types of squares:
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        677
+                        704
                     </div>
                     
 
@@ -448,28 +448,25 @@ On a 2-dimensional grid, there are 4 types of squares:
 </ul>
 <p>Return the number of 4-directional walks from the starting square to the ending square, that walk over every non-obstacle square exactly once.</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: [[1,0,0,0],[0,0,0,0],[0,0,2,-1]]
+<pre class=" language-text"><code class="language-text">Input: [[1,0,0,0],[0,0,0,0],[0,0,2,-1]]
 Output: 2
 Explanation: We have the following two paths:
 1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2)
-2. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2)
-</code></pre>
+2. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2)</code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: [[1,0,0,0],[0,0,0,0],[0,0,0,2]]
+<pre class=" language-text"><code class="language-text">Input: [[1,0,0,0],[0,0,0,0],[0,0,0,2]]
 Output: 4
 Explanation: We have the following four paths:
 1. (0,0),(0,1),(0,2),(0,3),(1,3),(1,2),(1,1),(1,0),(2,0),(2,1),(2,2),(2,3)
 2. (0,0),(0,1),(1,1),(1,0),(2,0),(2,1),(2,2),(1,2),(0,2),(0,3),(1,3),(2,3)
 3. (0,0),(1,0),(2,0),(2,1),(2,2),(1,2),(1,1),(0,1),(0,2),(0,3),(1,3),(2,3)
-4. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2),(2,3)
-</code></pre>
+4. (0,0),(1,0),(2,0),(2,1),(1,1),(0,1),(0,2),(0,3),(1,3),(1,2),(2,2),(2,3)</code></pre>
 <p>Example 3:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: [[0,1],[2,0]]
+<pre class=" language-text"><code class="language-text">Input: [[0,1],[2,0]]
 Output: 0
 Explanation:
 There is no path that walks over every empty square exactly once.
-Note that the starting and ending square can be anywhere in the grid.
-</code></pre>
+Note that the starting and ending square can be anywhere in the grid.</code></pre>
 <p>Note:</p>
 <ul>
 <li>1 &lt;= grid.length * grid[0].length &lt;= 20</li>
@@ -486,80 +483,79 @@ Note that the starting and ending square can be anywhere in the grid.
 <p>返回從起始正方形到結束正方形的四向行走的數量，它在每個非障礙物正方形上行走一次。</p>
 <p>程式思路:</p>
 <p>到達 2 時 檢查路徑是否還有 0。 先往右，往下，往左，往上，使用遞迴，不算太難，但程式碼稍長。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    bool IsAllPassed(vector<vector<int>> grid)
-    {
-        for (int i = 0; i < grid.size(); i++)
-        {
-            for (int j = 0; j < grid[i].size(); j++)
-            {
-                if (grid[i][j] == 0)
-                    return false;
-            }
-        }
-        return true;
-    }
-    bool IsValid(int x, int y, int x_max, int y_max)
-    {
-        if (x >= 0 && x < x_max && y >= 0 && y < y_max)
-        {
-            return true;
-        }
-        return false;
-    }
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    bool <span class="token function">IsAllPassed</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> grid<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> grid<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                    <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    bool <span class="token function">IsValid</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">,</span> <span class="token keyword">int</span> x_max<span class="token punctuation">,</span> <span class="token keyword">int</span> y_max<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> x <span class="token operator">&lt;</span> x_max <span class="token operator">&amp;&amp;</span> y <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> y <span class="token operator">&lt;</span> y_max<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    void DFS(int &paths_num, vector<vector<int>> grid, int x, int y)
-    {
-        const int steps[4][2] = { {1,0},{0,1},{-1,0},{0,-1} };
-        grid[x][y] = -1;
-        for (int i = 0; i < 4; i++)
-        {
-        int next_x = x + steps[i][0];
-        int next_y = y + steps[i][1];
-        if (IsValid(next_x, next_y, grid.size(), grid[0].size()))
-        {
-        //printf(" (%d %d) -> (%d %d) = %d\n", x, y, next_x, next_y, grid[next_x][next_y]);
-            if (grid[next_x][next_y] == -1)
-                {
-                    //continue;
-                }
-                else if (grid[next_x][next_y] == 0)
-                {
-                    DFS(paths_num, grid, next_x, next_y);
-                }
-                else if (grid[next_x][next_y] == 2)
-                {
-                    if (IsAllPassed(grid))
-                        paths_num++;
-                }
-            }
-        }
-    }
+    <span class="token keyword">void</span> <span class="token function">DFS</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>paths_num<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> grid<span class="token punctuation">,</span> <span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token keyword">int</span> steps<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        grid<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> next_x <span class="token operator">=</span> x <span class="token operator">+</span> steps<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> next_y <span class="token operator">=</span> y <span class="token operator">+</span> steps<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">IsValid</span><span class="token punctuation">(</span>next_x<span class="token punctuation">,</span> next_y<span class="token punctuation">,</span> grid<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//printf(" (%d %d) -> (%d %d) = %d\n", x, y, next_x, next_y, grid[next_x][next_y]);</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>grid<span class="token punctuation">[</span>next_x<span class="token punctuation">]</span><span class="token punctuation">[</span>next_y<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//continue;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>grid<span class="token punctuation">[</span>next_x<span class="token punctuation">]</span><span class="token punctuation">[</span>next_y<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token function">DFS</span><span class="token punctuation">(</span>paths_num<span class="token punctuation">,</span> grid<span class="token punctuation">,</span> next_x<span class="token punctuation">,</span> next_y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>grid<span class="token punctuation">[</span>next_x<span class="token punctuation">]</span><span class="token punctuation">[</span>next_y<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">IsAllPassed</span><span class="token punctuation">(</span>grid<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                        paths_num<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    int uniquePathsIII(vector<vector<int>>& grid) {
-        int start_x = 0;
-        int start_y = 0;
-        int paths_num = 0;
+    <span class="token keyword">int</span> <span class="token function">uniquePathsIII</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span><span class="token operator">&amp;</span> grid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> start_x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> start_y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> paths_num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-        //find start point
-        for (int i = 0; i < grid.size(); i++)
-        {
-            for (int j = 0; j < grid[i].size(); j++)
-            {
-                if (grid[i][j] == 1)
-                {
-                    start_x = i;
-                    start_y = j;
-                    break;
-                }
-            }
-        }
-        DFS(paths_num, grid, start_x, start_y);
-        return paths_num;
-    }
-};
-</code></pre>
+        <span class="token comment" spellcheck="true">//find start point</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> grid<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    start_x <span class="token operator">=</span> i<span class="token punctuation">;</span>
+                    start_y <span class="token operator">=</span> j<span class="token punctuation">;</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">DFS</span><span class="token punctuation">(</span>paths_num<span class="token punctuation">,</span> grid<span class="token punctuation">,</span> start_x<span class="token punctuation">,</span> start_y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> paths_num<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -833,10 +829,18 @@ RGiven
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

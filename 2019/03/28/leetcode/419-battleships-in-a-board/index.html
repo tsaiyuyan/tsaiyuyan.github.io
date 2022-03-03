@@ -413,14 +413,14 @@ Given an 2D board, count how many battleships are in it. The">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        354
+                        431
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -437,23 +437,20 @@ Given an 2D board, count how many battleships are in it. The">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>Link: <a href="https://leetcode.com/problems/battleships-in-a-board/" target="_blank" rel="noopener">https://leetcode.com/problems/battleships-in-a-board/</a></p>
-<p>Given an 2D board, count how many battleships are in it. The battleships are represented with 'X’s, empty slots are represented with '.'s. You may assume the following rules:</p>
+<p>Given an 2D board, count how many battleships are in it. The battleships are represented with ‘X’s, empty slots are represented with ‘.’s. You may assume the following rules:</p>
 <ul>
 <li>You receive a valid board, made of only battleships or empty slots.</li>
 <li>Battleships can only be placed horizontally or vertically. In other words, they can only be made of the shape 1xN (1 row, N columns) or Nx1 (N rows, 1 column), where N can be of any size.</li>
 <li>At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.</li>
 </ul>
 <p>Example:</p>
-<pre class=" language-language-text"><code class="language-language-text">X..X
+<pre class=" language-text"><code class="language-text">X..X
 ...X
-...X
-</code></pre>
-<p>In the above board there are 2 battleships.<br>
-Invalid Example:</p>
-<pre class=" language-language-text"><code class="language-language-text">...X
+...X</code></pre>
+<p>In the above board there are 2 battleships.<br>Invalid Example:</p>
+<pre class=" language-text"><code class="language-text">...X
 XXXX
-...X
-</code></pre>
+...X</code></pre>
 <p>This is an invalid board that you will not receive - as battleships will always have a cell separating between them.</p>
 <p>Follow up:</p>
 <ul>
@@ -461,41 +458,39 @@ XXXX
 </ul>
 <hr>
 <p>題目翻譯:</p>
-<p>給定 2D 板，計算其中有多少戰列艦。戰列艦用’X’表示，空位用’。'表示。您可以遵守以下規則：</p>
+<p>給定 2D 板，計算其中有多少戰列艦。戰列艦用’X’表示，空位用’。’表示。您可以遵守以下規則：</p>
 <ul>
 <li>您收到一個有效的板，僅由戰艦或空槽組成。</li>
 <li>Battleships 只能水平放置或垂直放置。換句話說，它們只能由 1xN（1 行，N 列）或 Nx1（N 行，1 列）的形狀組成，其中 N 可以是任何大小。</li>
 <li>至少有一個水平或垂直的單元格在兩艘戰列艦之間分開 - 沒有相鄰的戰列艦。</li>
 </ul>
-<p>程式思路:<br>
-遇到’X’時檢查它的上方跟左方是不是’X’，如果都不是表示這個點就是船頭。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    int countBattleships(vector<vector<char>>& board) {
-        int result = 0;
-        auto IsExtandofBoard = [&](int x ,int y)
-        {
-            if(0 <= x && x < board.size() && 0 <= y && y < board[0].size() && board[x][y] == 'X')
-            {
-                   return true;
-            }
-            return false;
-        };
-        for(int i = 0;i < board.size();i++)
-        {
-             for(int j = 0;j < board[0].size();j++)
-             {
-                 if(board[i][j] == 'X')
-                 {
-                    if(!IsExtandofBoard(i,j-1) && !IsExtandofBoard(i-1,j)) // left & up
-                      result++;
-                 }
-             }
-        }
-        return result;
-    }
-};
-</code></pre>
+<p>程式思路:<br>遇到’X’時檢查它的上方跟左方是不是’X’，如果都不是表示這個點就是船頭。</p>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">countBattleships</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">>></span><span class="token operator">&amp;</span> board<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">auto</span> IsExtandofBoard <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">&lt;=</span> x <span class="token operator">&amp;&amp;</span> x <span class="token operator">&lt;</span> board<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token number">0</span> <span class="token operator">&lt;=</span> y <span class="token operator">&amp;&amp;</span> y <span class="token operator">&lt;</span> board<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> board<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'X'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                   <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> board<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+             <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>j <span class="token operator">&lt;</span> board<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+             <span class="token punctuation">{</span>
+                 <span class="token keyword">if</span><span class="token punctuation">(</span>board<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'X'</span><span class="token punctuation">)</span>
+                 <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">IsExtandofBoard</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token number">-1</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">IsExtandofBoard</span><span class="token punctuation">(</span>i<span class="token number">-1</span><span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// left &amp; up</span>
+                      result<span class="token operator">++</span><span class="token punctuation">;</span>
+                 <span class="token punctuation">}</span>
+             <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -756,10 +751,18 @@ Giv
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

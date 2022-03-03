@@ -414,7 +414,7 @@ It has">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        358
+                        360
                     </div>
                     
 
@@ -444,9 +444,8 @@ It has">
 <p>Any ping with time in [t - 3000, t] will count, including the current ping.</p>
 <p>It is guaranteed that every call to ping uses a strictly larger value of t than before.</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: inputs = ["RecentCounter","ping","ping","ping","ping"], inputs = [[],[1],[100],[3001],[3002]]
-Output: [null,1,2,3,3]
-</code></pre>
+<pre class=" language-text"><code class="language-text">Input: inputs = ["RecentCounter","ping","ping","ping","ping"], inputs = [[],[1],[100],[3001],[3002]]
+Output: [null,1,2,3,3]</code></pre>
 <p>Note:</p>
 <ol>
 <li>Each test case will have at most 10000 calls to ping.</li>
@@ -456,33 +455,31 @@ Output: [null,1,2,3,3]
 <hr>
 <p>題目翻譯:</p>
 <p>共享寫一個類 RecentCounter 來計算最近的請求。 它只有一個方法：ping（int t），其中 t 代表一些時間（以毫秒為單位）。 返回從 3000 毫秒前到現在為止的 ping 數。 在[t-3000，t]中任何時間 ping 都將計數，包括當前 ping。 保證每次調用 ping 都使用比之前嚴格更大的 t 值。</p>
-<p>程式思路:<br>
-用一個 deque 容器將時間存起來，為了方便查找所以每次都會從第一個元素開始判斷是否有在 t-3000 時間以內，如果沒有就刪除元素，最後返回容器的總元素量就是答案。</p>
-<pre class=" language-language-c"><code class="language-language-c">class RecentCounter {
-public:
-    deque <int> pings;
-    RecentCounter() {
-    }
-    int ping(int t) {
-        pings.emplace_back(t);
-        for(auto it = pings.begin();it != pings.end();it++)
-        {
-            if((*it >= t - 3000))
-            {
-                pings.erase(pings.begin(),it);
-                break;
-            }
-        }
-        return pings.size();
-    }
-};
+<p>程式思路:<br>用一個 deque 容器將時間存起來，為了方便查找所以每次都會從第一個元素開始判斷是否有在 t-3000 時間以內，如果沒有就刪除元素，最後返回容器的總元素量就是答案。</p>
+<pre class=" language-c"><code class="language-c">class RecentCounter <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    deque <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> pings<span class="token punctuation">;</span>
+    <span class="token function">RecentCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> <span class="token function">ping</span><span class="token punctuation">(</span><span class="token keyword">int</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        pings<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> it <span class="token operator">=</span> pings<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>it <span class="token operator">!=</span> pings<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>it<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">*</span>it <span class="token operator">>=</span> t <span class="token operator">-</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                pings<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>pings<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>it<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> pings<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-/**
+<span class="token comment" spellcheck="true">/**
  * Your RecentCounter object will be instantiated and called as such:
  * RecentCounter* obj = new RecentCounter();
  * int param_1 = obj->ping(t);
- */
-</code></pre>
+ */</span></code></pre>
 
             </div>
             <hr/>
@@ -743,10 +740,18 @@ We have a colle
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

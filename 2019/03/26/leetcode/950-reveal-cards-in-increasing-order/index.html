@@ -413,7 +413,7 @@ In a deck of cards, every card has a unique intege">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        639
+                        642
                     </div>
                     
 
@@ -448,7 +448,7 @@ In a deck of cards, every card has a unique intege">
 <p>Return an ordering of the deck that would reveal the cards in increasing order.</p>
 <p>The first entry in the answer is considered to be the top of the deck.</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: [17,13,11,2,3,5,7]
+<pre class=" language-text"><code class="language-text">Input: [17,13,11,2,3,5,7]
 Output: [2,13,3,11,5,17,7]
 Explanation:
 We get the deck in the order [17,13,11,2,3,5,7] (this order doesn't matter), and reorder it.
@@ -460,8 +460,7 @@ We reveal 7, and move 13 to the bottom.  The deck is now [11,17,13].
 We reveal 11, and move 17 to the bottom.  The deck is now [13,17].
 We reveal 13, and move 17 to the bottom.  The deck is now [17].
 We reveal 17.
-Since all the cards revealed are in increasing order, the answer is correct.
-</code></pre>
+Since all the cards revealed are in increasing order, the answer is correct.</code></pre>
 <p>Note:</p>
 <ul>
 <li>1 &lt;= A.length &lt;= 1000</li>
@@ -481,26 +480,25 @@ Since all the cards revealed are in increasing order, the answer is correct.
 <p>返回甲板的訂單，以便按遞增順序顯示卡片。</p>
 <p>答案中的第一個條目被認為是套牌的頂部。</p>
 <p>程式思路:</p>
-<p>用容器 deque 做會比用 vector 稍微方便點。題目的意思就是說 你的 input 是上述動作所產生出來的&quot;結果&quot;，所以叫你把&quot;原本&quot;的排組個 output 出來，所以我們要把它做過的步驟反著做。而且要記得先把 input 做個遞減排列。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    vector<int> deckRevealedIncreasing(vector<int>& deck) {
-        deque <int> deck_que;
-        //sort deck decreasing
-        sort(deck.begin(),deck.end(),[](int a,int b){return a > b;});
-        for(auto val : deck)
-        {
-            if(!deck_que.empty())
-            {
-                deck_que.push_front(deck_que.back());
-                deck_que.pop_back();
-            }
-            deck_que.push_front(val);
-        }
-        return vector (deck_que.begin(),deck_que.end());
-    }
-};
-</code></pre>
+<p>用容器 deque 做會比用 vector 稍微方便點。題目的意思就是說 你的 input 是上述動作所產生出來的”結果”，所以叫你把”原本”的排組個 output 出來，所以我們要把它做過的步驟反著做。而且要記得先把 input 做個遞減排列。</p>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">deckRevealedIncreasing</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> deck<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        deque <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> deck_que<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//sort deck decreasing</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>deck<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>deck<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> a <span class="token operator">></span> b<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> val <span class="token punctuation">:</span> deck<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>deck_que<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                deck_que<span class="token punctuation">.</span><span class="token function">push_front</span><span class="token punctuation">(</span>deck_que<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                deck_que<span class="token punctuation">.</span><span class="token function">pop_back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            deck_que<span class="token punctuation">.</span><span class="token function">push_front</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token function">vector</span> <span class="token punctuation">(</span>deck_que<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>deck_que<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -774,10 +772,18 @@ Given a binary
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

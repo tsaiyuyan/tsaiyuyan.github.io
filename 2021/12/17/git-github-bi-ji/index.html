@@ -5,10 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Git Github 筆記, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="git commits 大合併# Reset the current branch to the commit just before the last 12:
+    <meta name="description" content="git commits 大合併
+# Reset the current branch to the commit just before the last 12:
 git reset --hard HEAD~12
 
-# HEAD@{1} is">
+# HEAD@{1} i">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -415,14 +416,14 @@ git reset --hard HEAD~12
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        102
+                        495
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        1 分
+                        3 分
                     </div>
                     
                 
@@ -438,7 +439,8 @@ git reset --hard HEAD~12
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="git-commits-大合併"><a href="#git-commits-大合併" class="headerlink" title="git commits 大合併"></a>git commits 大合併</h2><pre class=" language-sh"><code class="language-sh"># Reset the current branch to the commit just before the last 12:
+                <h2>git commits 大合併</h2>
+<pre class=" language-language-sh"><code class="language-language-sh"># Reset the current branch to the commit just before the last 12:
 git reset --hard HEAD~12
 
 # HEAD@{1} is where the branch was just before the previous command.
@@ -448,9 +450,94 @@ git merge --squash HEAD@{1}
 
 # Commit those squashed changes.  The commit message will be helpfully
 # prepopulated with the commit messages of all the squashed commits:
-git commit</code></pre>
-<h2 id="強制覆蓋-github-版本-需注意這步將無法還原"><a href="#強制覆蓋-github-版本-需注意這步將無法還原" class="headerlink" title="強制覆蓋 github 版本 (需注意這步將無法還原)"></a>強制覆蓋 github 版本 (需注意這步將無法還原)</h2><pre class=" language-sh"><code class="language-sh">git push -f origin</code></pre>
+git commit
+</code></pre>
+<h2>強制覆蓋 github 版本 (需注意這步將無法還原)</h2>
+<pre class=" language-language-sh"><code class="language-language-sh">git push -f origin
+</code></pre>
+<h2>What happens to the forks when deleting the original repository?</h2>
+<blockquote>
+<p>It depends whether the original and the fork are public or private, according to GitHub’s documentation:</p>
+</blockquote>
+<ul>
+<li>Deleting a private repository will delete all of its forks.</li>
+<li>Deleting a public repository will not delete its forks.</li>
+</ul>
+<p>More detail on this page:</p>
+<h3 id="Deleting-a-private-repository"><a class="header-anchor" href="#Deleting-a-private-repository"></a>Deleting a private repository</h3>
+<p>When you delete a private repository, all of its private forks are also deleted.</p>
+<h3 id="Deleting-a-public-repository"><a class="header-anchor" href="#Deleting-a-public-repository"></a>Deleting a public repository</h3>
+<p>When you delete a public repository, one of the existing public forks is chosen to be the new parent repository. All other repositories are forked off of this new parent and subsequent pull requests go to this new parent.</p>
+<h2>Mermaid 語法</h2>
+<pre class="mermaid">graph LR
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]</pre>
+<h3 id="logic-example"><a class="header-anchor" href="#logic-example"></a>logic example</h3>
+<pre class="mermaid">sequenceDiagram
+  Client ->> Server : ClientHello
+  Server ->> Client : ServerHello
+  par
+    Server -->> Client : send Certificate
+    Server -->> Client : send ServerKey exchange
+    Note right of Server: TCP segment
+    Server -->> Client : send Certificate
+  end
+  Server ->> Client : ServerHello done
 
+  Note over Client,Server: ServerHello done
+  par
+  Client -->> Server : ClientKey exchange
+  Client -->> Server : Chabge Cipher Spec
+  Client ->> Server : Finished
+  end
+  Note over Client,Server: Finished</pre>
+<h3 id="LRU"><a class="header-anchor" href="#LRU"></a>LRU</h3>
+<pre class="mermaid">graph
+  start --> A
+  subgraph userpass check
+    A{userpass search? }
+  end
+    A -- match --> B[fast accept/drop]
+  subgraph black check
+    A -- not found --> b{black search? }
+    b -- match --> C{try_cnt over?}
+  end
+    C -- Yes --> E[ban and drop, is hacker?]
+  subgraph authorize check
+    b -- not found--> D{LDAP/RADIUS check?}
+    C -- no --> D
+  end
+  D -- fail --> f[drop and update black list]
+  D -- success --> F[accept and update userpass list]</pre>
+<h3 id="usdg-test"><a class="header-anchor" href="#usdg-test"></a>usdg test</h3>
+<pre class="mermaid">sequenceDiagram
+  Note right of PC: usdg slave mode
+  Note right of EKI-1524-CE: --> vcom port1->port2 -->
+  par
+  PC -->> EKI-1524-CE : ssl_connect
+
+  PC -->> EKI-1524-CE : mbus_rtu_over_ssl
+  end
+
+
+  EKI-1524-CE -->> Serial_Dev: mbus rtu/acscii
+  Serial_Dev -->> EKI-1524-CE: mbus response
+  EKI-1524-CE -->> PC :  mbus_rtu_over_ssl</pre>
+<h3 id="SSL"><a class="header-anchor" href="#SSL"></a>SSL</h3>
+<pre class="mermaid">graph TD
+  PC -- SSL --- E[EKI1524]
+  E -- Ser_TX --> S[Serial_Dev]
+  S -- Ser_RX --> E</pre>
+<h3 id="rx-bcast"><a class="header-anchor" href="#rx-bcast"></a>rx_bcast</h3>
+<pre class="mermaid">graph TD
+  start --> r[rx bcast/mcast and get the interface index of the packet]
+  r--> c{is rx source ip match interfaces?}
+  c-- Yes --> k[keep previous info] --> K[end]
+  c-- No --> w[walk ip_address with subnet] --> C{same subnet?}
+  C-- True --> u[use interface & subnet] --> K[end]
+  C-- False or previous info is empty --> U[use interface & ip_family] --> K[end]</pre>
             </div>
             <hr/>
 
@@ -525,7 +612,8 @@ git commit</code></pre>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            git commits 大合併# Reset the current branch to the commit just before th
+                            git commits 大合併
+# Reset the current branch to the commit just before t
                         
                     </div>
                     <div class="publish-info">
@@ -567,19 +655,19 @@ git commit</code></pre>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/19/linux/ubuntu-gong-ju-graph-easy/">
+                <a href="/2021/10/19/linux/ubuntu-gong-ju-socat/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Ubuntu 工具 graph-easy">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Ubuntu 工具 socat">
                         
-                        <span class="card-title">Ubuntu 工具 graph-easy</span>
+                        <span class="card-title">Ubuntu 工具 socat</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            提升程式碼逼格
+                            Socat is a network swiss army knife utility and it is very similar to Netcat.
                         
                     </div>
                     <div class="publish-info">
@@ -605,8 +693,8 @@ git commit</code></pre>
                         <span class="chip bg-color">ubuntu</span>
                     </a>
                     
-                    <a href="/tags/graph-easy/" target="_blank">
-                        <span class="chip bg-color">graph-easy</span>
+                    <a href="/tags/socat/" target="_blank">
+                        <span class="chip bg-color">socat</span>
                     </a>
                     
                 </div>
@@ -723,10 +811,18 @@ git commit</code></pre>
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

@@ -413,7 +413,7 @@ Given a binary matrix A, we want to flip the image horizontally, ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        427
+                        438
                     </div>
                     
 
@@ -441,18 +441,16 @@ Given a binary matrix A, we want to flip the image horizontally, ">
 <p>To flip an image horizontally means that each row of the image is reversed. For example, flipping [1, 1, 0] horizontally results in [0, 1, 1].</p>
 <p>To invert an image means that each 0 is replaced by 1, and each 1 is replaced by 0. For example, inverting [0, 1, 1] results in [1, 0, 0].</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: [[1,1,0],[1,0,1],[0,0,0]]
+<pre class=" language-text"><code class="language-text">Input: [[1,1,0],[1,0,1],[0,0,0]]
 Output: [[1,0,0],[0,1,0],[1,1,1]]
 Explanation: First reverse each row: [[0,1,1],[1,0,1],[0,0,0]].
 Then, invert the image: [[1,0,0],[0,1,0],[1,1,1]]
-
 </code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
+<pre class=" language-text"><code class="language-text">Input: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]
 Output: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
 Explanation: First reverse each row: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]].
-Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
-</code></pre>
+Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</code></pre>
 <p>Notes:</p>
 <ul>
 <li>1 &lt;= A.length = A[0].length &lt;= 20</li>
@@ -465,30 +463,29 @@ Then invert the image: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
 <p>反轉圖像意味著每個 0 替換為 1，每個 1 替換為 0.例如，反轉[0,1,1]會產生[1,0,0]。</p>
 <p>程式思路:</p>
 <p>很基本二維陣列(圖像處理)題目，邊 reverse 邊 invert。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& A) {
-        const int row = A.size();
-        const int col = A[0].size();
-        for(int i = 0; i < row ; i++)
-        {
-            int fpos = 0;
-            int lpos = col - 1;
-            while(fpos < lpos)
-            {
-                //invert
-                A[i][fpos] = (A[i][fpos] == 0)? 1 : 0;
-                A[i][lpos] = (A[i][lpos] == 0)? 1 : 0;
-                //reverse
-                swap(A[i][fpos++],A[i][lpos--]);
-            }
-            if(fpos == lpos)
-                A[i][fpos] = (A[i][fpos] == 0)? 1 : 0;
-        }
-        return A;
-    }
-};
-</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span> <span class="token function">flipAndInvertImage</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span><span class="token operator">&amp;</span> A<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token keyword">int</span> row <span class="token operator">=</span> A<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> <span class="token keyword">int</span> col <span class="token operator">=</span> A<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> row <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> fpos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> lpos <span class="token operator">=</span> col <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>fpos <span class="token operator">&lt;</span> lpos<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//invert</span>
+                A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>fpos<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>fpos<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>lpos<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>lpos<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//reverse</span>
+                <span class="token function">swap</span><span class="token punctuation">(</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>fpos<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">,</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>lpos<span class="token operator">--</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>fpos <span class="token operator">==</span> lpos<span class="token punctuation">)</span>
+                A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>fpos<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>A<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>fpos<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> A<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -762,10 +759,18 @@ Given an arr
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

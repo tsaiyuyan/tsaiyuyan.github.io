@@ -413,7 +413,7 @@ In a 2 dimensional array grid, each value grid[i]">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        629
+                        642
                     </div>
                     
 
@@ -436,11 +436,11 @@ In a 2 dimensional array grid, each value grid[i]">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Link: https://leetcode.com/problems/max-increase-to-keep-city-skyline/</p>
+                <p>Link: <a href="https://leetcode.com/problems/max-increase-to-keep-city-skyline/" target="_blank" rel="noopener">https://leetcode.com/problems/max-increase-to-keep-city-skyline/</a></p>
 <p>In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there. We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well.</p>
 <p>At the end, the “skyline” when viewed from all four directions of the grid, i.e. top, bottom, left, and right, must be the same as the skyline of the original grid. A city’s skyline is the outer contour of the rectangles formed by all the buildings when viewed from a distance. See the following example.</p>
 <p>What is the maximum total sum that the height of the buildings can be increased?</p>
-<pre class=" language-language-text"><code class="language-language-text">Example:
+<pre class=" language-text"><code class="language-text">Example:
 Input: grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]
 Output: 35
 Explanation:
@@ -459,7 +459,6 @@ gridNew = [ [8, 4, 8, 7],
             [7, 4, 7, 7],
             [9, 4, 8, 7],
             [3, 3, 3, 3] ]
-
 </code></pre>
 <p>Notes:</p>
 <ul>
@@ -472,44 +471,42 @@ gridNew = [ [8, 4, 8, 7],
 <p>在二維陣列網格中，每個值 grid [i][j]表示位於那裡的建築物的高度。我們被允許以任何數量增加任何數量的建築物的高度（不同建築物的數量可以不同）。高度 0 也被認為是建築物。</p>
 <p>最後，當從網格的所有四個方向（即頂部，底部，左側和右側）觀察時，“天際線”必須與原始網格的天際線相同。城市的天際線是從遠處觀看時由所有建築物形成的矩形的外部輪廓。請參閱以下示例。</p>
 <p>建築物高度可以增加的最大總和是多少？</p>
-<p>程式思路:<br>
-簡單講就是掃橫的掃直的取最大數存成兩個陣列，之後兩陣列的最大數再取較小數的那個就是答案了。例如範例(0,0) 橫排最大值是 8 直排最大值是 9，所以能蓋的高度就是 min(8,9) = 8 了 後面以此類推。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    int maxIncreaseKeepingSkyline(vector<vector<int>>& grid) {
-        vector <int> row_max_array;
-        vector <int> col_max_array;
-        for(auto i = 0;i < grid.size();i++)
-        {
-            int max = 0;
-            for(auto j = 0; j< grid[0].size();j++)
-            {
-                if(i == 0) //Init
-                {
-                   col_max_array.emplace_back(grid[0][j]);
-                }else
-                {
-                   if(grid[i][j] > col_max_array[j] )
-                     col_max_array[j] = grid[i][j];
-                }
+<p>程式思路:<br>簡單講就是掃橫的掃直的取最大數存成兩個陣列，之後兩陣列的最大數再取較小數的那個就是答案了。例如範例(0,0) 橫排最大值是 8 直排最大值是 9，所以能蓋的高度就是 min(8,9) = 8 了 後面以此類推。</p>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">maxIncreaseKeepingSkyline</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">>></span><span class="token operator">&amp;</span> grid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        vector <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> row_max_array<span class="token punctuation">;</span>
+        vector <span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> col_max_array<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> grid<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> max <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">&lt;</span> grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//Init</span>
+                <span class="token punctuation">{</span>
+                   col_max_array<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span>grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token keyword">else</span>
+                <span class="token punctuation">{</span>
+                   <span class="token keyword">if</span><span class="token punctuation">(</span>grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> col_max_array<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span>
+                     col_max_array<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
 
-                if(grid[i][j] > max )
-                    max = grid[i][j];
-            }
-            row_max_array.emplace_back(max);
-        }
-        int result = 0;
-        for(auto i = 0;i < grid.size();i++)
-        {
-            for(auto j = 0; j< grid[0].size();j++)
-            {
-                result += min(col_max_array[j],row_max_array[i]) - grid[i][j];
-            }
-        }
-        return result;
-    }
-};
-</code></pre>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> max <span class="token punctuation">)</span>
+                    max <span class="token operator">=</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            row_max_array<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> grid<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">&lt;</span> grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                result <span class="token operator">+</span><span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>col_max_array<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>row_max_array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -782,10 +779,18 @@ Given an inte
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

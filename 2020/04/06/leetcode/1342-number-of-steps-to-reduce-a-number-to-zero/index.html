@@ -439,7 +439,7 @@ Given a non-negative integer num, return">
                 <p>Link: <a href="https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/" target="_blank" rel="noopener">https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/</a></p>
 <p>Given a non-negative integer num, return the number of steps to reduce it to zero. If the current number is even, you have to divide it by 2, otherwise, you have to subtract 1 from it.</p>
 <p>Example 1:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: num = 14
+<pre class=" language-txt"><code class="language-txt">Input: num = 14
 Output: 6
 Explanation:
 Step 1) 14 is even; divide by 2 and obtain 7.
@@ -447,21 +447,18 @@ Step 2) 7 is odd; subtract 1 and obtain 6.
 Step 3) 6 is even; divide by 2 and obtain 3.
 Step 4) 3 is odd; subtract 1 and obtain 2.
 Step 5) 2 is even; divide by 2 and obtain 1.
-Step 6) 1 is odd; subtract 1 and obtain 0.
-</code></pre>
+Step 6) 1 is odd; subtract 1 and obtain 0.</code></pre>
 <p>Example 2:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: num = 8
+<pre class=" language-txt"><code class="language-txt">Input: num = 8
 Output: 4
 Explanation:
 Step 1) 8 is even; divide by 2 and obtain 4.
 Step 2) 4 is even; divide by 2 and obtain 2.
 Step 3) 2 is even; divide by 2 and obtain 1.
-Step 4) 1 is odd; subtract 1 and obtain 0.
-</code></pre>
+Step 4) 1 is odd; subtract 1 and obtain 0.</code></pre>
 <p>Example 3:</p>
-<pre class=" language-language-txt"><code class="language-language-txt">Input: num = 123
-Output: 12
-</code></pre>
+<pre class=" language-txt"><code class="language-txt">Input: num = 123
+Output: 12</code></pre>
 <p>Constraints:</p>
 <ul>
 <li>0 &lt;= num &lt;= 10^6</li>
@@ -471,22 +468,21 @@ Output: 12
 <p>X</p>
 <p>程式思路:</p>
 <p>直接硬幹</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    int numberOfSteps (int num) {
-        int output = 0;
-        while(num != 0)
-        {
-            if(num%2 == 1)
-                num--;
-            else
-                num >>= 1;
-            output ++;
-        }
-        return output;
-    }
-};
-</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">numberOfSteps</span> <span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> output <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>num <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>num<span class="token operator">%</span><span class="token number">2</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+                num<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                num <span class="token operator">>>=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            output <span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> output<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -759,10 +755,18 @@ Given a v
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

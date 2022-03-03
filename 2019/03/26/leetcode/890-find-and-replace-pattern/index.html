@@ -413,7 +413,7 @@ You have a list of words and a pattern, and you want to kn">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        455
+                        471
                     </div>
                     
 
@@ -443,12 +443,11 @@ You have a list of words and a pattern, and you want to kn">
 <p>Return a list of the words in words that match the given pattern.</p>
 <p>You may return the answer in any order.</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
+<pre class=" language-text"><code class="language-text">Input: words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
 Output: ["mee","aqq"]
 Explanation: "mee" matches the pattern because there is a permutation {a -> m, b -> e, ...}.
 "ccc" does not match the pattern because {a -> c, b -> c, ...} is not a permutation,
 since a and b map to the same letter.
-
 </code></pre>
 <p>Note:</p>
 <ul>
@@ -459,41 +458,39 @@ since a and b map to the same letter.
 <p>題目翻譯:</p>
 <p>你有一個單詞列表和一個模式，你想知道單詞中哪些單詞與模式匹配。</p>
 <p>如果存在字母 p 的排列，則字符與模式匹配，以便在用 p（x）替換模式中的每個字母 x 後，我們得到所需的字。</p>
-<p>（回想一下，字母的排列是從字母到字母的雙向排列：每個字母都映射到另一個字母，沒有兩個字母映射到同一個字母。）<br>
-返回與給定模式匹配的單詞列表。</p>
+<p>（回想一下，字母的排列是從字母到字母的雙向排列：每個字母都映射到另一個字母，沒有兩個字母映射到同一個字母。）<br>返回與給定模式匹配的單詞列表。</p>
 <p>您可以按任何順序返回答案</p>
 <p>程式思路:</p>
 <p>建構一張 1 對 1 的表，不可多對 1,不可 1 對多。 有點線性函數的概念。用 map 檢查有沒有 1 對多，用 set 檢查有沒有多對 1。</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution {
-public:
-    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
-        vector <string > result;
-        for(auto word : words)
-        {
-            int i = 0;
-            unordered_map <char, char> table;
-            unordered_set <char> mark;
-            for(i = 0; i< pattern.length(); i++)
-            {
-                auto ret = table.insert(std::pair <char,char> (pattern[i],word[i]));
-                if(ret.second == false) //already exist
-                {
-                    if(table[pattern[i]] != word[i])
-                        break;
-                }else
-                {
-                    auto ret = mark.insert(word[i]);
-                    if(ret.second == false)
-                        break;
-                }
-            }
-            if(i == pattern.length())
-                result.emplace_back(word);
-        }
-        return result;
-    }
-};
-</code></pre>
+<pre class=" language-c"><code class="language-c">class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    vector<span class="token operator">&lt;</span>string<span class="token operator">></span> <span class="token function">findAndReplacePattern</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span>string<span class="token operator">></span><span class="token operator">&amp;</span> words<span class="token punctuation">,</span> string pattern<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        vector <span class="token operator">&lt;</span>string <span class="token operator">></span> result<span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">auto</span> word <span class="token punctuation">:</span> words<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            unordered_map <span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">></span> table<span class="token punctuation">;</span>
+            unordered_set <span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">></span> mark<span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">auto</span> ret <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>pair <span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token punctuation">,</span><span class="token keyword">char</span><span class="token operator">></span> <span class="token punctuation">(</span>pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>word<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>second <span class="token operator">==</span> false<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//already exist</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>table<span class="token punctuation">[</span>pattern<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">!=</span> word<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span><span class="token keyword">else</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">auto</span> ret <span class="token operator">=</span> mark<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>word<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>second <span class="token operator">==</span> false<span class="token punctuation">)</span>
+                        <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">==</span> pattern<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                result<span class="token punctuation">.</span><span class="token function">emplace_back</span><span class="token punctuation">(</span>word<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -767,10 +764,18 @@ There is a
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

@@ -413,7 +413,7 @@ We are given the head node root of a binary tree, where additio">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        267
+                        271
                     </div>
                     
 
@@ -440,24 +440,21 @@ We are given the head node root of a binary tree, where additio">
 <p>We are given the head node root of a binary tree, where additionally every node’s value is either a 0 or a 1.</p>
 <p>Return the same tree where every subtree (of the given tree) not containing a 1 has been removed.</p>
 <p>(Recall that the subtree of a node X is X, plus every node that is a descendant of X.)</p>
-<pre class=" language-language-text"><code class="language-language-text">Example 1:
+<pre class=" language-text"><code class="language-text">Example 1:
 Input: [1,null,0,0,1]
 Output: [1,null,0,null,1]
 
 Explanation:
 Only the red nodes satisfy the property "every subtree not containing a 1".
-The diagram on the right represents the answer.
-</code></pre>
+The diagram on the right represents the answer.</code></pre>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/06/1028_2.png" alt="1"></p>
-<pre class=" language-language-text"><code class="language-language-text">Example 2:
+<pre class=" language-text"><code class="language-text">Example 2:
 Input: [1,0,1,0,0,0,1]
-Output: [1,null,1,null,1]
-</code></pre>
+Output: [1,null,1,null,1]</code></pre>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/06/1028_1.png" alt="2"></p>
-<pre class=" language-language-text"><code class="language-language-text">Example 3:
+<pre class=" language-text"><code class="language-text">Example 3:
 Input: [1,1,0,1,1,0,1,0]
-Output: [1,1,0,1,1,null,1]
-</code></pre>
+Output: [1,1,0,1,1,null,1]</code></pre>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/04/05/1028.png" alt="3"></p>
 <p>Note:</p>
 <ul>
@@ -469,7 +466,7 @@ Output: [1,1,0,1,1,null,1]
 <p>檢查每個節點的左子樹和右子樹有無包含 1 的點，如果沒有就將其節點砍掉。</p>
 <p>程式思路:</p>
 <p>遞迴基本練習。</p>
-<pre class=" language-language-c"><code class="language-language-c">/**
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
  * Definition for a binary tree node.
  * struct TreeNode {
  *     int val;
@@ -477,24 +474,23 @@ Output: [1,1,0,1,1,null,1]
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
- */
-class Solution {
-public:
-    TreeNode* pruneTree(TreeNode* root) {
-        if(root == nullptr)
-            return nullptr;
-        root->left = pruneTree (root->left);
-        root->right = pruneTree (root->right);
-        if(!root->left  && !root->right && root->val == 0)
-        {
-            delete root;
-            return nullptr;
-        }
-        else
-           return root;
-    }
-};
-</code></pre>
+ */</span>
+class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">pruneTree</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> nullptr<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> nullptr<span class="token punctuation">;</span>
+        root<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token function">pruneTree</span> <span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        root<span class="token operator">-></span>right <span class="token operator">=</span> <span class="token function">pruneTree</span> <span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>root<span class="token operator">-></span>left  <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>root<span class="token operator">-></span>right <span class="token operator">&amp;&amp;</span> root<span class="token operator">-></span>val <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            delete root<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> nullptr<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+           <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -768,10 +764,18 @@ You have
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             

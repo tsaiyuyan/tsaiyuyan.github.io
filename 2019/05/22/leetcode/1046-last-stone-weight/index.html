@@ -413,7 +413,7 @@ We have a collection of rocks, each rock has a positive integer w">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        441
+                        444
                     </div>
                     
 
@@ -445,14 +445,13 @@ We have a collection of rocks, each rock has a positive integer w">
 </ul>
 <p>At the end, there is at most 1 stone left. Return the weight of this stone (or 0 if there are no stones left.)</p>
 <p>Example 1:</p>
-<pre class=" language-language-text"><code class="language-language-text">Input: [2,7,4,1,8,1]
+<pre class=" language-text"><code class="language-text">Input: [2,7,4,1,8,1]
 Output: 1
 Explanation:
 We combine 7 and 8 to get 1 so the array converts to [2,4,1,1,1] then,
 we combine 2 and 4 to get 2 so the array converts to [2,1,1,1] then,
 we combine 2 and 1 to get 1 so the array converts to [1,1,1] then,
-we combine 1 and 1 to get 0 so the array converts to [1] then that's the value of last stone.
-</code></pre>
+we combine 1 and 1 to get 0 so the array converts to [1] then that's the value of last stone.</code></pre>
 <p>Note:</p>
 <ol>
 <li>1 &lt;= stones.length &lt;= 30</li>
@@ -461,36 +460,33 @@ we combine 1 and 1 to get 0 so the array converts to [1] then that's the value o
 <hr>
 <p>題目翻譯:</p>
 <p>我們有一個岩石集合，每個岩石都有一個正整數權重。 每轉一圈，我們選擇兩塊最重的岩石並將它們粉碎在一起。 假設寶石的權重為 x 和 y，x &lt;= y。 這次粉碎的結果是：</p>
-<p>如果 x == y，兩塊石頭都被徹底摧毀;<br>
-如果 x！= y，重量 x 的石頭被完全破壞，重量 y 的石頭具有新的重量 y-x。 最後，剩下最多 1 塊石頭。 返回這塊石頭的重量（如果沒有留下石塊，則返回 0）</p>
-<p>程式思路:<br>
-每次從 vector 取出兩個最大的數字，將其碰撞留下較大的，將其塞回去</p>
-<pre class=" language-language-c"><code class="language-language-c">class Solution
-{
-public:
-    int lastStoneWeight(vector<int>& stones)
-    {
-        while(stones.size() > 0)
-        {
-            //Find the first weight stone.
-            auto it1 = max_element(std::begin(stones), std::end(stones));
-            int stone1 = *it1;
+<p>如果 x == y，兩塊石頭都被徹底摧毀;<br>如果 x！= y，重量 x 的石頭被完全破壞，重量 y 的石頭具有新的重量 y-x。 最後，剩下最多 1 塊石頭。 返回這塊石頭的重量（如果沒有留下石塊，則返回 0）</p>
+<p>程式思路:<br>每次從 vector 取出兩個最大的數字，將其碰撞留下較大的，將其塞回去</p>
+<pre class=" language-c"><code class="language-c">class Solution
+<span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> <span class="token function">lastStoneWeight</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> stones<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>stones<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//Find the first weight stone.</span>
+            <span class="token keyword">auto</span> it1 <span class="token operator">=</span> <span class="token function">max_element</span><span class="token punctuation">(</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">begin</span><span class="token punctuation">(</span>stones<span class="token punctuation">)</span><span class="token punctuation">,</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">end</span><span class="token punctuation">(</span>stones<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> stone1 <span class="token operator">=</span> <span class="token operator">*</span>it1<span class="token punctuation">;</span>
 
-            //Find the second weight stone.
-            *it1 = 0;
-            auto it2 = max_element(std::begin(stones), std::end(stones));
+            <span class="token comment" spellcheck="true">//Find the second weight stone.</span>
+            <span class="token operator">*</span>it1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">auto</span> it2 <span class="token operator">=</span> <span class="token function">max_element</span><span class="token punctuation">(</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">begin</span><span class="token punctuation">(</span>stones<span class="token punctuation">)</span><span class="token punctuation">,</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">end</span><span class="token punctuation">(</span>stones<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            if(*it2 == 0)
-                return stone1;
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">*</span>it2 <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> stone1<span class="token punctuation">;</span>
 
-            //Smash stones
-            *it1 = stone1 - *it2;
-            *it2 = 0;
-        }
-        return 0;
-    }
-};
-</code></pre>
+            <span class="token comment" spellcheck="true">//Smash stones</span>
+            <span class="token operator">*</span>it1 <span class="token operator">=</span> stone1 <span class="token operator">-</span> <span class="token operator">*</span>it2<span class="token punctuation">;</span>
+            <span class="token operator">*</span>it2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -759,10 +755,18 @@ Write a cl
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.13.1/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                  }
+                </script>
+            
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">66.3k</span>
+                <span class="white-color">67.4k</span>
             
 
             
