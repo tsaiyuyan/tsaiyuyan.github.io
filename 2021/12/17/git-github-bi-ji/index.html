@@ -416,14 +416,14 @@ git reset --hard HEAD~12
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        495
+                        686
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        3 分
+                        4 分
                     </div>
                     
                 
@@ -538,6 +538,65 @@ git commit
   c-- No --> w[walk ip_address with subnet] --> C{same subnet?}
   C-- True --> u[use interface & subnet] --> K[end]
   C-- False or previous info is empty --> U[use interface & ip_family] --> K[end]</pre>
+<h3 id="Other-example"><a class="header-anchor" href="#Other-example"></a>Other example</h3>
+<h4 id="sequenceDiagram"><a class="header-anchor" href="#sequenceDiagram"></a>sequenceDiagram</h4>
+<pre class="mermaid">sequenceDiagram
+    autonumber
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!</pre>
+<h4 id="classDiagram"><a class="header-anchor" href="#classDiagram"></a>classDiagram</h4>
+<pre class="mermaid">classDiagram
+  classA --|> classB : Inheritance
+  classC --* classD : Composition
+  classE --o classF : Aggregation
+  classG --> classH : Association
+  classI -- classJ : Link(Solid)
+  classK ..> classL : Dependency
+  classM ..|> classN : Realization
+  classO .. classP : Link(Dashed)</pre>
+<h4 id="stateDiagram-v2"><a class="header-anchor" href="#stateDiagram-v2"></a>stateDiagram-v2</h4>
+<pre class="mermaid">    stateDiagram-v2
+        State1: The state with a note
+        note right of State1
+            Important information! You can write
+            notes.
+        end note
+        State1 --> State2
+        note left of State2 : This is the note to the left.</pre>
+<h4 id="journey"><a class="header-anchor" href="#journey"></a>journey</h4>
+<pre class="mermaid">journey
+    title My working day
+    section Go to work
+      Make tea: 9: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me</pre>
+<h4 id="gantt"><a class="header-anchor" href="#gantt"></a>gantt</h4>
+<pre class="mermaid">gantt
+    title A Gantt Diagram
+    dateFormat  YYYY-MM-DD
+    section Section
+    A task           :a1, 2014-01-01, 30d
+    Another task     :after a1  , 20d
+    section Another
+    Task in sec      :2014-01-12  , 12d
+    another task      : 24d</pre>
+<h4 id="pie"><a class="header-anchor" href="#pie"></a>pie</h4>
+<pre class="mermaid">pie
+    title Key elements in Product X
+    "Calcium" : 42.96
+    "Potassium" : 50.05
+    "Magnesium" : 10.01
+    "Iron" :  5</pre>
+
             </div>
             <hr/>
 
@@ -822,7 +881,7 @@ git commit
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">67.4k</span>
+                <span class="white-color">67.6k</span>
             
 
             
