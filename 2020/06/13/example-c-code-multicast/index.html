@@ -5,8 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Example C code - Multicast, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="multicast_server.c/*
-*multicast_server.c - 多播服務程序
+    <meta name="description" content="multicast_client.c/*
+*multicast_client.c - 多播的客戶端
 */
 #define MCAST_PORT 8888
 #define MCAST_ADDR &#34;224.0.0.88&#34;
@@ -409,7 +409,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        497
+                        537
                     </div>
                     
 
@@ -432,64 +432,72 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="multicast-server-c"><a href="#multicast-server-c" class="headerlink" title="multicast_server.c"></a>multicast_server.c</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/*
-*multicast_server.c - 多播服務程序
+                <h2 id="multicast-client-c"><a href="#multicast-client-c" class="headerlink" title="multicast_client.c"></a>multicast_client.c</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/*
+*multicast_client.c - 多播的客戶端
 */</span>
 <span class="token macro property">#<span class="token directive keyword">define</span> MCAST_PORT 8888</span>
 <span class="token macro property">#<span class="token directive keyword">define</span> MCAST_ADDR "224.0.0.88"</span>
 <span class="token macro property">#<span class="token directive keyword">define</span> MCAST_DATA "BROADCAST TEST DATA" </span><span class="token comment" spellcheck="true">/*多播發送的數據*/</span>
 <span class="token macro property">#<span class="token directive keyword">define</span> MCAST_INTERVAL 5 </span><span class="token comment" spellcheck="true">/*發送間隔時間*/</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">int</span> s<span class="token punctuation">;</span>
     <span class="token keyword">struct</span> sockaddr_in mcast_addr<span class="token punctuation">;</span>
     s <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*建立套接字*/</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>s <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>s <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"socket()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>mcast_addr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>mcast_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*初始化IP多播地址為0*/</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>mcast_addr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>mcast_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*初始化IP多播地址為0*/</span>
     mcast_addr<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*設置協議族類行為AF*/</span>
-    mcast_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span>MCAST_ADDR<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">/*設置多播IP地址*/</span>
+    mcast_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span>MCAST_ADDR<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*設置多播IP地址*/</span>
     mcast_addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span>MCAST_PORT<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*設置多播端口*/</span>
 
     <span class="token comment" spellcheck="true">/*向多播地址發送數據*/</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token function">sendto</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">/*套接字描述符*/</span>
-                        MCAST_DATA<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">/*數據*/</span>
-                        <span class="token keyword">sizeof</span><span class="token punctuation">(</span>MCAST_DATA<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">/*長度*/</span>
-                        <span class="token number">0</span><span class="token punctuation">,</span>
-                        <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>mcast_addr<span class="token punctuation">,</span>
-                        <span class="token keyword">sizeof</span><span class="token punctuation">(</span>mcast_addr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span> n <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
+            MCAST_DATA<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">/*數據*/</span>
+            <span class="token keyword">sizeof</span><span class="token punctuation">(</span>MCAST_DATA<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">/*長度*/</span>
+            <span class="token number">0</span><span class="token punctuation">,</span>
+            <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>mcast_addr<span class="token punctuation">,</span>
+            <span class="token keyword">sizeof</span><span class="token punctuation">(</span>mcast_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"sendto()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token function">sleep</span><span class="token punctuation">(</span>MCAST_INTERVAL<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*等待一段時間*/</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span>；
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="multicast-client-c"><a href="#multicast-client-c" class="headerlink" title="multicast_client.c"></a>multicast_client.c</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/*
-*multicast_client.c - 多播的客戶端
+<h2 id="multicast-server-c"><a href="#multicast-server-c" class="headerlink" title="multicast_server.c"></a>multicast_server.c</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/*
+*multicast_server.c - 多播服務程序
 */</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> MCAST_PORT 8888;</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/stat.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;net/if.h></span></span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> MCAST_PORT 8888</span>
 <span class="token macro property">#<span class="token directive keyword">define</span> MCAST_ADDR "224.0.0.88" </span><span class="token comment" spellcheck="true">/*一個局部連接多播地址，路由器不進行轉發*/</span>
 <span class="token macro property">#<span class="token directive keyword">define</span> MCAST_INTERVAL 5 </span><span class="token comment" spellcheck="true">/*發送間隔時間*/</span>
 <span class="token macro property">#<span class="token directive keyword">define</span> BUFF_SIZE 256 </span><span class="token comment" spellcheck="true">/*接收緩衝區大小*/</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">int</span> s<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*套接字文件描述符*/</span>
     <span class="token keyword">struct</span> sockaddr_in local_addr<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*本地地址*/</span>
     <span class="token keyword">int</span> err <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
 
     s <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_DGRAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*建立套接字*/</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>s <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>s <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"socket()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -501,30 +509,26 @@
     local_addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span>MCAST_PORT<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/*綁定socket*/</span>
-    err <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>local_addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>local_addr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>err <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    err <span class="token operator">=</span> <span class="token function">bind</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>local_addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>local_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>err <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"bind()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/*設置回環許可*/</span>
     <span class="token keyword">int</span> loop <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    err <span class="token operator">=</span> <span class="token function">setsockopt</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span>IPPROTO_IP<span class="token punctuation">,</span> IP_MULTICAST_LOOP<span class="token punctuation">,</span><span class="token operator">&amp;</span>loop<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>loop<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>err <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    err <span class="token operator">=</span> <span class="token function">setsockopt</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> IPPROTO_IP<span class="token punctuation">,</span> IP_MULTICAST_LOOP<span class="token punctuation">,</span> <span class="token operator">&amp;</span>loop<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>loop<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>err <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"setsockopt():IP_MULTICAST_LOOP"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">struct</span> ip_mreq mreq<span class="token punctuation">;</span>                                <span class="token comment" spellcheck="true">/*加入廣播組*/</span>
-    mreq<span class="token punctuation">.</span>imr_multiaddr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span>MCAST_ADDR<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">/*廣播地址*/</span>
-    mreq<span class="token punctuation">.</span>imr_interface<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">htonl</span><span class="token punctuation">(</span>INADDR_ANY<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">/*網絡接口為默認*/</span>
-                                                        <span class="token comment" spellcheck="true">/*將本機加入廣播組*/</span>
-    err <span class="token operator">=</span> <span class="token function">setsockopt</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> IPPROTO_IP<span class="token punctuation">,</span> IP_ADD_MEMBERSHIP<span class="token punctuation">,</span><span class="token operator">&amp;</span>mreq<span class="token punctuation">,</span> <span class="token keyword">sizeof</span>
-    <span class="token punctuation">(</span>mreq<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>err <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> ip_mreq mreq<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*加入廣播組*/</span>
+    mreq<span class="token punctuation">.</span>imr_multiaddr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span>MCAST_ADDR<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*廣播地址*/</span>
+    mreq<span class="token punctuation">.</span>imr_interface<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">htonl</span><span class="token punctuation">(</span>INADDR_ANY<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*網絡接口為默認*/</span>
+    <span class="token comment" spellcheck="true">/*將本機加入廣播組*/</span>
+    err <span class="token operator">=</span> <span class="token function">setsockopt</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> IPPROTO_IP<span class="token punctuation">,</span> IP_ADD_MEMBERSHIP<span class="token punctuation">,</span> <span class="token operator">&amp;</span>mreq<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>mreq<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>err <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"setsockopt():IP_ADD_MEMBERSHIP"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -534,15 +538,14 @@
     <span class="token keyword">char</span> buff<span class="token punctuation">[</span>BUFF_SIZE<span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">/*循環接收廣播組的消息，5次後退出*/</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span>times <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>times<span class="token operator">&lt;</span><span class="token number">5</span><span class="token punctuation">;</span>times<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>times <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> times <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> times<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         addr_len <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>local_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token function">memset</span><span class="token punctuation">(</span>buff<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> BUFF_SIZE<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*清空接收緩衝區*/</span>
+
         <span class="token comment" spellcheck="true">/*接收數據*/</span>
-        n <span class="token operator">=</span> <span class="token function">recvfrom</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> buff<span class="token punctuation">,</span> BUFF_SIZE<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>local_addr<span class="token punctuation">,</span>
-        <span class="token operator">&amp;</span>addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span> n<span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
+        n <span class="token operator">=</span> <span class="token function">recvfrom</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> buff<span class="token punctuation">,</span> BUFF_SIZE<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>local_addr<span class="token punctuation">,</span>
+            <span class="token operator">&amp;</span>addr_len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token function">perror</span><span class="token punctuation">(</span><span class="token string">"recvfrom()"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
         <span class="token comment" spellcheck="true">/*打印信息*/</span>
@@ -551,7 +554,7 @@
     <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/*退出廣播組*/</span>
-    err <span class="token operator">=</span> <span class="token function">setsockopt</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> IPPROTO_IP<span class="token punctuation">,</span> IP_DROP_MEMBERSHIP<span class="token punctuation">,</span><span class="token operator">&amp;</span>mreq<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>mreq<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    err <span class="token operator">=</span> <span class="token function">setsockopt</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> IPPROTO_IP<span class="token punctuation">,</span> IP_DROP_MEMBERSHIP<span class="token punctuation">,</span> <span class="token operator">&amp;</span>mreq<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>mreq<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token function">close</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -829,7 +832,7 @@ PHY 0x01: OUI
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">67.6k</span>
+                <span class="white-color">68.1k</span>
             
 
             

@@ -5,11 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Git Github 筆記, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="git commits 大合併
-# Reset the current branch to the commit just before the last 12:
+    <meta name="description" content="git commits 大合併# Reset the current branch to the commit just before the last 12:
 git reset --hard HEAD~12
 
-# HEAD@{1} i">
+# HEAD@{1} is">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -416,7 +415,7 @@ git reset --hard HEAD~12
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        686
+                        787
                     </div>
                     
 
@@ -439,8 +438,7 @@ git reset --hard HEAD~12
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2>git commits 大合併</h2>
-<pre class=" language-language-sh"><code class="language-language-sh"># Reset the current branch to the commit just before the last 12:
+                <h2 id="git-commits-大合併"><a href="#git-commits-大合併" class="headerlink" title="git commits 大合併"></a>git commits 大合併</h2><pre class=" language-sh"><code class="language-sh"># Reset the current branch to the commit just before the last 12:
 git reset --hard HEAD~12
 
 # HEAD@{1} is where the branch was just before the previous command.
@@ -450,13 +448,9 @@ git merge --squash HEAD@{1}
 
 # Commit those squashed changes.  The commit message will be helpfully
 # prepopulated with the commit messages of all the squashed commits:
-git commit
-</code></pre>
-<h2>強制覆蓋 github 版本 (需注意這步將無法還原)</h2>
-<pre class=" language-language-sh"><code class="language-language-sh">git push -f origin
-</code></pre>
-<h2>What happens to the forks when deleting the original repository?</h2>
-<blockquote>
+git commit</code></pre>
+<h2 id="強制覆蓋-github-版本-需注意這步將無法還原"><a href="#強制覆蓋-github-版本-需注意這步將無法還原" class="headerlink" title="強制覆蓋 github 版本 (需注意這步將無法還原)"></a>強制覆蓋 github 版本 (需注意這步將無法還原)</h2><pre class=" language-sh"><code class="language-sh">git push -f origin</code></pre>
+<h2 id="What-happens-to-the-forks-when-deleting-the-original-repository"><a href="#What-happens-to-the-forks-when-deleting-the-original-repository" class="headerlink" title="What happens to the forks when deleting the original repository?"></a>What happens to the forks when deleting the original repository?</h2><blockquote>
 <p>It depends whether the original and the fork are public or private, according to GitHub’s documentation:</p>
 </blockquote>
 <ul>
@@ -464,18 +458,22 @@ git commit
 <li>Deleting a public repository will not delete its forks.</li>
 </ul>
 <p>More detail on this page:</p>
-<h3 id="Deleting-a-private-repository"><a class="header-anchor" href="#Deleting-a-private-repository"></a>Deleting a private repository</h3>
-<p>When you delete a private repository, all of its private forks are also deleted.</p>
-<h3 id="Deleting-a-public-repository"><a class="header-anchor" href="#Deleting-a-public-repository"></a>Deleting a public repository</h3>
-<p>When you delete a public repository, one of the existing public forks is chosen to be the new parent repository. All other repositories are forked off of this new parent and subsequent pull requests go to this new parent.</p>
-<h2>Mermaid 語法</h2>
-<pre class="mermaid">graph LR
+<h2 id="Get-github-access-token"><a href="#Get-github-access-token" class="headerlink" title="Get github access token"></a>Get github access token</h2><pre class=" language-sh"><code class="language-sh">Username for 'https://github.com': XXXXXXXXXXXX
+Password for 'https://XXXXXXXXXXXX@github.com':
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/xxxxxxxx/xxxxxx.git/'</code></pre>
+<p>現在在使用 git clone 如果遇到要登入帳密的問題 tool 會告知要使用token 當密碼</p>
+<p>打開github -&gt; Settings -&gt; Developer settings -&gt; Personal access token –&gt; Generate new token -&gt; repo 勾起來-&gt; save</p>
+<h3 id="Deleting-a-private-repository"><a href="#Deleting-a-private-repository" class="headerlink" title="Deleting a private repository"></a>Deleting a private repository</h3><p>When you delete a private repository, all of its private forks are also deleted.</p>
+<h3 id="Deleting-a-public-repository"><a href="#Deleting-a-public-repository" class="headerlink" title="Deleting a public repository"></a>Deleting a public repository</h3><p>When you delete a public repository, one of the existing public forks is chosen to be the new parent repository. All other repositories are forked off of this new parent and subsequent pull requests go to this new parent.</p>
+<h2 id="Mermaid-語法"><a href="#Mermaid-語法" class="headerlink" title="Mermaid 語法"></a>Mermaid 語法</h2><pre class="mermaid">graph LR
     A[Hard edge] -->|Link text| B(Round edge)
     B --> C{Decision}
     C -->|One| D[Result one]
     C -->|Two| E[Result two]</pre>
-<h3 id="logic-example"><a class="header-anchor" href="#logic-example"></a>logic example</h3>
-<pre class="mermaid">sequenceDiagram
+
+<h3 id="logic-example"><a href="#logic-example" class="headerlink" title="logic example"></a>logic example</h3><pre class="mermaid">sequenceDiagram
   Client ->> Server : ClientHello
   Server ->> Client : ServerHello
   par
@@ -493,8 +491,8 @@ git commit
   Client ->> Server : Finished
   end
   Note over Client,Server: Finished</pre>
-<h3 id="LRU"><a class="header-anchor" href="#LRU"></a>LRU</h3>
-<pre class="mermaid">graph
+
+<h3 id="LRU"><a href="#LRU" class="headerlink" title="LRU"></a>LRU</h3><pre class="mermaid">graph
   start --> A
   subgraph userpass check
     A{userpass search? }
@@ -511,8 +509,8 @@ git commit
   end
   D -- fail --> f[drop and update black list]
   D -- success --> F[accept and update userpass list]</pre>
-<h3 id="usdg-test"><a class="header-anchor" href="#usdg-test"></a>usdg test</h3>
-<pre class="mermaid">sequenceDiagram
+
+<h3 id="usdg-test"><a href="#usdg-test" class="headerlink" title="usdg test"></a>usdg test</h3><pre class="mermaid">sequenceDiagram
   Note right of PC: usdg slave mode
   Note right of EKI-1524-CE: --> vcom port1->port2 -->
   par
@@ -525,22 +523,21 @@ git commit
   EKI-1524-CE -->> Serial_Dev: mbus rtu/acscii
   Serial_Dev -->> EKI-1524-CE: mbus response
   EKI-1524-CE -->> PC :  mbus_rtu_over_ssl</pre>
-<h3 id="SSL"><a class="header-anchor" href="#SSL"></a>SSL</h3>
-<pre class="mermaid">graph TD
+
+<h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><pre class="mermaid">graph TD
   PC -- SSL --- E[EKI1524]
   E -- Ser_TX --> S[Serial_Dev]
   S -- Ser_RX --> E</pre>
-<h3 id="rx-bcast"><a class="header-anchor" href="#rx-bcast"></a>rx_bcast</h3>
-<pre class="mermaid">graph TD
+
+<h3 id="rx-bcast"><a href="#rx-bcast" class="headerlink" title="rx_bcast"></a>rx_bcast</h3><pre class="mermaid">graph TD
   start --> r[rx bcast/mcast and get the interface index of the packet]
   r--> c{is rx source ip match interfaces?}
   c-- Yes --> k[keep previous info] --> K[end]
   c-- No --> w[walk ip_address with subnet] --> C{same subnet?}
   C-- True --> u[use interface & subnet] --> K[end]
   C-- False or previous info is empty --> U[use interface & ip_family] --> K[end]</pre>
-<h3 id="Other-example"><a class="header-anchor" href="#Other-example"></a>Other example</h3>
-<h4 id="sequenceDiagram"><a class="header-anchor" href="#sequenceDiagram"></a>sequenceDiagram</h4>
-<pre class="mermaid">sequenceDiagram
+
+<h3 id="Other-example"><a href="#Other-example" class="headerlink" title="Other example"></a>Other example</h3><h4 id="sequenceDiagram"><a href="#sequenceDiagram" class="headerlink" title="sequenceDiagram"></a>sequenceDiagram</h4><pre class="mermaid">sequenceDiagram
     autonumber
     Alice->>John: Hello John, how are you?
     loop Healthcheck
@@ -550,8 +547,8 @@ git commit
     John-->>Alice: Great!
     John->>Bob: How about you?
     Bob-->>John: Jolly good!</pre>
-<h4 id="classDiagram"><a class="header-anchor" href="#classDiagram"></a>classDiagram</h4>
-<pre class="mermaid">classDiagram
+
+<h4 id="classDiagram"><a href="#classDiagram" class="headerlink" title="classDiagram"></a>classDiagram</h4><pre class="mermaid">classDiagram
   classA --|> classB : Inheritance
   classC --* classD : Composition
   classE --o classF : Aggregation
@@ -560,8 +557,8 @@ git commit
   classK ..> classL : Dependency
   classM ..|> classN : Realization
   classO .. classP : Link(Dashed)</pre>
-<h4 id="stateDiagram-v2"><a class="header-anchor" href="#stateDiagram-v2"></a>stateDiagram-v2</h4>
-<pre class="mermaid">    stateDiagram-v2
+
+<h4 id="stateDiagram-v2"><a href="#stateDiagram-v2" class="headerlink" title="stateDiagram-v2"></a>stateDiagram-v2</h4><pre class="mermaid">    stateDiagram-v2
         State1: The state with a note
         note right of State1
             Important information! You can write
@@ -569,8 +566,8 @@ git commit
         end note
         State1 --> State2
         note left of State2 : This is the note to the left.</pre>
-<h4 id="journey"><a class="header-anchor" href="#journey"></a>journey</h4>
-<pre class="mermaid">journey
+
+<h4 id="journey"><a href="#journey" class="headerlink" title="journey"></a>journey</h4><pre class="mermaid">journey
     title My working day
     section Go to work
       Make tea: 9: Me
@@ -579,8 +576,8 @@ git commit
     section Go home
       Go downstairs: 5: Me
       Sit down: 5: Me</pre>
-<h4 id="gantt"><a class="header-anchor" href="#gantt"></a>gantt</h4>
-<pre class="mermaid">gantt
+
+<h4 id="gantt"><a href="#gantt" class="headerlink" title="gantt"></a>gantt</h4><pre class="mermaid">gantt
     title A Gantt Diagram
     dateFormat  YYYY-MM-DD
     section Section
@@ -589,8 +586,8 @@ git commit
     section Another
     Task in sec      :2014-01-12  , 12d
     another task      : 24d</pre>
-<h4 id="pie"><a class="header-anchor" href="#pie"></a>pie</h4>
-<pre class="mermaid">pie
+
+<h4 id="pie"><a href="#pie" class="headerlink" title="pie"></a>pie</h4><pre class="mermaid">pie
     title Key elements in Product X
     "Calcium" : 42.96
     "Potassium" : 50.05
@@ -671,8 +668,7 @@ git commit
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            git commits 大合併
-# Reset the current branch to the commit just before t
+                            git commits 大合併# Reset the current branch to the commit just before th
                         
                     </div>
                     <div class="publish-info">
@@ -881,7 +877,7 @@ git commit
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">67.6k</span>
+                <span class="white-color">68.1k</span>
             
 
             

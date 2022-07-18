@@ -394,6 +394,10 @@ mDNS 原理的簡單理解——每個進入局域網的主機，如果開啟了
                                 <span class="chip bg-color">cross-compiler</span>
                             </a>
                         
+                            <a href="/tags/attr/" target="_blank">
+                                <span class="chip bg-color">attr</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -421,14 +425,14 @@ mDNS 原理的簡單理解——每個進入局域網的主機，如果開啟了
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        1.4k
+                        1.6k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        7 分
+                        8 分
                     </div>
                     
                 
@@ -458,7 +462,18 @@ mDNS 原理的簡單理解——每個進入局域網的主機，如果開啟了
 <li><a href="http://0pointer.de/lennart/projects/libdaemon/#download" target="_blank" rel="noopener">libdaemon-0.14.tar.gz</a></li>
 <li><a href="http://mirror.fileplanet.com/lfs/pub/blfs/conglomeration/avahi/" target="_blank" rel="noopener">avahi-0.7.tar.gz</a></li>
 <li><a href="https://sourceforge.net/projects/expat/" target="_blank" rel="noopener">expat-2.2.9.tar.bzip</a></li>
+<li><a href="http://download.savannah.nongnu.org/releases/attr/" target="_blank" rel="noopener">attr-2.5.1.tar.gz</a></li>
 </ul>
+<p>自行解壓縮到指定資料夾，本文示範如下</p>
+<pre class=" language-sh"><code class="language-sh">$ tree -L 1 ~/Desktop/avahi-daemon-XXXXX/
+/home/yuyan/Desktop/avahi-daemon-XXXXX/
+├── avahi-0.7
+├── expat-2.2.9
+├── libdaemon-0.14
+└── attr-2.5.1
+
+4 directories, 0 files
+</code></pre>
 <h3 id="2-編譯-libdaemon"><a href="#2-編譯-libdaemon" class="headerlink" title="2.編譯 libdaemon"></a>2.編譯 libdaemon</h3><pre class=" language-sh"><code class="language-sh">#unpackge libdaemon
 $tar zxvf libdaemon-0.14.tar.gz
 $cd libdaemon
@@ -511,7 +526,19 @@ CC=arm-linux-gnueabihf-gcc \
 CFLAGS="-I/opt/toolchains/ti335x/cortexa8t2hf-vfp-neon-linux-gnueabi/usr/include -L/opt/toolchains/ti335x/cortexa8t2hf-vfp-neon-linux-gnueabi/lib"
 $make
 $make install</code></pre>
-<h3 id="4-編譯-avahi"><a href="#4-編譯-avahi" class="headerlink" title="4.編譯 avahi"></a>4.編譯 avahi</h3><blockquote>
+<h3 id="4-編譯-libattr-如果-toolchain-沒有的話"><a href="#4-編譯-libattr-如果-toolchain-沒有的話" class="headerlink" title="4.編譯 libattr (如果 toolchain 沒有的話)"></a>4.編譯 libattr (如果 toolchain 沒有的話)</h3><blockquote>
+<p>(20220718 補充) 編譯流程跟expat差不多 &lt;= 有需要調整請自行修正</p>
+</blockquote>
+<pre class=" language-sh"><code class="language-sh">#解壓縮
+$tar zxvf attr-2.5.1.tar.gz
+
+#讓root帳號辨別toolchain位置
+$sudo -s
+$export PATH=$PATH:/opt/toolchains/ti335x/i686-arago-linux/usr/bin
+$./configure --host=arm-linux-gnueabihf --prefix=/opt/ARMv7_ti335x/attr CC=arm-linux-gnueabihf-gcc
+$make
+$make install</code></pre>
+<h3 id="5-編譯-avahi"><a href="#5-編譯-avahi" class="headerlink" title="5.編譯 avahi"></a>5.編譯 avahi</h3><blockquote>
 <p>這邊目的只在於編譯 avahi-daemon，所以其他的工具都會 disable。</p>
 </blockquote>
 <p><strong>Optional Features:</strong></p>
@@ -746,8 +773,8 @@ $./configure --host=arm-linux-gnueabihf \
 -disable-xmltoman \
 -disable-manpages \
 CC=arm-linux-gnueabihf-gcc \
-CFLAGS="-I/opt/toolchains/ti335x/cortexa8t2hf-vfp-neon-linux-gnueabi/usr/include -I/opt/ARMv7_ti335x/avahi/include -L/opt/ARMv7_ti335x/avahi/lib -I/opt/ARMv7_ti335x/expat-2.2.9/include " \
-LDFLAGS="-L/opt/toolchains/ti335x/cortexa8t2hf-vfp-neon-linux-gnueabi/lib  -L/opt/ARMv7_ti335x/expat-2.2.9/lib /opt/ARMv7_ti335x/expat-2.2.9/lib/libexpat.a -lattr" \
+CFLAGS="-I/opt/toolchains/ti335x/cortexa8t2hf-vfp-neon-linux-gnueabi/usr/include -I/opt/ARMv7_ti335x/avahi/include -L/opt/ARMv7_ti335x/avahi/lib -I/opt/ARMv7_ti335x/expat-2.2.9/include -I/opt/ARMv7_ti335x/attr/include" \
+LDFLAGS="-L/opt/toolchains/ti335x/cortexa8t2hf-vfp-neon-linux-gnueabi/lib  -L/opt/ARMv7_ti335x/expat-2.2.9/lib /opt/ARMv7_ti335x/expat-2.2.9/lib/libexpat.a -L/opt/ARMv7_ti335x/attr/lib -lattr" \
 LIBDAEMON_CFLAGS="-I/opt/ARMv7_ti335x/libdaemon/include" \
 LIBDAEMON_LIBS="-L/opt/ARMv7_ti335x/libdaemon/lib/ -ldaemon"
 
@@ -755,7 +782,7 @@ LIBDAEMON_LIBS="-L/opt/ARMv7_ti335x/libdaemon/lib/ -ldaemon"
 
 $make
 $make install</code></pre>
-<h3 id="5-疑難排解"><a href="#5-疑難排解" class="headerlink" title="5.疑難排解"></a>5.疑難排解</h3><h4 id="avahi-error-‘O-CLOEXEC’-undeclared"><a href="#avahi-error-‘O-CLOEXEC’-undeclared" class="headerlink" title="avahi error: ‘O_CLOEXEC’ undeclared"></a>avahi error: ‘O_CLOEXEC’ undeclared</h4><pre class=" language-sh"><code class="language-sh">$gedit avahi-daemon/main.c
+<h3 id="6-疑難排解"><a href="#6-疑難排解" class="headerlink" title="6.疑難排解"></a>6.疑難排解</h3><h4 id="avahi-error-‘O-CLOEXEC’-undeclared"><a href="#avahi-error-‘O-CLOEXEC’-undeclared" class="headerlink" title="avahi error: ‘O_CLOEXEC’ undeclared"></a>avahi error: ‘O_CLOEXEC’ undeclared</h4><pre class=" language-sh"><code class="language-sh">$gedit avahi-daemon/main.c
 #define O_CLOEXEC 0 //<==add line
 static char *get_machine_id(void) {
     int fd;
@@ -1193,7 +1220,7 @@ $avahi-browse -a | grep _lxi._tcp</code></pre>
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">67.6k</span>
+                <span class="white-color">68.1k</span>
             
 
             

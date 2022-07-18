@@ -414,7 +414,7 @@ create loopback tty">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        59
+                        81
                     </div>
                     
 
@@ -439,7 +439,7 @@ create loopback tty">
             <div id="articleContent">
                 <p>reference:</p>
 <p>[<a href="https://snoopysecurity.github.io/network-security/2018/03/21/introduction_to_socat.html]" target="_blank" rel="noopener">https://snoopysecurity.github.io/network-security/2018/03/21/introduction_to_socat.html]</a></p>
-<h3 id="create-loopback-tty"><a href="#create-loopback-tty" class="headerlink" title="create loopback tty"></a>create loopback tty</h3><pre><code>sudo socat pty,link=/dev/ttyAP0 pty,link=/dev/ttyAP0</code></pre><h3 id="create-tcp-server"><a href="#create-tcp-server" class="headerlink" title="create tcp server"></a>create tcp server</h3><pre><code>socat TCP-LISTEN:5000 -</code></pre><h3 id="create-TLS-server"><a href="#create-TLS-server" class="headerlink" title="create TLS server"></a>create TLS server</h3><pre><code>socat TCP-LISTEN:51000,fork,reuseaddr OPENSSL:remotehost:51000,cafile=certificate.pem,verify=0</code></pre><h3 id="create-telnet-server"><a href="#create-telnet-server" class="headerlink" title="create telnet server"></a>create telnet server</h3><pre><code>socat exec:&#39;bash -li&#39;,pty,stderr,setsid  tcp-listen:5000,reuseaddr</code></pre>
+<h3 id="create-loopback-tty"><a href="#create-loopback-tty" class="headerlink" title="create loopback tty"></a>create loopback tty</h3><pre><code>sudo socat pty,link=/dev/ttyAP0 pty,link=/dev/ttyAP0</code></pre><h3 id="create-tcp-server"><a href="#create-tcp-server" class="headerlink" title="create tcp server"></a>create tcp server</h3><pre><code>socat TCP-LISTEN:5000 -</code></pre><h3 id="create-TLS-server"><a href="#create-TLS-server" class="headerlink" title="create TLS server"></a>create TLS server</h3><pre><code>socat TCP-LISTEN:51000,fork,reuseaddr OPENSSL:remotehost:51000,cafile=certificate.pem,verify=0</code></pre><h3 id="create-telnet-server"><a href="#create-telnet-server" class="headerlink" title="create telnet server"></a>create telnet server</h3><pre><code>socat exec:&#39;bash -li&#39;,pty,stderr,setsid  tcp-listen:5000,reuseaddr</code></pre><h3 id="create-tty"><a href="#create-tty" class="headerlink" title="create tty"></a>create tty</h3><pre><code>socat -d -d tcp-l:1233,reuseaddr,fork file:/dev/ttyUSB0,nonblock,raw,echo=0,waitlock=/var/run/tty,min=0,b115200</code></pre>
             </div>
             <hr/>
 
@@ -513,8 +513,7 @@ create loopback tty">
                 <div class="card-content article-content">
                     <div class="summary">
                         
-                            git commits 大合併
-# Reset the current branch to the commit just before t
+                            git commits 大合併# Reset the current branch to the commit just before th
                         
                     </div>
                     <div class="publish-info">
@@ -722,7 +721,7 @@ create loopback tty">
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">67.6k</span>
+                <span class="white-color">68.1k</span>
             
 
             
