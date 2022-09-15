@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Ubuntu 使用 docker 快速架 NTP Server</title>
+      <link href="/2022/09/12/linux/ubuntu-shi-yong-docker-kuai-su-jia-ntp-server/"/>
+      <url>/2022/09/12/linux/ubuntu-shi-yong-docker-kuai-su-jia-ntp-server/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>因為專案有用到 ntp server 為避免一堆不必要的麻煩用docker image 直接架一個測試用的 ntp server<br>udp port : 123</p></blockquote><h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><pre class=" language-sh"><code class="language-sh"># run ntp$> docker run --name=ntp            \              --restart=always     \              --detach             \              --publish=123:123/udp \              cturra/ntp$> docker psCONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS                            PORTS                                   NAMES6927a1944700   cturra/ntp   "/bin/sh /opt/startu…"   7 seconds ago   Up 5 seconds (health: starting)   0.0.0.0:123->123/udp, :::123->123/udp   ntp# OR run ntp with higher security$> docker run --name=ntp                           \              --restart=always                     \              --detach                             \              --publish=123:123/udp                \              --read-only                          \              --tmpfs=/etc/chrony:rw,mode=1750     \              --tmpfs=/run/chrony:rw,mode=1750     \              --tmpfs=/var/lib/chrony:rw,mode=1750 \              cturra/ntp</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> docker </tag>
+            
+            <tag> ntp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git Github 筆記</title>
       <link href="/2021/12/17/git-github-bi-ji/"/>
       <url>/2021/12/17/git-github-bi-ji/</url>
