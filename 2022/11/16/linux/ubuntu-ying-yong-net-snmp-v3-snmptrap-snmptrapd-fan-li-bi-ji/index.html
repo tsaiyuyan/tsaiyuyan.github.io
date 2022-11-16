@@ -5,13 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Ubuntu 應用 net-snmp v3 snmptrap snmptrapd 範例筆記, c/c++,Internet programmer,Linux Kernel">
-    <meta name="description" content="下載 Dockfile 檔案
-&gt; git clone https://github.com/dchidell/docker-snmptrap.git
+    <meta name="description" content="下載 Dockfile 檔案&gt; git clone https://github.com/dchidell/docker-snmptrap.git
 
 &gt; cd docker-snmptrap
 
 # 產生image
-&gt; docker bui">
+&gt; docker buil">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -430,14 +429,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        586
+                        898
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        2 分
+                        4 分
                     </div>
                     
                 
@@ -453,8 +452,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2>下載 Dockfile 檔案</h2>
-<pre class=" language-language-sh"><code class="language-language-sh">> git clone https://github.com/dchidell/docker-snmptrap.git
+                <h2 id="下載-Dockfile-檔案"><a href="#下載-Dockfile-檔案" class="headerlink" title="下載 Dockfile 檔案"></a>下載 Dockfile 檔案</h2><pre class=" language-sh"><code class="language-sh">> git clone https://github.com/dchidell/docker-snmptrap.git
 
 > cd docker-snmptrap
 
@@ -462,15 +460,12 @@
 > docker build -t 'test/snmptrapd' ./
 
 # 之後要刪掉就
-> docker rmi test/snmptrapd
-</code></pre>
-<h2>使用 docker 開啟 snmptrapd 服務 162</h2>
-<pre class=" language-language-sh"><code class="language-language-sh">> docker run -it --rm -v`pwd`/snmptrapd.conf:/etc/snmp/snmptrapd.conf -p 162:162/udp test/snmptrapd
+> docker rmi test/snmptrapd</code></pre>
+<h2 id="使用-docker-開啟-snmptrapd-服務-162"><a href="#使用-docker-開啟-snmptrapd-服務-162" class="headerlink" title="使用 docker 開啟 snmptrapd 服務 162"></a>使用 docker 開啟 snmptrapd 服務 162</h2><pre class=" language-sh"><code class="language-sh">> docker run -it --rm -v`pwd`/snmptrapd.conf:/etc/snmp/snmptrapd.conf -p 162:162/udp test/snmptrapd
 
-# --rm 隨用及刪, -v 引用外部檔案
-</code></pre>
+# --rm 隨用及刪, -v 引用外部檔案</code></pre>
 <p>或進入 sh 在執行服務</p>
-<pre class=" language-language-sh"><code class="language-language-sh">> docker run -it --rm -v`pwd`/snmptrapd.conf:/etc/snmp/snmptrapd.conf -p 162:162/udp test/snmptrapd sh
+<pre class=" language-sh"><code class="language-sh">> docker run -it --rm -v`pwd`/snmptrapd.conf:/etc/snmp/snmptrapd.conf -p 162:162/udp test/snmptrapd sh
 
 # 進入容器
 > vi /etc/snmp/snmptrapd.conf
@@ -478,49 +473,142 @@
 # 開啟snmptrapd服務
 > snmptrapd -f  -C -c /etc/snmp/snmptrapd.conf  -Le -d
 
-#-d dump raw package 可以不用加
-</code></pre>
-<h2>編輯 snmptrapd.conf for snmpv3</h2>
-<pre class=" language-language-sh"><code class="language-language-sh">> vi /etc/snmp/snmptrapd.conf
+#-d dump raw package 可以不用加</code></pre>
+<h2 id="編輯-snmptrapd-conf-for-snmpv3"><a href="#編輯-snmptrapd-conf-for-snmpv3" class="headerlink" title="編輯 snmptrapd.conf for snmpv3"></a>編輯 snmptrapd.conf for snmpv3</h2><pre class=" language-sh"><code class="language-sh">> vi /etc/snmp/snmptrapd.conf
 
 disableAuthorization no
-createUser -e 0x80001f8880bd343e4d59bb7263 yuyan310362 SHA authpass AES privpass
-authUser log,execute,net yuyan310362 authpriv
+createUser -e 0x80001f8880bd343e4d59bb7263 yuyan123456 SHA authpass AES privpass
+authUser log,execute,net yuyan123456 authpriv
 
 # authpriv 可以替換成 noauthnopriv 或 authnopriv
 # 分別為noAuthNoPriv（不認證也不加密）、authNoPriv（認證但是不加密）、authPriv（既認證又加密)
 # AES 可換 (AES|DES)
-# SHA 可換 (MD5|SHA|SHA-224|SHA-256|SHA-384|SHA-512)
-</code></pre>
-<h2>用 snmpget 取得 系統產生engine id</h2>
-<p>網路上的範例通常會使用指定engine id，但是其實可以透過 snmpget 去訪問 OID: .1.3.6.1.6.3.10.2.1.1.0，</p>
-<p>就可以問到當下服務的 OID，當然這是對方有snmpd 服務的情況下(通常應該會有)</p>
-<pre class=" language-language-sh"><code class="language-language-sh">
+# SHA 可換 (MD5|SHA|SHA-224|SHA-256|SHA-384|SHA-512)</code></pre>
+<h2 id="用-snmpget-取得-系統產生-engine-id"><a href="#用-snmpget-取得-系統產生-engine-id" class="headerlink" title="用 snmpget 取得 系統產生 engine id"></a>用 snmpget 取得 系統產生 engine id</h2><p>網路上的範例通常會使用指定 engine id，但是其實可以透過 snmpget 去訪問 OID: .1.3.6.1.6.3.10.2.1.1.0，</p>
+<p>就可以問到當下服務的 OID，當然這是對方有 snmpd 服務的情況下(通常應該會有)</p>
+<pre class=" language-sh"><code class="language-sh">
 # 這邊用 v1 的方法詢問
 > snmpget -mALL -v1 -cpublic .1.3.6.1.6.3.10.2.1.1.0
 .1.3.6.1.6.3.10.2.1.1.0 = Hex-STRING: 80 00 1F 88 80 51 14 55 35 58 BB 72 63
 
-# 80 00 1F 88 80 51 14 55 35 58 BB 72 63 就是 engine id
-</code></pre>
-<p>也可以使用一些snmp的免費工具軟體，就請隨意發揮。</p>
-<h2>snmptrap 測試 v3</h2>
-<pre class=" language-language-sh"><code class="language-language-sh">> snmptrap -v 3 -u yuyan310362 -a SHA -A authpass -x AES -X privpass -l authPriv 10.0.7.4:162 0 .1.3.6.1.2.1.2.2.1.1.2
+# 80 00 1F 88 80 51 14 55 35 58 BB 72 63 就是 engine id</code></pre>
+<p>也可以使用一些 snmp 的免費工具軟體，就請隨意發揮。</p>
+<h2 id="snmptrap-測試-v3"><a href="#snmptrap-測試-v3" class="headerlink" title="snmptrap 測試 v3"></a>snmptrap 測試 v3</h2><pre class=" language-sh"><code class="language-sh">> snmptrap -v 3 -u yuyan123456 -a SHA -A authpass -x AES -X privpass -l authPriv 10.0.7.4:162 0 .1.3.6.1.2.1.2.2.1.1.2
 
 # 如果 snmptrapd 設定的 engine id 跟你不一樣就簡單的加個 -e 補上特定engine id 也可以通
 
-> snmptrap -v 3 -e 0x80001f8880bd343e4d59bb7263 -u yuyan310362 -a SHA -A authpass -x AES -X privpass -l authPriv 10.0.7.4:162 0 .1.3.6.1.2.1.2.2.1.1.2
+> snmptrap -v 3 -e 0x80001f8880bd343e4d59bb7263 -u yuyan123456 -a SHA -A authpass -x AES -X privpass -l authPriv 10.0.7.4:162 0 .1.3.6.1.2.1.2.2.1.1.2
 
 # 不然預設都是抓系統的 .1.3.6.1.6.3.10.2.1.1.0
-# engine id snmptrap 與 snmptrapd的設定一定要相互匹配(重要)
-</code></pre>
-<h2>docker snmptrapd 收到 trap 會如下顯示</h2>
-<pre class=" language-language-sh"><code class="language-language-sh">> snmptrapd -f  -C -c /etc/snmp/snmptrapd.conf  -Le -d
+# engine id snmptrap 與 snmptrapd的設定一定要相互匹配(重要)</code></pre>
+<h2 id="docker-snmptrapd-收到-trap-會如下顯示"><a href="#docker-snmptrapd-收到-trap-會如下顯示" class="headerlink" title="docker snmptrapd 收到 trap 會如下顯示"></a>docker snmptrapd 收到 trap 會如下顯示</h2><pre class=" language-sh"><code class="language-sh">> snmptrapd -f  -C -c /etc/snmp/snmptrapd.conf  -Le -d
 NET-SNMP version 5.8
 
 2022-11-15 09:19:50 10.0.7.6 [UDP: [10.0.7.6]:52621->[172.18.0.4]:162]:
-DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (0) 0:00:00.00	SNMPv2-MIB::snmpTrapOID.0 = OID: IF-MIB::ifIndex.2
-</code></pre>
-
+DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (0) 0:00:00.00    SNMPv2-MIB::snmpTrapOID.0 = OID: IF-MIB::ifIndex.2</code></pre>
+<hr>
+<h2 id="snmptrap-V1-V2c-補充範例"><a href="#snmptrap-V1-V2c-補充範例" class="headerlink" title="snmptrap V1 | V2c 補充範例"></a>snmptrap V1 | V2c 補充範例</h2><blockquote>
+<p>這邊建議下載 snmp trap watcher 軟體直接做 snmptrapd 測試來用比較方便<br>google 搜尋 “BTT Software snmp trap watcher”</p>
+</blockquote>
+<h3 id="snmptrap-v1"><a href="#snmptrap-v1" class="headerlink" title="snmptrap v1"></a>snmptrap v1</h3><pre class=" language-sh"><code class="language-sh">snmptrap -v1 -c public 10.0.7.5 1.3.6.1.4.1.1 10.0.7.5 2 3 1000 1.3.6.1.9.9.44.1.2.1 i 12 1.3.4.1.2.3.1 s test_snmptrap</code></pre>
+<table>
+<thead>
+<tr>
+<th>snmptrap v1 欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>命令</td>
+<td>snmptrap</td>
+</tr>
+<tr>
+<td>Snmp 協議版本</td>
+<td>-v1</td>
+</tr>
+<tr>
+<td>共同體</td>
+<td>-c public</td>
+</tr>
+<tr>
+<td>Snmp 管理端 IP</td>
+<td>10.0.7.5</td>
+</tr>
+<tr>
+<td>Enterprise-OID</td>
+<td>1.3.6.1.4.1.1</td>
+</tr>
+<tr>
+<td>Snmp 代理 IP</td>
+<td>10.0.7.5</td>
+</tr>
+<tr>
+<td>Trap 類型</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Trap 特徵碼</td>
+<td>3</td>
+</tr>
+<tr>
+<td>uptime</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>被發送參數的 OID</td>
+<td>1.3.6.1.9.9.44.1.2.1</td>
+</tr>
+<tr>
+<td>數據類型</td>
+<td>i</td>
+</tr>
+<tr>
+<td>數據值</td>
+<td>12</td>
+</tr>
+<tr>
+<td>被發送參數的 OID</td>
+<td>1.3.4.1.2.3.1</td>
+</tr>
+<tr>
+<td>數據類型</td>
+<td>s</td>
+</tr>
+<tr>
+<td>數據值</td>
+<td>test_snmptrap</td>
+</tr>
+</tbody></table>
+<h3 id="snmptrap-v2c"><a href="#snmptrap-v2c" class="headerlink" title="snmptrap v2c"></a>snmptrap v2c</h3><pre class=" language-sh"><code class="language-sh">snmptrap -v2c -c public 10.0.7.5 "aaa" 1.3.6.1.4.1.2345 .1.3.6.1.2.1.1.6.0 s "just here"</code></pre>
+<ul>
+<li>10.0.7.5 “aaa” : 分別是 snmp 代理的 IP 和主機名稱，主機名稱可以為空</li>
+<li>1.3.6.1.4.1.2345 : 企業 OID，Enterprise-OID</li>
+<li>.1.3.6.1.2.1.1.6.0 s “just here” : 分別是數據 OID、數據類型、數據值。</li>
+</ul>
+<h3 id="snmptrap-v3"><a href="#snmptrap-v3" class="headerlink" title="snmptrap v3"></a>snmptrap v3</h3><pre class=" language-sh"><code class="language-sh">snmptrap -v 3 -u yuyan123456 -a SHA -A authpass -x AES -X privpass -l authPriv 10.0.7.4:162 0 .1.3.6.1.2.1.2.2.1.1.2</code></pre>
+<!--
+```json
+{
+  "snmptrap": {
+    "enterprise_oid": "1.3.6.1.4.1.10297.201.100",
+    "trapsrvaddr": "10.0.7.4",
+    "trapsrvport": "162",
+    "version": 3,
+    "trapcommunity": "public",
+    "trapv3username": "yuyan",
+    "trapv3authproto": "SHA",
+    "trapv3privproto": "AES",
+    "trapv3authpass": "authpass",
+    "trapv3privpass": "privpass",
+    "trapv3securelevel": "authpriv",
+    "dcd_changed_oid": ".1.3.6.1.4.1.10297.201.100.1",
+    "dsr_changed_oid": ".1.3.6.1.4.1.10297.201.100.2",
+    "dcd_changed": [0, 1, 1, 1],
+    "dsr_changed": [1, 1, 1, 1]
+  }
+}
+```
+-->
             </div>
             <hr/>
 
@@ -821,7 +909,7 @@ DISMAN-EVENT-MIB::sysUpTimeInstance = Timeticks: (0) 0:00:00.00	SNMPv2-MIB::snmp
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">68.9k</span>
+                <span class="white-color">69.2k</span>
             
 
             
