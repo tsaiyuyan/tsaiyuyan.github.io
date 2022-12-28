@@ -415,14 +415,14 @@ git reset --hard HEAD~12
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        787
+                        828
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        4 分
+                        5 分
                     </div>
                     
                 
@@ -449,6 +449,17 @@ git merge --squash HEAD@{1}
 # Commit those squashed changes.  The commit message will be helpfully
 # prepopulated with the commit messages of all the squashed commits:
 git commit</code></pre>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><pre class=" language-sh"><code class="language-sh">git log --after="2020-05-15" --before="2020-05-25"
+
+git log --author="yuyan"
+
+git log --grep="ISSUE-43560"
+
+git log --pretty=format:"%Cred%an - %ar%n %Cblue %h -%Cgreen %s %n"
+
+#git log with diff changes
+git log -p
+</code></pre>
 <h2 id="強制覆蓋-github-版本-需注意這步將無法還原"><a href="#強制覆蓋-github-版本-需注意這步將無法還原" class="headerlink" title="強制覆蓋 github 版本 (需注意這步將無法還原)"></a>強制覆蓋 github 版本 (需注意這步將無法還原)</h2><pre class=" language-sh"><code class="language-sh">git push -f origin</code></pre>
 <h2 id="What-happens-to-the-forks-when-deleting-the-original-repository"><a href="#What-happens-to-the-forks-when-deleting-the-original-repository" class="headerlink" title="What happens to the forks when deleting the original repository?"></a>What happens to the forks when deleting the original repository?</h2><blockquote>
 <p>It depends whether the original and the fork are public or private, according to GitHub’s documentation:</p>
@@ -880,7 +891,7 @@ fatal: Authentication failed for 'https://github.com/xxxxxxxx/xxxxxx.git/'</code
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">69.2k</span>
+                <span class="white-color">69.4k</span>
             
 
             
