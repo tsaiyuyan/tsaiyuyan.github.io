@@ -422,7 +422,7 @@ mosquitto/
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        233
+                        239
                     </div>
                     
 
@@ -461,7 +461,12 @@ mosquitto/
 
 $ <span class="token function">cat</span> mosquitto/config/mosquitto.conf
 allow_anonymous <span class="token boolean">true</span>
+
+listener 1883
+protocol mqtt
+
 listener 8883
+protocol mqtt
 keyfile /mosquitto/config/certs/vcom.pem
 certfile /mosquitto/config/certs/vcom.pem
 cafile /mosquitto/config/certs/vcom_rootCA.pem
@@ -793,7 +798,7 @@ mosquitto/
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">69.4k</span>
+                <span class="white-color">69.5k</span>
             
 
             
