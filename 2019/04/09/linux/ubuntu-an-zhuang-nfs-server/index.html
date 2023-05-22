@@ -483,10 +483,12 @@ nodev   aufs
 nodev   vboxsf
         iso9660</code></pre><hr>
 <h2 id="二、Linux-連結-NFS-Server"><a href="#二、Linux-連結-NFS-Server" class="headerlink" title="二、Linux 連結 NFS Server"></a>二、Linux 連結 NFS Server</h2><h3 id="NFS-Client-安裝"><a href="#NFS-Client-安裝" class="headerlink" title="NFS Client 安裝"></a>NFS Client 安裝</h3><pre><code>$sudo apt-get install nfs-common</code></pre><h3 id="建立-NFS-目錄掛載點"><a href="#建立-NFS-目錄掛載點" class="headerlink" title="建立 NFS 目錄掛載點"></a>建立 NFS 目錄掛載點</h3><pre><code>$sudo mkdir -p /mnt/nfs/var/nfsshare</code></pre><h3 id="NFS-Server-分享出來的目錄"><a href="#NFS-Server-分享出來的目錄" class="headerlink" title="NFS Server 分享出來的目錄"></a>NFS Server 分享出來的目錄</h3><pre><code>$sudo mount -t nfs {NFS Server IP}:/var/nfsshare /mnt/nfs/var/nfsshare/ -o nolock</code></pre><h3 id="如果需要下次重新開機後就會自動掛載-現在開啟-etc-fstab-加入以下內容"><a href="#如果需要下次重新開機後就會自動掛載-現在開啟-etc-fstab-加入以下內容" class="headerlink" title="如果需要下次重新開機後就會自動掛載, 現在開啟 /etc/fstab, 加入以下內容"></a>如果需要下次重新開機後就會自動掛載, 現在開啟 /etc/fstab, 加入以下內容</h3><pre><code>{NFS_Server_IP}:/var/nfsshare    /mnt/nfs/var/nfsshare   nfs defaults 0 0</code></pre><h2 id="三、Windows-連接-NFS-Server"><a href="#三、Windows-連接-NFS-Server" class="headerlink" title="三、Windows 連接 NFS Server"></a>三、Windows 連接 NFS Server</h2><ul>
-<li>Windows 功能開啟 (預設程式-&gt;開啟或關閉 windows 功能)-&gt;打勾 Service for NFS</li>
-<li>開啟檔案總管 key 上</li>
+<li><p>Windows 功能開啟 (預設程式-&gt;開啟或關閉 windows 功能)-&gt;打勾 Service for NFS</p>
+</li>
+<li><p>開啟檔案總管 key 上</p>
+<p>  \172.16.26.166\var\nfsshare</p>
+</li>
 </ul>
-<pre class=" language-txt"><code class="language-txt">\\172.16.26.166\var\nfsshare</code></pre>
 <h2 id="四、卸載設備"><a href="#四、卸載設備" class="headerlink" title="四、卸載設備"></a>四、卸載設備</h2><p>列出掛載的設備:</p>
 <pre><code>$mount</code></pre><p>或</p>
 <pre><code>$df -h</code></pre><p>卸載設備:</p>
