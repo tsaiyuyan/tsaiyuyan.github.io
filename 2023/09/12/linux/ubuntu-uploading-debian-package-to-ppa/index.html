@@ -423,7 +423,7 @@ opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        937
+                        957
                     </div>
                     
 
@@ -495,7 +495,7 @@ zgwMEmx+GLRyht0MZmYFC2flXm2F5g==
 # 2. 解碼信件
 $ gpg -d opgpm.txt
 gpg: encrypted with 2048-bit RSA key, ID 7C4FA30F1D17D9CB, created 2023-09-18
-      "<your-username> <your-email@gmail.com>"
+      "*your-username* <your-email@gmail.com>"
 Here are the instructions for confirming the OpenPGP key registration that we
 received for use in Launchpad.
 Requester details:
@@ -552,19 +552,19 @@ $ bash deploy/packaging_deb.sh
 # dpkg-buildpackage -b -rfakeroot -us -uc
 # debuild -b -us -uc -rfakeroot
 
-# build source deb package，這個是將source code 上傳到ppa 由指定的 distribuition 去build 展開。
-debuild -S -sa -k"<your-fingerprint>"</code></pre>
+# build source deb pack*your-username*age，這個是將source code 上傳到ppa 由指定的 distribuition 去build 展開。
+debuild -S -sa -k"*your-fingerprint*"</code></pre>
 <p>嘗試安裝binary deb試試看有沒有什麼問題</p>
 <pre class=" language-sh"><code class="language-sh">$ cd object/deb_object/
 
 # 移除 deb package
-$ sudo apt remove <your-package-name> -y
+$ sudo apt remove *your-package-name* -y
 
 # 安裝deb package
 # 這有gui
-$ sudo gdebi-gtk <your-package-name>_1.0-1_all.deb
+$ sudo gdebi-gtk *your-package-name*_1.0-1_all.deb
 # 或是使用
-$ sudo dpkg -i <your-package-name>_1.0-1_all.deb
+$ sudo dpkg -i *your-package-name*_1.0-1_all.deb
 $ sudo apt-get install -f
 
 這一步驟主要是要檢查 postinst, preinst、postrm、prerm 這些script 有沒有錯誤。
@@ -575,16 +575,16 @@ $ cat ~/.dput.cf
 [ppa]
 fqdn = ppa.launchpad.net
 method = ftp
-incoming = ~<your-username>/<your-ppaname>/ubuntu
+incoming = ~*your-username*/*your-ppaname*/ubuntu
 login = anonymous
 allow_unsigned_uploads = 0
 </code></pre>
 <h3 id="2-dput-source-changes-file"><a href="#2-dput-source-changes-file" class="headerlink" title="2. dput source changes file"></a>2. dput source changes file</h3><pre class=" language-sh"><code class="language-sh"># amd64 (not use) <= 這個會被reject
-# debsign -k <your-fingerprint> <your-package-name>_1.0_amd64.changes
-# dput ppa:<your-username>/<your-ppaname> <your-package-name>_1.0-1_amd64.changes
+# debsign -k *your-fingerprint* *your-package-name*_1.0_amd64.changes
+# dput ppa:*your-username*/*your-ppaname* *your-package-name*_1.0-1_amd64.changes
 
 # 這個正解
-$ dput ppa:<your-username>/<your-ppaname> <your-package-name>_1.0_source.changes
+$ dput ppa:*your-username*/*your-ppaname* *your-package-name*_1.0_source.changes
 </code></pre>
 <h3 id="3-dput-後，收email解析"><a href="#3-dput-後，收email解析" class="headerlink" title="3. dput 後，收email解析"></a>3. dput 後，收email解析</h3><p>最後一步驟， 只要 dput 後，就準備去收信，如果收到 Rejected。</p>
 <p>有遇過的問題如下:</p>
@@ -595,28 +595,28 @@ $ dput ppa:<your-username>/<your-ppaname> <your-package-name>_1.0_source.changes
 </ol>
 <p>如果收到 Accepted， 就去看看build結果怎麼樣，build 的結果大約幾分鐘就可以看到，如果沒過就很不幸要重新進版修改再上傳，如果 build 過，大約要等半小~1小時才能在網站看看到ppa 幫你產生的 deb file 下載。</p>
 <h2 id="三、-用-apt-install-下載-ppa-測試"><a href="#三、-用-apt-install-下載-ppa-測試" class="headerlink" title="三、 用 apt install 下載 ppa 測試"></a>三、 用 apt install 下載 ppa 測試</h2><pre class=" language-sh"><code class="language-sh"># 註冊你的 key，不然會被說沒sign 過的東西會被拒絕安裝。
-$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <your-fingerprint>
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys *your-fingerprint*
 
 # 加入 repository
-$ sudo add-apt-repository ppa:<your-username>/<your-ppaname>
+$ sudo add-apt-repository ppa:*your-username*/*your-ppaname*
 $ sudo apt update
 
 # 移除 repository
-$ sudo add-apt-repository --remove ppa:<your-username>/<your-ppaname>
+$ sudo add-apt-repository --remove ppa:*your-username*/*your-ppaname*
 
 # 安裝 package
-$ sudo apt install <your-package-name>
+$ sudo apt install *your-package-name*
 
 # 移除 package
-$ sudo apt remove <your-package-name>
+$ sudo apt remove *your-package-name*
 </code></pre>
 <h2 id="其他-未整理"><a href="#其他-未整理" class="headerlink" title="其他(未整理)"></a>其他(未整理)</h2><pre class=" language-sh"><code class="language-sh">$ gpg --list-secret-keys
 pub   4096R/ABC12345 2020-01-01 [expires: 2025-12-31]
-uid                  Your Name <user@example.com>
+uid                  Your Name user@
 sub   4096R/DEF67890 2020-01-01 [expires: 2025-12-31]
 
-gpg --delete-keys
-gpg --delete-secret-keys
+$ gpg --delete-keys
+$ gpg --delete-secret-keys
 </code></pre>
 
             </div>
