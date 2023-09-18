@@ -1,0 +1,999 @@
+<!DOCTYPE HTML>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Ubuntu uploading debian package to PPA, c/c++,Internet programmer,Linux Kernel">
+    <meta name="description" content="前言
+本篇假設已經擁有Ubuntu社群帳號。
+用ubuntu帳號 登入 ppa (https://launchpad.net/)
+opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如果要下command也可以">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Ubuntu uploading debian package to PPA | YuYan&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon2.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo2.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">YuYan's blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>Index</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>Tags</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>Categories</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>Archives</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>About</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>Friends</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo2.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">YuYan's blog</div>
+        <div class="logo-desc">
+            
+            記錄一些工作經驗、知識，或轉錄一些好文章，避免日後忘記。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                Index
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                Tags
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                Categories
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                About
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                Friends
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/tsaiyuyan" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/tsaiyuyan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Ubuntu uploading debian package to PPA
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ubuntu/" target="_blank">
+                                <span class="chip bg-color">ubuntu</span>
+                            </a>
+                        
+                            <a href="/tags/ppa/" target="_blank">
+                                <span class="chip bg-color">ppa</span>
+                            </a>
+                        
+                            <a href="/tags/debian/" target="_blank">
+                                <span class="chip bg-color">debian</span>
+                            </a>
+                        
+                            <a href="/tags/opengpg/" target="_blank">
+                                <span class="chip bg-color">opengpg</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>發布日期:&nbsp;&nbsp;
+                    2023-09-12
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
+                        937
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
+                        4 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>閱讀次數:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ol>
+<li>本篇假設已經擁有Ubuntu社群帳號。</li>
+<li>用ubuntu帳號 登入 ppa (<a href="https://launchpad.net/" target="_blank" rel="noopener">https://launchpad.net/</a>)</li>
+<li>opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如果要下command也可以到launchpadhelp 網頁尋找答案，本篇不贅述。</li>
+<li>gpg 在generation keys 時會產生再 ~/.gnupg 的資料夾</li>
+<li>refer: <a href="https://blog.elleryq.idv.tw/2010/09/debian-package-ppa.html" target="_blank" rel="noopener">https://blog.elleryq.idv.tw/2010/09/debian-package-ppa.html</a></li>
+</ol>
+<h3 id="一、-產生-opengpg-Key"><a href="#一、-產生-opengpg-Key" class="headerlink" title="一、 產生 opengpg Key"></a>一、 產生 opengpg Key</h3><pre class=" language-sh"><code class="language-sh"># 安裝 gpg 、 gpa
+$ sudo apt install gpg gpa
+
+# 打開gpa
+$ gpa
+
+打開後會直接有generation key 的提示，如果沒有就點選菜單 keys-> new Keys
+填寫 username、 email、 pharse key 完成後就會看到一把鑰匙在列表上
+這邊會用到一些操作
+
+點選key，並按右鍵:
+
+1. Copy fingerprint:  等同於 command "gpg --fingerprint"  55XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2. Copy : 這邊會複製 public keys， 這東西要丟上key server
+3. Copy Private Key: 這邊會複製 private keys。</code></pre>
+<p>照步驟來做，先處理 key server 的部分，這樣ppa才能抓到:</p>
+<ol>
+<li>遞交 public key 給 key server (<a href="https://keyserver.ubuntu.com/" target="_blank" rel="noopener">https://keyserver.ubuntu.com/</a>) =&gt; 點選 submit keys 將public keys 貼上遞交。</li>
+<li>遞交完成後 回到上一頁， 將fingerprint 貼上後按 search， 如果步驟1有成功可以在此步驟看到訊息。</li>
+<li>前往(<a href="https://launchpad.net/~yourusername" target="_blank" rel="noopener">https://launchpad.net/~yourusername</a>)。</li>
+<li>Overview -&gt; OpenPGP keys: =&gt; 點選鉛筆按鈕。</li>
+<li>Import an OpenPGP key -&gt; 填寫 Fingerprint -&gt; click “import key” button =&gt; wait a monment to receive E-Mail.</li>
+<li>這時你就會收到信件，打開你在ubuntu 註冊用的信箱會收到認證的信。 (Launchpad: Confirm your OpenPGP Key 的標題)。</li>
+<li>會看到內容有一段 —–BEGIN PGP MESSAGE—– =&gt; … =&gt;—–END PGP MESSAGE—– 結尾將其複製，並存成 opgpm.txt。</li>
+<li>使用 gpg -d opgpm.txt 解碼信件。</li>
+<li>開啟 browser 去解碼信件內容指定的網址 <a href="https://launchpad.net/token/XXXXXXXXXXXXXXXXXX" target="_blank" rel="noopener">https://launchpad.net/token/XXXXXXXXXXXXXXXXXX</a> =&gt; 點選continue 即可完成認證</li>
+</ol>
+<p>之後你的 PPA profile 就會顯示 OpenGPG keys</p>
+<pre class=" language-sh"><code class="language-sh"># 1. 將gmail 收到的內容貼上在 opgpm.txt
+$ vim opgpm.txt
+-----BEGIN PGP MESSAGE-----
+
+hQEMA3xPow8dF9nLAQf/...
+...
+zgwMEmx+GLRyht0MZmYFC2flXm2F5g==
+=N7G2
+
+-----END PGP MESSAGE-----
+
+# 2. 解碼信件
+$ gpg -d opgpm.txt
+gpg: encrypted with 2048-bit RSA key, ID 7C4FA30F1D17D9CB, created 2023-09-18
+      "<your-username> <your-email@gmail.com>"
+Here are the instructions for confirming the OpenPGP key registration that we
+received for use in Launchpad.
+Requester details:
+    User name    : TsaiYuYan
+    Email address: your-email@gmail.com
+Key details:
+    Key type    : 2048R
+    Fingerprint : 55XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+UIDs:
+    your-email@gmail.com
+Please go here to finish adding the key to your Launchpad account:
+    https://launchpad.net/token/XXXXXXXXXXXXXXXXXX</code></pre>
+<h3 id="可略過-Using-gpa-GUI-其他說明筆記"><a href="#可略過-Using-gpa-GUI-其他說明筆記" class="headerlink" title="(可略過) Using gpa GUI (其他說明筆記 )"></a>(可略過) Using gpa GUI (其他說明筆記 )</h3><p>This method is for systems that don’t have the Passwords and Keys application. It uses the GNU Privacy Assistant (gpa) application.</p>
+<ol>
+<li>Install gpa by running sudo apt install gpg gpa in the terminal. This command installs both gpg and gpa on your system.</li>
+<li>Launch gpa from your applications menu.</li>
+<li>Navigate to the “Keys” menu and select “New Key”. This will open a dialog where you can enter your details.</li>
+<li>Enter your full name and email address, and proceed through the prompts.</li>
+<li>Set a passphrase to protect your PGP key. This passphrase is like a password and will be used to unlock your key.</li>
+<li>Once the process is complete, your key will be created. You can export your public key from gpa to share with others.</li>
+</ol>
+<hr>
+<h2 id="二、-準備好deb-package"><a href="#二、-準備好deb-package" class="headerlink" title="二、 準備好deb package"></a>二、 準備好deb package</h2><blockquote>
+<p>(未完成) 可先去我的 github clone example 專案。</p>
+</blockquote>
+<pre class=" language-sh"><code class="language-sh">$ tree deploy/deb_overwrite/debian
+.
+├── advvcom-dkms.lintian-overrides
+├── advvcom-dkms.postinst
+├── advvcom-dkms.prerm
+├── advvcom-driver.lintian-overrides
+├── advvcom-module-_KVERS_.postinst.modules.in
+├── advvcom-module-_KVERS_.postrm
+├── changelog
+├── compat
+├── control
+├── control.modules.in
+├── copyright
+├── dirs
+├── README.Debian
+├── rules
+├── rules.m-a
+└── source
+    ├── format
+    └── lintian-overrides
+
+$ bash deploy/packaging_deb.sh
+
+# shell script 關鍵的指令是 debuild
+
+# build .deb file
+
+# build binary deb package，下面兩行 可以build 出deb 可以直接安裝測試
+# dpkg-buildpackage -b -rfakeroot -us -uc
+# debuild -b -us -uc -rfakeroot
+
+# build source deb package，這個是將source code 上傳到ppa 由指定的 distribuition 去build 展開。
+debuild -S -sa -k"<your-fingerprint>"</code></pre>
+<p>嘗試安裝binary deb試試看有沒有什麼問題</p>
+<pre class=" language-sh"><code class="language-sh">$ cd object/deb_object/
+
+# 移除 deb package
+$ sudo apt remove <your-package-name> -y
+
+# 安裝deb package
+# 這有gui
+$ sudo gdebi-gtk <your-package-name>_1.0-1_all.deb
+# 或是使用
+$ sudo dpkg -i <your-package-name>_1.0-1_all.deb
+$ sudo apt-get install -f
+
+這一步驟主要是要檢查 postinst, preinst、postrm、prerm 這些script 有沒有錯誤。
+</code></pre>
+<h2 id="三、-Upload-Source-deb-package-to-PPA"><a href="#三、-Upload-Source-deb-package-to-PPA" class="headerlink" title="三、 Upload Source deb package to PPA"></a>三、 Upload Source deb package to PPA</h2><h3 id="1-編輯-dput-cf"><a href="#1-編輯-dput-cf" class="headerlink" title="1. 編輯 .dput.cf"></a>1. 編輯 .dput.cf</h3><pre class=" language-sh"><code class="language-sh">
+# .dput.cf
+$ cat ~/.dput.cf
+[ppa]
+fqdn = ppa.launchpad.net
+method = ftp
+incoming = ~<your-username>/<your-ppaname>/ubuntu
+login = anonymous
+allow_unsigned_uploads = 0
+</code></pre>
+<h3 id="2-dput-source-changes-file"><a href="#2-dput-source-changes-file" class="headerlink" title="2. dput source changes file"></a>2. dput source changes file</h3><pre class=" language-sh"><code class="language-sh"># amd64 (not use) <= 這個會被reject
+# debsign -k <your-fingerprint> <your-package-name>_1.0_amd64.changes
+# dput ppa:<your-username>/<your-ppaname> <your-package-name>_1.0-1_amd64.changes
+
+# 這個正解
+$ dput ppa:<your-username>/<your-ppaname> <your-package-name>_1.0_source.changes
+</code></pre>
+<h3 id="3-dput-後，收email解析"><a href="#3-dput-後，收email解析" class="headerlink" title="3. dput 後，收email解析"></a>3. dput 後，收email解析</h3><p>最後一步驟， 只要 dput 後，就準備去收信，如果收到 Rejected。</p>
+<p>有遇過的問題如下:</p>
+<ol>
+<li>changelog Unrelease 不存在之類的，這邊因為要上傳到ppa 所以changelog 有些魔改，就是一般 debian changelog 裡是寫 unstable、experiment，在這裡要改為 lucid、hardy。<br>就是填寫 ubuntu os的代號 jammy(ubuntu22.04)，lunar(ubuntu23.04)、mantic(ubuntu23.10)。</li>
+<li>版本號已存在，目前要馬去網站上刪除版本(要等半小時~1小時以上)，不然就是手動升版。很麻煩。</li>
+<li>上傳的東西混雜mixed binary file with source code 啥的，在PPA上只能上傳 debuild -S 的 Source deb， 所以一般 build 好的 binary deb 會被回絕。</li>
+</ol>
+<p>如果收到 Accepted， 就去看看build結果怎麼樣，build 的結果大約幾分鐘就可以看到，如果沒過就很不幸要重新進版修改再上傳，如果 build 過，大約要等半小~1小時才能在網站看看到ppa 幫你產生的 deb file 下載。</p>
+<h2 id="三、-用-apt-install-下載-ppa-測試"><a href="#三、-用-apt-install-下載-ppa-測試" class="headerlink" title="三、 用 apt install 下載 ppa 測試"></a>三、 用 apt install 下載 ppa 測試</h2><pre class=" language-sh"><code class="language-sh"># 註冊你的 key，不然會被說沒sign 過的東西會被拒絕安裝。
+$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <your-fingerprint>
+
+# 加入 repository
+$ sudo add-apt-repository ppa:<your-username>/<your-ppaname>
+$ sudo apt update
+
+# 移除 repository
+$ sudo add-apt-repository --remove ppa:<your-username>/<your-ppaname>
+
+# 安裝 package
+$ sudo apt install <your-package-name>
+
+# 移除 package
+$ sudo apt remove <your-package-name>
+</code></pre>
+<h2 id="其他-未整理"><a href="#其他-未整理" class="headerlink" title="其他(未整理)"></a>其他(未整理)</h2><pre class=" language-sh"><code class="language-sh">$ gpg --list-secret-keys
+pub   4096R/ABC12345 2020-01-01 [expires: 2025-12-31]
+uid                  Your Name <user@example.com>
+sub   4096R/DEF67890 2020-01-01 [expires: 2025-12-31]
+
+gpg --delete-keys
+gpg --delete-secret-keys
+</code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+            
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;轉載請註明:
+                    </span>
+                    <a href="https://tsaiyuyan.github.io" class="b-link-green">YuYan's blog</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2023/09/12/linux/ubuntu-uploading-debian-package-to-ppa/" class="b-link-green">Ubuntu uploading debian package to PPA</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '4b30a1bd0683a64b2698',
+        clientSecret: 'c750a3ecef2bfa64bbef4b51ead66428b1699f1c',
+        repo: 'blog-comments',
+        owner: 'tsaiyuyan',
+        admin: "tsaiyuyan",
+        id: '2023-09-12T10-00-00',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/09/12/linux/ubuntu-uploading-debian-package-to-ppa/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Ubuntu uploading debian package to PPA">
+                        
+                        <span class="card-title">Ubuntu uploading debian package to PPA</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            前言
+本篇假設已經擁有Ubuntu社群帳號。
+用ubuntu帳號 登入 ppa (https://launchpad.net/)
+openg
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-09-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ubuntu/" target="_blank">
+                        <span class="chip bg-color">ubuntu</span>
+                    </a>
+                    
+                    <a href="/tags/ppa/" target="_blank">
+                        <span class="chip bg-color">ppa</span>
+                    </a>
+                    
+                    <a href="/tags/debian/" target="_blank">
+                        <span class="chip bg-color">debian</span>
+                    </a>
+                    
+                    <a href="/tags/opengpg/" target="_blank">
+                        <span class="chip bg-color">opengpg</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/05/30/openssl-kuai-su-chan-sheng-chong-yao-dang-an/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Openssl - 快速產生重要檔案">
+                        
+                        <span class="card-title">Openssl - 快速產生重要檔案</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">
+                        
+                            紀錄產生CA的腳本範例
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2023-05-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/openssl/" target="_blank">
+                        <span class="chip bg-color">openssl</span>
+                    </a>
+                    
+                    <a href="/tags/ubuntu/" target="_blank">
+                        <span class="chip bg-color">ubuntu</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目錄</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            
+                <script src='https://unpkg.com/mermaid@8.14.0/dist/mermaid.min.js'></script>
+                <script>
+                  if (window.mermaid) {
+                    mermaid.initialize({theme: 'base'});
+                  }
+                </script>
+            
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">71.2k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/tsaiyuyan" class="tooltipped" target="_blank" data-tooltip="Visit My GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:st3265987410@gmail.com" class="tooltipped" target="_blank" data-tooltip="Email" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="請輸入搜索的關鍵字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

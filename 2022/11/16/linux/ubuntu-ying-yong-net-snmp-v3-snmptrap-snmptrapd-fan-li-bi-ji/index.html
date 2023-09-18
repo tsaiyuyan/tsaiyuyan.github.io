@@ -429,14 +429,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        924
+                        966
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        4 分
+                        5 分
                     </div>
                     
                 
@@ -477,16 +477,19 @@
 > snmptrapd -f -C -c /etc/snmp/snmptrapd.conf -Le -Dusm,usmUser,snmptrapd
 
 #-d dump raw package 可以不用加</code></pre>
-<h2 id="編輯-snmptrapd-conf-for-snmpv3"><a href="#編輯-snmptrapd-conf-for-snmpv3" class="headerlink" title="編輯 snmptrapd.conf for snmpv3"></a>編輯 snmptrapd.conf for snmpv3</h2><pre class=" language-sh"><code class="language-sh">> vi /etc/snmp/snmptrapd.conf
+<h2 id="編輯-snmptrapd-conf-for-snmpv3"><a href="#編輯-snmptrapd-conf-for-snmpv3" class="headerlink" title="編輯 snmptrapd.conf for snmpv3"></a>編輯 snmptrapd.conf for snmpv3</h2><pre class=" language-conf"><code class="language-conf">> vi /etc/snmp/snmptrapd.conf
 
 disableAuthorization no
 createUser -e 0x80001f8880bd343e4d59bb7263 yuyan123456 SHA authpass AES privpass
+createUser -e 0x80001f8880bd343e4d59bb7263 yuyan123456 SHA 'aA1 \\!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~' AES 'aA1 \\!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~'
 authUser log,execute,net yuyan123456 authpriv
 
 # authpriv 可以替換成 noauthnopriv 或 authnopriv
 # 分別為noAuthNoPriv（不認證也不加密）、authNoPriv（認證但是不加密）、authPriv（既認證又加密)
 # AES 可換 (AES|DES)
-# SHA 可換 (MD5|SHA|SHA-224|SHA-256|SHA-384|SHA-512)</code></pre>
+# SHA 可換 (MD5|SHA|SHA-224|SHA-256|SHA-384|SHA-512)
+# test password example: aA1 \!"#$%&'()*+,-./:;<=>?@[]^_`{|}~
+# 單引號要處理 \ => '\</code></pre>
 <h2 id="用-snmpget-取得-系統產生-engine-id-這是錯的"><a href="#用-snmpget-取得-系統產生-engine-id-這是錯的" class="headerlink" title="用 snmpget 取得 系統產生 engine id (這是錯的)"></a>用 snmpget 取得 系統產生 engine id (這是錯的)</h2><p>網路上的範例通常會使用指定 engine id，但是其實可以透過 snmpget 去訪問 OID: .1.3.6.1.6.3.10.2.1.1.0，</p>
 <p>就可以問到當下服務的 OID，當然這是對方有 snmpd 服務的情況下(通常應該會有)</p>
 <pre class=" language-sh"><code class="language-sh">
@@ -494,7 +497,11 @@ authUser log,execute,net yuyan123456 authpriv
 > snmpget -mALL -v1 -cpublic localhost:161 .1.3.6.1.6.3.10.2.1.1.0
 .1.3.6.1.6.3.10.2.1.1.0 = Hex-STRING: 80 00 1F 88 80 51 14 55 35 58 BB 72 63
 
-# 80 00 1F 88 80 51 14 55 35 58 BB 72 63 就是 engine id</code></pre>
+# 80 00 1F 88 80 51 14 55 35 58 BB 72 63 就是 engine id
+
+# v3 example
+# !"#$%&'\''()*+,-.\/:;<=>?@[]^_`{|}~
+> snmpget -v3  -l authPriv -u 'yuyan' -a SHA  -A 'testtest' -x AES -X 'testtest' 10.0.7.4</code></pre>
 <p>也可以使用一些 snmp 的免費工具軟體，就請隨意發揮。</p>
 <h2 id="snmptrap-測試-v3"><a href="#snmptrap-測試-v3" class="headerlink" title="snmptrap 測試 v3"></a>snmptrap 測試 v3</h2><pre class=" language-sh"><code class="language-sh">> snmptrap -v 3 -e 80001f88804993f817a758bc63 -u yuyan123456 -a SHA -A authpass -x AES -X privpass -l authPriv 10.0.7.4:162 0 .1.3.6.1.2.1.2.2.1.1.2
 
@@ -906,7 +913,7 @@ mosquitto/
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">70.1k</span>
+                <span class="white-color">71.2k</span>
             
 
             

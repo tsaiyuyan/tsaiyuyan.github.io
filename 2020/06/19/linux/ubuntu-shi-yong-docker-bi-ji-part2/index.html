@@ -420,14 +420,14 @@ $curl -sSL https://get.docker.com/ |">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        812
+                        891
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>閱讀時長:&nbsp;&nbsp;
-                        4 分
+                        5 分
                     </div>
                     
                 
@@ -553,6 +553,23 @@ $docker start -ai [container_name]</code></pre>
 <h3 id="List-container"><a href="#List-container" class="headerlink" title="List container"></a>List container</h3><pre class=" language-sh"><code class="language-sh">$docker ps -a
 CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS                      PORTS               NAMES
 3307a856267e        yuyan/build_env:ver1.0   "bash -l"         3 days ago          Exited (0) 14 seconds ago                       trusting_hofstadter</code></pre>
+<h3 id="Change-image-tag"><a href="#Change-image-tag" class="headerlink" title="Change image tag"></a>Change image tag</h3><pre class=" language-sh"><code class="language-sh"># example "eki-1528dr/build_env:ver1.1" => "docker rmi eki-1528dr/build_env:1.1"
+
+> docker image tag eki-1528dr/build_env:ver1.1 eki-1528dr/build_env:1.1
+
+# remove old tag
+> docker rmi eki-1528dr/build_env:ver1.1
+Untagged: eki-1528dr/build_env:ver1.1
+</code></pre>
+<h3 id="Change-container-name"><a href="#Change-container-name" class="headerlink" title="Change container name"></a>Change container name</h3><pre class=" language-sh"><code class="language-sh"># example "yenv-cns" => "ybak-cns"
+
+> docker rename yenv-cns ybak-cns
+</code></pre>
+<h3 id="clean-docker-disk-usage"><a href="#clean-docker-disk-usage" class="headerlink" title="clean docker disk usage"></a>clean docker disk usage</h3><pre class=" language-sh"><code class="language-sh"># remove unuse image
+docker image prune -a
+
+# remove docker build cache (14.6G)
+docker builder prune</code></pre>
 
             </div>
             <hr/>
@@ -827,7 +844,7 @@ CONTAINER ID        IMAGE                   COMMAND             CREATED         
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">70.1k</span>
+                <span class="white-color">71.2k</span>
             
 
             
