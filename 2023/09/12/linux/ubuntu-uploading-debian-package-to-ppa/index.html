@@ -6,10 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Ubuntu uploading debian package to PPA, c/c++,Internet programmer,Linux Kernel">
     <meta name="description" content="前言
-
 本篇假設已經擁有Ubuntu社群帳號。
 用ubuntu帳號 登入 ppa (https://launchpad.net/)
-opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如果要下command也可">
+opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如果要下command也可以">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -424,7 +423,7 @@ opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        962
+                        961
                     </div>
                     
 
@@ -447,16 +446,14 @@ opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2>前言</h2>
-<ol>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ol>
 <li>本篇假設已經擁有Ubuntu社群帳號。</li>
 <li>用ubuntu帳號 登入 ppa (<a href="https://launchpad.net/" target="_blank" rel="noopener">https://launchpad.net/</a>)</li>
 <li>opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如果要下command也可以到launchpadhelp 網頁尋找答案，本篇不贅述。</li>
 <li>gpg 在generation keys 時會產生再 ~/.gnupg 的資料夾</li>
 <li>refer: <a href="https://blog.elleryq.idv.tw/2010/09/debian-package-ppa.html" target="_blank" rel="noopener">https://blog.elleryq.idv.tw/2010/09/debian-package-ppa.html</a></li>
 </ol>
-<h3 id="一、-產生-opengpg-Key"><a class="header-anchor" href="#一、-產生-opengpg-Key"></a>一、 產生 opengpg Key</h3>
-<pre class=" language-language-sh"><code class="language-language-sh"># 安裝 gpg 、 gpa
+<h2 id="一、-產生-opengpg-Key"><a href="#一、-產生-opengpg-Key" class="headerlink" title="一、 產生 opengpg Key"></a>一、 產生 opengpg Key</h2><pre class=" language-sh"><code class="language-sh"># 安裝 gpg 、 gpa
 $ sudo apt install gpg gpa
 
 # 打開gpa
@@ -470,8 +467,7 @@ $ gpa
 
 1. Copy fingerprint:  等同於 command "gpg --fingerprint"  55XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 2. Copy : 這邊會複製 public keys， 這東西要丟上key server
-3. Copy Private Key: 這邊會複製 private keys。
-</code></pre>
+3. Copy Private Key: 這邊會複製 private keys。</code></pre>
 <p>照步驟來做，先處理 key server 的部分，這樣ppa才能抓到:</p>
 <ol>
 <li>遞交 public key 給 key server (<a href="https://keyserver.ubuntu.com/" target="_blank" rel="noopener">https://keyserver.ubuntu.com/</a>) =&gt; 點選 submit keys 將public keys 貼上遞交。</li>
@@ -480,12 +476,12 @@ $ gpa
 <li>Overview -&gt; OpenPGP keys: =&gt; 點選鉛筆按鈕。</li>
 <li>Import an OpenPGP key -&gt; 填寫 Fingerprint -&gt; click “import key” button =&gt; wait a monment to receive E-Mail.</li>
 <li>這時你就會收到信件，打開你在ubuntu 註冊用的信箱會收到認證的信。 (Launchpad: Confirm your OpenPGP Key 的標題)。</li>
-<li>會看到內容有一段 -----BEGIN PGP MESSAGE----- =&gt; … =&gt;-----END PGP MESSAGE----- 結尾將其複製，並存成 opgpm.txt。</li>
+<li>會看到內容有一段 —–BEGIN PGP MESSAGE—– =&gt; … =&gt;—–END PGP MESSAGE—– 結尾將其複製，並存成 opgpm.txt。</li>
 <li>使用 gpg -d opgpm.txt 解碼信件。</li>
 <li>開啟 browser 去解碼信件內容指定的網址 <a href="https://launchpad.net/token/XXXXXXXXXXXXXXXXXX" target="_blank" rel="noopener">https://launchpad.net/token/XXXXXXXXXXXXXXXXXX</a> =&gt; 點選continue 即可完成認證</li>
 </ol>
 <p>之後你的 PPA profile 就會顯示 OpenGPG keys</p>
-<pre class=" language-language-sh"><code class="language-language-sh"># 1. 將gmail 收到的內容貼上在 opgpm.txt
+<pre class=" language-sh"><code class="language-sh"># 1. 將gmail 收到的內容貼上在 opgpm.txt
 $ vim opgpm.txt
 -----BEGIN PGP MESSAGE-----
 
@@ -511,10 +507,8 @@ Key details:
 UIDs:
     your-email@gmail.com
 Please go here to finish adding the key to your Launchpad account:
-    https://launchpad.net/token/XXXXXXXXXXXXXXXXXX
-</code></pre>
-<h3 id="可略過-Using-gpa-GUI-其他說明筆記"><a class="header-anchor" href="#可略過-Using-gpa-GUI-其他說明筆記"></a>(可略過) Using gpa GUI (其他說明筆記 )</h3>
-<p>This method is for systems that don’t have the Passwords and Keys application. It uses the GNU Privacy Assistant (gpa) application.</p>
+    https://launchpad.net/token/XXXXXXXXXXXXXXXXXX</code></pre>
+<h3 id="可略過-Using-gpa-GUI-其他說明筆記"><a href="#可略過-Using-gpa-GUI-其他說明筆記" class="headerlink" title="(可略過) Using gpa GUI (其他說明筆記 )"></a>(可略過) Using gpa GUI (其他說明筆記 )</h3><p>This method is for systems that don’t have the Passwords and Keys application. It uses the GNU Privacy Assistant (gpa) application.</p>
 <ol>
 <li>Install gpa by running sudo apt install gpg gpa in the terminal. This command installs both gpg and gpa on your system.</li>
 <li>Launch gpa from your applications menu.</li>
@@ -524,11 +518,10 @@ Please go here to finish adding the key to your Launchpad account:
 <li>Once the process is complete, your key will be created. You can export your public key from gpa to share with others.</li>
 </ol>
 <hr>
-<h2>二、 準備好deb package</h2>
-<blockquote>
+<h2 id="二、-準備好deb-package"><a href="#二、-準備好deb-package" class="headerlink" title="二、 準備好deb package"></a>二、 準備好deb package</h2><blockquote>
 <p>(未完成) 可先去我的 github clone example 專案。</p>
 </blockquote>
-<pre class=" language-language-sh"><code class="language-language-sh">$ tree deploy/deb_overwrite/debian
+<pre class=" language-sh"><code class="language-sh">$ tree deploy/deb_overwrite/debian
 .
 ├── advvcom-dkms.lintian-overrides
 ├── advvcom-dkms.postinst
@@ -560,10 +553,9 @@ $ bash deploy/packaging_deb.sh
 # debuild -b -us -uc -rfakeroot
 
 # build source deb pack[your-username]age，這個是將source code 上傳到ppa 由指定的 distribuition 去build 展開。
-debuild -S -sa -k"your-fingerprint"
-</code></pre>
+debuild -S -sa -k"your-fingerprint"</code></pre>
 <p>嘗試安裝binary deb試試看有沒有什麼問題</p>
-<pre class=" language-language-sh"><code class="language-language-sh">$ cd object/deb_object/
+<pre class=" language-sh"><code class="language-sh">$ cd object/deb_object/
 
 # 移除 deb package
 $ sudo apt remove [your-package-name] -y
@@ -576,11 +568,8 @@ $ sudo dpkg -i [your-package-name]_1.0-1_all.deb
 $ sudo apt-get install -f
 
 這一步驟主要是要檢查 postinst, preinst、postrm、prerm 這些script 有沒有錯誤。
-
 </code></pre>
-<h2>三、 Upload Source deb package to PPA</h2>
-<h3 id="1-編輯-dput-cf"><a class="header-anchor" href="#1-編輯-dput-cf"></a>1. 編輯 .dput.cf</h3>
-<pre class=" language-language-sh"><code class="language-language-sh">
+<h2 id="三、-Upload-Source-deb-package-to-PPA"><a href="#三、-Upload-Source-deb-package-to-PPA" class="headerlink" title="三、 Upload Source deb package to PPA"></a>三、 Upload Source deb package to PPA</h2><h3 id="1-編輯-dput-cf"><a href="#1-編輯-dput-cf" class="headerlink" title="1. 編輯 .dput.cf"></a>1. 編輯 .dput.cf</h3><pre class=" language-sh"><code class="language-sh">
 # .dput.cf
 $ cat ~/.dput.cf
 [ppa]
@@ -589,29 +578,23 @@ method = ftp
 incoming = ~[your-username]/[your-ppaname]/ubuntu
 login = anonymous
 allow_unsigned_uploads = 0
-
 </code></pre>
-<h3 id="2-dput-source-changes-file"><a class="header-anchor" href="#2-dput-source-changes-file"></a>2. dput source changes file</h3>
-<pre class=" language-language-sh"><code class="language-language-sh"># amd64 (not use) <= 這個會被reject
+<h3 id="2-dput-source-changes-file"><a href="#2-dput-source-changes-file" class="headerlink" title="2. dput source changes file"></a>2. dput source changes file</h3><pre class=" language-sh"><code class="language-sh"># amd64 (not use) <= 這個會被reject
 # debsign -k your-fingerprint [your-package-name]_1.0_amd64.changes
 # dput ppa:[your-username]/[your-ppaname] [your-package-name]_1.0-1_amd64.changes
 
 # 這個正解
 $ dput ppa:[your-username]/[your-ppaname] [your-package-name]_1.0_source.changes
-
 </code></pre>
-<h3 id="3-dput-後，收email解析"><a class="header-anchor" href="#3-dput-後，收email解析"></a>3. dput 後，收email解析</h3>
-<p>最後一步驟， 只要 dput 後，就準備去收信，如果收到 Rejected。</p>
+<h3 id="3-dput-後，收email解析"><a href="#3-dput-後，收email解析" class="headerlink" title="3. dput 後，收email解析"></a>3. dput 後，收email解析</h3><p>最後一步驟， 只要 dput 後，就準備去收信，如果收到 Rejected。</p>
 <p>有遇過的問題如下:</p>
 <ol>
-<li>changelog Unrelease 不存在之類的，這邊因為要上傳到ppa 所以changelog 有些魔改，就是一般 debian changelog 裡是寫 unstable、experiment，在這裡要改為 lucid、hardy。<br>
-就是填寫 ubuntu os的代號 jammy(ubuntu22.04)，lunar(ubuntu23.04)、mantic(ubuntu23.10)。</li>
+<li>changelog Unrelease 不存在之類的，這邊因為要上傳到ppa 所以changelog 有些魔改，就是一般 debian changelog 裡是寫 unstable、experiment，在這裡要改為 lucid、hardy。<br>就是填寫 ubuntu os的代號 jammy(ubuntu22.04)，lunar(ubuntu23.04)、mantic(ubuntu23.10)。</li>
 <li>版本號已存在，目前要馬去網站上刪除版本(要等半小時~1小時以上)，不然就是手動升版。很麻煩。</li>
 <li>上傳的東西混雜mixed binary file with source code 啥的，在PPA上只能上傳 debuild -S 的 Source deb， 所以一般 build 好的 binary deb 會被回絕。</li>
 </ol>
 <p>如果收到 Accepted， 就去看看build結果怎麼樣，build 的結果大約幾分鐘就可以看到，如果沒過就很不幸要重新進版修改再上傳，如果 build 過，大約要等半小~1小時才能在網站看看到ppa 幫你產生的 deb file 下載。</p>
-<h2>三、 用 apt install 下載 ppa 測試</h2>
-<pre class=" language-language-sh"><code class="language-language-sh"># 註冊你的 key，不然會被說沒sign 過的東西會被拒絕安裝。
+<h2 id="四、-用-apt-install-下載-ppa-測試"><a href="#四、-用-apt-install-下載-ppa-測試" class="headerlink" title="四、 用 apt install 下載 ppa 測試"></a>四、 用 apt install 下載 ppa 測試</h2><pre class=" language-sh"><code class="language-sh"># 註冊你的 key，不然會被說沒sign 過的東西會被拒絕安裝。
 $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys your-fingerprint
 
 # 加入 repository
@@ -626,17 +609,14 @@ $ sudo apt install [your-package-name]
 
 # 移除 package
 $ sudo apt remove [your-package-name]
-
 </code></pre>
-<h2>其他(未整理)</h2>
-<pre class=" language-language-sh"><code class="language-language-sh">$ gpg --list-secret-keys
+<h2 id="其他-未整理"><a href="#其他-未整理" class="headerlink" title="其他(未整理)"></a>其他(未整理)</h2><pre class=" language-sh"><code class="language-sh">$ gpg --list-secret-keys
 pub   4096R/ABC12345 2020-01-01 [expires: 2025-12-31]
 uid                  Your Name user@exmple.com
 sub   4096R/DEF67890 2020-01-01 [expires: 2025-12-31]
 
 $ gpg --delete-keys
 $ gpg --delete-secret-keys
-
 </code></pre>
 
             </div>
@@ -714,10 +694,9 @@ $ gpg --delete-secret-keys
                     <div class="summary">
                         
                             前言
-
 本篇假設已經擁有Ubuntu社群帳號。
 用ubuntu帳號 登入 ppa (https://launchpad.net/)
-open
+openg
                         
                     </div>
                     <div class="publish-info">
