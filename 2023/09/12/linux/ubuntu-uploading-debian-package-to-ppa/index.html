@@ -396,6 +396,14 @@ opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如
                                 <span class="chip bg-color">opengpg</span>
                             </a>
                         
+                            <a href="/tags/pbuilder/" target="_blank">
+                                <span class="chip bg-color">pbuilder</span>
+                            </a>
+                        
+                            <a href="/tags/debuild/" target="_blank">
+                                <span class="chip bg-color">debuild</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -423,7 +431,7 @@ opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字數:&nbsp;&nbsp;
-                        961
+                        1k
                     </div>
                     
 
@@ -452,8 +460,10 @@ opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如
 <li>opengpg 產生很麻煩 強力建議直接使用 ubuntu 套件 gpa 完成。 如果要下command也可以到launchpadhelp 網頁尋找答案，本篇不贅述。</li>
 <li>gpg 在generation keys 時會產生再 ~/.gnupg 的資料夾</li>
 <li>refer: <a href="https://blog.elleryq.idv.tw/2010/09/debian-package-ppa.html" target="_blank" rel="noopener">https://blog.elleryq.idv.tw/2010/09/debian-package-ppa.html</a></li>
+<li>ppa - Using a Personal Package Archive (PPA), you can distribute software and updates directly to Ubuntu users. Create your source package, upload it and Launchpad will build binaries and then host them in your own apt repository.</li>
 </ol>
-<h2 id="一、-產生-opengpg-Key"><a href="#一、-產生-opengpg-Key" class="headerlink" title="一、 產生 opengpg Key"></a>一、 產生 opengpg Key</h2><pre class=" language-sh"><code class="language-sh"># 安裝 gpg 、 gpa
+<hr>
+<h2 id="Generate-opengpg-Key"><a href="#Generate-opengpg-Key" class="headerlink" title="Generate opengpg Key"></a>Generate opengpg Key</h2><pre class=" language-sh"><code class="language-sh"># 安裝 gpg 、 gpa
 $ sudo apt install gpg gpa
 
 # 打開gpa
@@ -508,39 +518,27 @@ UIDs:
     your-email@gmail.com
 Please go here to finish adding the key to your Launchpad account:
     https://launchpad.net/token/XXXXXXXXXXXXXXXXXX</code></pre>
-<h3 id="可略過-Using-gpa-GUI-其他說明筆記"><a href="#可略過-Using-gpa-GUI-其他說明筆記" class="headerlink" title="(可略過) Using gpa GUI (其他說明筆記 )"></a>(可略過) Using gpa GUI (其他說明筆記 )</h3><p>This method is for systems that don’t have the Passwords and Keys application. It uses the GNU Privacy Assistant (gpa) application.</p>
-<ol>
-<li>Install gpa by running sudo apt install gpg gpa in the terminal. This command installs both gpg and gpa on your system.</li>
-<li>Launch gpa from your applications menu.</li>
-<li>Navigate to the “Keys” menu and select “New Key”. This will open a dialog where you can enter your details.</li>
-<li>Enter your full name and email address, and proceed through the prompts.</li>
-<li>Set a passphrase to protect your PGP key. This passphrase is like a password and will be used to unlock your key.</li>
-<li>Once the process is complete, your key will be created. You can export your public key from gpa to share with others.</li>
-</ol>
 <hr>
-<h2 id="二、-準備好deb-package"><a href="#二、-準備好deb-package" class="headerlink" title="二、 準備好deb package"></a>二、 準備好deb package</h2><blockquote>
-<p>(未完成) 可先去我的 github clone example 專案。</p>
+<h2 id="Build-debian-package"><a href="#Build-debian-package" class="headerlink" title="Build debian package"></a>Build debian package</h2><blockquote>
+<p>去我的 github clone example 專案。</p>
 </blockquote>
 <pre class=" language-sh"><code class="language-sh">$ tree deploy/deb_overwrite/debian
-.
+deploy/deb_overwrite/debian/
+├── advvcom-daemon.postinst
 ├── advvcom-dkms.lintian-overrides
 ├── advvcom-dkms.postinst
 ├── advvcom-dkms.prerm
-├── advvcom-driver.lintian-overrides
-├── advvcom-module-_KVERS_.postinst.modules.in
-├── advvcom-module-_KVERS_.postrm
 ├── changelog
 ├── compat
 ├── control
-├── control.modules.in
 ├── copyright
-├── dirs
 ├── README.Debian
 ├── rules
-├── rules.m-a
 └── source
     ├── format
     └── lintian-overrides
+
+1 directory, 12 files
 
 $ bash deploy/packaging_deb.sh
 
@@ -552,10 +550,9 @@ $ bash deploy/packaging_deb.sh
 # dpkg-buildpackage -b -rfakeroot -us -uc
 # debuild -b -us -uc -rfakeroot
 
-# build source deb pack[your-username]age，這個是將source code 上傳到ppa 由指定的 distribuition 去build 展開。
+# build source deb package，這個是將source code 上傳到ppa 由指定的 distribuition 去build 展開。
 debuild -S -sa -k"your-fingerprint"</code></pre>
-<p>嘗試安裝binary deb試試看有沒有什麼問題</p>
-<pre class=" language-sh"><code class="language-sh">$ cd object/deb_object/
+<h3 id="Try-to-install-binary-deb-and-debug"><a href="#Try-to-install-binary-deb-and-debug" class="headerlink" title="Try to install binary deb and debug"></a>Try to install binary deb and debug</h3><pre class=" language-sh"><code class="language-sh">$ cd object/deb_object/
 
 # 移除 deb package
 $ sudo apt remove [your-package-name] -y
@@ -567,9 +564,16 @@ $ sudo gdebi-gtk [your-package-name]_1.0-1_all.deb
 $ sudo dpkg -i [your-package-name]_1.0-1_all.deb
 $ sudo apt-get install -f
 
-這一步驟主要是要檢查 postinst, preinst、postrm、prerm 這些script 有沒有錯誤。
-</code></pre>
-<h2 id="三、-Upload-Source-deb-package-to-PPA"><a href="#三、-Upload-Source-deb-package-to-PPA" class="headerlink" title="三、 Upload Source deb package to PPA"></a>三、 Upload Source deb package to PPA</h2><h3 id="1-編輯-dput-cf"><a href="#1-編輯-dput-cf" class="headerlink" title="1. 編輯 .dput.cf"></a>1. 編輯 .dput.cf</h3><pre class=" language-sh"><code class="language-sh">
+這一步驟主要是要檢查 postinst, preinst、postrm、prerm 這些script 有沒有錯誤。</code></pre>
+<h3 id="Debian-folder-introduction"><a href="#Debian-folder-introduction" class="headerlink" title="Debian folder introduction"></a>Debian folder introduction</h3><ul>
+<li>rule：這最重要，實際上是Makefile，後面具體介紹；</li>
+<li>control：這個是軟體包的描述，照著內容敲吧，section 之要遵循 debian 的約定，比如 kernel 就是一個 section，其他自便吧</li>
+<li>changelog：這個是打包版本的變更，每個版本開頭裡，目標distro一般寫 unstable，urgency 一般是 low</li>
+<li>README.Debian：是對這個包的說明，給人看的</li>
+<li>可執行腳本：postinst 和 prerm 比較常用，分別是在安裝之後進行配置和卸載之前進行清理的，preinst 和 postrm 一般用的不多。 其他文件各有各的用處，.ex 結尾的都是例子，如果用的上就用，用不上的可以考慮刪除。</li>
+</ul>
+<hr>
+<h2 id="Upload-Source-deb-package-to-PPA"><a href="#Upload-Source-deb-package-to-PPA" class="headerlink" title="Upload Source deb package to PPA"></a>Upload Source deb package to PPA</h2><h3 id="1-edit-dput-cf"><a href="#1-edit-dput-cf" class="headerlink" title="1. edit .dput.cf"></a>1. edit .dput.cf</h3><pre class=" language-sh"><code class="language-sh">
 # .dput.cf
 $ cat ~/.dput.cf
 [ppa]
@@ -586,7 +590,7 @@ allow_unsigned_uploads = 0
 # 這個正解
 $ dput ppa:[your-username]/[your-ppaname] [your-package-name]_1.0_source.changes
 </code></pre>
-<h3 id="3-dput-後，收email解析"><a href="#3-dput-後，收email解析" class="headerlink" title="3. dput 後，收email解析"></a>3. dput 後，收email解析</h3><p>最後一步驟， 只要 dput 後，就準備去收信，如果收到 Rejected。</p>
+<h3 id="3-recieve-email-after-dput-and-check-committing-result"><a href="#3-recieve-email-after-dput-and-check-committing-result" class="headerlink" title="3. recieve email after dput, and check committing result"></a>3. recieve email after dput, and check committing result</h3><p>最後一步驟， 只要 dput 後，就準備去收信，如果收到 Rejected。</p>
 <p>有遇過的問題如下:</p>
 <ol>
 <li>changelog Unrelease 不存在之類的，這邊因為要上傳到ppa 所以changelog 有些魔改，就是一般 debian changelog 裡是寫 unstable、experiment，在這裡要改為 lucid、hardy。<br>就是填寫 ubuntu os的代號 jammy(ubuntu22.04)，lunar(ubuntu23.04)、mantic(ubuntu23.10)。</li>
@@ -594,7 +598,8 @@ $ dput ppa:[your-username]/[your-ppaname] [your-package-name]_1.0_source.changes
 <li>上傳的東西混雜mixed binary file with source code 啥的，在PPA上只能上傳 debuild -S 的 Source deb， 所以一般 build 好的 binary deb 會被回絕。</li>
 </ol>
 <p>如果收到 Accepted， 就去看看build結果怎麼樣，build 的結果大約幾分鐘就可以看到，如果沒過就很不幸要重新進版修改再上傳，如果 build 過，大約要等半小~1小時才能在網站看看到ppa 幫你產生的 deb file 下載。</p>
-<h2 id="四、-用-apt-install-下載-ppa-測試"><a href="#四、-用-apt-install-下載-ppa-測試" class="headerlink" title="四、 用 apt install 下載 ppa 測試"></a>四、 用 apt install 下載 ppa 測試</h2><pre class=" language-sh"><code class="language-sh"># 註冊你的 key，不然會被說沒sign 過的東西會被拒絕安裝。
+<hr>
+<h2 id="Using-apt-install-to-try-ppa"><a href="#Using-apt-install-to-try-ppa" class="headerlink" title="Using apt install to try ppa"></a>Using apt install to try ppa</h2><pre class=" language-sh"><code class="language-sh"># 註冊你的 key，不然會被說沒sign 過的東西會被拒絕安裝。
 $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys your-fingerprint
 
 # 加入 repository
@@ -610,14 +615,105 @@ $ sudo apt install [your-package-name]
 # 移除 package
 $ sudo apt remove [your-package-name]
 </code></pre>
-<h2 id="其他-未整理"><a href="#其他-未整理" class="headerlink" title="其他(未整理)"></a>其他(未整理)</h2><pre class=" language-sh"><code class="language-sh">$ gpg --list-secret-keys
+<hr>
+<h2 id="總結規劃"><a href="#總結規劃" class="headerlink" title="總結規劃"></a>總結規劃</h2><h3 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h3><blockquote>
+<p>AE &amp; 客戶 -&gt; RD - fix -&gt; Github - test -&gt; QA -&gt; Release</p>
+</blockquote>
+<ol>
+<li>又急又趕，修復時程卡在RD與QA。</li>
+<li>客戶體驗不佳。</li>
+<li>被動。</li>
+</ol>
+<h3 id="Changed"><a href="#Changed" class="headerlink" title="Changed"></a>Changed</h3><blockquote>
+<p>RD - (mainline + dkms + pbuilder) -&gt;  deploy to PPA -&gt; build deb package -&gt; QA apt install &amp;&amp; update &amp;&amp; upgrade</p>
+</blockquote>
+<ol>
+<li>超前部屬，提早發現問題。</li>
+<li>正規化安裝流程(apt upgrade…)。</li>
+<li>ppa 多平台部屬(i386 arm64 amd64…)</li>
+</ol>
+<ul>
+<li>mainline - Mainline Kernels 內核集結下載</li>
+<li>dkms - Dynamic Kernel Module Support</li>
+<li>pbuilder - personal package builder</li>
+<li>ppa - Personal Package Archive</li>
+</ul>
+<h3 id="ppa-curren-platform"><a href="#ppa-curren-platform" class="headerlink" title="ppa curren platform"></a>ppa curren platform</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> Mantic (23.10) - frozen</li>
+<li><input checked="" disabled="" type="checkbox"> Lunar (23.04) - current</li>
+<li><input checked="" disabled="" type="checkbox"> Jammy (22.04) - supported</li>
+<li><input checked="" disabled="" type="checkbox"> Focal (20.04) - supported</li>
+<li><input checked="" disabled="" type="checkbox"> Bionic (18.04) - supported</li>
+<li><input checked="" disabled="" type="checkbox"> Xenial (16.04) - supported</li>
+<li><input checked="" disabled="" type="checkbox"> Trusty (14.04) - supported</li>
+</ul>
+<h2 id="How-to-use-pbuilder"><a href="#How-to-use-pbuilder" class="headerlink" title="How to use pbuilder"></a>How to use pbuilder</h2><blockquote>
+<p>pbuilder - personal package builder</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># pbuilder tool install</span>
+$ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> pbuilder debootstrap devscripts.
+
+<span class="token comment" spellcheck="true"># ubuntu 20.04 focal</span>
+$ <span class="token function">sudo</span> pbuilder create --distribution focal
+
+<span class="token comment" spellcheck="true"># ubuntu 23.10 mantic</span>
+$ <span class="token function">sudo</span> pbuilder create --distribution mantic --bindsmount
+
+<span class="token comment" spellcheck="true"># excute pbuilder</span>
+$ <span class="token function">sudo</span> pbuilder --login --save-after-login --bindmounts /path/to/source/code
+
+<span class="token comment" spellcheck="true">#note : --bindmounts: mapping host folder</span>
+
+$ <span class="token function">sudo</span> apt <span class="token function">install</span> dkms openssl libssl-dev
+$ <span class="token function">sudo</span> apt <span class="token function">install</span> linux-image-generic linux-headers-generic
+
+<span class="token comment" spellcheck="true"># install tools, add-apt-repository apt-add-repository</span>
+$ <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> software-properties-common
+
+<span class="token comment" spellcheck="true">## install advvcom, this is demo</span>
+$ <span class="token function">sudo</span> add-apt-repository ppa:yuyan310362/test-ppa
+$ <span class="token function">sudo</span> apt update
+
+$ <span class="token function">sudo</span> apt <span class="token function">install</span> opensll libssl-dev dkms
+$ <span class="token function">sudo</span> apt <span class="token function">install</span> linux-image-generic linux-headers-generic
+$ <span class="token function">sudo</span> apt <span class="token function">install</span> advvcom-dkms advvcom-daemon
+</code></pre>
+<hr>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><pre class=" language-sh"><code class="language-sh">$ gpg --list-secret-keys
 pub   4096R/ABC12345 2020-01-01 [expires: 2025-12-31]
 uid                  Your Name user@exmple.com
 sub   4096R/DEF67890 2020-01-01 [expires: 2025-12-31]
 
 $ gpg --delete-keys
 $ gpg --delete-secret-keys
-</code></pre>
+
+# To see all the files the package installed onto your system, do this:
+dpkg-query -L [package_name]
+
+# To see the files a .deb file will install
+dpkg-deb -c [package_name.deb]</code></pre>
+<h3 id="命令層級"><a href="#命令層級" class="headerlink" title="命令層級"></a>命令層級</h3><p>這裏有一個簡練的總結，關於在命令層次結構中有多少用於構建軟件包的命令能夠組合到一起。做這件事情的方法非常多。</p>
+<ul>
+<li>debian/rules = 軟件包構建過程的專用 maintainer script</li>
+<li>dpkg-buildpackage = 軟件包構建之核心工具</li>
+<li>de-build = dpkg-buildpackage + lintian (在乾淨的環境變量下構建)</li>
+<li>pbuilder = Debian chroot 環境核心工具</li>
+<li>pdebuild = pbuilder + dpkg-buildpackage (在chroot環境中構建)</li>
+<li>cowbuilder = 加速 pbuilder 執行</li>
+<li>git-pbuilder = 命令行語法友好pdebuild (被 gbp buildpackage 使用)</li>
+<li>gbp = 在 Git 倉庫中管理 Debian 源碼</li>
+<li>gbp buildpackage = pbuilder + dpkg-buildpackage + gbp</li>
+</ul>
+<p>即便像 gbp buildpackage 和 pbuilder 這樣的高級命令的應用可以確保完美的軟件包 構建環境，瞭解像debian/rules 和 dpkg-buildpackage 這樣的低級命令行工具如何被它們執行也是至關重要的。</p>
+<h3 id="Using-gpa-GUI-other-notes"><a href="#Using-gpa-GUI-other-notes" class="headerlink" title="Using gpa GUI (other notes)"></a>Using gpa GUI (other notes)</h3><p>This method is for systems that don’t have the Passwords and Keys application. It uses the GNU Privacy Assistant (gpa) application.</p>
+<ol>
+<li>Install gpa by running sudo apt install gpg gpa in the terminal. This command installs both gpg and gpa on your system.</li>
+<li>Launch gpa from your applications menu.</li>
+<li>Navigate to the “Keys” menu and select “New Key”. This will open a dialog where you can enter your details.</li>
+<li>Enter your full name and email address, and proceed through the prompts.</li>
+<li>Set a passphrase to protect your PGP key. This passphrase is like a password and will be used to unlock your key.</li>
+<li>Once the process is complete, your key will be created. You can export your public key from gpa to share with others.</li>
+</ol>
 
             </div>
             <hr/>
@@ -733,6 +829,14 @@ openg
                     
                     <a href="/tags/opengpg/" target="_blank">
                         <span class="chip bg-color">opengpg</span>
+                    </a>
+                    
+                    <a href="/tags/pbuilder/" target="_blank">
+                        <span class="chip bg-color">pbuilder</span>
+                    </a>
+                    
+                    <a href="/tags/debuild/" target="_blank">
+                        <span class="chip bg-color">debuild</span>
                     </a>
                     
                 </div>
